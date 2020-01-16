@@ -1,0 +1,6 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="index">
+        <view><text>分包页面</text>
+        </view>
+    </view>
+</block>

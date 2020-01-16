@@ -1,0 +1,6 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="index">
+        <view><text>个人中心页面</text>
+        </view>
+    </view>
+</block>

@@ -1,0 +1,31 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="index">
+        <button class="add_btn" bindtap="funPrivatefazzz">+</button>
+        <button class="dec_btn" bindtap="funPrivatefbzzz">-</button>
+        <button class="dec_btn" bindtap="funPrivatefczzz">async</button>
+        <view><text>{{counter.num}}</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <view><text>Hello, World</text>
+        </view>
+        <button class="add_btn" bindtap="toFenbao" data-e-tap-so="this">前往分包页面</button>
+        <button class="add_btn" bindtap="toFenbao1">前往分包页面111</button>
+    </view>
+</block>
