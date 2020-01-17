@@ -77,8 +77,7 @@ var _App = function (_BaseComponent) {
       // 分包
       subPackages: [{
         "root": "packageCustomerData",
-        "name": "packageCustomerData",
-        "pages": ["pages/customerDataList/customerDataList"]
+        "pages": ["pages/customerDataList/index"]
       }],
       //窗口设置
       window: {
@@ -104,12 +103,12 @@ var _App = function (_BaseComponent) {
         backgroundColor: '#fff',
         borderStyle: 'black'
       },
-      //网络设置
+      //网络设置-30S
       networkTimeout: {
-        request: 120000,
-        connectSocket: 120000,
-        uploadFile: 120000,
-        downloadFile: 120000
+        request: 30000,
+        connectSocket: 30000,
+        uploadFile: 30000,
+        downloadFile: 30000
       },
       debug: false
     }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -158,9 +157,9 @@ _taroWeapp2.default.initPxTransform({
   !*** ./src/app.scss ***!
   \**********************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// extracted by mini-css-extract-plugin
+throw new Error("Module build failed (from ./node_modules/_mini-css-extract-plugin@0.7.0@mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/_sass-loader@7.3.1@sass-loader/dist/cjs.js):\n\r\n@import '@styles/reset.scss';\r\n^\r\n      File to import not found or unreadable: @styles/reset.scss.\r\n      in C:\\Users\\chenwangqiang\\Desktop\\caidao\\sxhr\\src\\app.scss (line 1, column 1)\n    at runLoaders (C:\\Users\\chenwangqiang\\Desktop\\caidao\\sxhr\\node_modules\\_webpack@4.41.5@webpack\\lib\\NormalModule.js:316:20)\n    at C:\\Users\\chenwangqiang\\Desktop\\caidao\\sxhr\\node_modules\\_loader-runner@2.4.0@loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\Users\\chenwangqiang\\Desktop\\caidao\\sxhr\\node_modules\\_loader-runner@2.4.0@loader-runner\\lib\\LoaderRunner.js:233:18\n    at context.callback (C:\\Users\\chenwangqiang\\Desktop\\caidao\\sxhr\\node_modules\\_loader-runner@2.4.0@loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.render [as callback] (C:\\Users\\chenwangqiang\\Desktop\\caidao\\sxhr\\node_modules\\_sass-loader@7.3.1@sass-loader\\dist\\index.js:89:7)\n    at Object.done [as callback] (C:\\Users\\chenwangqiang\\Desktop\\caidao\\sxhr\\node_modules\\_neo-async@2.6.1@neo-async\\async.js:8067:18)\n    at options.error (C:\\Users\\chenwangqiang\\Desktop\\caidao\\sxhr\\node_modules\\_node-sass@4.13.1@node-sass\\lib\\index.js:294:32)");
 
 /***/ }),
 

@@ -1,8 +1,8 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="index">
-        <button class="add_btn" bindtap="funPrivatefazzz">+</button>
-        <button class="dec_btn" bindtap="funPrivatefbzzz">-</button>
-        <button class="dec_btn" bindtap="funPrivatefczzz">async</button>
+        <button class="add_btn" bindtap="funPrivatebczzz">+</button>
+        <button class="dec_btn" bindtap="funPrivatebdzzz">-</button>
+        <button class="dec_btn" bindtap="funPrivatebezzz">async</button>
         <view><text>{{counter.num}}</text>
         </view>
         <view><text>Hello, World</text>

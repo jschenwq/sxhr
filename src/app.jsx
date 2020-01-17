@@ -26,9 +26,8 @@ class App extends Component {
     subPackages: [
       {
         "root": "packageCustomerData",
-        "name": "packageCustomerData",
         "pages": [
-          "pages/customerDataList/customerDataList",
+          "pages/customerDataList/index",
         ]
       }
     ],
@@ -58,12 +57,12 @@ class App extends Component {
       backgroundColor: '#fff',
       borderStyle: 'black'
     },
-    //网络设置
+    //网络设置-30S
     networkTimeout: {
-      request: 120000,
-      connectSocket: 120000,
-      uploadFile: 120000,
-      downloadFile: 120000
+      request: 30000,
+      connectSocket: 30000,
+      uploadFile: 30000,
+      downloadFile: 30000
     },
     debug: false
   }

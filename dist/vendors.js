@@ -8464,6 +8464,46 @@ module.exports = function (module) {
 
 /***/ }),
 
+/***/ "./src/actions/counter.js":
+/*!********************************!*\
+  !*** ./src/actions/counter.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.minus = exports.add = undefined;
+exports.asyncAdd = asyncAdd;
+
+var _counter = __webpack_require__(/*! ../constants/counter */ "./src/constants/counter.js");
+
+var add = exports.add = function add() {
+  return {
+    type: _counter.ADD
+  };
+};
+var minus = exports.minus = function minus() {
+  return {
+    type: _counter.MINUS
+  };
+};
+
+// 异步的action
+function asyncAdd() {
+  return function (dispatch) {
+    setTimeout(function () {
+      dispatch(add());
+    }, 2000);
+  };
+}
+
+/***/ }),
+
 /***/ "./src/constants/counter.js":
 /*!**********************************!*\
   !*** ./src/constants/counter.js ***!
@@ -8479,6 +8519,136 @@ Object.defineProperty(exports, "__esModule", {
 });
 var ADD = exports.ADD = 'ADD';
 var MINUS = exports.MINUS = 'MINUS';
+
+/***/ }),
+
+/***/ "./src/utils/api.js":
+/*!**************************!*\
+  !*** ./src/utils/api.js ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.login = undefined;
+
+var _http = __webpack_require__(/*! ./http */ "./src/utils/http.js");
+
+var _http2 = _interopRequireDefault(_http);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//自动登录
+var login = exports.login = function login(data) {
+  return _http2.default.ajax('user/login', "post", data);
+};
+
+//获取列表
+
+/***/ }),
+
+/***/ "./src/utils/config.js":
+/*!*****************************!*\
+  !*** ./src/utils/config.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var serverConfig = {
+  env: 'prod', //dev:开发环境，prod:生产环境
+  host: 'http://localhost:3000', //小程序管理后台服务器域名配置-暂未配置
+  version: '1.0',
+  noConsole: false, //是否打印发送和接收数据
+  header: {
+    'content-type': 'application/json', //application/x-www-form-urlencode
+    'Authorization': 'Bearer' //请求头设置token值--todo待定
+  }
+};
+
+exports.default = serverConfig;
+
+/***/ }),
+
+/***/ "./src/utils/http.js":
+/*!***************************!*\
+  !*** ./src/utils/http.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/_@tarojs_taro-weapp@2.0.0@@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _config = __webpack_require__(/*! ./config */ "./src/utils/config.js");
+
+var _config2 = _interopRequireDefault(_config);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var baseUrl = _config2.default.host;
+var header = _config2.default.header;
+var noConsole = _config2.default.noConsole;
+
+function baseOptions() {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { method: 'GET', data: {}, url: '' };
+
+  if (!noConsole) {
+    console.log(new Date().toLocaleString() + '\u3010 M=' + options.url + ' \u3011P=' + JSON.stringify(options.data));
+  }
+  var params = {
+    url: baseUrl + options.url,
+    data: options.data,
+    method: options.method.toUpperCase(), //taro规定必须大写
+    header: header
+  };
+  return _taroWeapp2.default.request(params);
+}
+
+function ajax(url, methodType, data) {
+  baseOptions({ url: url, method: methodType, data: data }).then(function (res) {
+    var statusCode = res.statusCode,
+        data = res.data;
+
+    if (statusCode >= 200 && statusCode < 300) {
+      if (!noConsole) {
+        console.log(new Date().toLocaleString() + '\u3010 M=' + url + ' \u3011\u3010\u63A5\u53E3\u54CD\u5E94\uFF1A\u3011', res.data);
+      }
+      if (data.status !== 'ok') {
+        _taroWeapp2.default.showToast({
+          title: res.data.error.message + '~' || false,
+          icon: 'none',
+          mask: true
+        });
+      }
+      return data;
+    } else {
+      throw new Error('\u7F51\u7EDC\u8BF7\u6C42\u9519\u8BEF\uFF0C\u72B6\u6001\u7801' + statusCode);
+    }
+  });
+}
+
+exports.default = {
+  ajax: ajax
+};
 
 /***/ })
 
