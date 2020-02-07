@@ -20,6 +20,10 @@ class App extends Component {
   config = {
     pages: [
       'pages/home/index',
+      'pages/service/index',
+      'pages/service/gbydyfw/index',
+      'pages/service/hyfw/index',
+      'pages/service/sxkfw/index',
       'pages/user/index',
     ],
     // 分包
@@ -43,6 +47,11 @@ class App extends Component {
         {
           pagePath: "pages/home/index",
           text: "首页",
+          iconPath: "images/tab/home.png",
+          selectedIconPath: "images/tab/home-active.png"
+        },{
+          pagePath: "pages/service/index",
+          text: "服务",
           iconPath: "images/tab/home.png",
           selectedIconPath: "images/tab/home-active.png"
         }, {

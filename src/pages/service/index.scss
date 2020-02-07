@@ -1,0 +1,33 @@
+.index {
+  flex-direction: column;
+  width: 100%;
+  .navigator-hover {
+    color:blue;
+    background-color: #ddd;
+  }
+  .navigator-item{
+    display: flex;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    align-items: center;
+    .navigator-item-image{
+      width: 90px;
+      height: 90px;
+      margin-right: 10px;
+    }
+    .navigator-item-title{
+      display: flex;
+      color: #333333;
+      flex-direction: column;
+    }
+    .arrow-icon{
+      position: absolute;
+      right: 20px;
+      color: #868686;
+      &:after{
+        font-size: 1.5rem;
+        content: '>';
+      }
+    }
+  }
+}
