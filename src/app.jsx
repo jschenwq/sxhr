@@ -46,19 +46,24 @@ class App extends Component {
       list: [
         {
           pagePath: "pages/home/index",
-          text: "首页",
+          text: "填志愿",
           iconPath: "images/tab/home.png",
           selectedIconPath: "images/tab/home-active.png"
         },{
           pagePath: "pages/service/index",
           text: "服务",
-          iconPath: "images/tab/home.png",
-          selectedIconPath: "images/tab/home-active.png"
-        }, {
+          iconPath: "images/tab/service.png",
+          selectedIconPath: "images/tab/service-active.png"
+        },{
+          pagePath: "pages/evaluation/index",
+          text: "测评",
+          iconPath: "images/tab/evaluation.png",
+          selectedIconPath: "images/tab/evaluation-active.png"
+        },{
           pagePath: "pages/user/index",
           text: "我的",
-          iconPath: "images/tab/user.png",
-          selectedIconPath: "images/tab/user-active.png"
+          iconPath: "images/tab/personal.png",
+          selectedIconPath: "images/tab/personal-active.png"
         }
       ],
       color: '#333',
