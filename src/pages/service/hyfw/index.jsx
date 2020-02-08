@@ -13,6 +13,7 @@ class Index extends Component {
     navigationBarTitleText: '开通VIP'
   }
   state = {
+    phoneNumber: '',
     gbydyChecked: false,
     sxkChecked: false,
     hyChecked: false
@@ -30,6 +31,16 @@ class Index extends Component {
   checkChange=(checked)=>(e)=>{
     this.setState(()=> ({
       [checked]: e.currentTarget.value
+    }));
+  }
+  fwrxPhoneCall=(e)=>{
+    Taro.makePhoneCall({
+      phoneNumber: this.state.phoneNumber
+    });
+  }
+  inputChange(e){
+    this.setState(()=> ({
+      phoneNumber: e.currentTarget.value
     }));
   }
   render () {
@@ -63,7 +74,7 @@ class Index extends Component {
           <Input type='text' placeholder='请输入11位有效手机号码...' placeholderStyle='color: #808080;' />
         </View>
         <View className='hyfw-btngroup'>
-          <Button style='width:30%;color: #080705;background-color: #ffb284;'>服务热线</Button>
+          <Button style='width:30%;color: #080705;background-color: #ffb284;' onClick={this.fwrxPhoneCall}>服务热线</Button>
           {/* disabled={!this.state.checked} */}
           <Button style='width: 60%;color: #fff;background-color: #bcbbc0;' >立即开通</Button>
         </View>

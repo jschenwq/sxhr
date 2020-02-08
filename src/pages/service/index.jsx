@@ -41,7 +41,7 @@ class Index extends Component {
           <View className='navigator-item'>
             <Image className='navigator-item-image' src={sxkfw} />
             <View className='navigator-item-title'>
-              <Text>升学服务</Text>
+              <Text>升学卡服务</Text>
               <Text style='color:#ff9913;'>￥ 6000.00</Text>
             </View>
             <Text className='arrow-icon'></Text>
