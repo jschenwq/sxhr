@@ -7,17 +7,18 @@
   }
   .navigator-item{
     display: flex;
-    padding: 0 20px;
+    padding: 10px 20px;
     margin-bottom: 10px;
     align-items: center;
     .navigator-item-image{
-      width: 90px;
-      height: 90px;
+      width: 90rpx;
+      height: 90rpx;
       margin-right: 10px;
     }
     .navigator-item-title{
       display: flex;
       color: #333333;
+      font-size: 36rpx;
       flex-direction: column;
     }
     .arrow-icon{

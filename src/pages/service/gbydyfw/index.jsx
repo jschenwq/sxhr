@@ -1,14 +1,20 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Icon, Button, Text } from '@tarojs/components'
+import { View, Label, Button, Image, Switch } from '@tarojs/components'
 
 import './index.scss'
+
+import zytbzjydy from '../../../images/service/zytbzjydy.png'
+import jzgk from '../../../images/service/jzgk.png'
+import phoneIcon from '../../../images/service/phone_icon.png'
 
 class Index extends Component {
 
   config = {
-    navigationBarTitleText: '服务项目'
+    navigationBarTitleText: '开通VIP'
   }
-
+  state = {
+    checked: false
+  }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
   }
@@ -19,11 +25,36 @@ class Index extends Component {
 
   componentDidHide () { }
 
+  checkChange=(e)=>{
+    this.setState(()=> ({
+      checked: e.currentTarget.value
+    }));
+  }
   render () {
     return (
       <View className='index'>
-        <View><Text>高报一对一服务页面</Text></View>
-        <View>
+        <Image src={zytbzjydy} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
+        <View className='gbydyfw-price'>
+          <Label>高报一对一服务</Label>
+          <Text style='color: #ff9913;'> ￥8000.00</Text>
+        </View>
+        <View className='gbydyfw-price gbydyfw-checked'>
+          <Label>高报一对一服务</Label>
+          <Switch type='checkbox' checked={this.state.checked} onChange={this.checkChange}/>
+        </View>
+        <View className='gbydyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;'>
+          <Image style='margin-bottom: 15rpx;width: 100%;' src={jzgk} />
+          <View><Text style='font-size: 32rpx;color: #333333;'>【学业测评】分析考生意向，指定合理的目标</Text></View>
+          <View><Text style='font-size: 32rpx;color: #333333;'>【学业测评】分析考生意向，指定合理的目标</Text></View>
+        </View>
+        <View className='gbydyfw-price gbydyfw-phone'>
+          <Image src={phoneIcon} style='width: 40rpx; height: 80rpx;' />
+          <Input type='text' placeholder='请输入11位有效手机号码...' placeholderStyle='color: #808080;' />
+        </View>
+        <View className='gbydyfw-btngroup'>
+          <Button style='width:30%;color: #080705;background-color: #ffb284;'>服务热线</Button>
+          {/* disabled={!this.state.checked} */}
+          <Button style='width: 60%;color: #fff;background-color: #bcbbc0;' >立即开通</Button>
         </View>
       </View>
     )

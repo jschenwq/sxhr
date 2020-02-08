@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Icon, Button, Text } from '@tarojs/components'
+import { View, Button, Text, Image } from '@tarojs/components'
 
 import './index.scss'
 
@@ -37,9 +37,9 @@ class Index extends Component {
             <Text className='arrow-icon'></Text>
           </View>
         </navigator>
-        <navigator url="./hyfw/index" hover-class="other-navigator-hover">
+        <navigator url="./sxkfw/index" hover-class="other-navigator-hover">
           <View className='navigator-item'>
-            <Image className='navigator-item-image' src={hyfw} />
+            <Image className='navigator-item-image' src={sxkfw} />
             <View className='navigator-item-title'>
               <Text>升学服务</Text>
               <Text style='color:#ff9913;'>￥ 6000.00</Text>
@@ -47,9 +47,9 @@ class Index extends Component {
             <Text className='arrow-icon'></Text>
           </View>
         </navigator>
-        <navigator url="./sxkfw/index" hover-class="other-navigator-hover">
+        <navigator url="./hyfw/index" hover-class="other-navigator-hover">
           <View className='navigator-item'>
-            <Image className='navigator-item-image' src={sxkfw} />
+            <Image className='navigator-item-image' src={hyfw} />
             <View className='navigator-item-title'>
               <Text>会员服务</Text>
               <Text style='color:#ff9913;'>￥ 5000.00</Text>
