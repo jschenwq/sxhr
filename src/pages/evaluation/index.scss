@@ -1,33 +1,93 @@
 .index {
   flex-direction: column;
   width: 100%;
+  height: 100%;
+  background-color: #f9f5f4;
+  padding: 16rpx 20rpx;
+  overflow: auto;
+  navigator{
+    position: absolute;
+    top: 50rpx;
+    right: -18rpx;
+    background-color: #fff;
+    color: #757575;
+    border-radius: 40rpx 0 0 40rpx;
+    padding: 8rpx 24rpx;
+  }
   .navigator-hover {
-    color:blue;
     background-color: #ddd;
   }
-  .navigator-item{
+  .cp-top{
+    background: url(../../images/evaluation/envaluation_bg.png) no-repeat center center transparent;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 320px;
+    color: #fff;
+    padding: 20px 0 20px 40px;
+    position: relative;
     display: flex;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    align-items: center;
-    .navigator-item-image{
-      width: 90rpx;
-      height: 90rpx;
-      margin-right: 10px;
-    }
-    .navigator-item-title{
+    justify-content: space-around;
+    flex-direction: column;
+    border-radius: 20rpx;
+    .operate-group{
       display: flex;
-      color: #333333;
-      font-size: 36rpx;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text{
+        background-color: #ff5f71;
+        border-radius: 20rpx 0 0 20rpx;
+        padding: 2rpx 10rpx;
+        height: 40px;
+        font-size: 25rpx;
+      }
     }
-    .arrow-icon{
-      position: absolute;
-      right: 20px;
-      color: #868686;
-      &:after{
-        font-size: 1.5rem;
-        content: '>';
+  }
+  .cp-module{
+    .module-title{
+      color: #212121;
+      font-size: 40rpx;
+      font-weight: bold;
+      padding: 30rpx 0 14rpx;
+    }
+    .module-items{
+      display: flex;
+      align-items: space-between;
+      justify-content: center;
+      margin-bottom: 20rpx;
+      &:last-child{
+        margin-bottom: 0;
+      }
+      .module-item{
+        flex: 1;
+        background-color: #fff;
+        border-radius: 40rpx;
+        padding: 20px;
+        box-shadow: 4rpx 4rpx 20rpx #dfdfdf;
+        &:first-child{
+          margin-right: 20rpx;
+        }
+        .item-title{
+          color: #212121;
+          font-size: 30rpx;
+          font-weight: bold;
+        }
+        .item-text{
+          color: #757575;
+          font-size: 24rpx;
+        }
+        .item-content{
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          text{
+            color: #757575;
+            font-size: 24rpx;
+          }
+          image{
+            width: 60px;
+            height: 60px;
+          }
+        }
       }
     }
   }
