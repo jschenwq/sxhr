@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text, Image } from '@tarojs/components'
-
+import  TaroProp from './taroProp/index'
 import './index.scss'
 
 import ksxlhxwcs from '../../images/evaluation/ksxlhxwcs.png'
@@ -9,6 +9,12 @@ import xxjdcp from '../../images/evaluation/xxjdcp.png'
 import xxnlcp from '../../images/evaluation/xxnlcp.png'
 import jtjyfscp from '../../images/evaluation/jtjyfscp.png'
 import zwkznlcp from '../../images/evaluation/zwkznlcp.png'
+import boyIcon from '../../images/evaluation/boy.png'
+import girlIcon from '../../images/evaluation/girl.png'
+import fatherIcon from '../../images/evaluation/father.png'
+import motherIcon from '../../images/evaluation/mother.png'
+import parentIcon from '../../images/evaluation/parent.png'
+import studentIcon from '../../images/evaluation/student.png'
 
 class Index extends Component {
 
@@ -16,7 +22,12 @@ class Index extends Component {
     navigationBarTitleText: '学业测评'
   }
   state = {
-    finishedSum: 8914594
+    finishedSum: 8914594,
+    dialogTitle: '请选择您的身份',
+    leftIcon: 'studentIcon',
+    leftText: '我是学生',
+    rightIcon: 'parentIcon',
+    rightText: '我是家长',
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -27,10 +38,73 @@ class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
-
+  clickModal=()=>{
+    // Taro.showModal({
+    //   title: '',
+    //   content: `<View>啊啊啊</View>`,
+    //   showCancel: false
+    // }).then(res => {
+    //   console.log(res);
+    // });
+    this.refs.taroProp.show({
+      title: this.state.dialogTitle
+    });
+    // Taro.showActionSheet({
+    //   itemList: ['a', 'b', 'c']
+    // }).then(res => console.log(res.errMsg, res.tapIndex))
+    //   .catch(err => console.log(err.errMsg))
+  }
+  leftIconClick=()=>{
+    if(this.state.leftIcon=='studentIcon'){
+      this.setState((prevState)=>({
+        dialogTitle: '请选择您的性别',
+        leftIcon: 'boyIcon',
+        rightIcon: 'girlIcon',
+        leftText: '我是男生',
+        rightText: '我是女生',
+      }));
+    }else{
+      this.initDialogParam();
+    }
+  }
+  rightIconClick=()=>{
+    if(this.state.rightIcon=='parentIcon'){
+      this.setState((prevState)=>({
+        dialogTitle: '请选择您的性别',
+        rightIcon: 'motherIcon',
+        rightText: '我是妈妈',
+        leftIcon: 'fatherIcon',
+        leftText: '我是爸爸',
+      }));
+    }else{
+      this.initDialogParam();
+    }
+  }
+  initDialogParam=()=>{
+    this.setState((prevState)=>({
+      dialogTitle: '请选择您的身份',
+      leftIcon: 'studentIcon',
+      leftText: '我是学生',
+      rightIcon: 'parentIcon',
+      rightText: '我是家长',
+    }));
+    this.refs.taroProp.hide();
+  }
   render () {
+    let iconList = {boyIcon, girlIcon, fatherIcon, motherIcon, parentIcon, studentIcon};
     return (
       <View className='index'>
+        {/* 弹窗 */}
+        <TaroProp ref='taroProp' title={this.state.dialogTitle}>
+          <View>
+            <Image style='width: 80rpx;height: 80rpx;' src={iconList[this.state.leftIcon]} onClick={this.leftIconClick} />
+            <View>{this.state.leftText}</View>
+          </View>
+          <View>
+            <Image style='width: 80rpx;height: 80rpx;' src={iconList[this.state.rightIcon]} onClick={this.rightIconClick} />
+            <View>{this.state.rightText}</View>
+          </View>
+        </TaroProp>
         <View className='cp-top'>
           <navigator url="" hover-class="navigator-hover">
             我的报告
@@ -40,7 +114,7 @@ class Index extends Component {
             <View style='font-size: 26rpx;color: #ffefe8;'>五大维度 15分钟推荐适合你的专业</View>
           </View>
           <View className='operate-group'>
-            <Button size='mini' style='border-radius: 30rpx;color: #ff738d;font-weight: bold;margin: 0px;'>开始测评</Button>
+            <Button size='mini' onClick={this.clickModal} style='border-radius: 40rpx;color: #ff738d;font-weight: bold;margin: 0px;'>开始测评</Button>
              <Text>{this.state.finishedSum} 人已完成</Text>
           </View>
         </View>
