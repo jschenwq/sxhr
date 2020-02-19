@@ -39,20 +39,9 @@ class Index extends Component {
 
   componentDidHide () { }
   clickModal=()=>{
-    // Taro.showModal({
-    //   title: '',
-    //   content: `<View>啊啊啊</View>`,
-    //   showCancel: false
-    // }).then(res => {
-    //   console.log(res);
-    // });
     this.refs.taroProp.show({
       title: this.state.dialogTitle
     });
-    // Taro.showActionSheet({
-    //   itemList: ['a', 'b', 'c']
-    // }).then(res => console.log(res.errMsg, res.tapIndex))
-    //   .catch(err => console.log(err.errMsg))
   }
   leftIconClick=()=>{
     if(this.state.leftIcon=='studentIcon'){
@@ -89,6 +78,14 @@ class Index extends Component {
       rightText: '我是家长',
     }));
     this.refs.taroProp.hide();
+    Taro.navigateTo({
+      url: './assess/index?title=专业定位测评'
+    });
+  }
+  clickModuleItem=(index)=>()=>{
+    Taro.navigateTo({
+      url: './sketch/index?index='+index
+    });
   }
   render () {
     let iconList = {boyIcon, girlIcon, fatherIcon, motherIcon, parentIcon, studentIcon};
@@ -106,9 +103,9 @@ class Index extends Component {
           </View>
         </TaroProp>
         <View className='cp-top'>
-          <navigator url="" hover-class="navigator-hover">
+          <View className='my-report'>
             我的报告
-          </navigator>
+          </View>
           <View>
             <View style="font-weight: bold;font-size: 40rpx;margin-bottom: 20rpx;">专业定位测评</View>
             <View style='font-size: 26rpx;color: #ffefe8;'>五大维度 15分钟推荐适合你的专业</View>
@@ -122,7 +119,7 @@ class Index extends Component {
         <View className='cp-module'>
           <View className='module-title'>学习状态</View>
           <View className='module-items'>
-            <View className='module-item'>
+            <View className='module-item' onClick={this.clickModuleItem(0)}>
               <View className='item-title'>考试心理和行为测试</View>
               <Text className='item-text'>考试总是发挥失常？</Text>
               <View className='item-content'>
@@ -130,7 +127,7 @@ class Index extends Component {
                 <Image src={ksxlhxwcs} />
               </View>
             </View>
-            <View className='module-item'>
+            <View className='module-item' onClick={this.clickModuleItem(1)}>
               <View className='item-title'>学习拖延测评</View>
               <Text className='item-text'>提到学习就焦虑害怕？</Text>
               <View className='item-content'>
@@ -140,7 +137,7 @@ class Index extends Component {
             </View>
           </View>
           <View className='module-items'>
-            <View className='module-item'>
+            <View className='module-item' onClick={this.clickModuleItem(2)}>
               <View className='item-title'>学习倦怠测评</View>
               <Text className='item-text'>提到学习就乏力？</Text>
               <View className='item-content'>
@@ -148,7 +145,7 @@ class Index extends Component {
                 <Image src={xxjdcp} />
               </View>
             </View>
-            <View className='module-item'>
+            <View className='module-item' onClick={this.clickModuleItem(3)}>
               <View className='item-title'>学习能力测评</View>
               <Text className='item-text'>成绩提升有方法</Text>
               <View className='item-content'>
@@ -162,7 +159,7 @@ class Index extends Component {
         <View className='cp-module'>
           <View className='module-title'>心理健康</View>
           <View className='module-items'>
-            <View className='module-item'>
+            <View className='module-item' onClick={this.clickModuleItem(4)}>
               <View className='item-title'>家庭教育方式测评</View>
               <Text className='item-text'>青春的孩子应如何教育</Text>
               <View className='item-content'>
@@ -170,7 +167,7 @@ class Index extends Component {
                 <Image src={jtjyfscp} />
               </View>
             </View>
-            <View className='module-item'>
+            <View className='module-item' onClick={this.clickModuleItem(5)}>
               <View className='item-title'>自我控制能力测评</View>
               <Text className='item-text'>测量对自己的行为控制能力</Text>
               <View className='item-content'>

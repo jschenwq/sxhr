@@ -25,6 +25,8 @@ class App extends Component {
       'pages/service/hyfw/index',
       'pages/service/sxkfw/index',
       'pages/evaluation/index',
+      'pages/evaluation/assess/index',
+      'pages/evaluation/sketch/index',
       'pages/user/index',
     ],
     // 分包
