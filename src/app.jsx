@@ -27,6 +27,7 @@ class App extends Component {
       'pages/evaluation/index',
       'pages/evaluation/assess/index',
       'pages/evaluation/sketch/index',
+      'pages/class/index',
       'pages/user/index',
     ],
     // 分包
@@ -63,6 +64,11 @@ class App extends Component {
           iconPath: "images/tab/evaluation.png",
           selectedIconPath: "images/tab/evaluation-active.png"
         },{
+          pagePath: 'pages/class/index',
+          text: '课堂',
+          iconPath: 'images/tab/class.png',
+          selectedIconPath: 'images/tab/class-active.png'
+        },{
           pagePath: "pages/user/index",
           text: "我的",
           iconPath: "images/tab/personal.png",
@@ -70,7 +76,7 @@ class App extends Component {
         }
       ],
       color: '#333',
-      selectedColor: '#333',
+      selectedColor: '#19b955',
       backgroundColor: '#fff',
       borderStyle: 'black'
     },
