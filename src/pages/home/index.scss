@@ -1,4 +1,33 @@
-.index {
+.home {
   flex-direction: column;
   width: 100%;
+  &_banner{
+    height: 390px;
+    width: 750px;
+  }
+  &_wish{
+    text-align: center;
+  }
+  &_icon{
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  &_switch{
+    display: inline-block;
+  }
+  &_location{
+    margin-right: 15px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  &_score{
+    vertical-align: middle;
+    color: red;
+    display: inline-block;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  &_scoreLine{
+    vertical-align: middle;
+  }
 }
