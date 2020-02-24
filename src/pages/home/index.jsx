@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text, Image, Icon, Switch,Picker  } from '@tarojs/components'
-import { AtGrid , AtButton   } from 'taro-ui'
+import { AtGrid , AtButton, AtRate   } from 'taro-ui'
 import classNames from 'classnames'
 import { connect } from '@tarojs/redux'
 import {login} from '@utils/api'
@@ -39,6 +39,7 @@ class Index extends Component {
       current: 0,
       selector: ['本一批', '本二批', '专科批'],
       selectorChecked: '本一批',
+      stars:4
     };
     this.toFenbao1 = this.toFenbao1.bind(this)
   }
@@ -203,7 +204,6 @@ class Index extends Component {
             <Text className="title">咨询师推荐服务</Text>
             <Text class="more">更多</Text>
           </View>
-
         </View>
 
         <View className={classNames('at-row','itemPerson')}>
@@ -215,7 +215,7 @@ class Index extends Component {
               <Text className='name'>张三</Text><Text className='year'>从业2年</Text>
             </View>
             <View className='detail'>
-              张三这是一段测试文字，张三这是一段测试文字，张三这是一段测试文字
+              张三这是一段测试文字，张三这是一段测试文<Text className='moreDetail'>详情</Text>
             </View>
           </View>
           <View className='at-col at-col-2'>
@@ -236,7 +236,7 @@ class Index extends Component {
               <Text className='name'>张三2</Text><Text className='year'>从业2年</Text>
             </View>
             <View className='detail'>
-              张三这是222一段测试文字，张2222三这是一段测试文字，张三2这是一段测试文字
+              张三这是222一段测试文字，张2222三这是一<Text className='moreDetail'>详情</Text>
             </View>
           </View>
           <View className='at-col at-col-2'>
@@ -257,20 +257,222 @@ class Index extends Component {
               <Text className='name'>张三1</Text><Text className='year'>从业2年</Text>
             </View>
             <View className='detail'>
-              张三这是一段测试文字，张三333这是一段测试文字，张三555这是一段测试文字
+              张三这是一段测试文字，张三333这是一<Text className='moreDetail'>详情</Text>
             </View>
           </View>
           <View className='at-col at-col-2'>
             <AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>
           </View>
         </View>
-        <View className='item'>
+        <View className='item lastItem'>
           <Text>会员服务</Text>
           <Image class='ItemImg' src={require('@images/evaluation/evaStart6.png')}/>
         </View>
 
-        <Button className='add_btn' onClick={this.toFenbao.bind(this)}>前往分包页面</Button>
-        <Button className='add_btn' onClick={this.toFenbao1}>前往分包页面111</Button>
+        {/*咨询师*/}
+        <View className='counselor firstItem'>
+          <View>
+            <Text className="title">咨询师</Text>
+            <Text class="more">更多</Text>
+          </View>
+        </View>
+
+        <View className={classNames('at-row','itemPerson')}>
+          <View className='at-col at-col-3' style='text-align:center'>
+            <Image src={require('@images/evaluation/boy.png')} className='counselorImg1' />
+          </View>
+          <View className='at-col at-col-7'>
+            <View>
+              <Text className='name'>张三</Text>
+            </View>
+            <View className='at-row'>
+              <View className='at-col at-col-4 job'>志愿填报</View>
+              <View className='at-col at-col-4 job'>高招政策</View>
+              <View className='at-col at-col-4 job'>心理咨询</View>
+            </View>
+            <View className='at-row'>
+              <View className='at-col at-col-4 job'>志愿填报</View>
+              <View className='at-col at-col-4 job'>高招政策</View>
+              <View className='at-col at-col-4 job'>心理咨询</View>
+            </View>
+            <View>
+             <Text className='year'>从业2年</Text><AtRate className='starts' value={this.state.stars}/>
+            </View>
+          </View>
+        </View>
+        <View className={classNames('at-row','itemPerson')}>
+          <View className='at-col at-col-3' style='text-align:center'>
+            <Image src={require('@images/evaluation/boy.png')} className='counselorImg1' />
+          </View>
+          <View className='at-col at-col-7'>
+            <View>
+              <Text className='name'>张三</Text>
+            </View>
+            <View className='at-row'>
+              <View className='at-col at-col-4 job'>志愿填报</View>
+              <View className='at-col at-col-4 job'>高招政策</View>
+              <View className='at-col at-col-4 job'>心理咨询</View>
+            </View>
+            <View className='at-row'>
+              <View className='at-col at-col-4 job'>志愿填报</View>
+              <View className='at-col at-col-4 job'>高招政策</View>
+              <View className='at-col at-col-4 job'>心理咨询</View>
+            </View>
+            <View>
+              <Text className='year'>从业2年</Text><AtRate className='starts' value={this.state.stars}/>
+            </View>
+          </View>
+        </View>
+        <View className={classNames('at-row','itemPerson')}>
+          <View className='at-col at-col-3' style='text-align:center'>
+            <Image src={require('@images/evaluation/boy.png')} className='counselorImg1' />
+          </View>
+          <View className='at-col at-col-7'>
+            <View>
+              <Text className='name'>张三</Text>
+            </View>
+            <View className='at-row'>
+              <View className='at-col at-col-4 job'>志愿填报</View>
+              <View className='at-col at-col-4 job'>高招政策</View>
+              <View className='at-col at-col-4 job'>心理咨询</View>
+            </View>
+            <View className='at-row'>
+              <View className='at-col at-col-4 job'>志愿填报</View>
+              <View className='at-col at-col-4 job'>高招政策</View>
+              <View className='at-col at-col-4 job'>心理咨询</View>
+            </View>
+            <View>
+              <Text className='year'>从业2年</Text><AtRate className='starts' value={this.state.stars}/>
+            </View>
+          </View>
+        </View>
+        <View className={classNames('at-row','itemPerson')}>
+          <View className='at-col at-col-3' style='text-align:center'>
+            <Image src={require('@images/evaluation/boy.png')} className='counselorImg1' />
+          </View>
+          <View className='at-col at-col-7'>
+            <View>
+              <Text className='name'>张三</Text>
+            </View>
+            <View className='at-row'>
+              <View className='at-col at-col-4 job'>志愿填报</View>
+              <View className='at-col at-col-4 job'>高招政策</View>
+              <View className='at-col at-col-4 job'>心理咨询</View>
+            </View>
+            <View className='at-row'>
+              <View className='at-col at-col-4 job'>志愿填报</View>
+              <View className='at-col at-col-4 job'>高招政策</View>
+              <View className='at-col at-col-4 job'>心理咨询</View>
+            </View>
+            <View>
+              <Text className='year'>从业2年</Text><AtRate className='starts' value={this.state.stars}/>
+            </View>
+          </View>
+        </View>
+
+        {/*成功案例*/}
+        <View className='counselor firstItem'>
+          <View>
+            <Text className="title">成功案例</Text>
+            <Text class="more">更多</Text>
+          </View>
+        </View>
+        <View className='at-row item1'>
+          <View className='at-col at-col-1 at-col--auto'>
+            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+          </View>
+          <View className='at-col exmpole'>
+            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+          </View>
+        </View>
+        <View className='at-row item1'>
+          <View className='at-col at-col-1 at-col--auto'>
+            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+          </View>
+          <View className='at-col exmpole'>
+            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+          </View>
+        </View>
+        <View className='at-row item1'>
+          <View className='at-col at-col-1 at-col--auto'>
+            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+          </View>
+          <View className='at-col exmpole'>
+            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+          </View>
+        </View>
+        <View className='at-row item1'>
+          <View className='at-col at-col-1 at-col--auto'>
+            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+          </View>
+          <View className='at-col exmpole'>
+            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+          </View>
+        </View>
+
+        {/*高考咨询*/}
+        <View className='counselor firstItem'>
+          <View>
+            <Text className="title">高考咨询</Text>
+            <Text class="more">更多</Text>
+          </View>
+        </View>
+        <View className='at-row item1'>
+          <View className='at-col exmpole1'>
+            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
+          </View>
+          <View className='at-col at-col-1 at-col--auto'>
+            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+          </View>
+        </View>
+        <View className='at-row item1'>
+          <View className='at-col exmpole1'>
+            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
+          </View>
+          <View className='at-col at-col-1 at-col--auto'>
+            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+          </View>
+        </View>
+        <View className='at-row item1'>
+          <View className='at-col exmpole1'>
+            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
+          </View>
+          <View className='at-col at-col-1 at-col--auto'>
+            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+          </View>
+        </View>
+        <View className='at-row item1'>
+          <View className='at-col exmpole1'>
+            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
+          </View>
+          <View className='at-col at-col-1 at-col--auto'>
+            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+          </View>
+        </View>
+        <View className='at-row item1'>
+          <View className='at-col exmpole1'>
+            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
+          </View>
+          <View className='at-col at-col-1 at-col--auto'>
+            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+          </View>
+        </View>
+        {/*<Button className='add_btn' onClick={this.toFenbao.bind(this)}>前往分包页面</Button>*/}
+        {/*<Button className='add_btn' onClick={this.toFenbao1}>前往分包页面111</Button>*/}
       </View>
     )
   }
