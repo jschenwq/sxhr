@@ -113,17 +113,19 @@ class Index extends Component {
             <View className='down-top-left'>推荐视频</View>
             <View className='down-top-right'>全部课程</View>
           </View>
-          {data.map((item)=>{
-            return (
-              <View className='down-item'>
-                <Image className='item-image' src={item.imageSrc} />
-                <View className='item-content'>
-                  <View className='title'>{item.title}</View>
-                  <View className='date'>时长：{item.duration}</View>
+          <View className='down-items'>
+            {data.map((item)=>{
+              return (
+                <View className='down-item'>
+                  <Image className='item-image' src={item.imageSrc} />
+                  <View className='item-content'>
+                    <View className='title'>{item.title}</View>
+                    <View className='date'>时长：{item.duration}</View>
+                  </View>
                 </View>
-              </View>
-            )
-          })}
+              )
+            })}
+          </View>
         </View>
       </View>
     )
