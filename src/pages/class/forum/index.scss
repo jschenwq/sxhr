@@ -2,5 +2,30 @@
   height: 100%;
   width: 100%;
   overflow: auto;
-  
+  .item{
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #f0eff5;
+    .item-image{
+      height: 150rpx;
+      width: 200rpx;
+    }
+    .item-content{
+      width: calc(100% - 200rpx);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding-left: 16rpx;
+      .title{
+        color: #333333;
+        width: 90%;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+      }
+      .date{
+        color: #c6c6c6;
+      }
+    }
+  }
 }
