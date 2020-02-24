@@ -110,6 +110,7 @@ const config = {
       filename: 'css/[name].[hash].css',
       chunkFilename: 'css/[name].[chunkhash].css',
     },
+    esnextModules: ['taro-ui'],//taro-ui在h5的配置
     postcss: {
       autoprefixer: {
         enable: true,
