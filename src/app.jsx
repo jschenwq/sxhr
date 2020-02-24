@@ -7,6 +7,9 @@ import configStore from './store'
 
 import './app.scss'
 
+//taro-ui的引入
+import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
+
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {

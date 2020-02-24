@@ -1,29 +1,13 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="index">
-        <button class="add_btn" bindtap="funPrivatedzzzz">+</button>
-        <button class="dec_btn" bindtap="funPrivateezzzz">-</button>
-        <button class="dec_btn" bindtap="funPrivatefzzzz">async</button>
-        <view><text>{{counter.num}}</text>
-        </view>
-        <view><text>Hello, World</text>
-        </view>
-        <view><text>Hello, World</text>
-        </view>
-        <view><text>Hello, World</text>
-        </view>
-        <view><text>Hello, World</text>
-        </view>
-        <view><text>Hello, World</text>
-        </view>
-        <view><text>Hello, World</text>
-        </view>
-        <view><text>Hello, World</text>
-        </view>
-        <view><text>Hello, World</text>
-        </view>
-        <view><text>Hello, World</text>
-        </view>
-        <view><text>Hello, World</text>
+    <view class="home">
+        <image src="{{anonymousState__temp}}" class="home_banner"></image>
+        <view class="home_wish">
+            <view>
+                <icon class="home_icon" color="#999" size="18" type="waiting"></icon><text class="home_location">湖北</text><text class="home_score">高考/模拟总分</text><text class="home_scoreLine">线差</text>
+            </view>
+            <view>
+                <input type="text" placeholder="将会获取焦点" /><text>分</text>
+            </view>
         </view>
         <button class="add_btn" bindtap="toFenbao" data-e-tap-so="this">前往分包页面</button>
         <button class="add_btn" bindtap="toFenbao1">前往分包页面111</button>

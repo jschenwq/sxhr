@@ -1,5 +1,16 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/home/index"],{
 
+/***/ "./src/images/home/banner.jpg":
+/*!************************************!*\
+  !*** ./src/images/home/banner.jpg ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/images/banner.jpg";
+
+/***/ }),
+
 /***/ "./src/pages/home/index.jsx":
 /*!**********************************!*\
   !*** ./src/pages/home/index.jsx ***!
@@ -25,8 +36,6 @@ var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/_
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/_@tarojs_redux@2.0.0@@tarojs/redux/index.js");
-
-var _api = __webpack_require__(/*! ../../utils/api */ "./src/utils/api.js");
 
 var _counter = __webpack_require__(/*! ../../actions/counter */ "./src/actions/counter.js");
 
@@ -71,7 +80,7 @@ var Index = (_dec = (0, _redux.connect)(function (_ref) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref2, [this].concat(args))), _this), _this.$usedState = ["title", "body", "add", "__fn_onClick", "dec", "asyncAdd", "counter"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref2, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "title", "body"], _this.config = {
       navigationBarTitleText: '首页'
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -94,9 +103,7 @@ var Index = (_dec = (0, _redux.connect)(function (_ref) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      console.log((0, _api.login)({ name: 'cwq' }));
-    }
+    value: function componentDidMount() {}
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {}
@@ -136,28 +143,18 @@ var Index = (_dec = (0, _redux.connect)(function (_ref) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      Object.assign(this.__state, {});
+
+      var anonymousState__temp = __webpack_require__(/*! ../../images/home/banner.jpg */ "./src/images/home/banner.jpg");
+
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp
+      });
       return this.__state;
-    }
-  }, {
-    key: "funPrivatedzzzz",
-    value: function funPrivatedzzzz() {
-      return this.props.add.apply(undefined, Array.prototype.slice.call(arguments, 1));
-    }
-  }, {
-    key: "funPrivateezzzz",
-    value: function funPrivateezzzz() {
-      return this.props.dec.apply(undefined, Array.prototype.slice.call(arguments, 1));
-    }
-  }, {
-    key: "funPrivatefzzzz",
-    value: function funPrivatefzzzz() {
-      return this.props.asyncAdd.apply(undefined, Array.prototype.slice.call(arguments, 1));
     }
   }]);
 
   return Index;
-}(_taroWeapp.Component), _class2.$$events = ["funPrivatedzzzz", "funPrivateezzzz", "funPrivatefzzzz", "toFenbao", "toFenbao1"], _class2.$$componentPath = "pages/home/index", _temp2)) || _class);
+}(_taroWeapp.Component), _class2.$$events = ["toFenbao", "toFenbao1"], _class2.$$componentPath = "pages/home/index", _temp2)) || _class);
 exports.default = Index;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/_@tarojs_taro-weapp@2.0.0@@tarojs/taro-weapp/index.js").default.createComponent(Index, true));

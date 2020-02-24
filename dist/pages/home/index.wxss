@@ -1,6 +1,28 @@
-.index {
+.home {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%; }
+  .home_banner {
+    height: 390rpx;
+    width: 750rpx; }
+  .home_wish {
+    text-align: center; }
+  .home_icon {
+    vertical-align: middle;
+    margin-right: 10rpx; }
+  .home_switch {
+    display: inline-block; }
+  .home_location {
+    margin-right: 15rpx;
+    vertical-align: middle;
+    display: inline-block; }
+  .home_score {
+    vertical-align: middle;
+    color: red;
+    display: inline-block;
+    margin-right: 20rpx;
+    margin-left: 20rpx; }
+  .home_scoreLine {
+    vertical-align: middle; }
 

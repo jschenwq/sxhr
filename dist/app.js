@@ -73,7 +73,7 @@ var _App = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      pages: ['pages/home/index', 'pages/user/index'],
+      pages: ['pages/home/index', 'pages/service/index', 'pages/evaluate/index', 'pages/user/index'],
       // 分包
       subPackages: [{
         "root": "packageCustomerData",
@@ -89,14 +89,24 @@ var _App = function (_BaseComponent) {
       tabBar: {
         list: [{
           pagePath: "pages/home/index",
-          text: "首页",
-          iconPath: "images/tab/home.png",
-          selectedIconPath: "images/tab/home-active.png"
+          iconPath: "./images/tab/home.png",
+          selectedIconPath: "./images/tab/home-active.png",
+          text: "首页"
+        }, {
+          pagePath: "pages/service/index",
+          iconPath: "./images/tab/cate.png",
+          selectedIconPath: "./images/tab/cate-active.png",
+          text: "服务"
+        }, {
+          pagePath: "pages/evaluate/index",
+          iconPath: "./images/tab/cart.png",
+          selectedIconPath: "./images/tab/cart-active.png",
+          text: "测评"
         }, {
           pagePath: "pages/user/index",
-          text: "我的",
-          iconPath: "images/tab/user.png",
-          selectedIconPath: "images/tab/user-active.png"
+          iconPath: "./images/tab/user.png",
+          selectedIconPath: "./images/tab/user-active.png",
+          text: "个人"
         }],
         color: '#333',
         selectedColor: '#333',
