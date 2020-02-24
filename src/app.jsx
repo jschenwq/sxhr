@@ -28,6 +28,7 @@ class App extends Component {
       'pages/evaluation/assess/index',
       'pages/evaluation/sketch/index',
       'pages/class/index',
+      'pages/class/forum/video/index',
       'pages/user/index',
     ],
     // 分包

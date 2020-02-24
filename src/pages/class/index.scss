@@ -17,6 +17,7 @@
     }
   }
   .content{
-    height: calc(100% -85rpx);
+    height: calc(100% - 95rpx);
+    overflow: auto;
   }
 }

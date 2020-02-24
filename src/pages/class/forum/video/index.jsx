@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import { View, Video } from '@tarojs/components'
 import './index.scss'
 import forum1 from '@images/class/forum1.png'
 import forum2 from '@images/class/forum2.png'
@@ -14,10 +14,14 @@ import forum10 from '@images/class/forum10.png'
 import forum11 from '@images/class/forum11.png'
 import forum12 from '@images/class/forum12.png'
 class Index extends Component {
-
+  config = {
+    navigationBarTitleText: '讲堂'
+  }
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
+      playTitle: '',
+      playDuration: '',
       data: [{
         imageSrc: forum1,
         title:'省控线与批次线',
@@ -69,6 +73,13 @@ class Index extends Component {
       }]
     };
   }
+  componentWillMount(){
+    this.setState((prevState)=>({
+      playTitle: this.$router.params.playTitle,
+      playDuration: this.$router.params.playDuration,
+    }));
+  }
+
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
   }
@@ -82,26 +93,38 @@ class Index extends Component {
   componentDidShow () {}
 
   componentDidHide () {}
-  openVideo(item){
-    Taro.navigateTo({
-      url: './forum/video/index?playTitle='+item.title+"&playDuration="+item.duration
-    });
-  }
+
   render () {
-    let data = this.state;
+    let {playTitle, playDuration, data} = this.state;
     return (
       <View className='index'>
-        {data.map((item)=>{
-          return (
-            <View className='item' onClick={this.openVideo.bind(this, item)}>
-              <Image className='item-image' src={item.imageSrc} />
-              <View className='item-content'>
-                <View className='title'>{item.title}</View>
-                <View className='date'>时长：{item.duration}</View>
-              </View>
+        <View className='up'>
+          <Video src='' className='up-video'></Video>
+          <View className='video-info'>
+            <View className='info-item'>
+              <View className='info-title'>{playTitle}</View>
+              <Button className='info-btn' size='mini'>可观看</Button>
             </View>
-          );
-        })}
+            <View className='info-duration'>时长：{playDuration}</View>
+          </View>
+        </View>
+        <View className='down'>
+          <View className='down-top'>
+            <View className='down-top-left'>推荐视频</View>
+            <View className='down-top-right'>全部课程</View>
+          </View>
+          {data.map((item)=>{
+            return (
+              <View className='down-item'>
+                <Image className='item-image' src={item.imageSrc} />
+                <View className='item-content'>
+                  <View className='title'>{item.title}</View>
+                  <View className='date'>时长：{item.duration}</View>
+                </View>
+              </View>
+            )
+          })}
+        </View>
       </View>
     )
   }
