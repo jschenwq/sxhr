@@ -16,7 +16,7 @@ import forum12 from '@images/class/forum12.png'
 class Index extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: [{
         imageSrc: forum1,
