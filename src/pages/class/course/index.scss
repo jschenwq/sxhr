@@ -1,4 +1,47 @@
 .index {
-  flex-direction: column;
+  height: 100%;
   width: 100%;
+  overflow: auto;
+  .query{
+    display: flex;
+    border-top: 1px solid #f0eff5;
+    border-bottom: 1px solid #f0eff5;
+    justify-content: space-between;
+    .attr{
+      flex: 1;
+      color: #080808;
+      text-align: center;
+      .icon{
+        &:before{
+          content: '\e6e1';
+          color:#878787;
+        }
+      }
+    }
+  }
+  .items{
+    .item{
+      display: flex;
+      padding: 20px;
+      border-bottom: 1px solid #f0eff5;
+      .item-image{
+        height: 150rpx;
+        width: 200rpx;
+      }
+      .item-content{
+        width: calc(100% - 200rpx);
+        padding-left: 16rpx;
+        .title{
+          color: #333333;
+          width: 90%;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          white-space: nowrap;
+        }
+        .date{
+          color: #c6c6c6;
+        }
+      }
+    }
+  }
 }
