@@ -1,92 +1,62 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-import {login} from '@utils/api'
-
-import { add, minus, asyncAdd } from '@actions/counter'
+import { View, Button, Text, Image } from '@tarojs/components'
 
 import './index.scss'
 
+import gbydyfw from '../../images/service/gbydyfw.png'
+import hyfw from '../../images/service/hyfw.png'
+import sxkfw from '../../images/service/sxkfw.png'
 
-@connect(({ counter }) => ({
-  counter
-}), (dispatch) => ({
-  add () {
-    dispatch(add())
-  },
-  dec () {
-    dispatch(minus())
-  },
-  asyncAdd () {
-    dispatch(asyncAdd())
-  }
-}))
+
 class Index extends Component {
+
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '服务项目'
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      title: '',
-      body: ''
-    };
-    this.toFenbao1 = this.toFenbao1.bind(this)
-  }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
   }
 
-  componentDidMount(){
-    console.log(login({name:'cwq'}))
-  }
+  componentWillUnmount () { }
 
-  componentWillUnmount () {}
+  componentDidShow () { }
 
-  componentDidShow () {}
-
-  componentDidHide () {}
-
-  toFenbao(){
-    Taro.showToast({
-      title: '22222',
-      icon: 'none',
-      mask: true,
-    });
-  }
-
-  toFenbao1(){
-    if (Taro.getEnv() == Taro.ENV_TYPE.WEB) {
-      Taro.navigateTo({
-        url: 'packageCustomerData/pages/customerDataList/customerDataList',
-      })
-    } else {
-      Taro.switchTab({
-        url: 'packageCustomerData/pages/customerDataList/customerDataList',
-      })
-    }
-  }
+  componentDidHide () { }
 
   render () {
     return (
       <View className='index'>
-        <Button className='add_btn' onClick={this.props.add}>+</Button>
-        <Button className='dec_btn' onClick={this.props.dec}>-</Button>
-        <Button className='dec_btn' onClick={this.props.asyncAdd}>async</Button>
-        <View><Text>{this.props.counter.num}</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <View><Text>Hello, World</Text></View>
-        <Button className='add_btn' onClick={this.toFenbao.bind(this)}>前往分包页面</Button>
-        <Button className='add_btn' onClick={this.toFenbao1}>前往分包页面111</Button>
+        <navigator url="./gbydyfw/index" hover-class="navigator-hover">
+          <View className='navigator-item'>
+            <Image className='navigator-item-image' src={gbydyfw} />
+            <View className='navigator-item-title'>
+              <Text>高报一对一服务</Text>
+              <Text style='color:#ff9913;'>￥ 8000.00</Text>
+            </View>
+            <Text className='arrow-icon'></Text>
+          </View>
+        </navigator>
+        <navigator url="./sxkfw/index" hover-class="other-navigator-hover">
+          <View className='navigator-item'>
+            <Image className='navigator-item-image' src={sxkfw} />
+            <View className='navigator-item-title'>
+              <Text>升学卡服务</Text>
+              <Text style='color:#ff9913;'>￥ 6000.00</Text>
+            </View>
+            <Text className='arrow-icon'></Text>
+          </View>
+        </navigator>
+        <navigator url="./hyfw/index" hover-class="other-navigator-hover">
+          <View className='navigator-item'>
+            <Image className='navigator-item-image' src={hyfw} />
+            <View className='navigator-item-title'>
+              <Text>会员服务</Text>
+              <Text style='color:#ff9913;'>￥ 5000.00</Text>
+            </View>
+            <Text className='arrow-icon'></Text>
+          </View>
+        </navigator>
       </View>
     )
   }
