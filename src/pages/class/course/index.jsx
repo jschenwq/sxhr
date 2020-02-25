@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
+import { AtIcon } from 'taro-ui'
 import './index.scss'
 import course1 from '@images/class/course1.jpg'
 import course2 from '@images/class/course2.jpg'
@@ -151,10 +152,10 @@ class Index extends Component {
     return (
       <View className='index'>
         <View className='query'>
-          <View className='attr'>{grade}<Text className='icon'></Text></View>
-          <View className='attr'>{subject}<Text className='icon'></Text></View>
-          <View className='attr'>{version}<Text className='icon'></Text></View>
-          <View className='attr'>{type}<Text className='icon'></Text></View>
+          <View className='attr'>{grade}<Text className='at-icon at-icon-chevron-down'></Text></View>
+          <View className='attr'>{subject}<Text className='at-icon at-icon-chevron-down'></Text></View>
+          <View className='attr'>{version}<Text className='at-icon at-icon-chevron-down'></Text></View>
+          <View className='attr'>{type}<Text className='at-icon at-icon-chevron-down'></Text></View>
         </View>
         <View className='items'>
           {data.map((item)=>{
@@ -164,9 +165,9 @@ class Index extends Component {
                 <View className='item-content'>
                   <View className='title'>{item.title}</View>
                   <View className='content'>{item.content}</View>
-                  <View className='content'>
+                  <View className='class-number'>
                     <View>{item.classHour}课时</View>
-                    <View>{item.classHour}</View>
+                    <View>{item.viewQuantity}</View>
                   </View>
                 </View>
               </View>
