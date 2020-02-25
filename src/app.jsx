@@ -35,6 +35,20 @@ class App extends Component {
     ],
     // 分包
     subPackages: [
+      //信息查询分包
+      {
+        "root": "packageCX",
+        "pages": [
+          'zdx/index',
+          'czy/index',
+          'kzy/index',
+          'tqp/index',
+          'fsx/index',
+          'zsjh/index',
+          'pcx/index',
+          'wccx/index',
+        ]
+      },
       //服务分包
       {
         "root": "packageFW",

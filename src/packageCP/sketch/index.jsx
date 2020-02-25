@@ -1,7 +1,6 @@
 import Taro, {Component} from '@tarojs/taro'
 import { View, Text, Button} from '@tarojs/components'
 import './index.scss'
-// import evaStart1 from '@images/evaluation/evaStart1.png';
 
 class Index extends Component{
   state = {
