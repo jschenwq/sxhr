@@ -3,8 +3,8 @@ import { View, Label, Button, Image, Switch } from '@tarojs/components'
 
 import './index.scss'
 
-import sxkfw from '../../../images/service/sxkfw.png'
-import phoneIcon from '../../../images/service/phone_icon.png'
+import sxkfw from '../../images/service/sxkfw.png'
+import phoneIcon from '../../images/service/phone_icon.png'
 
 class Index extends Component {
 

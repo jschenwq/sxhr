@@ -27,7 +27,7 @@ class Index extends Component {
   render () {
     return (
       <View className='index'>
-        <navigator url="./gbydyfw/index" hover-class="navigator-hover">
+        <navigator url="/packageFW/gbydyfw/index" hover-class="navigator-hover">
           <View className='navigator-item'>
             <Image className='navigator-item-image' src={gbydyfw} />
             <View className='navigator-item-title'>
@@ -37,7 +37,7 @@ class Index extends Component {
             <Text className='arrow-icon'></Text>
           </View>
         </navigator>
-        <navigator url="./sxkfw/index" hover-class="other-navigator-hover">
+        <navigator url="/packageFW/sxkfw/index" hover-class="other-navigator-hover">
           <View className='navigator-item'>
             <Image className='navigator-item-image' src={sxkfw} />
             <View className='navigator-item-title'>
@@ -47,7 +47,7 @@ class Index extends Component {
             <Text className='arrow-icon'></Text>
           </View>
         </navigator>
-        <navigator url="./hyfw/index" hover-class="other-navigator-hover">
+        <navigator url="/packageFW/hyfw/index" hover-class="other-navigator-hover">
           <View className='navigator-item'>
             <Image className='navigator-item-image' src={hyfw} />
             <View className='navigator-item-title'>

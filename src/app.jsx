@@ -23,23 +23,33 @@ class App extends Component {
   config = {
     pages: [
       'pages/home/index',
+
       'pages/service/index',
-      'pages/service/gbydyfw/index',
-      'pages/service/hyfw/index',
-      'pages/service/sxkfw/index',
+
       'pages/evaluation/index',
-      'pages/evaluation/assess/index',
-      'pages/evaluation/sketch/index',
+
       'pages/class/index',
-      'pages/class/forum/video/index',
+      'pages/class/forum/video/index',//这个分包你看着处理自己处理
+
       'pages/user/index',
     ],
     // 分包
     subPackages: [
+      //服务分包
       {
-        "root": "packageCustomerData",
+        "root": "packageFW",
         "pages": [
-          "pages/customerDataList/index",
+          'gbydyfw/index',
+          'hyfw/index',
+          'sxkfw/index',
+        ]
+      },
+      //测评分包
+      {
+        "root": "packageCP",
+        "pages": [
+          'assess/index',
+          'sketch/index',
         ]
       }
     ],

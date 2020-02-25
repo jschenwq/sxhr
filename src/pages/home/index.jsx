@@ -68,11 +68,11 @@ class Index extends Component {
   toFenbao1(){
     if (Taro.getEnv() == Taro.ENV_TYPE.WEB) {
       Taro.navigateTo({
-        url: 'packageCustomerData/pages/customerDataList/customerDataList',
+        // url: 'packageCustomerData/pages/customerDataList/customerDataList',
       })
     } else {
       Taro.switchTab({
-        url: 'packageCustomerData/pages/customerDataList/customerDataList',
+        // url: 'packageCustomerData/pages/customerDataList/customerDataList',
       })
     }
   }

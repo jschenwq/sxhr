@@ -79,12 +79,12 @@ class Index extends Component {
     }));
     this.refs.taroProp.hide();
     Taro.navigateTo({
-      url: './assess/index?title=专业定位测评'
+      url: '/packageCP/assess/index?title=专业定位测评'
     });
   }
   clickModuleItem=(index)=>()=>{
     Taro.navigateTo({
-      url: './sketch/index?index='+index
+      url: '/packageCP/sketch/index?index='+index
     });
   }
   render () {
