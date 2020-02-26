@@ -84,7 +84,7 @@ class Index extends Component {
   componentDidHide () {}
   openVideo(item){
     Taro.navigateTo({
-      url: './forum/video/index?playTitle='+item.title+"&playDuration="+item.duration
+      url: '/packageKC/video/index?playTitle='+item.title+"&playDuration="+item.duration
     });
   }
   render () {

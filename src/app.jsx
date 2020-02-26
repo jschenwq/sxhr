@@ -29,7 +29,6 @@ class App extends Component {
       'pages/evaluation/index',
 
       'pages/class/index',
-      'pages/class/forum/video/index',//这个分包你看着处理自己处理
 
       'pages/user/index',
     ],
@@ -64,6 +63,13 @@ class App extends Component {
         "pages": [
           'assess/index',
           'sketch/index',
+        ]
+      },
+      //课堂分包
+      {
+        'root': 'packageKC',
+        'pages': [
+          'video/index',
         ]
       }
     ],

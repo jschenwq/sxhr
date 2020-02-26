@@ -3,15 +3,21 @@ import { View, Text} from '@tarojs/components'
 import './index.scss'
 
 class Index extends Component{
-  state = {
-    data: [
-      '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。1',
-      '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。2',
-      '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。3',
-      '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。4',
-    ],
-    choice: ['A 非常符合', 'B 比较符合', 'C 一般', 'D 不太符合', 'E 很不符合'],
-    currentIndex: 0
+  config = {
+    navigationBarTitleText: ''
+  }
+  constructor(){
+    super();
+    this.state = {
+      data: [
+        '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。1',
+        '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。2',
+        '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。3',
+        '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。4',
+      ],
+      choice: ['A 非常符合', 'B 比较符合', 'C 一般', 'D 不太符合', 'E 很不符合'],
+      currentIndex: 0
+    };
   }
   componentWillMount(){
     Taro.setNavigationBarTitle({
@@ -24,7 +30,8 @@ class Index extends Component{
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () {
+  }
 
   componentDidHide () { }
   nextPicker(){

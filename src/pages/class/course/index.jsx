@@ -146,7 +146,9 @@ class Index extends Component {
   componentDidShow () {}
 
   componentDidHide () {}
-
+  openVideo(item){
+    console.log(item);
+  }
   render () {
     let {grade, subject, version, type, data} = this.state;
     return (

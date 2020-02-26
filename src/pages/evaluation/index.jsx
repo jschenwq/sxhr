@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text, Image } from '@tarojs/components'
-import  TaroProp from './taroProp/index'
+import { View, Button, Image } from '@tarojs/components'
+import { AtCurtain } from 'taro-ui'
 import './index.scss'
 
 import ksxlhxwcs from '../../images/evaluation/ksxlhxwcs.png'
@@ -22,6 +22,7 @@ class Index extends Component {
     navigationBarTitleText: '学业测评'
   }
   state = {
+    isOpened: false,
     finishedSum: 8914594,
     dialogTitle: '请选择您的身份',
     leftIcon: 'studentIcon',
@@ -39,9 +40,14 @@ class Index extends Component {
 
   componentDidHide () { }
   clickModal=()=>{
-    this.refs.taroProp.show({
-      title: this.state.dialogTitle
-    });
+    this.setState(()=>({
+      isOpened: true
+    }));
+  }
+  onClose(){
+    this.setState(()=>({
+      isOpened: false
+    }));
   }
   leftIconClick=()=>{
     if(this.state.leftIcon=='studentIcon'){
@@ -77,7 +83,7 @@ class Index extends Component {
       rightIcon: 'parentIcon',
       rightText: '我是家长',
     }));
-    this.refs.taroProp.hide();
+    this.onClose();
     Taro.navigateTo({
       url: '/packageCP/assess/index?title=专业定位测评'
     });
@@ -92,16 +98,21 @@ class Index extends Component {
     return (
       <View className='index'>
         {/* 弹窗 */}
-        <TaroProp ref='taroProp' title={this.state.dialogTitle}>
-          <View>
-            <Image style='width: 80rpx;height: 80rpx;' src={iconList[this.state.leftIcon]} onClick={this.leftIconClick} />
-            <View>{this.state.leftText}</View>
+        <AtCurtain isOpened={this.state.isOpened} onClose={this.onClose.bind(this)}>
+          <View className='dialog'>
+            <View className='dialog-title'>{this.state.dialogTitle}</View>
+            <View className='dialog-content'>
+              <View>
+                <Image style='width: 80rpx;height: 80rpx;' src={iconList[this.state.leftIcon]} onClick={this.leftIconClick} />
+                <View>{this.state.leftText}</View>
+              </View>
+              <View>
+                <Image style='width: 80rpx;height: 80rpx;' src={iconList[this.state.rightIcon]} onClick={this.rightIconClick} />
+                <View>{this.state.rightText}</View>
+              </View>
+            </View>
           </View>
-          <View>
-            <Image style='width: 80rpx;height: 80rpx;' src={iconList[this.state.rightIcon]} onClick={this.rightIconClick} />
-            <View>{this.state.rightText}</View>
-          </View>
-        </TaroProp>
+        </AtCurtain>
         <View className='cp-top'>
           <View className='my-report'>
             我的报告
