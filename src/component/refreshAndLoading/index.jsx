@@ -12,10 +12,6 @@ import './index.scss'
 // import './index.scss'
 
 class Index extends Component {
-  config = {
-    navigationBarTitleText: '找大学'
-  }
-
   constructor(props) {
     super(props)
     this.state = {

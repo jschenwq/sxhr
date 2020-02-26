@@ -1,39 +1,21 @@
-// import Taro, { Component } from '@tarojs/taro'
-// import { View } from '@tarojs/components'
-// import { AtGrid , AtButton, AtRate   } from 'taro-ui'
-// import classNames from 'classnames'
-// import {login} from '@utils/api'
-
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, ScrollView } from '@tarojs/components'
-import { AtActivityIndicator } from 'taro-ui'
-import './index.scss'
+import { View,ScrollView } from '@tarojs/components'
+import { AtGrid , AtTabs, AtTabsPane} from 'taro-ui'
+import SchoolItem from './component/schoolItem/index'
+import {login} from '@utils/api'
 
-// import './index.scss'
+import './index.scss'
 
 class Index extends Component {
   config = {
-    navigationBarTitleText: '找大学'
+    navigationBarTitleText: '找大学',
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      dargStyle: {//下拉框的样式
-        top: 0 + 'px'
-      },
-      downDragStyle: {//下拉图标的样式
-        height: 0 + 'px'
-      },
-      downText: '下拉刷新',
-      upDragStyle: {//上拉图标样式
-        height: 0 + 'px'
-      },
-      pullText: '上拉加载更多',
-      start_p: {},
-      scrollY:true,
-      dargState: 0//刷新状态 0不做操作 1刷新 -1加载更多
-    }
+      current:0
+    };
   }
 
   componentDidMount(){}
@@ -44,157 +26,146 @@ class Index extends Component {
 
   componentDidHide () {}
 
-
-  reduction() {//还原初始设置
-    const time = 0.5;
+  handleClick (value) {
     this.setState({
-      upDragStyle: {//上拉图标样式
-        height: 0 + 'px',
-        transition: `all ${time}s`
-      },
-      dargState: 0,
-      dargStyle: {
-        top: 0 + 'px',
-        transition: `all ${time}s`
-      },
-      downDragStyle: {
-        height: 0 + 'px',
-        transition: `all ${time}s`
-      },
-      scrollY:true
+      current: value
     })
-    setTimeout(() => {
-      this.setState({
-        dargStyle: {
-          top: 0 + 'px',
-        },
-        upDragStyle: {//上拉图标样式
-          height: 0 + 'px'
-        },
-        pullText: '上拉加载更多',
-        downText: '下拉刷新'
-      })
-    }, time * 1000);
-  }
-  touchStart(e) {
-    this.setState({
-      start_p: e.touches[0]
-    })
-  }
-  touchmove(e) {
-    let that = this
-    let move_p = e.touches[0],//移动时的位置
-      deviationX = 0.30,//左右偏移量(超过这个偏移量不执行下拉操作)
-      deviationY = 70,//拉动长度（低于这个值的时候不执行）
-      maxY = 100;//拉动的最大高度
-
-    let start_x = this.state.start_p.clientX,
-      start_y = this.state.start_p.clientY,
-      move_x = move_p.clientX,
-      move_y = move_p.clientY;
-
-
-    //得到偏移数值
-    let dev = Math.abs(move_x - start_x) / Math.abs(move_y - start_y);
-    if (dev < deviationX) {//当偏移数值大于设置的偏移数值时则不执行操作
-      let pY = Math.abs(move_y - start_y) / 3.5;//拖动倍率（使拖动的时候有粘滞的感觉--试了很多次 这个倍率刚好）
-      if (move_y - start_y > 0) {//下拉操作
-        if (pY >= deviationY) {
-          this.setState({ dargState: 1, downText: '释放刷新' })
-        } else {
-          this.setState({ dargState: 0, downText: '下拉刷新' })
-        }
-        if (pY >= maxY) {
-          pY = maxY
-        }
-        this.setState({
-          dargStyle: {
-            top: pY + 'px',
-          },
-          downDragStyle: {
-            height: pY + 'px'
-          },
-          scrollY:false//拖动的时候禁用
-        })
-      }
-      if (start_y - move_y > 0) {//上拉操作
-        console.log('上拉操作')
-        if (pY >= deviationY) {
-          this.setState({ dargState: -1, pullText: '释放加载更多' })
-        } else {
-          this.setState({ dargState: 0, pullText: '上拉加载更多' })
-        }
-        if (pY >= maxY) {
-          pY = maxY
-        }
-        this.setState({
-          dargStyle: {
-            top: -pY + 'px',
-          },
-          upDragStyle: {
-            height: pY + 'px'
-          },
-          scrollY: false//拖动的时候禁用
-        })
-      }
-
-    }
-  }
-  pull() {//上拉
-    console.log('上拉')
-    // this.props.onPull()
-  }
-  down() {//下拉
-    console.log('下拉')
-    // this.props.onDown()
-  }
-  ScrollToUpper() { //滚动到顶部事件
-    console.log('滚动到顶部事件')
-    // this.props.Upper()
   }
   ScrollToLower() { //滚动到底部事件
-    console.log('滚动到底部事件')
-    // this.props.Lower()
+   console.log(3)
   }
-  touchEnd(e) {
-    if (this.state.dargState === 1) {
-      this.down()
-    } else if (this.state.dargState === -1) {
-      this.pull()
-    }
-    this.reduction()
-  }
-
   render () {
-    let dargStyle = this.state.dargStyle;
-    let downDragStyle = this.state.downDragStyle;
-    let upDragStyle = this.state.upDragStyle;
     return (
-      <View>
-        <View style='width:100%;height:20vh;background:#993;' >aaaaaaaa</View>
-        <View className='dragUpdataPage'>
-          <View className='downDragBox' style={downDragStyle}>
-            <AtActivityIndicator></AtActivityIndicator>
-            <Text className='downText'>{this.state.downText}</Text>
-          </View>
-          <ScrollView
-            style={dargStyle}
-            onTouchMove={this.touchmove}
-            onTouchEnd={this.touchEnd}
-            onTouchStart={this.touchStart}
-            onScrollToUpper={this.ScrollToUpper}
-            onScrollToLower={this.ScrollToLower}
-            className='dragUpdata'
-            scrollY={this.state.scrollY}
-            scrollWithAnimation>
-            <View style='width:100%;height:60vh;background:pink;' >aaaaaaaa</View>
-          </ScrollView>
-          <View className='upDragBox' style={upDragStyle}>
-            <AtActivityIndicator></AtActivityIndicator>
-            <Text className='downText'>{this.state.pullText}</Text>
-          </View>
+      <View className='zdx'>
+        <View className="search">
+          <Icon className='searchIcon' color='#999' size='20' type='waiting' />
+          <Text className='searchText'>请输入大学名称</Text>
         </View>
+
+        <AtGrid className='school' columnNum='4' hasBorder={false} data={
+          [
+            {
+              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+              value: '我的院校'
+            },
+            {
+              image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
+              value: '全部院校'
+            },
+            {
+              image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
+              value: '院校比对'
+            },
+            {
+              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
+              value: '大学排名'
+            }
+          ]
+        } />
+
+        <AtTabs
+          className='schoolAll'
+          current={this.state.current}
+          scroll
+          tabList={[
+            { title: '热门院校' },
+            { title: '新闻传播学' },
+            { title: '数据科学与大数据技术' },
+            { title: '工商管理' },
+            { title: '土木工程' },
+            { title: '教育' }
+          ]}
+          onClick={this.handleClick.bind(this)}>
+          <AtTabsPane current={this.state.current} index={0}>
+            <ScrollView
+              onScrollToLower={this.ScrollToLower.bind(this)}>
+              <View className='schoolList'>
+                <SchoolItem />
+                <SchoolItem />
+                <SchoolItem />
+                <SchoolItem />
+                <SchoolItem />
+                <SchoolItem />
+                <SchoolItem />
+                <SchoolItem />
+                <SchoolItem />
+                <SchoolItem />
+              </View>
+            </ScrollView>
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={1}>
+            <View className='schoolList'>
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={2}>
+            <View className='schoolList'>
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={3}>
+            <View className='schoolList'>
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={4}>
+            <View className='schoolList'>
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+            </View>
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={5}>
+            <View className='schoolList'>
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+              <SchoolItem />
+            </View>
+          </AtTabsPane>
+        </AtTabs>
       </View>
+
     )
   }
 }

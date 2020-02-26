@@ -197,7 +197,7 @@ class Index extends Component {
         </View>
 
         {/*九宫图*/}
-        <AtGrid columnNum='4' onClick={this.infomationSearch.bind(this)} data={
+        <AtGrid columnNum='4' hasBorder={false} onClick={this.infomationSearch.bind(this)} data={
           [
             {
               image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
