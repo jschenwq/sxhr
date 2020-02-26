@@ -10,9 +10,6 @@ import forum6 from '../images/forum6.png'
 import forum7 from '../images/forum7.png'
 import forum8 from '../images/forum8.png'
 import forum9 from '../images/forum9.png'
-import forum10 from '../images/forum10.png'
-import forum11 from '../images/forum11.png'
-import forum12 from '../images/forum12.png'
 class Index extends Component {
   config = {
     navigationBarTitleText: '讲堂'
@@ -58,18 +55,6 @@ class Index extends Component {
         imageSrc: forum9,
         title:'大小年现象',
         duration: '0:13:20',
-      },{
-        imageSrc: forum10,
-        title:'大类招生',
-        duration: '0:14:19',
-      },{
-        imageSrc: forum11,
-        title:'本科提前批此',
-        duration: '0:13:11',
-      },{
-        imageSrc: forum12,
-        title:'录取批次',
-        duration: '0:12:34',
       }]
     };
   }

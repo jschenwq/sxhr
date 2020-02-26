@@ -11,14 +11,6 @@ import course6 from '../../../packageKC/images/course6.jpg'
 import course7 from '../../../packageKC/images/course7.jpg'
 import course8 from '../../../packageKC/images/course8.jpg'
 import course9 from '../../../packageKC/images/course9.jpg'
-import course10 from '../../../packageKC/images/course10.jpg'
-import course11 from '../../../packageKC/images/course11.jpg'
-import course12 from '../../../packageKC/images/course12.jpg'
-import course13 from '../../../packageKC/images/course13.jpg'
-import course14 from '../../../packageKC/images/course14.jpg'
-import course15 from '../../../packageKC/images/course15.jpg'
-import course16 from '../../../packageKC/images/course16.jpg'
-import course17 from '../../../packageKC/images/course17.jpg'
 class Index extends Component {
 
   constructor(props) {
@@ -79,54 +71,6 @@ class Index extends Component {
       },{
         imageSrc: course9,
         title: '初升语文衔接课(通用版)',
-        content: '本节课程将学习阅读、写作及古诗词鉴赏。散文阅读是里面高考语文的必考文体。本课程选取小说体裁专项阅读指导',
-        classHour: 53,
-        viewQuantity: 1241,
-      },{
-        imageSrc: course10,
-        title: '高二语文上学期预习课(通用版)',
-        content: '本节课程将学习阅读、写作及古诗词鉴赏。散文阅读是里面高考语文的必考文体。本课程选取小说体裁专项阅读指导',
-        classHour: 63,
-        viewQuantity: 3667,
-      },{
-        imageSrc: course11,
-        title: '高一语文上学期同步课(统编版)',
-        content: '本节课程将学习阅读、写作及古诗词鉴赏。散文阅读是里面高考语文的必考文体。本课程选取小说体裁专项阅读指导',
-        classHour: 53,
-        viewQuantity: 1241,
-      },{
-        imageSrc: course12,
-        title: '高一语文下学期期末复习课(通用版)',
-        content: '本节课程将学习阅读、写作及古诗词鉴赏。散文阅读是里面高考语文的必考文体。本课程选取小说体裁专项阅读指导',
-        classHour: 63,
-        viewQuantity: 3667,
-      },{
-        imageSrc: course13,
-        title: '高二语文下学期期末复习课(通用版)',
-        content: '本节课程将学习阅读、写作及古诗词鉴赏。散文阅读是里面高考语文的必考文体。本课程选取小说体裁专项阅读指导',
-        classHour: 53,
-        viewQuantity: 1241,
-      },{
-        imageSrc: course14,
-        title: '2017年高考作文命题解读&应考指南',
-        content: '本节课程将学习阅读、写作及古诗词鉴赏。散文阅读是里面高考语文的必考文体。本课程选取小说体裁专项阅读指导',
-        classHour: 63,
-        viewQuantity: 3667,
-      },{
-        imageSrc: course15,
-        title: '高二语文上学期期中复习课(通用版)',
-        content: '本节课程将学习阅读、写作及古诗词鉴赏。散文阅读是里面高考语文的必考文体。本课程选取小说体裁专项阅读指导',
-        classHour: 53,
-        viewQuantity: 1241,
-      },{
-        imageSrc: course16,
-        title: '高一语文上学期期中复习课(通用版)',
-        content: '本节课程将学习阅读、写作及古诗词鉴赏。散文阅读是里面高考语文的必考文体。本课程选取小说体裁专项阅读指导',
-        classHour: 63,
-        viewQuantity: 3667,
-      },{
-        imageSrc: course17,
-        title: '高三语文上学期期中复习课(通用版)',
         content: '本节课程将学习阅读、写作及古诗词鉴赏。散文阅读是里面高考语文的必考文体。本课程选取小说体裁专项阅读指导',
         classHour: 53,
         viewQuantity: 1241,
