@@ -1,6 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { AtIcon } from 'taro-ui'
+import { View, Button, Text, Picker } from '@tarojs/components'
 import './index.scss'
 import course1 from '../../../packageKC/images/course1.jpg'
 import course2 from '../../../packageKC/images/course2.jpg'
@@ -17,9 +16,13 @@ class Index extends Component {
     super(props);
     this.state = {
       grade: '年级',//年级
+      gradeOptions: ['全部','高一','高二','高三'],
       subject: '学科',//学科
+      subjectOptions: ['全部', '语文', '数学', '英语', '物理', '化学', '生物', '历史', '地理', '政治'],
       version: '版本',//版本
+      versionOptions: ['全部', '通用版'],
       type: '类型',//类型
+      typeOptions: ['全部', '同步课程', '专题'],
       data: [{
         imageSrc: course1,
         title: '高一语文上学期同步课(通用版)',
@@ -93,15 +96,59 @@ class Index extends Component {
   openVideo(item){
     console.log(item);
   }
+  onGradeChange=(e)=>{
+    this.setState((prevState)=>({
+      grade: e.detail.value == '0'?'年级':prevState.gradeOptions[e.detail.value]
+    }));
+  }
+  onSubjectChange=(e)=>{
+    this.setState((prevState)=>({
+      subject: e.detail.value == '0'?'学科':prevState.subjectOptions[e.detail.value]
+    }));
+  }
+  onVersionChange=(e)=>{
+    this.setState((prevState)=>({
+      version: e.detail.value == '0'?'版本':prevState.versionOptions[e.detail.value]
+    }));
+  }
+  onTypeChange=(e)=>{
+    this.setState((prevState)=>({
+      type: e.detail.value == '0'?'类型':prevState.typeOptions[e.detail.value]
+    }));
+  }
   render () {
-    let {grade, subject, version, type, data} = this.state;
+    let {grade,gradeOptions,subject,subjectOptions,version,versionOptions,type,typeOptions,data} = this.state;
     return (
       <View className='index'>
         <View className='query'>
-          <View className='attr'>{grade}<Text className='at-icon at-icon-chevron-down'></Text></View>
-          <View className='attr'>{subject}<Text className='at-icon at-icon-chevron-down'></Text></View>
-          <View className='attr'>{version}<Text className='at-icon at-icon-chevron-down'></Text></View>
-          <View className='attr'>{type}<Text className='at-icon at-icon-chevron-down'></Text></View>
+          <View className='attr'>
+            <Picker mode='selector' range={gradeOptions} onChange={this.onGradeChange}>
+              <View className='picker'>
+                {grade}<Text className='at-icon at-icon-chevron-down'></Text>
+              </View>
+            </Picker>
+          </View>
+          <View className='attr'>
+            <Picker mode='selector' range={subjectOptions} onChange={this.onSubjectChange}>
+              <View className='picker'>
+                {subject}<Text className='at-icon at-icon-chevron-down'></Text>
+              </View>
+            </Picker>
+          </View>
+          <View className='attr'>
+            <Picker mode='selector' range={versionOptions} onChange={this.onVersionChange}>
+              <View className='picker'>
+                {version}<Text className='at-icon at-icon-chevron-down'></Text>
+              </View>
+            </Picker>
+          </View>
+          <View className='attr'>
+            <Picker mode='selector' range={typeOptions} onChange={this.onTypeChange}>
+              <View className='picker'>
+                {type}<Text className='at-icon at-icon-chevron-down'></Text>
+              </View>
+            </Picker>
+          </View>
         </View>
         <View className='items'>
           {data.map((item)=>{
