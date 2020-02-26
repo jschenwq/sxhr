@@ -237,14 +237,14 @@ class Index extends Component {
         {/*卡片*/}
         <View className='card'>
           <View className='cardLeft'>
-            <Image src={require('@images/evaluation/boy.png')} className='cardLeftImg' />
+            <Image src={require('../../packageCP/images/boy.png')} className='cardLeftImg' />
             <View className='cardLeftText'>
               <Text className= 'cardTitle'>新高考选课</Text>
               <Text className= 'cardPerson'>大数据智能选课</Text>
             </View>
           </View>
           <View className='cardRight'>
-            <Image src={require('@images/evaluation/boy.png')} className='cardLeftImg' />
+            <Image src={require('../../packageCP/images/boy.png')} className='cardLeftImg' />
             <View className='cardLeftText'>
               <Text className= 'cardTitle'>定位测评</Text>
               <Text className= 'cardPerson'>五大维度专业</Text>
@@ -262,7 +262,7 @@ class Index extends Component {
 
         <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('@images/evaluation/boy.png')} className='counselorImg' />
+            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />
           </View>
           <View className='at-col at-col-7'>
             <View>
@@ -278,12 +278,12 @@ class Index extends Component {
         </View>
         <View className='item'>
           <Text>高校一对一服务</Text>
-          <Image class='ItemImg' src={require('@images/evaluation/evaStart4.png')}/>
+          <Image class='ItemImg' src={require('../../packageCP/images/evaStart4.png')}/>
         </View>
 
         <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('@images/evaluation/boy.png')} className='counselorImg' />
+            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />
           </View>
           <View className='at-col at-col-7'>
             <View>
@@ -299,12 +299,12 @@ class Index extends Component {
         </View>
         <View className='item'>
           <Text>升学卡服务</Text>
-          <Image class='ItemImg' src={require('@images/evaluation/evaStart5.png')}/>
+          <Image class='ItemImg' src={require('../../packageCP/images/evaStart5.png')}/>
         </View>
 
         <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('@images/evaluation/boy.png')} className='counselorImg' />
+            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />
           </View>
           <View className='at-col at-col-7'>
             <View>
@@ -320,7 +320,7 @@ class Index extends Component {
         </View>
         <View className='item lastItem'>
           <Text>会员服务</Text>
-          <Image class='ItemImg' src={require('@images/evaluation/evaStart6.png')}/>
+          <Image class='ItemImg' src={require('../../packageCP/images/evaStart6.png')}/>
         </View>
 
         {/*咨询师*/}
@@ -333,7 +333,7 @@ class Index extends Component {
 
         <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('@images/evaluation/boy.png')} className='counselorImg1' />
+            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg1' />
           </View>
           <View className='at-col at-col-7'>
             <View>
@@ -356,7 +356,7 @@ class Index extends Component {
         </View>
         <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('@images/evaluation/boy.png')} className='counselorImg1' />
+            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg1' />
           </View>
           <View className='at-col at-col-7'>
             <View>
@@ -379,7 +379,7 @@ class Index extends Component {
         </View>
         <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('@images/evaluation/boy.png')} className='counselorImg1' />
+            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg1' />
           </View>
           <View className='at-col at-col-7'>
             <View>
@@ -402,7 +402,7 @@ class Index extends Component {
         </View>
         <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('@images/evaluation/boy.png')} className='counselorImg1' />
+            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg1' />
           </View>
           <View className='at-col at-col-7'>
             <View>
@@ -433,7 +433,7 @@ class Index extends Component {
         </View>
         <View className='at-row item1'>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
           </View>
           <View className='at-col exmpole'>
             <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
@@ -442,7 +442,7 @@ class Index extends Component {
         </View>
         <View className='at-row item1'>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
           </View>
           <View className='at-col exmpole'>
             <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
@@ -451,7 +451,7 @@ class Index extends Component {
         </View>
         <View className='at-row item1'>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
           </View>
           <View className='at-col exmpole'>
             <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
@@ -460,7 +460,7 @@ class Index extends Component {
         </View>
         <View className='at-row item1'>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
           </View>
           <View className='at-col exmpole'>
             <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
@@ -482,7 +482,7 @@ class Index extends Component {
             <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
           </View>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
           </View>
         </View>
         <View className='at-row item1'>
@@ -492,7 +492,7 @@ class Index extends Component {
             <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
           </View>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
           </View>
         </View>
         <View className='at-row item1'>
@@ -502,7 +502,7 @@ class Index extends Component {
             <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
           </View>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
           </View>
         </View>
         <View className='at-row item1'>
@@ -512,7 +512,7 @@ class Index extends Component {
             <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
           </View>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
           </View>
         </View>
         <View className='at-row item1'>
@@ -522,7 +522,7 @@ class Index extends Component {
             <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
           </View>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('@images/evaluation/evaStart4.png')}/>
+            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
           </View>
         </View>
         {/*<Button className='add_btn' onClick={this.toFenbao.bind(this)}>前往分包页面</Button>*/}

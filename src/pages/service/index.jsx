@@ -3,9 +3,9 @@ import { View, Button, Text, Image } from '@tarojs/components'
 
 import './index.scss'
 
-import gbydyfw from '../../images/service/gbydyfw.png'
-import hyfw from '../../images/service/hyfw.png'
-import sxkfw from '../../images/service/sxkfw.png'
+import gbydyfw from '../../packageFW/images/gbydyfw.png'
+import hyfw from '../../packageFW/images/hyfw.png'
+import sxkfw from '../../packageFW/images/sxkfw.png'
 
 
 class Index extends Component {
