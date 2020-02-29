@@ -95,6 +95,9 @@ class Index extends Component {
   componentDidHide () {}
   openVideo(item){
     console.log(item);
+    Taro.navigateTo({
+      url: '/packageKC/lecture/index?playTitle='+item.title+"&playDuration="+item.classHour
+    });
   }
   onGradeChange=(e)=>{
     this.setState((prevState)=>({

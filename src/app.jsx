@@ -69,7 +69,17 @@ class App extends Component {
       {
         'root': 'packageKC',
         'pages': [
+          'lecture/index',
           'video/index',
+        ]
+      },
+      //个人中心分包
+      {
+        'root': 'packageWD',
+        'pages': [
+          'wdcp/index',
+          'wdxk/index',
+          'qhzh/index'
         ]
       }
     ],

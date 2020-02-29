@@ -1,0 +1,108 @@
+.index {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  .up{
+    border-bottom: 16px solid #f0eff5;
+    .up-video{
+      height: 360rpx;
+      width: 100%;
+      .controls{
+        height: 100%;
+        .play{
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 100%;
+          .info{
+            font-size: 30px;
+            text-align: center;
+            line-height: 1.5em;
+          }
+          .btn-group{
+            display: flex;
+            justify-content: center;
+            align-items: item;
+            button{
+              font-size: 30px;
+            }
+            .yysxk-btn{
+              color: #fff;
+              border: 1px solid #fff;
+            }
+          }
+        }
+      }
+    }
+    .video-info{
+      padding: 20rpx;
+      .info-title{
+        color: #666666;
+        margin-bottom: 15rpx;
+      }
+      .info-duration{
+        font-size: 32rpx;
+        color: #666666;
+      }
+    }
+  }
+  .down{
+    height: calc(100% - 530px);
+    overflow: auto;
+    .down-top{
+      color: #000;
+      font-size: 36rpx;
+      padding: 10px 20px;
+      border-bottom: 1px solid #f0eff5;
+    }
+    .down-items{
+      height: calc(100% - 50px);
+      overflow: auto;
+      .list{
+        padding: 20px 40px 0;
+        .li{
+          padding-bottom: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: #666666;
+          position: relative;
+          &.selected{
+            color: #19b955;
+          }
+          at-icon{
+            position: absolute;
+            left: -26px;
+          }
+        }
+      }
+      .down-item{
+        display: flex;
+        padding: 20px;
+        border-bottom: 1px solid #f0eff5;
+        .item-image{
+          height: 150rpx;
+          width: 200rpx;
+        }
+        .item-content{
+          width: calc(100% - 200rpx);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          padding-left: 16rpx;
+          .title{
+            color: #333333;
+            width: 90%;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+          }
+          .date{
+            color: #c6c6c6;
+          }
+        }
+      }
+    }
+  }
+}
