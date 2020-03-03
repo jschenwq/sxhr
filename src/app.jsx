@@ -38,14 +38,16 @@ class App extends Component {
       {
         "root": "packageCX",
         "pages": [
-          'zdx/index',
-          'czy/index',
+          'zdx/index',//找大学
+          'zdx/schoolDetail/index',//某个学校信息
+          'czy/index',//查专业
           'kzy/index',
           'tqp/index',
           'fsx/index',
           'zsjh/index',
           'pcx/index',
           'wccx/index',
+          'zntj/index',//智能推荐
         ]
       },
       //服务分包

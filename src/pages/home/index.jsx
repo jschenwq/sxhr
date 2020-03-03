@@ -88,6 +88,12 @@ class Index extends Component {
       current: value
     })
   }
+  //智能推荐
+  gotoZntj(){
+    Taro.navigateTo({
+      url: '/packageCX/zntj/index',
+    })
+  }
   //信息查询
   infomationSearch(data,index){
     console.log(data)
@@ -166,7 +172,7 @@ class Index extends Component {
             <Text onClick={this.handleTab.bind(this,0)} className={classNames('home_score',current == 0?'home_font':'')}>高考/模拟总分</Text>
             <Text onClick={this.handleTab.bind(this,1)} className={classNames('home_scoreLine',current == 1?'home_font':'')}>线差</Text>
           </View>
-          <View className='home_zntj'>
+          <View className='home_zntj' onClick={this.gotoZntj.bind(this)}>
             <Text className="home_font2">
               <Text className='home_font3'>智能</Text>
               <Text>推荐</Text>
