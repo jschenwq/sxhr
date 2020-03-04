@@ -23,10 +23,15 @@ class Index extends Component {
   handleClick(){
 
   }
-
+  //查看学校详情
+  gotoSchoolDetail(){
+    Taro.navigateTo({
+      url: '/packageCX/zdx/schoolDetail/index',
+    })
+  }
   render () {
     return (
-      <View className='schoolItem'>
+      <View className='schoolItem' onClick={this.gotoSchoolDetail.bind(this)}>
         <View className='itemContent'>
           <View className='schoolImg'>
             <Image src={require('@packageCP/images/boy.png')} className='schoolLogo' />
