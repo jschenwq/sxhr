@@ -79,7 +79,8 @@ class App extends Component {
         'pages': [
           'wdcp/index',
           'wdxk/index',
-          'qhzh/index'
+          'qhzh/index',
+          'sjhdl/index'
         ]
       }
     ],

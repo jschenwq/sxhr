@@ -1,23 +1,19 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { AtForm, AtInput, AtButton } from 'taro-ui'
+import { View, Button} from '@tarojs/components'
 
 import './index.scss'
 
 class Index extends Component {
 
   config = {
-    navigationBarTitleText: '登录'
+    navigationBarTitleText: ''
   }
-
   constructor(){
-
+    super();
     this.state = {
-      userName: '',
-      password: ''
+      isLoading: false
     };
   }
-
   componentWillMount(){
 
   }
@@ -37,37 +33,42 @@ class Index extends Component {
   onReset(){
 
   }
-  handleUserChange(value){
+  wxLogin(){
     this.setState((prevState)=>({
-      userName: value
+      isLoading: true
     }));
+    Taro.login({
+      success: function (res) {
+
+        if (res.code) {
+          //发起网络请求
+          Taro.request({
+            url: 'https://test.com/onLogin',
+            data: {
+              code: res.code
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg);
+        }
+        this.setState((prevState)=>({
+          isLoading: false
+        }));
+      }
+    });
   }
-  handlePwdChange(value){
-    this.setState((prevState)=>({
-      password: value
-    }));
+  sjLogin(){
+    Taro.navigateTo({
+      url: '/packageWD/sjhdl/index'
+    });
   }
   render () {
-    let {userName, password} = this.state;
+    let {isLoading} = this.state;
     return (
       <View className='index'>
-        <AtInput
-          name='userName'
-          title='账号'
-          type='text'
-          placeholder='单行文本'
-          value={userName}
-          onChange={this.handleUserChange.bind(this)}
-        />
-        <AtInput
-          name='password'
-          title='密码'
-          type='password'
-          placeholder='单行文本'
-          value={password}
-          onChange={this.handlePwdChange.bind(this)}
-        />
-        <AtButton onClick={this.onSubmit.bind(this)} type='primary' circle>提交</AtButton>
+        <View style='text-align: center;margin-bottom: 10px;'>汇百智教育</View>
+        <Button onClick={this.wxLogin.bind(this)} loading={isLoading} type='primary' circle>微信快捷登录</Button>
+        <Button onClick={this.sjLogin.bind(this)} type='default' circle>手机号短信登录</Button>
       </View>
     )
   }
