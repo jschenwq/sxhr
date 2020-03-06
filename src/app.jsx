@@ -39,10 +39,14 @@ class App extends Component {
       {
         "root": "packageCX",
         "pages": [
-          'zdx/index',//找大学
-          'zdx/schoolDetail/index',//某个学校信息
-          'czy/index',//查专业
-          'kzy/index',
+          'zdx/index',//---找大学
+          'zdx/schoolDetail/index',//某个学校信息详情
+          'czy/index',//---查专业
+          'czy/bkrd/index',//报考热度
+          'czy/jyqj/index',//就业前景
+          'czy/zyxq/index',//专业详情
+          'kzy/index',//---看职业
+          'kzy/zyxq/index',//职业详情
           'tqp/index',
           'fsx/index',
           'zsjh/index',

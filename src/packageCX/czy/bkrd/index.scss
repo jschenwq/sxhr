@@ -1,0 +1,31 @@
+.bkrd{
+  .topTip{
+    background: #EFEEF3;
+    padding: 30px;
+    height: 100px;
+    position: relative;
+    .qgpm{
+      position: absolute;
+      left: 30px;
+      color: #999;
+      font-size: 30px;
+    }
+    .sysm{
+      position: absolute;
+      right: 30px;
+      color: #999;
+      font-size: 30px;
+    }
+    .home_icon{
+      vertical-align: middle;
+      margin-right: 10px;
+      margin-left: 40px;
+    }
+  }
+
+  .content{
+    padding: 0px 15px;
+    height:calc(100vh - 100px);
+    overflow: scroll;
+  }
+}

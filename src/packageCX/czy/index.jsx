@@ -8,7 +8,7 @@ import './index.scss'
 
 class Index extends Component {
   config = {
-    navigationBarTitleText: '看职业'
+    navigationBarTitleText: '查专业'
   }
 
   constructor(props) {
@@ -45,6 +45,18 @@ class Index extends Component {
       url: '/pages/evaluation/index',
     })
   }
+  //报考热度更多
+  bkrdGetMore(){
+    Taro.navigateTo({
+      url: '/packageCX/czy/bkrd/index',
+    })
+  }
+  //就业前景更多
+  jyqjGetMore(){
+    Taro.navigateTo({
+      url: '/packageCX/czy/jyqj/index',
+    })
+  }
 
   render () {
     const tabList = [{ title: '专业推荐' }, { title: '全部专业' }]
@@ -73,8 +85,8 @@ class Index extends Component {
 
               <View className='counselor'>
                 <View>
-                  <Text className="title">招考热度</Text>
-                  <Text className="more">更多</Text>
+                  <Text className="title">报考热度</Text>
+                  <Text onClick={this.bkrdGetMore.bind(this)} className="more">更多</Text>
                 </View>
               </View>
               <AtList>
@@ -89,7 +101,7 @@ class Index extends Component {
               <View className='counselor firstItem'>
                 <View>
                   <Text className="title">就业前景</Text>
-                  <Text className="more">更多</Text>
+                  <Text onClick={this.jyqjGetMore.bind(this)} className="more">更多</Text>
                 </View>
               </View>
               <AtList>
