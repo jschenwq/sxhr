@@ -179,7 +179,7 @@ class Index extends Component {
           onClose={this.onClose.bind(this)}
         >
           <Image
-            style='width:70%;height:250px'
+            style='width:100%;height:250px'
             src={require('@images/home/banner.jpg')}
           />
         </AtCurtain>

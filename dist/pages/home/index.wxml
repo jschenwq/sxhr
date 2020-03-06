@@ -2,14 +2,262 @@
     <view class="home">
         <image src="{{anonymousState__temp}}" class="home_banner"></image>
         <view class="home_wish">
-            <view>
-                <icon class="home_icon" color="#999" size="18" type="waiting"></icon><text class="home_location">湖北</text><text class="home_score">高考/模拟总分</text><text class="home_scoreLine">线差</text>
+            <view class="home_select">
+                <icon class="home_icon" color="#999" size="18" type="waiting"></icon><text class="home_location">湖北</text>
+                <view class="home_course"><text bindtap="handleCourse" class="{{anonymousState__temp2}}" data-e-tap-so="this" data-e-tap-a-a="{{0}}">文</text><text bindtap="handleCourse" class="{{anonymousState__temp3}}" data-e-tap-so="this" data-e-tap-a-a="{{1}}">理</text>
+                </view><text bindtap="handleTab" class="{{anonymousState__temp4}}" data-e-tap-so="this" data-e-tap-a-a="{{0}}">高考/模拟总分</text><text bindtap="handleTab" class="{{anonymousState__temp5}}" data-e-tap-so="this" data-e-tap-a-a="{{1}}">线差</text>
             </view>
-            <view>
-                <input type="text" placeholder="将会获取焦点" /><text>分</text>
+            <view class="home_zntj" bindtap="gotoZntj" data-e-tap-so="this"><text class="home_font2"><text class="home_font3">智能</text><text>推荐</text></text>
+            </view>
+            <block>
+                <block wx:if="{{current == 0}}">
+                    <view class="home_scoreContent">
+                        <input value="{{scoreValue}}" class="home_scoreIpt" type="text" placeholder="{{currentCourse == 0 ? '请输入高考/模考总数(文科)' : '请输入高考/模考总数(理科)'}}" /><text class="home_font1">分</text>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="home_scoreContent">
+                        <input class="home_scoreIpt1" type="text" placeholder="请输入线分差" /><text class="home_font1">分</text>
+                        <picker style="display:inline-block;margin-left:10px" mode="selector" range="{{selector}}" bindchange="onChange">
+                            <view class="picker">{{selectorChecked}}</view>
+                        </picker>
+                    </view>
+                </block>
+            </block>
+        </view>
+        <view class="notice">
+            <icon class="noticeIcon" color="#A3A3A3" size="14" type="waiting"></icon><text class="noticeText">这是一段测试文字，这是一段测试文字</text>
+        </view>
+        <at-grid compid="{{$compid__119}}"></at-grid>
+        <view class="card">
+            <view class="cardLeft">
+                <image src="{{anonymousState__temp7}}" class="cardLeftImg"></image>
+                <view class="cardLeftText"><text class="cardTitle">新高考选课</text><text class="cardPerson">大数据智能选课</text>
+                </view>
+            </view>
+            <view class="cardRight">
+                <image src="{{anonymousState__temp8}}" class="cardLeftImg"></image>
+                <view class="cardLeftText"><text class="cardTitle">定位测评</text><text class="cardPerson">五大维度专业</text>
+                </view>
             </view>
         </view>
-        <button class="add_btn" bindtap="toFenbao" data-e-tap-so="this">前往分包页面</button>
-        <button class="add_btn" bindtap="toFenbao1">前往分包页面111</button>
+        <view class="counselor">
+            <view><text class="title">咨询师推荐服务</text><text class="more">更多</text>
+            </view>
+        </view>
+        <view class="{{anonymousState__temp9}}">
+            <view class="at-col at-col-3" style="text-align:center">
+                <image src="{{anonymousState__temp10}}" class="counselorImg"></image>
+            </view>
+            <view class="at-col at-col-7">
+                <view><text class="name">张三</text><text class="year">从业2年</text>
+                </view>
+                <view class="detail">张三这是一段测试文字，张三这是一段测试文<text class="moreDetail">详情</text>
+                </view>
+            </view>
+            <view class="at-col at-col-2">
+                <at-button compid="{{$compid__120}}">预约</at-button>
+            </view>
+        </view>
+        <view class="item"><text>高校一对一服务</text>
+            <image class="ItemImg" src="{{anonymousState__temp11}}"></image>
+        </view>
+        <view class="{{anonymousState__temp12}}">
+            <view class="at-col at-col-3" style="text-align:center">
+                <image src="{{anonymousState__temp13}}" class="counselorImg"></image>
+            </view>
+            <view class="at-col at-col-7">
+                <view><text class="name">张三2</text><text class="year">从业2年</text>
+                </view>
+                <view class="detail">张三这是222一段测试文字，张2222三这是一<text class="moreDetail">详情</text>
+                </view>
+            </view>
+            <view class="at-col at-col-2">
+                <at-button compid="{{$compid__121}}">预约</at-button>
+            </view>
+        </view>
+        <view class="item"><text>升学卡服务</text>
+            <image class="ItemImg" src="{{anonymousState__temp14}}"></image>
+        </view>
+        <view class="{{anonymousState__temp15}}">
+            <view class="at-col at-col-3" style="text-align:center">
+                <image src="{{anonymousState__temp16}}" class="counselorImg"></image>
+            </view>
+            <view class="at-col at-col-7">
+                <view><text class="name">张三1</text><text class="year">从业2年</text>
+                </view>
+                <view class="detail">张三这是一段测试文字，张三333这是一<text class="moreDetail">详情</text>
+                </view>
+            </view>
+            <view class="at-col at-col-2">
+                <at-button compid="{{$compid__122}}">预约</at-button>
+            </view>
+        </view>
+        <view class="item lastItem"><text>会员服务</text>
+            <image class="ItemImg" src="{{anonymousState__temp17}}"></image>
+        </view>
+        <view class="counselor firstItem">
+            <view><text class="title">咨询师</text><text class="more">更多</text>
+            </view>
+        </view>
+        <view class="{{anonymousState__temp18}}">
+            <view class="at-col at-col-3" style="text-align:center">
+                <image src="{{anonymousState__temp19}}" class="counselorImg1"></image>
+            </view>
+            <view class="at-col at-col-7">
+                <view><text class="name">张三</text>
+                </view>
+                <view class="at-row">
+                    <view class="at-col at-col-4 job">志愿填报</view>
+                    <view class="at-col at-col-4 job">高招政策</view>
+                    <view class="at-col at-col-4 job">心理咨询</view>
+                </view>
+                <view class="at-row">
+                    <view class="at-col at-col-4 job">志愿填报</view>
+                    <view class="at-col at-col-4 job">高招政策</view>
+                    <view class="at-col at-col-4 job">心理咨询</view>
+                </view>
+                <view><text class="year">从业2年</text>
+                    <at-rate compid="{{$compid__123}}"></at-rate>
+                </view>
+            </view>
+        </view>
+        <view class="{{anonymousState__temp20}}">
+            <view class="at-col at-col-3" style="text-align:center">
+                <image src="{{anonymousState__temp21}}" class="counselorImg1"></image>
+            </view>
+            <view class="at-col at-col-7">
+                <view><text class="name">张三</text>
+                </view>
+                <view class="at-row">
+                    <view class="at-col at-col-4 job">志愿填报</view>
+                    <view class="at-col at-col-4 job">高招政策</view>
+                    <view class="at-col at-col-4 job">心理咨询</view>
+                </view>
+                <view class="at-row">
+                    <view class="at-col at-col-4 job">志愿填报</view>
+                    <view class="at-col at-col-4 job">高招政策</view>
+                    <view class="at-col at-col-4 job">心理咨询</view>
+                </view>
+                <view><text class="year">从业2年</text>
+                    <at-rate compid="{{$compid__124}}"></at-rate>
+                </view>
+            </view>
+        </view>
+        <view class="{{anonymousState__temp22}}">
+            <view class="at-col at-col-3" style="text-align:center">
+                <image src="{{anonymousState__temp23}}" class="counselorImg1"></image>
+            </view>
+            <view class="at-col at-col-7">
+                <view><text class="name">张三</text>
+                </view>
+                <view class="at-row">
+                    <view class="at-col at-col-4 job">志愿填报</view>
+                    <view class="at-col at-col-4 job">高招政策</view>
+                    <view class="at-col at-col-4 job">心理咨询</view>
+                </view>
+                <view class="at-row">
+                    <view class="at-col at-col-4 job">志愿填报</view>
+                    <view class="at-col at-col-4 job">高招政策</view>
+                    <view class="at-col at-col-4 job">心理咨询</view>
+                </view>
+                <view><text class="year">从业2年</text>
+                    <at-rate compid="{{$compid__125}}"></at-rate>
+                </view>
+            </view>
+        </view>
+        <view class="{{anonymousState__temp24}}">
+            <view class="at-col at-col-3" style="text-align:center">
+                <image src="{{anonymousState__temp25}}" class="counselorImg1"></image>
+            </view>
+            <view class="at-col at-col-7">
+                <view><text class="name">张三</text>
+                </view>
+                <view class="at-row">
+                    <view class="at-col at-col-4 job">志愿填报</view>
+                    <view class="at-col at-col-4 job">高招政策</view>
+                    <view class="at-col at-col-4 job">心理咨询</view>
+                </view>
+                <view class="at-row">
+                    <view class="at-col at-col-4 job">志愿填报</view>
+                    <view class="at-col at-col-4 job">高招政策</view>
+                    <view class="at-col at-col-4 job">心理咨询</view>
+                </view>
+                <view><text class="year">从业2年</text>
+                    <at-rate compid="{{$compid__126}}"></at-rate>
+                </view>
+            </view>
+        </view>
+        <view class="counselor firstItem">
+            <view><text class="title">成功案例</text><text class="more">更多</text>
+            </view>
+        </view>
+        <view class="at-row item1">
+            <view class="at-col at-col-1 at-col--auto">
+                <image class="ItemImg1" src="{{anonymousState__temp26}}"></image>
+            </view>
+            <view class="at-col exmpole"><text class="exmpoleTitle">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleDetail">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text>
+            </view>
+        </view>
+        <view class="at-row item1">
+            <view class="at-col at-col-1 at-col--auto">
+                <image class="ItemImg1" src="{{anonymousState__temp27}}"></image>
+            </view>
+            <view class="at-col exmpole"><text class="exmpoleTitle">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleDetail">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text>
+            </view>
+        </view>
+        <view class="at-row item1">
+            <view class="at-col at-col-1 at-col--auto">
+                <image class="ItemImg1" src="{{anonymousState__temp28}}"></image>
+            </view>
+            <view class="at-col exmpole"><text class="exmpoleTitle">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleDetail">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text>
+            </view>
+        </view>
+        <view class="at-row item1">
+            <view class="at-col at-col-1 at-col--auto">
+                <image class="ItemImg1" src="{{anonymousState__temp29}}"></image>
+            </view>
+            <view class="at-col exmpole"><text class="exmpoleTitle">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleDetail">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text>
+            </view>
+        </view>
+        <view class="counselor firstItem">
+            <view><text class="title">高考咨询</text><text class="more">更多</text>
+            </view>
+        </view>
+        <view class="at-row item1">
+            <view class="at-col exmpole1"><text class="exmpoleTitle">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleDetail">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleTime">2019/02/02 10:19<text class="readNum">256</text></text>
+            </view>
+            <view class="at-col at-col-1 at-col--auto">
+                <image class="ItemImg1" src="{{anonymousState__temp30}}"></image>
+            </view>
+        </view>
+        <view class="at-row item1">
+            <view class="at-col exmpole1"><text class="exmpoleTitle">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleDetail">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleTime">2019/02/02 10:19<text class="readNum">256</text></text>
+            </view>
+            <view class="at-col at-col-1 at-col--auto">
+                <image class="ItemImg1" src="{{anonymousState__temp31}}"></image>
+            </view>
+        </view>
+        <view class="at-row item1">
+            <view class="at-col exmpole1"><text class="exmpoleTitle">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleDetail">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleTime">2019/02/02 10:19<text class="readNum">256</text></text>
+            </view>
+            <view class="at-col at-col-1 at-col--auto">
+                <image class="ItemImg1" src="{{anonymousState__temp32}}"></image>
+            </view>
+        </view>
+        <view class="at-row item1">
+            <view class="at-col exmpole1"><text class="exmpoleTitle">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleDetail">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleTime">2019/02/02 10:19<text class="readNum">256</text></text>
+            </view>
+            <view class="at-col at-col-1 at-col--auto">
+                <image class="ItemImg1" src="{{anonymousState__temp33}}"></image>
+            </view>
+        </view>
+        <view class="at-row item1">
+            <view class="at-col exmpole1"><text class="exmpoleTitle">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleDetail">这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</text><text class="exmpoleTime">2019/02/02 10:19<text class="readNum">256</text></text>
+            </view>
+            <view class="at-col at-col-1 at-col--auto">
+                <image class="ItemImg1" src="{{anonymousState__temp34}}"></image>
+            </view>
+        </view>
     </view>
 </block>

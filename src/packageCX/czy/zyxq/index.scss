@@ -1,3 +1,83 @@
 .zyxq{
+  .qbzy{
+    height: calc(100vh - 86px);
+    overflow: scroll;
+    .font1{
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 100px;
+    }
+    .font2{
+      color: #757575;
+      font-size: 28px;
+      line-height: 40px;
+      margin-bottom: 30px;
+    }
+    .font5{
+      font-weight: normal;
+      display: inline-block;
+      margin-left: 30px;
+    }
+    .zygl{
+      background: #EFEEF3;
+      padding: 20px 30px;
+      .zyglN{
+        background: white;
+        border-radius: 10px;
+        padding: 20px 30px 1px 30px;
 
+        .font3{
+          font-size: 36px;
+          line-height: 50px;
+        }
+        .font4{
+          font-size: 28px;
+          color: #757575;
+          line-height: 40px;
+        }
+        .cardLeftImg{
+          width: 50px;
+          height: 50px;
+          position: relative;
+          top: 25px;
+        }
+        .itemH{
+          margin: 30px 0px;
+        }
+      }
+    }
+
+    .zyjs{
+      padding: 15px 30px;
+      .font6{
+        line-height: 60px;
+      }
+    }
+    .moreLook{
+      background: #f1f3db;
+      line-height: 100px;
+      color: #9B9B9B;
+      text-align: center;
+    }
+
+    .jyfs{
+      border-top: 20px solid #EFEEF3;
+    }
+
+    .itemList{
+      padding: 20px 30px 20px 30px;
+
+    }
+    .at-list{
+      background: #EFEEF3;
+    }
+
+    .moreLook1{
+      background: #EFEEF3;
+      line-height: 100px;
+      color: #9B9B9B;
+      text-align: center;
+      margin-top: 30px;
+    }
+  }
 }

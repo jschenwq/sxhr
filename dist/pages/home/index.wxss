@@ -7,22 +7,274 @@
     height: 390rpx;
     width: 750rpx; }
   .home_wish {
-    text-align: center; }
+    position: relative;
+    margin: 15rpx 0; }
   .home_icon {
     vertical-align: middle;
-    margin-right: 10rpx; }
-  .home_switch {
-    display: inline-block; }
+    margin-right: 10rpx;
+    margin-left: 40rpx; }
+  .home_course {
+    display: inline-block;
+    background: #CCCCCC;
+    width: 110rpx;
+    height: 50rpx;
+    border-radius: 25rpx;
+    vertical-align: middle; }
+  .home_active {
+    background: #37B365;
+    border-radius: 30rpx; }
+  .home_wl {
+    width: 55rpx;
+    text-align: center;
+    color: white;
+    display: inline-block;
+    line-height: 50rpx; }
   .home_location {
     margin-right: 15rpx;
     vertical-align: middle;
     display: inline-block; }
+  .home_font {
+    color: #37B365; }
   .home_score {
     vertical-align: middle;
-    color: red;
     display: inline-block;
     margin-right: 20rpx;
     margin-left: 20rpx; }
   .home_scoreLine {
     vertical-align: middle; }
+  .home_scoreContent {
+    background: #F7F7F7;
+    margin: 20rpx auto;
+    padding: 20rpx 0;
+    width: 700rpx;
+    border-radius: 5rpx; }
+  .home_scoreIpt {
+    display: inline-block;
+    width: 418rpx;
+    height: 50rpx;
+    border-bottom: 1rpx solid #E4E4E4;
+    vertical-align: middle;
+    margin-left: 100rpx;
+    text-align: center; }
+  .home_scoreIpt1 {
+    display: inline-block;
+    width: 300rpx;
+    height: 50rpx;
+    border-bottom: 1rpx solid #E4E4E4;
+    vertical-align: middle;
+    margin-left: 60rpx;
+    text-align: center; }
+  .home_font1 {
+    vertical-align: middle;
+    color: #7B7B7B;
+    display: inline-block;
+    margin-right: 10rpx; }
+  .home_zntj {
+    position: absolute;
+    right: 25rpx;
+    width: 140rpx;
+    height: 140rpx;
+    background: #5ACB31;
+    border-radius: 70rpx;
+    top: 8rpx;
+    font-size: 36rpx;
+    text-align: center; }
+  .home_font2 {
+    color: white;
+    position: relative;
+    top: 20rpx; }
+  .home_font3 {
+    display: block; }
+  .home .notice {
+    padding: 0 25rpx;
+    margin-bottom: 30rpx; }
+    .home .notice .noticeIcon {
+      padding: 0 10rpx;
+      vertical-align: middle; }
+    .home .notice .noticeText {
+      font-size: 28rpx;
+      color: #A3A3A3;
+      vertical-align: middle; }
+  .home .card {
+    padding: 35rpx 25rpx;
+    background: #EFEEF3; }
+    .home .card:after {
+      content: "";
+      display: block;
+      clear: both; }
+    .home .card .cardLeft {
+      width: 340rpx;
+      float: left;
+      background: white;
+      border-radius: 15rpx;
+      padding: 40rpx 0 40rpx 25rpx; }
+      .home .card .cardLeft .cardLeftImg {
+        margin-right: 20rpx;
+        float: left;
+        width: 100rpx;
+        height: 100rpx;
+        vertical-align: middle; }
+      .home .card .cardLeft .cardLeftText {
+        padding-top: 10rpx;
+        text-align: center;
+        height: 100rpx;
+        display: inline-block;
+        vertical-align: center; }
+        .home .card .cardLeft .cardLeftText .cardTitle {
+          display: block;
+          font-weight: bold; }
+        .home .card .cardLeft .cardLeftText .cardPerson {
+          display: block;
+          font-size: 24rpx;
+          color: #757575; }
+    .home .card .cardRight {
+      width: 340rpx;
+      float: right;
+      background: white;
+      border-radius: 15rpx;
+      padding: 40rpx 0 40rpx 25rpx; }
+      .home .card .cardRight .cardLeftImg {
+        margin-right: 20rpx;
+        float: left;
+        width: 100rpx;
+        height: 100rpx;
+        vertical-align: middle; }
+      .home .card .cardRight .cardLeftText {
+        padding-top: 10rpx;
+        text-align: center;
+        height: 100rpx;
+        display: inline-block;
+        vertical-align: center; }
+        .home .card .cardRight .cardLeftText .cardTitle {
+          display: block;
+          font-weight: bold; }
+        .home .card .cardRight .cardLeftText .cardPerson {
+          display: block;
+          font-size: 24rpx;
+          color: #757575; }
+  .home .counselor {
+    padding: 35rpx 25rpx 0 25rpx; }
+    .home .counselor .title {
+      font-size: 40rpx;
+      font-weight: bold; }
+    .home .counselor .more {
+      float: right;
+      color: #A3A3A3;
+      font-size: 30rpx; }
+  .home .firstItem {
+    border-top: 20rpx solid #EFEEF3; }
+  .home .itemPerson {
+    padding: 30rpx 15rpx; }
+    .home .itemPerson .counselorImg {
+      width: 130rpx;
+      height: 130rpx; }
+    .home .itemPerson .counselorImg1 {
+      width: 130rpx;
+      height: 130rpx;
+      position: relative;
+      top: 30rpx; }
+    .home .itemPerson .name {
+      font-size: 36rpx;
+      font-weight: bold;
+      margin-right: 30rpx; }
+    .home .itemPerson .year {
+      font-size: 28rpx;
+      color: #A3A3A3; }
+    .home .itemPerson .job {
+      font-size: 28rpx;
+      text-align: center;
+      border: 1rpx solid #ccc;
+      border-radius: 30rpx;
+      margin-bottom: 8rpx; }
+    .home .itemPerson .at-rate {
+      display: inline-block;
+      position: relative;
+      top: -13rpx;
+      margin-left: 40rpx; }
+    .home .itemPerson .at-rate__icon .at-icon {
+      font-size: 32rpx; }
+    .home .itemPerson .detail {
+      font-size: 28rpx;
+      white-space: normal;
+      word-break: break-all;
+      word-wrap: break-word;
+      overflow: hidden;
+      -o-text-overflow: ellipsis;
+         text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; }
+      .home .itemPerson .detail .moreDetail {
+        color: #37B365; }
+    .home .itemPerson .btn {
+      background: #37B365;
+      position: relative;
+      top: 30rpx; }
+    .home .itemPerson .at-button--small {
+      width: 50rpx !important; }
+  .home .item {
+    padding: 35rpx 25rpx;
+    background: #EFEEF3; }
+    .home .item:after {
+      content: "";
+      display: block;
+      clear: both; }
+    .home .item .ItemImg {
+      width: 250rpx;
+      height: 150rpx;
+      float: right; }
+  .home .lastItem {
+    border-bottom: 70rpx solid white; }
+  .home .item1 {
+    padding: 35rpx 25rpx;
+    background: white; }
+    .home .item1 .ItemImg1 {
+      width: 200rpx;
+      height: 150rpx; }
+    .home .item1 .exmpole {
+      padding-left: 20rpx; }
+      .home .item1 .exmpole .exmpoleTitle {
+        display: block;
+        width: 480rpx;
+        font-size: 36rpx;
+        font-weight: bold;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 10rpx; }
+      .home .item1 .exmpole .exmpoleDetail {
+        display: block;
+        font-size: 28rpx;
+        width: 480rpx;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 10rpx; }
+    .home .item1 .exmpole1 {
+      padding-right: 60rpx; }
+      .home .item1 .exmpole1 .exmpoleTitle {
+        display: block;
+        width: 440rpx;
+        font-size: 36rpx;
+        font-weight: bold;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 10rpx; }
+      .home .item1 .exmpole1 .exmpoleDetail {
+        display: block;
+        font-size: 28rpx;
+        width: 440rpx;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 10rpx; }
+      .home .item1 .exmpole1 .exmpoleTime {
+        display: block;
+        font-size: 28rpx; }
+        .home .item1 .exmpole1 .exmpoleTime .readNum {
+          float: right; }
 

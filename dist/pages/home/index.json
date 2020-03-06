@@ -1,1 +1,1 @@
-{"component":true,"usingComponents":{},"navigationBarTitleText":"首页"}
+{"usingComponents":{"at-grid":"../../npm/_taro-ui@2.2.4@taro-ui/dist/weapp/components/grid/index","at-button":"../../npm/_taro-ui@2.2.4@taro-ui/dist/weapp/components/button/index","at-rate":"../../npm/_taro-ui@2.2.4@taro-ui/dist/weapp/components/rate/index"},"navigationBarTitleText":"首页"}

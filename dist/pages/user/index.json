@@ -1,1 +1,1 @@
-{"usingComponents":{},"navigationBarTitleText":"个人中心"}
+{"usingComponents":{"at-avatar":"../../npm/_taro-ui@2.2.4@taro-ui/dist/weapp/components/avatar/index","at-list":"../../npm/_taro-ui@2.2.4@taro-ui/dist/weapp/components/list/index","at-list-item":"../../npm/_taro-ui@2.2.4@taro-ui/dist/weapp/components/list/item/index"},"navigationBarTitleText":"个人中心"}

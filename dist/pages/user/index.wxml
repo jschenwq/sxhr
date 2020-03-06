@@ -1,6 +1,17 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="index">
-        <view><text>个人中心页面</text>
+        <view class="user">
+            <at-avatar compid="{{$compid__129}}"></at-avatar>
+            <view class="user-name">{{userName}}</view>
         </view>
+        <at-list>
+            <at-list-item compid="{{$compid__130}}"></at-list-item>
+            <at-list-item compid="{{$compid__131}}"></at-list-item>
+            <at-list-item compid="{{$compid__132}}"></at-list-item>
+            <at-list-item compid="{{$compid__133}}"></at-list-item>
+            <at-list-item compid="{{$compid__134}}"></at-list-item>
+            <at-list-item compid="{{$compid__135}}"></at-list-item>
+            <at-list-item compid="{{$compid__136}}"></at-list-item>
+        </at-list>
     </view>
 </block>

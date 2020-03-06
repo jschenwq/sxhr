@@ -1,6 +1,25 @@
 .index {
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 100%; }
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background: #f0eff5; }
+  .index .user {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background: #fff;
+    padding: 50rpx 20rpx 50rpx 40rpx;
+    margin-bottom: 10rpx; }
+    .index .user .user-name {
+      margin-left: 20rpx;
+      color: #080808; }
+  .index .at-list__item .item-content__info-title {
+    font-size: 22rpx;
+    line-height: 2;
+    color: #575757; }
+  .index .at-list__item .item-extra__info {
+    font-size: 20rpx; }
 
