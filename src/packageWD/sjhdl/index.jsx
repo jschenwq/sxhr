@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
-import { AtForm, AtInput, AtButton } from 'taro-ui'
+import { AtIcon } from 'taro-ui'
 
 import './index.scss'
 
@@ -13,8 +13,11 @@ class Index extends Component {
   constructor(){
 
     this.state = {
-      userName: '',
-      password: ''
+      phoneNumber: '',
+      verifyCode: '',
+      vCode: '获取验证码',
+      isHasGet: false,//是否已获取
+      count: 60,
     };
   }
 
@@ -37,37 +40,51 @@ class Index extends Component {
   onReset(){
 
   }
-  handleUserChange(value){
+  handleUserChange(e){
     this.setState((prevState)=>({
-      userName: value
+      phoneNumber: e.target.value
     }));
   }
-  handlePwdChange(value){
+  handlePwdChange(e){
     this.setState((prevState)=>({
-      password: value
+      verifyCode: e.target.value
     }));
+  }
+  getVCode=()=>{
+    if(!this.state.isHasGet){//未获取
+      this.setState(()=>({
+        isHasGet: true
+      }));
+      let timer = setInterval(()=>{
+        if(this.state.count === 0){
+          clearInterval(timer);
+          this.setState((prevState)=>({
+            count: 60,
+            isHasGet: false
+          }));
+        }else{
+          this.setState((prevState)=>({
+            count: prevState.count-1
+          }));
+        }
+      },1000);
+    }
   }
   render () {
-    let {userName, password} = this.state;
+    let {phoneNumber, verifyCode, vCode,isHasGet, count} = this.state;
     return (
       <View className='index'>
-        <AtInput
-          name='userName'
-          title='账号'
-          type='text'
-          placeholder='单行文本'
-          value={userName}
-          onChange={this.handleUserChange.bind(this)}
-        />
-        <AtInput
-          name='password'
-          title='密码'
-          type='password'
-          placeholder='单行文本'
-          value={password}
-          onChange={this.handlePwdChange.bind(this)}
-        />
-        <AtButton onClick={this.onSubmit.bind(this)} type='primary' circle>提交</AtButton>
+        <View className='title'>欢迎回来!</View>
+        <View className='params'>
+          <AtIcon value='iphone' size='20' color='#9e9e9e' />
+          <Input type='text' className='phone-number' placeholder='请输入手机号' value={phoneNumber} onChange={this.handleUserChange.bind(this)} />
+        </View>
+        <View className='params'>
+          <AtIcon prefixClass='icon' value='dunpai' size='20' color='#9e9e9e' />
+          <Input type='text' className='verify-code' placeholder='请输入验证码' value={verifyCode} onChange={this.handlePwdChange.bind(this)}/>
+          <Text style='border-left: 1px solid #9e9e9e; color:#9e9e9e;text-align: center;width: 70px;' onClick={this.getVCode}>{!isHasGet? vCode : count+'s'}</Text>
+        </View>
+        <Button onClick={this.onSubmit.bind(this)} type='primary' circle>登 录</Button>
       </View>
     )
   }

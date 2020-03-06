@@ -38,16 +38,15 @@ class Index extends Component {
       isLoading: true
     }));
     Taro.login({
-      success: function (res) {
-
-        if (res.code) {
+      success: (res)=>{
+        if(res.code) {
           //发起网络请求
           Taro.request({
             url: 'https://test.com/onLogin',
             data: {
               code: res.code
             }
-          })
+          });
         } else {
           console.log('登录失败！' + res.errMsg);
         }
