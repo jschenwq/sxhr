@@ -57,6 +57,7 @@ const config = {
     '@constants': path.resolve(__dirname, '..', 'src/constants'),
     '@reducers': path.resolve(__dirname, '..', 'src/reducers'),
     '@styles': path.resolve(__dirname, '..', 'src/styles'),
+    '@font': path.resolve(__dirname, '..', 'src/font'),
     '@utils': path.resolve(__dirname, '..', 'src/utils'),
     '@images': path.resolve(__dirname, '..', 'src/images'),
     '@pages': path.resolve(__dirname, '..', 'src/pages'),
