@@ -30,6 +30,11 @@ class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
+  handleBdsj(){//绑定手机
+    Taro.navigateTo({
+      url: '/packageWD/bdsj/index'
+    });
+  }
   openMyCP(){//我的测评
     Taro.navigateTo({
       url: '/packageWD/wdcp/index'
@@ -66,6 +71,7 @@ class Index extends Component {
           <AtListItem
             title='绑定手机'
             arrow='right'
+            onClick={this.handleBdsj.bind(this)}
             iconInfo={{ size: 12, color: '#afafaf', value: 'iphone'}}
           />
           <AtListItem

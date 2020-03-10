@@ -1,17 +1,15 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { AtIcon } from 'taro-ui'
-
+import { View, Button} from '@tarojs/components'
+import { AtIcon, AtButton } from 'taro-ui'
 import './index.scss'
 
 class Index extends Component {
 
   config = {
-    navigationBarTitleText: '登录'
+    navigationBarTitleText: '绑定手机'
   }
-
   constructor(){
-
+    super();
     this.state = {
       phoneNumber: '',
       verifyCode: '',
@@ -20,32 +18,15 @@ class Index extends Component {
       count: 60,
     };
   }
-
   componentWillMount(){
 
   }
-
-  componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
-  }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-  onSubmit(){
-
-  }
-  onReset(){
-
-  }
-  handleUserChange(e){
+  handleSjh(e){
     this.setState((prevState)=>({
       phoneNumber: e.detail.value
     }));
   }
-  handlePwdChange(e){
+  handleVCode(e){
     this.setState((prevState)=>({
       verifyCode: e.detail.value
     }));
@@ -70,24 +51,28 @@ class Index extends Component {
       },1000);
     }
   }
-  render () {
-    let {phoneNumber, verifyCode, vCode,isHasGet, count} = this.state;
+  phoneBind=()=>{
+    Taro.navigateBack({
+      delta: 1
+    });
+  }
+  render(){
+    let {phoneNumber, verifyCode, vCode, isHasGet, count} = this.state;
     return (
       <View className='index'>
-        <View className='title'>欢迎回来!</View>
         <View className='params'>
-          <AtIcon value='iphone' size='20' color='#9e9e9e' />
-          <Input type='text' className='phone-number' placeholder='请输入手机号' value={phoneNumber} onInput={this.handleUserChange.bind(this)} />
+          <AtIcon prefixClass='icon' value='dunpai' size='20' color='#9e9e9e' />
+          <Input type='text' className='phone-number' placeholder='请输入11位有效手机号码' value={phoneNumber} onInput={this.handleSjh.bind(this)}/>
+          <Button size="mini" type='primary' disabled={isHasGet} onClick={this.getVCode}>{!isHasGet? vCode : count+'s'}</Button>
         </View>
         <View className='params'>
           <AtIcon prefixClass='icon' value='dunpai' size='20' color='#9e9e9e' />
-          <Input type='text' className='verify-code' placeholder='请输入验证码' value={verifyCode} onInput={this.handlePwdChange.bind(this)}/>
-          <Text style='border-left: 1px solid #9e9e9e; color:#9e9e9e;text-align: center;width: 70px;' onClick={this.getVCode}>{!isHasGet? vCode : count+'s'}</Text>
+          <Input type='text' className='verify-code' placeholder='请输入验证码' value={verifyCode} onInput={this.handleVCode.bind(this)}/>
         </View>
-        <Button onClick={this.onSubmit.bind(this)} type='primary' circle>登 录</Button>
+        <View className='btn-panel'>
+          <AtButton disabled={!phoneNumber || !verifyCode} type="primary" onClick={this.phoneBind}>绑定</AtButton>
+        </View>
       </View>
-    )
+    );
   }
 }
-
-export default Index

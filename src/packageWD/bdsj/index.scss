@@ -1,0 +1,30 @@
+.index{
+  background: #f0eff5;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  .params{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 15rpx 25rpx;
+    border-top: 1px solid #f0eff5;
+    font-size: 30px;
+    at-icon{
+      margin-right: 2px;
+    }
+    .phone-number{
+      width: calc(100% - 270px);
+    }
+    button{
+      width: 240px;
+    }
+    .verify-code{
+      width: calc(100% - 50px);
+    }
+  }
+  .btn-panel{
+    padding: 25px;
+  }
+}

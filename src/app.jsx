@@ -84,10 +84,12 @@ class App extends Component {
       {
         'root': 'packageWD',
         'pages': [
-          'wdcp/index',
-          'wdxk/index',
-          'qhzh/index',
-          'sjhdl/index'
+          'bdsj/index',//绑定手机
+          'hykjh/index',//会员卡激活
+          'wdcp/index',//我的测评
+          'wdxk/index',//我的选科
+          'qhzh/index',//切换账号
+          'sjhdl/index'//手机号登录
         ]
       }
     ],
