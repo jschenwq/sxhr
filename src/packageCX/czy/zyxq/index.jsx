@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { AtTabs, AtTabsPane,  AtList, AtListItem } from 'taro-ui'
+import { AtTabs, AtTabsPane,  AtList, AtListItem, AtAccordion, AtProgress, AtCurtain } from 'taro-ui'
 import classNames from 'classnames'
 import {login} from '@utils/api'
 
@@ -15,6 +15,90 @@ class Index extends Component {
     super(props)
     this.state = {
       current:0,
+      open: [],
+      isOpened:false,
+      arryList:[
+        {
+          title:'销售业务',
+          text:'测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
+        },
+        {
+          title:'销售业务',
+          text:'测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
+        },
+        {
+          title:'销售业务',
+          text:'测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
+        }
+      ],
+      arryList1:[
+        {
+          title:'建筑/建材/工程',
+          count:22
+        },
+        {
+          title:'房地产',
+          count:18
+        },
+        {
+          title:'新能源',
+          count:11
+        },
+        {
+          title:'建筑/建材/工程',
+          count:22
+        },
+        {
+          title:'房地产',
+          count:18
+        },
+        {
+          title:'新能源',
+          count:11
+        },
+        {
+          title:'建筑/建材/工程',
+          count:22
+        }
+      ],
+      arryList2:[
+        {
+          area:'深圳',
+          count:19
+        },
+        {
+          area:'上海',
+          count:17
+        },
+        {
+          area:'北京',
+          count:18
+        },
+        {
+          area:'深圳',
+          count:11
+        },
+        {
+          area:'上海',
+          count:8
+        },
+        {
+          area:'北京',
+          count:7
+        },
+        {
+          area:'深圳',
+          count:5
+        },
+        {
+          area:'上海',
+          count:4
+        },
+        {
+          area:'北京',
+          count:11
+        }
+      ]
     };
   }
 
@@ -32,8 +116,34 @@ class Index extends Component {
     })
   }
 
+  handleClickA(index, value) {
+    var arr = [];
+    for (var i = 0; i < this.state.arryList.length; i++) {
+      if (index == i) {
+        arr[i] = value;
+      } else {
+        arr[i] = false;
+      }
+    }
+    this.setState({
+      open: arr,
+    })
+  }
+
+  handleChangeB () {
+    this.setState({
+      isOpened: true
+    })
+  }
+  onClose () {
+    this.setState({
+      isOpened: false
+    })
+  }
+
   render () {
-    const tabList = [{ title: '专业概况' }, { title: '就业前景' }, , { title: '开设院校' }]
+    const {arryList, open , arryList1, arryList2} = this.state;
+    const tabList = [{ title: '专业概况' }, { title: '就业前景' }, { title: '开设院校' }];
     return (
       <View className ='zyxq'>
         <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
@@ -186,17 +296,129 @@ class Index extends Component {
 
           <AtTabsPane current={this.state.current} index={1}>
             <View className ='qbzy'>
+              <View className ='jyqj jyqjOther'>
+                <View className ='zyfb'>职业分布</View>
+                {
+                  arryList.map((obj, index) => {
+                    return (
+                      <AtAccordion
+                        hasBorder={false}
+                        key={index}
+                        open={open[index]}
+                        onClick={this.handleClickA.bind(this, index)}
+                        title={obj.title}
+                        isAnimation
+                      >
+                        <View className ='des'>{obj.text}</View>
+                      </AtAccordion>
+                    )
+                  })
+                }
+              </View>
 
-              <View>这个页面有点东西，好烦躁</View>
-              <View>这个页面有点东西，好烦躁</View>
+              <View className ='jyqj'>
+                <View className ='zyfb'>行业分布</View>
+                {
+                  arryList1.map((obj, index) => {
+                    return (
+                      <View className ='itemHyfb' key={index}>
+                        <View className ='titleHyfb'>{obj.title}</View>
+                        <AtProgress percent={obj.count} color='#FF4949' />
+                      </View>
+                    )
+                  })
+                }
+              </View>
+
+              <View className ='jyqj'>
+                <View className ='zyfb'>地区分布</View>
+                {
+                  arryList2.map((obj, index) => {
+                    return (
+                      <View className ='itemHyfb' key={index}>
+                        <View className ='titleHyfb'>{obj.area}</View>
+                        <AtProgress percent={obj.count} color='#FF4949' />
+                      </View>
+                    )
+                  })
+                }
+              </View>
+
+              <View className ='sjlysm'>
+                <View className ='sjlysmN'>
+                  <View className ='sjltTitle'>
+                    <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
+                    <Text>数据来源说明：</Text>
+                  </View>
+
+                  <View className='at-row at-row__align--center detail'>
+                    <View className='at-col at-col-1'>
+                      <View className ='circle'></View>
+                    </View>
+                    <View className='at-col textDes'>
+                      这事一段测试文字这事一段测试文字
+                    </View>
+                  </View>
+
+                  <View className='at-row at-row__align--center detail'>
+                    <View className='at-col at-col-1'>
+                      <View className ='circle'></View>
+                    </View>
+                    <View className='at-col textDes'>
+                      这事一段测试文字这事一段测试文字
+                      这事一段测试文字这事一段测试文字
+                      这事一段测试文字这事一段测试文字
+                    </View>
+                  </View>
+                </View>
+              </View>
             </View>
           </AtTabsPane>
 
           <AtTabsPane current={this.state.current} index={2}>
-            <View className ='qbzy'>
+            <View>
+              <View className ='topTip'>
+                <Text onClick={this.handleChangeB.bind(this)} className ='sysm'>数据说明</Text>
+              </View>
 
-              <View>这个页面有点东西，好烦躁</View>
-              <View>这个页面有点东西，好烦躁</View>
+              <View className ='qbzy1'>
+                {
+                  [1,3,1,1,1,1,1,1,1,1,1,1,1,].map((item,index) =>{
+                    return (
+                      <View className='at-row at-row__align--start schoolItem' key={index}>
+                        <View className='at-col at-col-2'>
+                          <Image src={require('@packageCP/images/boy.png')} className='schoolItemLogo' />
+                        </View>
+                        <View className='at-col'>
+                          <View className="schoolInfo">
+                            <View className="schoolTitle">
+                              <Text className='schoolName'>北京大学</Text>
+                              <Text className='schoolSx'>211</Text>
+                              <Text className='schoolSx'>985</Text>
+                              <Text className='schoolSx'>双一流</Text>
+                            </View>
+                            <View className='schoolaAttr'>综合 / 教育 / 工作</View>
+                            <View className='schoolaAttr'>校友会: -/-/-</View>
+                            <View className='schoolaAttr'>学校评估:-</View>
+                          </View>
+                        </View>
+                      </View>
+                    )
+                  })
+                }
+              </View>
+
+
+
+              <AtCurtain
+                isOpened={this.state.isOpened}
+                onClose={this.onClose.bind(this)}
+              >
+                <Image
+                  style='width:100%;height:250px'
+                  src={require('@images/home/banner.jpg')}
+                />
+              </AtCurtain>
             </View>
           </AtTabsPane>
         </AtTabs>
