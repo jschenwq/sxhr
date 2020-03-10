@@ -1,0 +1,22 @@
+.zyfl{
+  .qbzy{
+    height: calc(100vh - 86px);
+    overflow: auto;
+    .topTip{
+      background: #EFEEF3;
+      line-height: 80px;
+      height: 80px;
+      position: relative;
+      .sysm{
+        position: absolute;
+        left: 30px;
+        color: #757575;
+        font-size: 30px;
+      }
+      .item-content__info-note{
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

@@ -58,6 +58,20 @@ class Index extends Component {
     })
   }
 
+  //跳转职业详情
+  gotoZyxq(){
+    Taro.navigateTo({
+      url: '/packageCX/czy/zyxq/index',
+    })
+  }
+
+  //跳转专业分类
+  gotoZyfl (){
+    Taro.navigateTo({
+      url: '/packageCX/czy/zyfl/index',
+    })
+  }
+
   render () {
     const tabList = [{ title: '专业推荐' }, { title: '全部专业' }]
     return (
@@ -71,7 +85,7 @@ class Index extends Component {
             <View className='picker'>
               {this.state.selectorChecked}
             </View>
-            <Icon className='home_icon' color='#999' size='18' type='waiting' />
+            <Text className='at-icon at-icon-chevron-down'></Text>
           </Picker>
         </View>
 
@@ -90,12 +104,12 @@ class Index extends Component {
                 </View>
               </View>
               <AtList>
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
               </AtList>
 
               <View className='counselor firstItem'>
@@ -105,12 +119,12 @@ class Index extends Component {
                 </View>
               </View>
               <AtList>
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
               </AtList>
             </View>
           </AtTabsPane>
@@ -122,12 +136,12 @@ class Index extends Component {
                 </View>
               </View>
               <AtList>
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
               </AtList>
 
               <View className='counselor firstItem'>
@@ -136,12 +150,12 @@ class Index extends Component {
                 </View>
               </View>
               <AtList>
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
               </AtList>
 
               <View className='counselor firstItem'>
@@ -150,12 +164,12 @@ class Index extends Component {
                 </View>
               </View>
               <AtList>
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
               </AtList>
 
               <View className='counselor firstItem'>
@@ -164,12 +178,12 @@ class Index extends Component {
                 </View>
               </View>
               <AtList>
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
-                <AtListItem title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
               </AtList>
             </View>
 
