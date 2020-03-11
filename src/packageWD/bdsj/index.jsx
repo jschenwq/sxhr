@@ -66,11 +66,11 @@ class Index extends Component {
           <Button size="mini" type='primary' disabled={isHasGet} onClick={this.getVCode}>{!isHasGet? vCode : count+'s'}</Button>
         </View>
         <View className='params'>
-          <AtIcon prefixClass='icon' value='dunpai' size='20' color='#9e9e9e' />
+          <AtIcon prefixClass='icon' value='test' size='20' color='#9e9e9e' />
           <Input type='text' className='verify-code' placeholder='请输入验证码' value={verifyCode} onInput={this.handleVCode.bind(this)}/>
         </View>
         <View className='btn-panel'>
-          <AtButton disabled={!phoneNumber || !verifyCode} type="primary" onClick={this.phoneBind}>绑定</AtButton>
+          <AtButton disabled={!phoneNumber || !verifyCode} type="primary" onClick={this.phoneBind}>绑 定</AtButton>
         </View>
       </View>
     );

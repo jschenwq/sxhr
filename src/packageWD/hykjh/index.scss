@@ -1,0 +1,36 @@
+.index{
+  background: #f0eff5;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  .params{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 15rpx 25rpx;
+    border-top: 1px solid #f0eff5;
+    font-size: 30px;
+    at-icon{
+      margin-right: 2px;
+    }
+    .input-panel{
+      width: calc(100% - 50px);
+    }
+    button{
+      width: 240px;
+    }
+  }
+  .btn-panel{
+    padding: 25px;
+  }
+  .bottom-panel{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding-bottom: 40px;
+    text-align: center;
+    color: #666;
+    font-size: 22px;
+  }
+}

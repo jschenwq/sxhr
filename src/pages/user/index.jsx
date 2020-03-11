@@ -35,6 +35,11 @@ class Index extends Component {
       url: '/packageWD/bdsj/index'
     });
   }
+  handleHykjh(){//会员卡激活
+    Taro.navigateTo({
+      url: '/packageWD/hykjh/index'
+    });
+  }
   openMyCP(){//我的测评
     Taro.navigateTo({
       url: '/packageWD/wdcp/index'
@@ -48,7 +53,7 @@ class Index extends Component {
   clickServiceCall(){//客服电话
     Taro.makePhoneCall({
       phoneNumber: '4000022985'
-    })
+    });
   }
   exchangeUser(){
     Taro.navigateTo({
@@ -77,6 +82,7 @@ class Index extends Component {
           <AtListItem
             title='会员卡激活'
             arrow='right'
+            onClick={this.handleHykjh}
             iconInfo={{ size: 12, color: '#f99300', value: 'credit-card'}}
           />
           <AtListItem
