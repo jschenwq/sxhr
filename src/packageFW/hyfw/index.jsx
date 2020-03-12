@@ -1,11 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Label, Button, Image, Switch } from '@tarojs/components'
-
+import { AtIcon } from 'taro-ui'
 import './index.scss'
 
 import hyfw from '../images/hyfw.png'
 import bghzy from '../images/bghzy.png'
-import phoneIcon from '../images/phone_icon.png'
 
 class Index extends Component {
 
@@ -38,12 +37,18 @@ class Index extends Component {
       phoneNumber: this.state.phoneNumber
     });
   }
-  inputChange(e){
+  inputChange=(e)=>{
     this.setState(()=> ({
-      phoneNumber: e.currentTarget.value
+      phoneNumber: e.detail.value
     }));
   }
+  handleOpen(){
+    Taro.navigateBack({
+      delta: 1
+    });
+  }
   render () {
+    let {phoneNumber,gbydyChecked,sxkChecked,hyChecked} = this.state;
     return (
       <View className='index'>
         <Image src={hyfw} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
@@ -54,15 +59,15 @@ class Index extends Component {
         <View className='hyfw-price hyfw-checked-group'>
           <View className='hyfw-checked'>
             <Label>高报一对一服务</Label>
-            <Switch type='checkbox' checked={this.state.gbydyChecked} onChange={this.checkChange('gbydyChecked')}/>
+            <Switch type='checkbox' checked={gbydyChecked} onChange={this.checkChange('gbydyChecked')}/>
           </View>
           <View className='hyfw-checked'>
             <Label>升学卡服务</Label>
-            <Switch type='checkbox' checked={this.state.sxkChecked} onChange={this.checkChange('sxkChecked')}/>
+            <Switch type='checkbox' checked={sxkChecked} onChange={this.checkChange('sxkChecked')}/>
           </View>
           <View className='hyfw-checked'>
             <Label>会员服务</Label>
-            <Switch type='checkbox' checked={this.state.hyChecked} onChange={this.checkChange('hyChecked')}/>
+            <Switch type='checkbox' checked={hyChecked} onChange={this.checkChange('hyChecked')}/>
           </View>
         </View>
         <View className='hyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx 4rpx;font-size: 30rpx;'>
@@ -70,13 +75,13 @@ class Index extends Component {
           <Image src={bghzy} style='margin-top: 10rpx;width: 100%;height: 240rpx;' />
         </View>
         <View className='hyfw-price hyfw-phone'>
-          <Image src={phoneIcon} style='width: 40rpx; height: 80rpx;' />
-          <Input type='text' placeholder='请输入11位有效手机号码...' placeholderStyle='color: #808080;' />
+          <AtIcon prefixClass='icon' value='shouji54' size='20' color='#9e9e9e' />
+          <Input value={phoneNumber} placeholder='请输入11位有效手机号码...' placeholderStyle='color: #808080;' onInput={this.inputChange.bind(this)}/>
         </View>
         <View className='hyfw-btngroup'>
           <Button style='width:30%;color: #080705;background-color: #ffb284;' onClick={this.fwrxPhoneCall}>服务热线</Button>
           {/* disabled={!this.state.checked} */}
-          <Button style='width: 60%;color: #fff;background-color: #bcbbc0;' >立即开通</Button>
+          <Button style='width: 60%;color: #fff;background-color: #bcbbc0;' onClick={this.handleOpen.bind(this)}>立即开通</Button>
         </View>
       </View>
     )

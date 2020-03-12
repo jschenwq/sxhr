@@ -1,10 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Label, Button, Image, Switch } from '@tarojs/components'
-
+import { AtIcon } from 'taro-ui'
 import './index.scss'
 
 import sxkfw from '../images/sxkfw.png'
-import phoneIcon from '../images/phone_icon.png'
 
 class Index extends Component {
 
@@ -69,7 +68,7 @@ class Index extends Component {
           <Text>欢迎您选择升学卡专享服务。</Text>
         </View>
         <View className='sxkfw-price sxkfw-phone'>
-          <Image src={phoneIcon} style='width: 40rpx; height: 80rpx;' />
+          <AtIcon prefixClass='icon' value='shouji54' size='20' color='#9e9e9e' />
           <Input type='text' value={this.state.phoneNumber} placeholder='请输入11位有效手机号码...' onInput={this.inputChange} placeholderStyle='color: #808080;' />
         </View>
         <View className='sxkfw-btngroup'>

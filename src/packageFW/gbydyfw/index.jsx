@@ -1,11 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Label, Button, Image, Switch } from '@tarojs/components'
-
+import { AtIcon } from 'taro-ui'
 import './index.scss'
 
 import zytbzjydy from '../images/zytbzjydy.png'
 import jzgk from '../images/jzgk.png'
-import phoneIcon from '../images/phone_icon.png'
 
 class Index extends Component {
 
@@ -38,7 +37,7 @@ class Index extends Component {
   }
   inputChange(e){
     this.setState(()=> ({
-      phoneNumber: e.currentTarget.value
+      phoneNumber: e.detail.value
     }));
   }
   render () {
@@ -59,8 +58,8 @@ class Index extends Component {
           <View><Text style='font-size: 32rpx;color: #333333;'>【学业测评】分析考生意向，指定合理的目标</Text></View>
         </View>
         <View className='gbydyfw-price gbydyfw-phone'>
-          <Image src={phoneIcon} style='width: 40rpx; height: 80rpx;' />
-          <Input type='text' value={this.state.phoneNumber} placeholder='请输入11位有效手机号码...' onInput={this.inputChange} placeholderStyle='color: #808080;' />
+          <AtIcon prefixClass='icon' value='shouji54' size='20' color='#9e9e9e' />
+          <Input value={this.state.phoneNumber} placeholder='请输入11位有效手机号码...' onInput={this.inputChange.bind(this)} placeholderStyle='color: #808080;' />
         </View>
         <View className='gbydyfw-btngroup'>
           <Button style='width:30%;color: #080705;background-color: #ffb284;' onClick={this.fwrxPhoneCall}>服务热线</Button>
