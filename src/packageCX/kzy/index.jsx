@@ -434,11 +434,17 @@ class Index extends Component {
       url: '/packageCX/kzy/zyxq/index',
     })
   }
+  //查询职业
+  searchZy(){
+    Taro.navigateTo({
+      url: '/component/search/index?type=3',
+    })
+  }
 
   render() {
     const {arryList, open, open1} = this.state;
     return (
-      <View className='kzy'>
+      <View className='kzy' onClick={this.searchZy.bind(this)}>
         <View className="search">
           <Icon className='searchIcon' color='#999' size='20' type='waiting'/>
           <Text className='searchText'>请输入职业名称</Text>

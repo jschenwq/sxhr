@@ -141,6 +141,11 @@ class Index extends Component {
     })
   }
 
+  gotoSchoolDetail(){ Taro.navigateTo({
+      url: '/packageCX/zdx/schoolDetail/index',
+    })
+  }
+
   render () {
     const {arryList, open , arryList1, arryList2} = this.state;
     const tabList = [{ title: '专业概况' }, { title: '就业前景' }, { title: '开设院校' }];
@@ -385,7 +390,7 @@ class Index extends Component {
                 {
                   [1,3,1,1,1,1,1,1,1,1,1,1,1,].map((item,index) =>{
                     return (
-                      <View className='at-row at-row__align--start schoolItem' key={index}>
+                      <View onClick={this.gotoSchoolDetail.bind(this)} className='at-row at-row__align--start schoolItem' key={index}>
                         <View className='at-col at-col-2'>
                           <Image src={require('@packageCP/images/boy.png')} className='schoolItemLogo' />
                         </View>

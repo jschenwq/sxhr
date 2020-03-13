@@ -28,21 +28,56 @@ class Index extends Component {
 
   handleClick (value) {
     this.setState({
-      current: value
+      current: valueScrollToLower
     })
   }
   ScrollToLower() { //滚动到底部事件
    console.log(3)
   }
+
+  //搜索大学
+  searchSchool(type){
+    Taro.navigateTo({
+      url: '/component/search/index?type=1',
+    })
+  }
+  //顶部大学操作
+  schoolBd(data,index){
+    //我的院校
+    if(index == 0){
+      Taro.navigateTo({
+        url: '/packageCX/zdx/wdyx/index',
+      })
+    }
+    //全部院校
+    if(index == 1){
+      Taro.navigateTo({
+        url: '/packageCX/zdx/qbyx/index',
+      })
+    }
+    //院校对比
+    if(index == 2){
+      Taro.navigateTo({
+        url: '/packageCX/zdx/yxbd/index',
+      })
+    }
+    //大学排名
+    if(index == 3){
+      Taro.navigateTo({
+        url: '/packageCX/zdx/dxpm/index',
+      })
+    }
+  }
+
   render () {
     return (
       <View className='zdx'>
-        <View className="search">
+        <View className="search" onClick={this.searchSchool.bind(this)}>
           <Icon className='searchIcon' color='#999' size='20' type='waiting' />
           <Text className='searchText'>请输入大学名称</Text>
         </View>
 
-        <AtGrid className='school' columnNum='4' hasBorder={false} data={
+        <AtGrid className='school' columnNum='4' hasBorder={false} onClick={this.schoolBd.bind(this)} data={
           [
             {
               image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',

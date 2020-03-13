@@ -1,0 +1,68 @@
+.qbyx{
+  .schoolCx{
+    border-bottom: 10px solid #F9F5F4;
+    line-height: 80px;
+    padding: 0px 30px;
+    &:after{
+      content:'';
+      visibility:hidden;
+      display:block;
+      width:0;
+      height:0;
+      clear:both;
+    }
+    .font1{
+      display: inline-block;
+      line-height: 80px;
+    }
+    .searchIcon{
+      display: inline-block;
+      line-height: 80px;
+      float: right;
+      display: inline;
+      margin-left: 30px;
+    }
+  }
+  .schoolN{
+    height: calc(100vh - 90px);
+    overflow: scroll;
+  }
+
+  .selectContent{
+    padding: 0px 20px 10px 20px;
+    height: calc(100vh - 80px);
+    overflow: scroll;
+    .item{
+      margin-top: 55px;
+      .itemTitle{
+        font-size: 28px;
+        color: #757575 ;
+      }
+    }
+  }
+
+  .bottomBtn{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    background: white;
+    padding: 15px 20px;
+    width: 100%;
+    .btn{
+      text-align: center;
+      width: 50%;
+      border: 1px solid #5ACB31;
+      line-height: 80px;
+      display: inline-block;
+    }
+    .leftBtn{
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+    }
+    .rightBtn{
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+      background: #5ACB31;
+    }
+  }
+}

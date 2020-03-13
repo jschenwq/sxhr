@@ -32,6 +32,8 @@ class App extends Component {
       'pages/class/index',
 
       'pages/user/index',
+
+      'component/search/index'
     ],
     // 分包
     subPackages: [
@@ -40,6 +42,10 @@ class App extends Component {
         "root": "packageCX",
         "pages": [
           'zdx/index',//---找大学
+          'zdx/wdyx/index',//我的院校
+          'zdx/qbyx/index',//全部院校
+          'zdx/yxbd/index',//院校比对
+          'zdx/dxpm/index',//大学排名
           'zdx/schoolDetail/index',//某个学校信息详情
           'czy/index',//---查专业
           'czy/bkrd/index',//报考热度

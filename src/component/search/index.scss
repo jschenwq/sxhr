@@ -1,0 +1,40 @@
+.search{
+  background: #EFEEF3;
+  .searHistory{
+    display: none;
+    position: fixed;
+    top: 85px;
+    padding: 40px 30px 15px 30px;
+    width: 750px;
+    background: white;
+    z-index: 999;
+    .history{
+      position: relative;
+      margin-bottom: 30px;
+      .historyText{
+        font-weight: bold;
+        display: inline-block;
+      }
+      .ljx{
+        position: absolute;
+        right: 0px;
+        display: inline-block;
+      }
+    }
+    .searhItem{
+      background: #EFEEF3;
+      display: inline-block;
+      line-height: 60px;
+      border-radius: 30px;
+      padding: 0px 20px;
+      margin-right: 10px;
+    }
+  }
+  .searchContent{
+    margin-top: 85px;
+    display: none;
+  }
+  .active{
+    display: block;
+  }
+}

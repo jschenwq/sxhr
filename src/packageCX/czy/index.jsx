@@ -71,12 +71,18 @@ class Index extends Component {
       url: '/packageCX/czy/zyfl/index',
     })
   }
+  //查询专业
+  searchZy(){
+    Taro.navigateTo({
+      url: '/component/search/index?type=2',
+    })
+  }
 
   render () {
     const tabList = [{ title: '专业推荐' }, { title: '全部专业' }]
     return (
       <View className ='czy'>
-        <View className="search">
+        <View className="search" onClick={this.searchZy.bind(this)}>
           <Icon className='searchIcon' color='#999' size='20' type='waiting' />
           <Text className='searchText'>请输入专业名称</Text>
         </View>
