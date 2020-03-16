@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane, AtList, AtListItem  } from 'taro-ui'
 import classNames from 'classnames'
-import {login} from '@utils/api'
+import {getAllZy} from '@utils/api'
 
 import './index.scss'
 
@@ -15,12 +15,15 @@ class Index extends Component {
     super(props)
     this.state = {
       current:0,
-      selector: ['本科', '专科'],
-      selectorChecked: '本科',
+      selector: ['本科', '专科（高职）'],
+      level: '本科',
     };
   }
 
-  componentDidMount(){}
+  componentDidMount(){
+    //获取全部专业
+    getAllZy({level:this.state.level});
+  }
 
   componentWillUnmount () {}
 
@@ -30,7 +33,7 @@ class Index extends Component {
 
   onChange = e => {
     this.setState({
-      selectorChecked: this.state.selector[e.detail.value]
+      level: this.state.selector[e.detail.value]
     })
   }
 
@@ -89,7 +92,7 @@ class Index extends Component {
         <View className ='selectZy'>
           <Picker style = 'display:inline-block;margin-left:10px' mode='selector' range={this.state.selector} onChange={this.onChange}>
             <View className='picker'>
-              {this.state.selectorChecked}
+              {this.state.level}
             </View>
             <Text className='at-icon at-icon-chevron-down'></Text>
           </Picker>
