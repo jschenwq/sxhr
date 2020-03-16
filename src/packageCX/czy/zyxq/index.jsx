@@ -1,8 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane,  AtList, AtListItem, AtAccordion, AtProgress, AtCurtain } from 'taro-ui'
-import classNames from 'classnames'
-import {login} from '@utils/api'
+import {getDetail} from '@utils/api'
 
 import './index.scss'
 
@@ -16,6 +15,7 @@ class Index extends Component {
     this.state = {
       current:0,
       open: [],
+      zygk:{},
       isOpened:false,
       arryList:[
         {
@@ -102,7 +102,14 @@ class Index extends Component {
     };
   }
 
-  componentDidMount(){}
+  componentDidMount(){
+    const majorId = this.$router.params.majorId;
+    getDetail('/wx/major/'+majorId).then(({data}) => {
+      this.setState({
+        zygk: data
+      })
+    })
+  }
 
   componentWillUnmount () {}
 
@@ -147,7 +154,7 @@ class Index extends Component {
   }
 
   render () {
-    const {arryList, open , arryList1, arryList2} = this.state;
+    const {arryList, zygk, open , arryList1, arryList2} = this.state;
     const tabList = [{ title: '专业概况' }, { title: '就业前景' }, { title: '开设院校' }];
     return (
       <View className ='zyxq'>
@@ -157,7 +164,7 @@ class Index extends Component {
               <View className ='zygl'>
                 <View className ='zyglN'>
                   <View className='font1'>专业概览</View>
-                  <View className ='font2'><Text>工学</Text>><Text>电气类</Text></View>
+                  <View className ='font2'><Text>{zygk.type}</Text>><Text>{zygk.pType}</Text></View>
 
                   <View className='at-row at-row__justify--around itemH'>
 
@@ -167,8 +174,8 @@ class Index extends Component {
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
                         <View className='at-col at-col-7'>
-                          <View className ='font3'>本科</View>
-                          <View className ='font4'>学历测试</View>
+                          <View className ='font3'>{zygk.level}</View>
+                          <View className ='font4'>学历层次</View>
                         </View>
                       </View>
                     </View>
@@ -181,8 +188,8 @@ class Index extends Component {
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
                         <View className='at-col at-col-7'>
-                          <View className ='font3'>四年</View>
-                          <View className ='font4'>学历测试</View>
+                          <View className ='font3'>{zygk.learnYear}</View>
+                          <View className ='font4'>修业年限</View>
                         </View>
                       </View>
                     </View>
@@ -198,8 +205,8 @@ class Index extends Component {
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
                         <View className='at-col at-col-7'>
-                          <View className ='font3'>本科</View>
-                          <View className ='font4'>学历测试</View>
+                          <View className ='font3'>{zygk.degree}</View>
+                          <View className ='font4'>授予学位</View>
                         </View>
                       </View>
                     </View>
@@ -212,8 +219,8 @@ class Index extends Component {
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
                         <View className='at-col at-col-7'>
-                          <View className ='font3'>四年</View>
-                          <View className ='font4'>学历测试</View>
+                          <View className ='font3'>{zygk.rate}</View>
+                          <View className ='font4'>男女比例</View>
                         </View>
                       </View>
                     </View>
@@ -228,8 +235,8 @@ class Index extends Component {
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
                         <View className='at-col at-col-7'>
-                          <View className ='font3'>本科</View>
-                          <View className ='font4'>学历测试</View>
+                          <View className ='font3'>{zygk.subjectSuggest}</View>
+                          <View className ='font4'>选课建议</View>
                         </View>
                       </View>
                     </View>
@@ -237,7 +244,15 @@ class Index extends Component {
                     <View className='at-col at-col-1'></View>
 
                     <View className='at-col at-col-5'>
-
+                      <View className='at-row at-row__justify--center'>
+                        <View className='at-col at-col-5'>
+                          <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
+                        </View>
+                        <View className='at-col at-col-7'>
+                          <View className ='font3'>{zygk.keyWords}</View>
+                          <View className ='font4'>关键词</View>
+                        </View>
+                      </View>
                     </View>
 
                   </View>
@@ -245,24 +260,19 @@ class Index extends Component {
               </View>
 
               <View className='zyjs'>
-                <View className='font1'>专业介绍<Text className= 'font2 font5'>(培养目标、培养要求、学科要求)</Text></View>
-                <View className='font6'>这事一段测试文字这事一段测试文字这事一段测试文字段测试文字这事一段测测试文字这事一段测试文事一段测试文字这事一段测试文字</View>
+                <View className='font1'>专业介绍<Text className= 'font2 font5'></Text></View>
+                <View className='font6'>{zygk.majorIntroduce}</View>
               </View>
               <View className ='moreLook'>查看更多  ></View>
 
               <View className='zyjs jyfs'>
-                <View className='font1'>考研方向</View>
-                <View className='font6'>这事一段测试文字这事一段测试文字这事一段测试文字段测试文字这事一段测测试文字这事一段测试文事一段测试文字这事一段测试文字</View>
+                <View className='font1'>学习课程</View>
+                <View className='font6'>{zygk.majorLearn}</View>
               </View>
 
               <View className='zyjs jyfs'>
-                <View className='font1'>主题课程</View>
-                <View className='font6'>这事一段测试文字这事一段测试文字这事一段测试文字段测试文字这事一段测测试文字这事一段测试文事一段测试文字这事一段测试文字</View>
-              </View>
-
-              <View className='zyjs jyfs'>
-                <View className='font1'>就业方向</View>
-                <View className='font6'>这事一段测试文字这事一段测试文字这事一段测试文字段一段测试文字这事一段测试文字段一段测试文字这事一段测试文字段一段测试文字这事一段测试文字段测试文字这事一段测测试文字这事一段测试文事一段测试文字这事一段测试文字</View>
+                <View className='font1'>专业去向</View>
+                <View className='font6'>{zygk.majorDo}</View>
               </View>
 
               <View className='itemList'>

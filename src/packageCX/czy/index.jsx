@@ -23,11 +23,11 @@ class Index extends Component {
 
   componentDidMount(){
     //获取全部专业
-    getAllZy({level:this.state.level}).then(data => {
-      console.log(data)
-      // this.setState({
-      //   secondMajorList: data
-      // })
+    getAllZy({level:this.state.level}).then(({data}) => {
+      console.log(data);
+      this.setState({
+        secondMajorList: data
+      })
     });
   }
 
@@ -75,9 +75,9 @@ class Index extends Component {
   }
 
   //跳转专业分类
-  gotoZyfl (){
+  gotoZyfl (type){
     Taro.navigateTo({
-      url: '/packageCX/czy/zyfl/index',
+      url: '/packageCX/czy/zyfl/index?type=' + type,
     })
   }
   //查询专业
@@ -147,21 +147,22 @@ class Index extends Component {
           <AtTabsPane current={this.state.current} index={1}>
             <View className ='qbzy'>
               {
-                secondMajorList.map((item,index) => {
+                secondMajorList.length>0 && secondMajorList.map((item,index) => {
                   return (
-                    <View>
-                      <View className='counselor firstItem'>
+                    <View key={index}>
+                      <View className={classNames('counselor',index!=0?'firstItem':'')}>
                         <View>
-                          <Text className="title">{item.key}</Text>
+                          <Text className="title">{item.name}</Text>
                         </View>
                       </View>
                       <AtList>
-                        <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
-                        <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
-                        <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
-                        <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
-                        <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
-                        <AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />
+                        {
+                          item.child && item.child.length>0 && item.child.map((childItem,childIndex) => {
+                            return(
+                              <AtListItem key={childIndex} onClick={this.gotoZyfl.bind(this,childItem.type)} title={childItem.type} extraText={childItem.num + '个专业'} arrow='right' />
+                            )
+                          })
+                        }
                       </AtList>
                     </View>
                   )

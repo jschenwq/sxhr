@@ -4,6 +4,12 @@ import $ from './http'
 export const login = (data) => $.ajax('user/login',"post",data)
 
 //获取全部专业-2级--3级专业那2级专业id跳转页面加载
-export const getAllZy = (data) => $.ajax('/wx/major/getMajorType',"post",data)
+export const getAllZy = (data) => $.ajax('/wx/major/getMajorType',"post",data);
+
+//获取第三级专业
+export const getThirdZy = (data) => $.ajax('/wx/major/list',"post",data);
+
+//获取专业详情-get请求
+export const getDetail = (url) => $.ajax(url,"get");
 
 //获取列表
