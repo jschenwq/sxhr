@@ -34,7 +34,7 @@ function ajax(url, methodType, data) {
             mask: true,
           });
         }
-        resolve(data);
+        resolve(data.data);
       } else {
         throw new Error(`网络请求错误，状态码${statusCode}`);
       }
