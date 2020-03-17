@@ -4,7 +4,6 @@ import { AtIcon } from 'taro-ui'
 import './index.scss'
 
 import hyfw from '../images/hyfw.png'
-import bghzy from '../images/bghzy.png'
 
 class Index extends Component {
 
@@ -72,7 +71,7 @@ class Index extends Component {
         </View>
         <View className='hyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx 4rpx;font-size: 30rpx;'>
           <Text>欢迎您选择VIP专享服务，开通VIP后将专享网站所有特色服务（除专家一对一），无需再次购买。</Text>
-          <Image src={bghzy} style='margin-top: 10rpx;width: 100%;height: 240rpx;' />
+          <Image src={hyfw} style='margin-top: 10rpx;width: 100%;height: 240rpx;' />
         </View>
         <View className='hyfw-price hyfw-phone'>
           <AtIcon prefixClass='icon' value='shouji54' size='20' color='#9e9e9e' />

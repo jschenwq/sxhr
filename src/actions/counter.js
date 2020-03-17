@@ -2,7 +2,8 @@ import {
   ADD,
   MINUS,
   CHANGE_APP_ON_LAUNCH,
-  INSERT_AUTHORIZE
+  INSERT_AUTHORIZE,
+  INSERT_USERINFO
 } from '../constants/counter'
 
 export const add = () => {
@@ -25,6 +26,12 @@ export const changeAppOnLaunch = ()=> ({
 export const inserToken = (authorize) => ({
   type: INSERT_AUTHORIZE,
   authorize
+})
+
+//写入用户信息
+export const insertUserInfo = (userInfo) => ({
+  type: INSERT_USERINFO,
+  userInfo
 })
 
 // 异步的action

@@ -3,8 +3,7 @@ import { View, Label, Button, Image, Switch } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import './index.scss'
 
-import zytbzjydy from '../images/zytbzjydy.png'
-import jzgk from '../images/jzgk.png'
+import hyfw from '../images/hyfw.png'
 
 class Index extends Component {
 
@@ -43,7 +42,7 @@ class Index extends Component {
   render () {
     return (
       <View className='index'>
-        <Image src={zytbzjydy} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
+        <Image src={hyfw} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
         <View className='gbydyfw-price'>
           <Label>高报一对一服务</Label>
           <Text style='color: #ff9913;'> ￥8000.00</Text>
@@ -53,7 +52,7 @@ class Index extends Component {
           <Switch type='checkbox' checked={this.state.checked} onChange={this.checkChange}/>
         </View>
         <View className='gbydyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;'>
-          <Image style='margin-bottom: 15rpx;width: 100%;' src={jzgk} />
+          <Image style='margin-bottom: 15rpx;width: 100%;' src={hyfw} />
           <View><Text style='font-size: 32rpx;color: #333333;'>【学业测评】分析考生意向，指定合理的目标</Text></View>
           <View><Text style='font-size: 32rpx;color: #333333;'>【学业测评】分析考生意向，指定合理的目标</Text></View>
         </View>

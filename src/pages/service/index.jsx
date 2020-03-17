@@ -3,10 +3,7 @@ import { View, Button, Text, Image } from '@tarojs/components'
 
 import './index.scss'
 
-import gbydyfw from '../../packageFW/images/gbydyfw.png'
 import hyfw from '../../packageFW/images/hyfw.png'
-import sxkfw from '../../packageFW/images/sxkfw.png'
-
 
 class Index extends Component {
 
@@ -29,7 +26,7 @@ class Index extends Component {
       <View className='index'>
         <navigator url="/packageFW/gbydyfw/index" hover-class="navigator-hover">
           <View className='navigator-item'>
-            <Image className='navigator-item-image' src={gbydyfw} />
+            <Image className='navigator-item-image' src={hyfw} />
             <View className='navigator-item-title'>
               <Text>高报一对一服务</Text>
               <Text style='color:#ff9913;'>￥ 8000.00</Text>
@@ -39,7 +36,7 @@ class Index extends Component {
         </navigator>
         <navigator url="/packageFW/sxkfw/index" hover-class="other-navigator-hover">
           <View className='navigator-item'>
-            <Image className='navigator-item-image' src={sxkfw} />
+            <Image className='navigator-item-image' src={hyfw} />
             <View className='navigator-item-title'>
               <Text>升学卡服务</Text>
               <Text style='color:#ff9913;'>￥ 6000.00</Text>

@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,Swiper, SwiperItem } from '@tarojs/components'
-import { AtGrid , AtList, AtListItem   } from 'taro-ui'
+import { View,Swiper, SwiperItem,RichText } from '@tarojs/components'
+import { AtGrid , AtList, AtListItem,AtFloatLayout } from 'taro-ui'
 import classNames from 'classnames'
-import {login, getDetail} from '@utils/api'
+import {login, getSchoolDetail,getSchoolIntr,getSchoolNewsList} from '@utils/api'
 
 import './index.scss'
 
@@ -14,22 +14,26 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isOpened: false,
+      detailNodes: '',
       school: null,
-      majors: []
+      majors: [],
+      introduction: '',
+      schoolNewsList: []
     };
   }
 
   componentDidMount(){
     let schoolId = this.$router.params.schoolId;
-    getDetail("/wx/school/"+schoolId).then(({data})=>{
+    getSchoolDetail(schoolId).then(({data})=>{
       Taro.setNavigationBarTitle({
         title: data.school.schoolName
       });
       this.setState({
         school: data.school,
-        majors: data.majors
+        majors: data.majors,
+        schoolNewsList: data.schoolNewsList
       });
-      // data.
     });
   }
 
@@ -38,9 +42,22 @@ class Index extends Component {
   componentDidShow () {}
 
   componentDidHide () {}
-
+  handleShowDetail(){
+    getSchoolIntr(this.state.school.schoolId).then(({data})=>{
+      console.log(data);
+      this.setState({
+        isOpened: true,
+        detailNodes: data.content
+      });
+    });
+  }
+  handleClose(){
+    this.setState({
+      isOpened: false
+    });
+  }
   render () {
-    let {school, majors} = this.state;
+    let {school, majors,schoolNewsList,isOpened,detailNodes} = this.state;
     return (
       <View className='schoolDetail'>
         <View className='schoolTop'>
@@ -83,7 +100,7 @@ class Index extends Component {
             ]
           } />
         </View>
-        <View className='shortDes'>
+        <View className='shortDes' onClick={this.handleShowDetail.bind(this)}>
           {school.content}
         </View>
 
@@ -140,54 +157,36 @@ class Index extends Component {
           </View>
         </View>
         <AtList>
-          <AtListItem title='标题文字' arrow='right' />
-          <AtListItem title='标题文字' arrow='right' />
-          <AtListItem title='标题文字' arrow='right' />
-          <AtListItem title='标题文字' arrow='right' />
-          <AtListItem title='标题文字' arrow='right' />
-          <AtListItem title='标题文字' arrow='right' />
+          {
+            schoolNewsList.map((item)=>{
+              return <AtListItem title={item.title} arrow='right' />;
+            })
+          }
         </AtList>
 
         <View className='counselor firstItem'>
           <View>
-            <Text className="title">特色专业</Text>
+            <Text className="title">开设专业</Text>
             <Text className="more">更多</Text>
           </View>
         </View>
         <View className = 'ItemAll'>
           <View className='fon1'>国家特色专业</View>
           <View className ='zyAll'>
-            <Text className="zyItem">地质学</Text>
-            <Text className="zyItem">地质学阿萨大</Text>
-            <Text className="zyItem">地质学达萨达 大师</Text>
-            <Text className="zyItem">地质学阿三打撒</Text>
-            <Text className="zyItem">地质学啊</Text>
-            <Text className="zyItem">地质学222</Text>
-            <Text className="zyItem">地质学阿三打撒萨达</Text>
-            <Text className="zyItem">地质打撒萨达</Text>
-            <Text className="zyItem">地质学打撒萨达</Text>
-            <Text className="zyItem">地质学阿三打撒萨达</Text>
+            {
+              majors.map((item)=>{
+                return (<Text className="zyItem">{item.majorName}</Text>);
+              })
+            }
           </View>
         </View>
-
-        <View className='counselor firstItem'>
-          <View>
-            <Text className="title">院系/专业</Text>
-            <Text className="more">更多</Text>
-          </View>
-        </View>
-        <AtList>
-          {
-            majors.map((item)=>{
-              return (<AtListItem title={item.majorName} arrow='right' />);
-            })
-          }
-        </AtList>
-
         <View className='bottomBtn'>
           <View className='btn leftBtn'>招生计划</View>
           <View className='btn rightBtn'>历年分数线</View>
         </View>
+        <AtFloatLayout isOpened={isOpened} title="学校简介" onClose={this.handleClose.bind(this)}>
+          <RichText nodes={detailNodes} />
+        </AtFloatLayout>
       </View>
     )
   }

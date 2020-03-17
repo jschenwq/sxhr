@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button} from '@tarojs/components'
-
+import {insertUserInfo} from '../../actions/counter';
 import './index.scss'
 
 class Index extends Component {
@@ -38,6 +38,7 @@ class Index extends Component {
     this.setState((prevState)=>({
       isLoading: true
     }));
+    Taro.$store.dispatch(insertUserInfo(e.detail.userInfo));
     setTimeout(()=>{
       this.setState((prevState)=>({
         isLoading: false

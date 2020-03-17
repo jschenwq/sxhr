@@ -3,7 +3,7 @@ import { View, Label, Button, Image, Switch } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import './index.scss'
 
-import sxkfw from '../images/sxkfw.png'
+import sxkfw from '../images/hyfw.png'
 
 class Index extends Component {
 

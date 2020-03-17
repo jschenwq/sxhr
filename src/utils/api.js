@@ -25,3 +25,9 @@ export const getMajorScore = (data) => $.ajax('/wx/score/listMajorScore',"post",
 export const getSchoolList = (data) => $.ajax('/wx/school/list','POST', data);
 //获取大学专业
 export const getSchoolMajor = (data) => $.ajax('/wx/school/major', 'POST', data);
+//获取招生快讯
+export const getSchoolNewsList = (data) => $.ajax('/wx/schoolNews/list', 'POST', data);
+//获取大学详情
+export const getSchoolDetail = (schoolId) => $.ajax('/wx/school/'+schoolId, 'GET');
+//获取大学id获取简介
+export const getSchoolIntr = (schoolId) => $.ajax('/wx/schoolNews/introduction/'+schoolId, 'GET');
