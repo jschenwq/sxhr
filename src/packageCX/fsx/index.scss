@@ -1,0 +1,56 @@
+.fsx{
+  .fsxContent{
+    background: #EFEEF3;
+    height: 100px;
+    padding:0 30px;
+    position: relative;
+    .sysm{
+      position: absolute;
+      right: 30px;
+      color: #757575;
+      font-size: 30px;
+      line-height: 100px;
+    }
+    .selectZy{
+      text-align:center;
+      display: inline-block;
+      width: 150px;
+      margin-right: 30px;
+      margin-top: 20px;
+      background: white;
+      padding: 0 7px;
+      border-radius: 50px;
+      .pickerC{
+        display: inline-block;
+        font-size: 32px;
+        line-height: 50px;
+      }
+      .picker{
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+
+
+  .font2{
+    color: #9B9B9B;
+    font-size: 32px;
+  }
+  .tableTitle{
+    padding: 35px 30px 25px 30px;
+  }
+  .active{
+    background: #E4E4E4;
+  }
+  .scoreN{
+    height: calc(100vh - 250px);
+    overflow: auto;
+  }
+  .scoreTr{
+    padding: 30px;
+  }
+  .selectTop{
+    text-align: center;
+  }
+}

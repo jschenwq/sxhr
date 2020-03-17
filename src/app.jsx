@@ -51,6 +51,7 @@ class App extends Component {
           'czy/bkrd/index',//报考热度
           'czy/jyqj/index',//就业前景
           'czy/zyxq/index',//专业详情
+          'czy/zyxq/zyjsxq/index',//专业介绍详情
           'czy/zyfl/index',//专业分类
           'kzy/index',//---看职业
           'kzy/zyxq/index',//职业详情
