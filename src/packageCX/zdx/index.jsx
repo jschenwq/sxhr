@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View,ScrollView } from '@tarojs/components'
 import { AtGrid , AtTabs, AtTabsPane} from 'taro-ui'
 import SchoolItem from './component/schoolItem/index'
-import {login} from '@utils/api'
+import {login, getSchoolList} from '@utils/api'
 
 import './index.scss'
 
@@ -14,11 +14,18 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      current:0
+      current:0,
+      schoolData: []
     };
   }
 
-  componentDidMount(){}
+  componentDidMount(){
+    getSchoolList({currentPage: 0,pageSize: 10}).then(({data})=>{
+      this.setState((prevState)=>({
+        schoolData: data.list
+      }));
+    });
+  }
 
   componentWillUnmount () {}
 
@@ -28,7 +35,7 @@ class Index extends Component {
 
   handleClick (value) {
     this.setState({
-      current: valueScrollToLower
+      current: value//ScrollToLower
     })
   }
   ScrollToLower() { //滚动到底部事件
@@ -70,6 +77,7 @@ class Index extends Component {
   }
 
   render () {
+    let {schoolData} = this.state;
     return (
       <View className='zdx'>
         <View className="search" onClick={this.searchSchool.bind(this)}>
@@ -77,7 +85,7 @@ class Index extends Component {
           <Text className='searchText'>请输入大学名称</Text>
         </View>
 
-        <AtGrid className='school' columnNum='4' hasBorder={false} onClick={this.schoolBd.bind(this)} data={
+        <AtGrid className='school' columnNum={4} hasBorder={false} onClick={this.schoolBd.bind(this)} data={
           [
             {
               image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
@@ -115,87 +123,67 @@ class Index extends Component {
             <ScrollView
               onScrollToLower={this.ScrollToLower.bind(this)}>
               <View className='schoolList'>
-                <SchoolItem />
-                <SchoolItem />
-                <SchoolItem />
-                <SchoolItem />
-                <SchoolItem />
-                <SchoolItem />
-                <SchoolItem />
-                <SchoolItem />
-                <SchoolItem />
-                <SchoolItem />
+                {
+                  schoolData.map((item)=>{
+                    return (<SchoolItem  item={item}/>);
+                  })
+                }
               </View>
             </ScrollView>
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={1}>
             <View className='schoolList'>
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
+              <View className='schoolList'>
+                {
+                  schoolData.map((item)=>{
+                    return (<SchoolItem  item={item}/>);
+                  })
+                }
+              </View>
             </View>
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={2}>
             <View className='schoolList'>
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
+              <View className='schoolList'>
+                {
+                  schoolData.map((item)=>{
+                    return (<SchoolItem  item={item}/>);
+                  })
+                }
+              </View>
             </View>
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={3}>
             <View className='schoolList'>
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
+              <View className='schoolList'>
+                {
+                  schoolData.map((item)=>{
+                    return (<SchoolItem  item={item}/>);
+                  })
+                }
+              </View>
             </View>
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={4}>
             <View className='schoolList'>
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
+              <View className='schoolList'>
+                {
+                  schoolData.map((item)=>{
+                    return (<SchoolItem  item={item}/>);
+                  })
+                }
+              </View>
             </View>
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={5}>
             <View className='schoolList'>
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
-              <SchoolItem />
+              <View className='schoolList'>
+                {
+                  schoolData.map((item)=>{
+                    return (<SchoolItem  item={item}/>);
+                  })
+                }
+              </View>
             </View>
           </AtTabsPane>
         </AtTabs>

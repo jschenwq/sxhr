@@ -12,4 +12,7 @@ export const getThirdZy = (data) => $.ajax('/wx/major/list',"post",data);
 //获取专业详情-get请求
 export const getDetail = (url) => $.ajax(url,"get");
 
-//获取列表
+//获取大学列表
+export const getSchoolList = (data) => $.ajax('/wx/school/list','POST', data);
+//获取大学专业
+export const getSchoolMajor = (data) => $.ajax('/wx/school/major', 'POST', data);

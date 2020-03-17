@@ -1,6 +1,8 @@
 import {
   ADD,
-  MINUS
+  MINUS,
+  CHANGE_APP_ON_LAUNCH,
+  INSERT_AUTHORIZE
 } from '../constants/counter'
 
 export const add = () => {
@@ -13,6 +15,17 @@ export const minus = () => {
     type: MINUS
   }
 }
+
+//更改登录状态
+export const changeAppOnLaunch = ()=> ({
+  type: CHANGE_APP_ON_LAUNCH
+})
+
+//写入请求token
+export const inserToken = (authorize) => ({
+  type: INSERT_AUTHORIZE,
+  authorize
+})
 
 // 异步的action
 export function asyncAdd () {

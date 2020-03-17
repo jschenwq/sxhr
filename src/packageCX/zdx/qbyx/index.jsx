@@ -3,7 +3,7 @@ import { View } from '@tarojs/components'
 import SchoolItem from '../component/schoolItem/index'
 import { AtDrawer, AtButton    } from 'taro-ui'
 import classNames from 'classnames'
-import {login} from '@utils/api'
+import {login, getSchoolList} from '@utils/api'
 
 import './index.scss'
 
@@ -15,11 +15,18 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      show:false
+      show:false,
+      schoolData: []
     };
   }
 
-  componentDidMount(){}
+  componentDidMount(){
+    getSchoolList({currentPage: 0,pageSize: 20}).then(({data})=>{
+      this.setState((prevState)=>({
+        schoolData: data.list
+      }));
+    });
+  }
 
   componentWillUnmount () {}
 
@@ -47,10 +54,11 @@ class Index extends Component {
   }
 
   render () {
+    let {schoolData} = this.state;
     return (
       <View className ='qbyx'>
         <View className ='schoolCx'>
-          <View onClick={this.filterSchool.bind(this)} className ='searchIcon'><View className='at-icon at-icon-chevron-down font1'></View>帅选</View>
+          <View onClick={this.filterSchool.bind(this)} className ='searchIcon'><View className='at-icon at-icon-chevron-down font1'></View>筛选</View>
           <View onClick={this.searchSchool.bind(this)} className='at-icon at-icon-chevron-down searchIcon font1'></View>
           <AtDrawer
             width='295px'
@@ -158,16 +166,11 @@ class Index extends Component {
           </AtDrawer>
         </View>
         <View className ='schoolN'>
-          <SchoolItem />
-          <SchoolItem />
-          <SchoolItem />
-          <SchoolItem />
-          <SchoolItem />
-          <SchoolItem />
-          <SchoolItem />
-          <SchoolItem />
-          <SchoolItem />
-          <SchoolItem />
+          {
+            schoolData.map((item)=>{
+              return (<SchoolItem item={item}/>);
+            })
+          }
         </View>
       </View>
     )

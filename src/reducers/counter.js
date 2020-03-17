@@ -1,6 +1,10 @@
-import { ADD, MINUS } from '../constants/counter'
+import { ADD, MINUS, CHANGE_APP_ON_LAUNCH, INSERT_AUTHORIZE } from '../constants/counter'
 
 const INITIAL_STATE = {
+  //应用首次加载
+  appOnLaunch: true,
+  //请求token
+  authorize: '',
   num: 0
 }
 
@@ -16,6 +20,16 @@ export default function counter (state = INITIAL_STATE, action) {
          ...state,
          num: state.num - 1
        }
+     case CHANGE_APP_ON_LAUNCH:
+       return {
+         ...state,
+         appOnLaunch: false
+       }
+     case INSERT_AUTHORIZE:
+        return {
+          ...state,
+          authorize: action.authorize
+        }
      default:
        return state
   }

@@ -151,7 +151,10 @@ class App extends Component {
     debug: false
   }
 
-  componentDidMount () {}
+  componentDidMount () {
+    //将redux状态挂载到Taro对象上，方便使用
+    Taro.$store = store;
+  }
 
   componentDidShow () {}
 

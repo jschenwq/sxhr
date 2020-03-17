@@ -24,33 +24,30 @@ class Index extends Component {
 
   }
   //查看学校详情
-  gotoSchoolDetail(){
+  gotoSchoolDetail(schoolId){
     Taro.navigateTo({
-      url: '/packageCX/zdx/schoolDetail/index',
+      url: '/packageCX/zdx/schoolDetail/index?schoolId='+schoolId,
     })
   }
   render () {
+    let {item} = this.props;
     return (
-      <View className='schoolItem' onClick={this.gotoSchoolDetail.bind(this)}>
+      <View className='schoolItem' onClick={this.gotoSchoolDetail.bind(this, item.schoolId)}>
         <View className='itemContent'>
           <View className='schoolImg'>
-            <Image src={require('@packageCP/images/boy.png')} className='schoolLogo' />
+            <Image src={item.logoPath} className='schoolLogo' />
           </View>
           <View className="schoolInfo">
             <View className="schoolTitle">
-              <Text className='schoolName'>北京大学</Text>
-
-              {/*{this.state.contents.map((item, index) => (*/}
-                {/*<Text key={index}>{item.text}</Text>*/}
-              {/*))}*/}
-              <Text className='schoolSx'>211</Text>
-              <Text className='schoolSx'>985</Text>
-              <Text className='schoolSx'>双一流</Text>
+              <Text className='schoolName'>{item.schoolName}</Text>
+              <Text className='schoolSx'>{item.nature}</Text>
             </View>
-            <View className='schoolaAttr'>综合 / 教育 / 工作</View>
-          </View>
-          <View className="schoolLocation">
-            <Icon className='noticeIcon' color='#A1A1A1' size='14' type='waiting' />北京
+            <View className='schoolContent'>
+              <View className='schoolaAttr'>{item.eduLevel}</View>
+              <View className="schoolLocation">
+                <Icon className='noticeIcon' color='#A1A1A1' size='14' type='waiting' />{item.province}
+              </View>
+            </View>
           </View>
         </View>
       </View>

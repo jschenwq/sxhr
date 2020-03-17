@@ -21,7 +21,7 @@
         margin-bottom: 15px;
         .schoolName{
           font-weight: bold;
-          font-size: 36px;
+          font-size: 30px;
         }
         .schoolSx{
           display: inline-block;
@@ -29,21 +29,24 @@
           border-radius: 10px;
           padding: 1px;
           color: #9B9B9B;
-          font-size: 26px;
+          font-size: 22px;
           margin-left: 13px;
         }
       }
-    }
-    .schoolaAttr{
-      color: #757575;
-    }
-    .schoolLocation{
-      position: relative;
-      top:35px;
-      color: #9B9B9B;
-      .noticeIcon{
-        vertical-align: middle;
-        margin-right: 10px;
+      .schoolContent{
+        display: flex;
+        font-size: 26px;
+        justify-content: space-between;
+        .schoolaAttr{
+          color: #757575;
+        }
+        .schoolLocation{
+          color: #9B9B9B;
+          .noticeIcon{
+            vertical-align: bottom;
+            margin-right: 10px;
+          }
+        }
       }
     }
   }
@@ -52,4 +55,3 @@
     height: 30px!important;
   }
 }
-

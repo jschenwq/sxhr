@@ -33,28 +33,16 @@ class Index extends Component {
   onReset(){
 
   }
-  wxLogin(){
+  wxLogin(e){
+    console.log(e);
     this.setState((prevState)=>({
       isLoading: true
     }));
-    Taro.login({
-      success: (res)=>{
-        if(res.code) {
-          //发起网络请求
-          Taro.request({
-            url: 'https://test.com/onLogin',
-            data: {
-              code: res.code
-            }
-          });
-        } else {
-          console.log('登录失败！' + res.errMsg);
-        }
-        this.setState((prevState)=>({
-          isLoading: false
-        }));
-      }
-    });
+    setTimeout(()=>{
+      this.setState((prevState)=>({
+        isLoading: false
+      }));
+    },1000);
   }
   sjLogin(){
     Taro.navigateTo({
@@ -66,7 +54,7 @@ class Index extends Component {
     return (
       <View className='index'>
         <View style='text-align: center;margin-bottom: 10px;'>汇百智教育</View>
-        <Button onClick={this.wxLogin.bind(this)} loading={isLoading} type='primary' circle>微信快捷登录</Button>
+        <Button onGetUserInfo={this.wxLogin.bind(this)} openType="getUserInfo" loading={isLoading} type='primary' circle>微信快捷登录</Button>
         <Button onClick={this.sjLogin.bind(this)} type='default' circle>手机号短信登录</Button>
       </View>
     )
