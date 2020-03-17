@@ -22,13 +22,7 @@ class Index extends Component {
   }
 
   componentDidMount(){
-    //获取全部专业
-    getAllZy({level:this.state.level}).then(({data}) => {
-      console.log(data);
-      this.setState({
-        secondMajorList: data
-      })
-    });
+
   }
 
   componentWillUnmount () {}
@@ -41,12 +35,29 @@ class Index extends Component {
     this.setState({
       level: this.state.selector[e.detail.value]
     })
+
+    //获取全部专业
+    getAllZy({level:this.state.selector[e.detail.value]}).then(({data}) => {
+      console.log(data);
+      this.setState({
+        secondMajorList: data
+      })
+    });
   }
 
   handleClick (value) {
     this.setState({
       current: value
     })
+
+    if(value == 1){
+      getAllZy({level:this.state.level}).then(({data}) => {
+        console.log(data);
+        this.setState({
+          secondMajorList: data
+        })
+      });
+    }
   }
 
   gotoCP(){
@@ -168,62 +179,6 @@ class Index extends Component {
                   )
                 })
               }
-
-              {/*<View className='counselor'>*/}
-                {/*<View>*/}
-                  {/*<Text className="title">特色专业</Text>*/}
-                {/*</View>*/}
-              {/*</View>*/}
-              {/*<AtList>*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-              {/*</AtList>*/}
-
-              {/*<View className='counselor firstItem'>*/}
-                {/*<View>*/}
-                  {/*<Text className="title">特色专业</Text>*/}
-                {/*</View>*/}
-              {/*</View>*/}
-              {/*<AtList>*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-              {/*</AtList>*/}
-
-              {/*<View className='counselor firstItem'>*/}
-                {/*<View>*/}
-                  {/*<Text className="title">特色专业</Text>*/}
-                {/*</View>*/}
-              {/*</View>*/}
-              {/*<AtList>*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-              {/*</AtList>*/}
-
-              {/*<View className='counselor firstItem'>*/}
-                {/*<View>*/}
-                  {/*<Text className="title">特色专业</Text>*/}
-                {/*</View>*/}
-              {/*</View>*/}
-              {/*<AtList>*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyfl.bind(this)} title='标题文字' extraText='10个专业' arrow='right' />*/}
-              {/*</AtList>*/}
             </View>
 
           </AtTabsPane>

@@ -17,11 +17,11 @@ class Index extends Component {
       current:0,
       isOpened:false,
       selector: [],
-      type: '文科',
+      type: '综合',
       provinceList:[],
       province:'河南',
       yearList:['2019','2018','2017','2016','2015','2014','2013','2012'],
-      year:'2019',
+      year:2019,
       majorScore:[],
       schoolScore:[]
     };
@@ -42,13 +42,6 @@ class Index extends Component {
         schoolScore: data,
       })
     })
-
-    //获取专业分数线--参数解构赋值
-    getMajorScore({type:this.state.type,province:this.state.province,year:this.state.year,schoolId:11736}).then(({data}) => {
-      this.setState({
-        // majorScore: data,
-      })
-    })
   }
 
   componentWillUnmount () {}
@@ -61,23 +54,83 @@ class Index extends Component {
     this.setState({
       current: value,
     })
+
+    if(value == 0){
+      // 获取学校分数线
+      getSchoolScore({type:this.state.type,province:this.state.province,schoolId:11736}).then(({data}) => {
+        this.setState({
+          schoolScore: data,
+        })
+      })
+    }else if(value == 1){
+      //获取专业分数线
+      getMajorScore({type:this.state.type,province:this.state.province,year:this.state.year,schoolId:11736}).then(({data}) => {
+        this.setState({
+          majorScore: data.list,
+        })
+      })
+    }else {
+      Taro.showToast({
+        title: '开发中敬请期待...',
+        icon: 'none',
+        mask: true,
+      });
+    }
   }
 
   onChange = e => {
     this.setState({
       type: this.state.selector[e.detail.value]
     })
+    if(this.state.current == 0){
+      // 获取学校分数线
+      getSchoolScore({type:this.state.selector[e.detail.value],province:this.state.province,schoolId:11736}).then(({data}) => {
+        this.setState({
+          schoolScore: data,
+        })
+      })
+    }else if(this.state.current == 1){
+      //获取专业分数线
+      getMajorScore({type:this.state.selector[e.detail.value],province:this.state.province,year:this.state.year,schoolId:11736}).then(({data}) => {
+        this.setState({
+          majorScore: data.list,
+        })
+      })
+    }
   };
 
   onChangeProvince = e => {
     this.setState({
       province: this.state.provinceList[e.detail.value]
     })
+
+    if(this.state.current == 0){
+      // 获取学校分数线
+      getSchoolScore({type:this.state.type,province:this.state.provinceList[e.detail.value],schoolId:11736}).then(({data}) => {
+        this.setState({
+          schoolScore: data,
+        })
+      })
+    }else if(this.state.current == 1){
+      //获取专业分数线
+      getMajorScore({type:this.state.type,province:this.state.provinceList[e.detail.value],year:this.state.year,schoolId:11736}).then(({data}) => {
+        this.setState({
+          majorScore: data.list,
+        })
+      })
+    }
   };
 
   onChangeYear = e => {
     this.setState({
       year: this.state.yearList[e.detail.value]
+    })
+
+    //获取专业分数线
+    getMajorScore({type:this.state.type,province:this.state.province,year:this.state.yearList[e.detail.value],schoolId:11736}).then(({data}) => {
+      this.setState({
+        majorScore: data.list,
+      })
     })
   };
 
@@ -93,7 +146,7 @@ class Index extends Component {
   }
 
   render () {
-    const {isOpened, schoolScore} = this.state;
+    const {isOpened, schoolScore, majorScore} = this.state;
     const tabList = [{ title: '院校分数线' }, { title: '专业分数线' }, { title: '招生计划' }];
     return (
       <View className ='fsx'>
@@ -188,31 +241,30 @@ class Index extends Component {
               </View>
 
               <Text onClick={this.handleChangeB.bind(this)} className ='sysm'>数据说明</Text>
+            </View>
 
-              <View className='at-row tableTitle'>
-                <View className='at-col font2 selectTop'>专业名称</View>
-                <View className='at-col font2 selectTop'>年份</View>
-                <View className='at-col font2 selectTop'>考生类别</View>
-                <View className='at-col font2 selectTop'>录取批次</View>
-                <View className='at-col font2 selectTop'>最低分</View>
-              </View>
+            <View className='at-row tableTitle'>
+              <View className='at-col font2 selectTop'>专业名称</View>
+              <View className='at-col font2 selectTop'>年份</View>
+              <View className='at-col font2 selectTop'>考生类别</View>
+              <View className='at-col font2 selectTop'>录取批次</View>
+              <View className='at-col font2 selectTop'>最低分</View>
+            </View>
 
-              <View className = 'scoreN'>
-                {
-                  schoolScore.map((item,index) => {
-                    return (
-                      <View className={classNames('at-row','scoreTr',index % 2 == 0?'active':'')} key={index}>
-                        <View className='at-col selectTop'>{item.batch}</View>
-                        <View className='at-col selectTop'>{item.year}</View>
-                        <View className='at-col selectTop'>{item.year}</View>
-                        <View className='at-col selectTop'>{item.year}</View>
-                        <View className='at-col selectTop'>{item.type}</View>
-                        <View className='at-col selectTop'>{item.minScore}</View>
-                      </View>
-                    )
-                  })
-                }
-              </View>
+            <View className = 'scoreN'>
+              {
+                majorScore.map((item,index) => {
+                  return (
+                    <View className={classNames('at-row','scoreTr',index % 2 == 0?'active':'')} key={index}>
+                      <View className='at-col selectTop'>{item.majorName}</View>
+                      <View className='at-col selectTop'>{item.year}</View>
+                      <View className='at-col selectTop'>{item.type}</View>
+                      <View className='at-col selectTop'>{item.batch}</View>
+                      <View className='at-col selectTop'>{item.minScore}</View>
+                    </View>
+                  )
+                })
+              }
             </View>
           </AtTabsPane>
 
