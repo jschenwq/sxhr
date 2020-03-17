@@ -4,7 +4,7 @@ import { AtGrid , AtButton, AtRate   } from 'taro-ui'
 import classNames from 'classnames'
 import { connect } from '@tarojs/redux'
 import {login} from '@utils/api'
-import pageInit from '@utils/pageInit';
+// import pageInit from '@utils/pageInit';
 
 import { add, minus, asyncAdd } from '@actions/counter'
 
@@ -24,7 +24,7 @@ import './index.scss'
   }
 }))
 
-@pageInit()
+// @pageInit()
 class Index extends Component {
   config = {
     navigationBarTitleText: '首页'
