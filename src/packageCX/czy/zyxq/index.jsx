@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, RichText } from '@tarojs/components'
 import { AtTabs, AtTabsPane,  AtList, AtListItem, AtAccordion, AtProgress, AtCurtain } from 'taro-ui'
 import {getDetail} from '@utils/api'
 
@@ -7,7 +7,7 @@ import './index.scss'
 
 class Index extends Component {
   config = {
-    navigationBarTitleText: '专业动态获取'
+    navigationBarTitleText: ''
   }
 
   constructor(props) {
@@ -104,11 +104,17 @@ class Index extends Component {
 
   componentDidMount(){
     const majorId = this.$router.params.majorId;
-    getDetail('/wx/major/'+majorId).then(({data}) => {
+    getDetail(majorId).then(({data}) => {
       this.setState({
         zygk: data
       })
-    })
+
+      Taro.setNavigationBarTitle({
+        title: data.type
+      });
+    });
+
+
   }
 
   componentWillUnmount () {}
@@ -148,8 +154,16 @@ class Index extends Component {
     })
   }
 
-  gotoSchoolDetail(){ Taro.navigateTo({
+  gotoSchoolDetail(){
+    Taro.navigateTo({
       url: '/packageCX/zdx/schoolDetail/index',
+    })
+  }
+
+  //查看专业介绍详情
+  gotoDetail(content){
+    Taro.navigateTo({
+      url: '/packageCX/czy/zyxq/zyjsxq/index?content='+content,
     })
   }
 
@@ -168,26 +182,24 @@ class Index extends Component {
 
                   <View className='at-row at-row__justify--around itemH'>
 
-                    <View className='at-col at-col-5'>
+                    <View className='at-col at-col-6'>
                       <View className='at-row at-row__justify--center'>
-                        <View className='at-col at-col-5'>
+                        <View className='at-col at-col-4'>
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
-                        <View className='at-col at-col-7'>
+                        <View className='at-col at-col-8'>
                           <View className ='font3'>{zygk.level}</View>
                           <View className ='font4'>学历层次</View>
                         </View>
                       </View>
                     </View>
 
-                    <View className='at-col at-col-1'></View>
-
-                    <View className='at-col at-col-5'>
+                    <View className='at-col at-col-6'>
                       <View className='at-row at-row__justify--center'>
-                        <View className='at-col at-col-5'>
+                        <View className='at-col at-col-4'>
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
-                        <View className='at-col at-col-7'>
+                        <View className='at-col at-col-8'>
                           <View className ='font3'>{zygk.learnYear}</View>
                           <View className ='font4'>修业年限</View>
                         </View>
@@ -199,26 +211,24 @@ class Index extends Component {
 
                   <View className='at-row at-row__justify--around itemH'>
 
-                    <View className='at-col at-col-5'>
+                    <View className='at-col at-col-6'>
                       <View className='at-row at-row__justify--center'>
-                        <View className='at-col at-col-5'>
+                        <View className='at-col at-col-4'>
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
-                        <View className='at-col at-col-7'>
+                        <View className='at-col at-col-8'>
                           <View className ='font3'>{zygk.degree}</View>
                           <View className ='font4'>授予学位</View>
                         </View>
                       </View>
                     </View>
 
-                    <View className='at-col at-col-1'></View>
-
-                    <View className='at-col at-col-5'>
+                    <View className='at-col at-col-6'>
                       <View className='at-row at-row__justify--center'>
-                        <View className='at-col at-col-5'>
+                        <View className='at-col at-col-4'>
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
-                        <View className='at-col at-col-7'>
+                        <View className='at-col at-col-8'>
                           <View className ='font3'>{zygk.rate}</View>
                           <View className ='font4'>男女比例</View>
                         </View>
@@ -229,26 +239,24 @@ class Index extends Component {
 
                   <View className='at-row at-row__justify--around itemH'>
 
-                    <View className='at-col at-col-5'>
+                    <View className='at-col at-col-6'>
                       <View className='at-row at-row__justify--center'>
-                        <View className='at-col at-col-5'>
+                        <View className='at-col at-col-4'>
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
-                        <View className='at-col at-col-7'>
+                        <View className='at-col at-col-8'>
                           <View className ='font3'>{zygk.subjectSuggest}</View>
                           <View className ='font4'>选课建议</View>
                         </View>
                       </View>
                     </View>
 
-                    <View className='at-col at-col-1'></View>
-
-                    <View className='at-col at-col-5'>
+                    <View className='at-col at-col-6'>
                       <View className='at-row at-row__justify--center'>
-                        <View className='at-col at-col-5'>
+                        <View className='at-col at-col-4'>
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
-                        <View className='at-col at-col-7'>
+                        <View className='at-col at-col-8'>
                           <View className ='font3'>{zygk.keyWords}</View>
                           <View className ='font4'>关键词</View>
                         </View>
@@ -260,8 +268,8 @@ class Index extends Component {
               </View>
 
               <View className='zyjs'>
-                <View className='font1'>专业介绍<Text className= 'font2 font5'></Text></View>
-                <View className='font6'>{zygk.majorIntroduce}</View>
+                <View className='font1'>专业介绍<Text onClick={this.gotoDetail.bind(this,zygk.content)} className= 'font2 font5'>详情</Text></View>
+                <View className='font6 font7'>{zygk.majorIntroduce}</View>
               </View>
               <View className ='moreLook'>查看更多  ></View>
 
@@ -272,7 +280,7 @@ class Index extends Component {
 
               <View className='zyjs jyfs'>
                 <View className='font1'>专业去向</View>
-                <View className='font6'>{zygk.majorDo}</View>
+                <View className='font6'><RichText nodes={zygk.majorDo} /></View>
               </View>
 
               <View className='itemList'>

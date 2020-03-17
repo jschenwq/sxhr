@@ -102,7 +102,7 @@ class Index extends Component {
   }
 
   render () {
-    const {scoreList} = this.state
+    const {scoreList} = this.state;
     return (
       <View className ='wccx'>
         <View className='at-row selectN'>

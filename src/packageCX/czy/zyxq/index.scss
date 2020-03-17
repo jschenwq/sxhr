@@ -16,7 +16,10 @@
     .font5{
       font-weight: normal;
       display: inline-block;
-      margin-left: 30px;
+      line-height: 100px;
+      float: right;
+      color: #5ACB31;
+      cursor: pointer;
     }
     .zygl{
       background: #EFEEF3;
@@ -29,6 +32,9 @@
         .font3{
           font-size: 36px;
           line-height: 50px;
+          white-space:normal;
+          word-break:break-all;
+          overflow:hidden;
         }
         .font4{
           font-size: 28px;
@@ -51,6 +57,18 @@
       padding: 15px 30px;
       .font6{
         line-height: 60px;
+        color: #666;
+      }
+      .font7{
+        height: 180px;
+        -webkit-transition: color .2s ease;
+        transition: color .2s ease;
+        word-break: break-all;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
       }
     }
     .moreLook{
