@@ -45,3 +45,20 @@ button {
   flex: 1;
 }
 /*postcss-pxtransform rn eject disable*/
+
+//tab样式修改
+.at-tabs__item{
+  font-size: 34px!important;
+  color: #9B9B9B!important;
+}
+
+.at-tabs__item--active{
+  color: #4A4A4A!important;
+}
+
+.at-tabs__item-underline{
+  background-color: #19B955!important;
+  width: 40%!important;
+  height: 7px!important;
+  left: 30%!important;
+}
