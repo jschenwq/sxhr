@@ -39,13 +39,13 @@ class Index extends Component {
           </View>
           <View className="schoolInfo">
             <View className="schoolTitle">
-              <Text className='schoolName'>{item.schoolName}</Text>
-              <Text className='schoolSx'>{item.nature}</Text>
+              <Text className='schoolName'>{item?item.schoolName:''}</Text>
+              <Text className='schoolSx'>{item?item.nature:''}</Text>
             </View>
             <View className='schoolContent'>
-              <View className='schoolaAttr'>{item.eduLevel}</View>
+              <View className='schoolaAttr'>{item?item.eduLevel:''}</View>
               <View className="schoolLocation">
-                <Icon className='noticeIcon' color='#A1A1A1' size='14' type='waiting' />{item.province}
+                <Icon className='noticeIcon' color='#A1A1A1' size='14' type='waiting' />{item?item.province:''}
               </View>
             </View>
           </View>
