@@ -10,7 +10,7 @@
     }
     .schoolLogo{
       position: absolute;
-      bottom: -30px;
+      bottom: 5px;
       left: 40px;
       width: 130px;
       height: 130px;
@@ -47,10 +47,18 @@
       font-size: 28px;
     }
   }
-
+  // .at-grid__flex .at-grid-item__content-inner{
+  //   justify-content: flex-start;
+  //   padding-left: 30px;
+  // }
   .at-grid__flex .at-grid-item{
     height: 85px!important;
   }
+  .at-grid__flex .content-inner__text {
+    -webkit-line-clamp: 1;
+    width: 115px;
+  }
+
   .content-inner__text .content-inner__text{
     font-size: 24px!important;
   }

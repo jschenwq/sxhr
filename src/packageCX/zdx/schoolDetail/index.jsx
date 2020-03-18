@@ -56,6 +56,13 @@ class Index extends Component {
       isOpened: false
     });
   }
+  handleExploit(){
+    Taro.showToast({
+      title: '功能开发中',
+      icon: 'none',
+      mask: true
+    });
+  }
   render () {
     let {school, majors,schoolNewsList,isOpened,detailNodes} = this.state;
     return (
@@ -66,10 +73,6 @@ class Index extends Component {
           <Image src={school.logoPath} className='schoolLogo' />
           <Text className='schoolName'>{school.schoolName}</Text>
         </View>
-        <View className='schoolAttr'>
-          <Text className='Item'>985</Text>
-          <Text className='Item'>211</Text>
-        </View>
         <View>
           <AtGrid style='padding:0px 20px' columnNum={3} mode='rect' hasBorder={false} data={
             [
@@ -78,16 +81,16 @@ class Index extends Component {
                 value: '1912'
               },
               {
-                image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
-                value: school?school.nature:''
+                image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
+                value: '教育部'
               },
               {
                 image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
                 value: school?school.province:''
               },
               {
-                image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
-                value: '教育部'
+                image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
+                value: school?school.nature:''
               },
               {
                 image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
@@ -153,13 +156,13 @@ class Index extends Component {
         <View className='counselor firstItem'>
           <View>
             <Text className="title">招生简章</Text>
-            <Text className="more">更多</Text>
+            <Text className="more" onClick={this.handleExploit.bind(this)}>更多</Text>
           </View>
         </View>
         <AtList>
           {
             schoolNewsList.map((item)=>{
-              return <AtListItem title={item.title} arrow='right' />;
+              return <AtListItem title={item.title}  onClick={this.handleShowDetail.bind(this)} arrow='right' />;
             })
           }
         </AtList>
@@ -167,7 +170,7 @@ class Index extends Component {
         <View className='counselor firstItem'>
           <View>
             <Text className="title">开设专业</Text>
-            <Text className="more">更多</Text>
+            <Text className="more" onClick={this.handleExploit.bind(this)}>更多</Text>
           </View>
         </View>
         <View className = 'ItemAll'>

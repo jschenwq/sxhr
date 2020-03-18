@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtSearchBar, AtList, AtListItem ,AtMessage  } from 'taro-ui'
 import classNames from 'classnames'
-import {login} from '@utils/api'
+import {login,getSchoolList} from '@utils/api'
 
 import './index.scss'
 
@@ -17,7 +17,8 @@ class Index extends Component {
     super(props)
     this.state = {
       value:'',
-      isShow:true,//是否显示搜索历史
+      searchList:[],
+      isShow:false,//是否显示搜索历史
     };
   }
 
@@ -30,58 +31,86 @@ class Index extends Component {
   componentDidHide () {}
 
   onChange (value) {
-    this.setState({
-      value: value
-    })
-    if(value.length == 0){
-      this.setState({
-        isShow:true
-      })
-    }
+    console.log(value);
+    // this.setState({
+    //   value: value
+    // })
+    // if(value.length == 0){
+    //   this.setState({
+    //     isShow:true
+    //   })
+    // }
   }
-
-  //初始化拉去搜索历史，如果没有一个历史，则隐藏历史纪录，有一个则显示搜索历史并展示
-  onActionClick(){
-    if(this.state.value.length>0){
-      //查询接口
-      this.setState({
-        isShow:false
-      })
-    }else{
-      Taro.navigateBack({
-        delta: 1 // 返回上一级页面。
+  onConfirm(e){//点击完成按钮时触发
+    console.log(e);
+    if(!e.detail.value){
+      return;
+    }
+    let type = this.$router.params.type;
+    this.setState({
+      value: e.detail.value
+    })
+    if(type == 1){//大学
+      getSchoolList({schoolName: e.detail.value, currentPage: 1, pageSize: 20}).then(({data})=>{
+        this.setState({
+          searchList: data.list
+        });
       });
     }
+  }
+  //初始化拉去搜索历史，如果没有一个历史，则隐藏历史纪录，有一个则显示搜索历史并展示
+  onActionClick(e){
+    console.log(e);
+    Taro.navigateBack({
+      delta: 1 // 返回上一级页面。
+    });
   }
   //清空搜索框内容
   clearText(){
     this.setState({
       value:'',
-      isShow:true
+      // isShow:true
     })
   }
   //选择某个搜索历史
   getHistoryItem(data){
     this.setState({
       value:data,
-      isShow:false
-    })
+      // isShow:false
+    });
+    let type = this.$router.params.type;
     //调查询接口
+    if(type==1){//大学
+      getSchoolList({schoolName: data, currentPage: 1, pageSize: 20}).then(({data})=>{
+        this.setState({
+          searchList: data.list
+        });
+      });
+    }
   }
   //清空历史纪录
   clearHistory(){
-    Taro.atMessage({
-      'message': '消息通知',
-      'type': 'warning',
-    })
+    // Taro.atMessage({
+    //   'message': '消息通知',
+    //   'type': 'warning',
+    // })
+    console.log("触发");
+    // this.setState({
+    //   isShow: false
+    // });
   }
 
-  gotoAAA(){
-
+  gotoAAA(data){
+    let type = this.$router.params.type;
+    if(type==1){//大学
+      Taro.navigateTo({
+        url: '/packageCX/zdx/schoolDetail/index?schoolId='+data,
+      });
+    }
   }
 
   render () {
-    const {isShow} = this.state;
+    const {isShow,searchList} = this.state;
     const type = this.$router.params.type;
     let   placeholderText;
     if(type == 1) placeholderText = '请输入学校名称';
@@ -98,12 +127,13 @@ class Index extends Component {
           value={this.state.value}
           onChange={this.onChange.bind(this)}
           onClear={this.clearText.bind(this)}
+          onConfirm={this.onConfirm.bind(this)}
           onActionClick={this.onActionClick.bind(this)}
         />
         <View className ={classNames('searHistory',isShow?'active':'')}>
-          <View className ='history'>
+          <View className ='history' onClick={this.clearHistory.bind(this)}>
             <Text className ='historyText'>搜索历史</Text>
-            <Text onClick={this.clearHistory.bind(this)} className='at-icon at-icon-chevron-down ljx'></Text>
+            <Text className='at-icon at-icon-chevron-down ljx'></Text>
           </View>
           <View>
             <Text onClick={this.getHistoryItem.bind(this,'北京大学')} className ='searhItem'>北京大学</Text>
@@ -111,29 +141,13 @@ class Index extends Component {
             <Text onClick={this.getHistoryItem.bind(this,'伤心')} className ='searhItem'>伤心</Text>
           </View>
         </View>
-        <View className = {classNames('searchContent',isShow?'':'active')}>
+        <View className = {classNames('searchContent',searchList.length==0?'':'active')}>
           <AtList>
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字11' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字22' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字33' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-            <AtListItem onClick={this.gotoAAA.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+            { type==1 &&
+              searchList.map((item)=>{
+                return (<AtListItem onClick={this.gotoAAA.bind(this, item.schoolId)} title={item.schoolName} thumb={item.logoPath} arrow='right' />);
+              })
+            }
           </AtList>
         </View>
       </View>
