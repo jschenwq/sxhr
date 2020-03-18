@@ -15,7 +15,7 @@ class Index extends Component {
     super(props)
     this.state = {
       current:0,
-      isOpened:false,
+      // isOpened:false,
       selector: [],
       type: '综合',
       provinceList:[],
@@ -134,33 +134,33 @@ class Index extends Component {
     })
   };
 
-  handleChangeB () {
-    this.setState({
-      isOpened: true
-    })
-  }
-  onClose () {
-    this.setState({
-      isOpened: false
-    })
-  }
+  // handleChangeB () {
+  //   this.setState({
+  //     isOpened: true
+  //   })
+  // }
+  // onClose () {
+  //   this.setState({
+  //     isOpened: false
+  //   })
+  // }
 
   render () {
     const {isOpened, schoolScore, majorScore} = this.state;
     const tabList = [{ title: '院校分数线' }, { title: '专业分数线' }, { title: '招生计划' }];
     return (
       <View className ='fsx'>
-        <AtModal onClose={this.onClose.bind(this)} isOpened={isOpened}>
-          <AtModalHeader>数据说明</AtModalHeader>
-          <AtModalContent>
-            <View>
-              <View>1.2019年计划已根据6月份出版的《湖北省招生计划》更新；</View>
-              <View>2.2019年专业录取相关数据将在考试院公布后及时更新；</View>
-              <View>3.201-2019各院校录取数据，参考个省市出版的填报指南以及个本专科院校的官网理念录取数据；</View>
-            </View>
-          </AtModalContent>
-          {/*<AtModalAction> <Button>取消</Button> <Button>确定</Button> </AtModalAction>*/}
-        </AtModal>
+        {/*<AtModal onClose={this.onClose.bind(this)} isOpened={isOpened}>*/}
+          {/*<AtModalHeader>数据说明</AtModalHeader>*/}
+          {/*<AtModalContent>*/}
+            {/*<View>*/}
+              {/*<View>1.2019年计划已根据6月份出版的《湖北省招生计划》更新；</View>*/}
+              {/*<View>2.2019年专业录取相关数据将在考试院公布后及时更新；</View>*/}
+              {/*<View>3.201-2019各院校录取数据，参考个省市出版的填报指南以及个本专科院校的官网理念录取数据；</View>*/}
+            {/*</View>*/}
+          {/*</AtModalContent>*/}
+          {/*/!*<AtModalAction> <Button>取消</Button> <Button>确定</Button> </AtModalAction>*!/*/}
+        {/*</AtModal>*/}
         <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
           <AtTabsPane current={this.state.current} index={0} >
             <View className ='fsxContent'>
@@ -183,7 +183,7 @@ class Index extends Component {
                 </Picker>
               </View>
 
-              <Text onClick={this.handleChangeB.bind(this)} className ='sysm'>数据说明</Text>
+              {/*<Text onClick={this.handleChangeB.bind(this)} className ='sysm'>数据说明</Text>*/}
             </View>
 
             <View className='at-row tableTitle'>
@@ -198,7 +198,7 @@ class Index extends Component {
                 schoolScore.map((item,index) => {
                   return (
                     <View className={classNames('at-row','scoreTr',index % 2 == 0?'active':'')} key={index}>
-                      <View className='at-col selectTop'>{item.batch}</View>
+                      <View className='at-col selectTop'>{item.batch?item.batch:''}</View>
                       <View className='at-col selectTop'>{item.year}</View>
                       <View className='at-col selectTop'>{item.type}</View>
                       <View className='at-col selectTop'>{item.minScore}</View>
@@ -240,7 +240,7 @@ class Index extends Component {
                 </Picker>
               </View>
 
-              <Text onClick={this.handleChangeB.bind(this)} className ='sysm'>数据说明</Text>
+              {/*<Text onClick={this.handleChangeB.bind(this)} className ='sysm'>数据说明</Text>*/}
             </View>
 
             <View className='at-row tableTitle'>

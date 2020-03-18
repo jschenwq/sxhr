@@ -24,7 +24,7 @@
     }
   }
   .schoolN{
-    height: calc(100vh - 90px);
+    //height: calc(100vh - 90px);
     overflow: scroll;
   }
 
@@ -37,6 +37,11 @@
       .itemTitle{
         font-size: 28px;
         color: #757575 ;
+      }
+      .brItem{
+        word-wrap: break-word;
+        word-break: break-all;
+        overflow: hidden;
       }
     }
   }
@@ -64,5 +69,15 @@
       border-bottom-right-radius: 50px;
       background: #5ACB31;
     }
+  }
+
+  .at-button--small{
+    width: 90%;
+    height: 67px;
+    line-height: 67px;
+  }
+  .at-button--primary{
+    background: #5ACB31;
+    border: 1px solid #5ACB31;
   }
 }

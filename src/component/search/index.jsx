@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtSearchBar, AtList, AtListItem ,AtMessage  } from 'taro-ui'
 import classNames from 'classnames'
-import {login,getSchoolList} from '@utils/api'
+import {getThirdZy,getSchoolList} from '@utils/api'
 
 import './index.scss'
 
@@ -17,7 +17,8 @@ class Index extends Component {
     super(props)
     this.state = {
       value:'',
-      searchList:[],
+      schoolList:[],
+      zhuanyeList:[],
       isShow:false,//是否显示搜索历史
     };
   }
@@ -31,7 +32,6 @@ class Index extends Component {
   componentDidHide () {}
 
   onChange (value) {
-    console.log(value);
     this.setState({
       value: value
     });
@@ -53,12 +53,31 @@ class Index extends Component {
     if(type == 1){//大学
       this.searchSchool(e.detail.value);
     }
+
+    if(type == 2){//大学
+      this.searchZhuanye(e.detail.value);
+    }
   }
   searchSchool(schoolName){
     getSchoolList({schoolName: schoolName, currentPage: 1, pageSize: 20}).then(({data})=>{
       if(data.list.length>0){
         this.setState({
-          searchList: data.list
+          schoolList: data.list
+        });
+      }else{
+        Taro.showToast({
+          title: '未有满足条件的数据',
+          icon: 'none',
+          mask: true
+        });
+      }
+    });
+  }
+  searchZhuanye(zhuanyeName){
+    getThirdZy({majorName:zhuanyeName, currentPage: 1, pageSize: 20}).then(({data})=>{
+      if(data.length>0){
+        this.setState({
+          zhuanyeList: data
         });
       }else{
         Taro.showToast({
@@ -77,6 +96,10 @@ class Index extends Component {
       if(type==1){//大学
         this.searchSchool(this.state.value);
       }
+
+      if(type==2){//专业
+        this.searchZhuanye(this.state.value);
+      }
     }else{
       Taro.navigateBack({
         delta: 1 // 返回上一级页面。
@@ -85,6 +108,15 @@ class Index extends Component {
   }
   //清空搜索框内容
   clearText(){
+    let type = this.$router.params.type;
+    if(type==1){//大学
+      this.searchSchool(this.state.value);
+    }
+
+    if(type==2){//专业
+      this.searchZhuanye(this.state.value);
+    }
+
     this.setState({
       value:'',
       // isShow:true
@@ -101,6 +133,10 @@ class Index extends Component {
     if(type==1){//大学
       this.searchSchool(data);
     }
+
+    if(type==1){//专业
+      this.searchZhuanye(data);
+    }
   }
   //清空历史纪录
   clearHistory(){
@@ -115,16 +151,19 @@ class Index extends Component {
   }
 
   gotoAAA(data){
-    let type = this.$router.params.type;
-    if(type==1){//大学
-      Taro.navigateTo({
-        url: '/packageCX/zdx/schoolDetail/index?schoolId='+data,
-      });
-    }
+    Taro.navigateTo({
+      url: '/packageCX/zdx/schoolDetail/index?schoolId='+data,
+    });
+  }
+
+  gotoZyxq(majorId){
+    Taro.navigateTo({
+      url: '/packageCX/czy/zyxq/index?majorId=' + majorId,
+    })
   }
 
   render () {
-    const {isShow,searchList} = this.state;
+    const {isShow,schoolList,zhuanyeList} = this.state;
     const type = this.$router.params.type;
     let   placeholderText;
     if(type == 1) placeholderText = '请输入学校名称';
@@ -155,12 +194,29 @@ class Index extends Component {
             <Text onClick={this.getHistoryItem.bind(this,'伤心')} className ='searhItem'>伤心</Text>
           </View>
         </View>
-        <View className = {classNames('searchContent',searchList.length==0?'':'active')}>
+        <View className = {classNames('searchContent',schoolList.length==0 || zhuanyeList.length==0?'':'active')}>
           <AtList>
             { type==1 &&
-              searchList.map((item)=>{
-                return (<AtListItem onClick={this.gotoAAA.bind(this, item.schoolId)} title={item.schoolName} thumb={item.logoPath} arrow='right' />);
+              schoolList.map((item,index)=>{
+                return (<AtListItem key={index} onClick={this.gotoAAA.bind(this, item.schoolId)} title={item.schoolName} thumb={item.logoPath} arrow='right' />);
               })
+            }
+
+            { type==2 &&
+              zhuanyeList.map((item,index)=>{
+                return (<AtListItem key={index} onClick={this.gotoZyxq.bind(this,item.majorId)} title={item.majorName} note={'学制：'+ item.learnYear} arrow='right' />
+                );
+              })
+            }
+          </AtList>
+        </View>
+        <View className = {classNames('searchContent',zhuanyeList.length==0?'':'active')}>
+          <AtList>
+            { type==2 &&
+            zhuanyeList.map((item,index)=>{
+              return (<AtListItem key={index} onClick={this.gotoZyxq.bind(this,item.majorId)} title={item.majorName} note={'学制：'+ item.learnYear} arrow='right' />
+              );
+            })
             }
           </AtList>
         </View>

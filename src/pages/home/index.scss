@@ -60,6 +60,7 @@
   }
   &_scoreIpt{
     display: inline-block;
+    color: #7B7B7B;
     width: 418px;
     height: 50px;
     border-bottom: 1px solid #E4E4E4;
@@ -87,19 +88,13 @@
     right: 25px;
     width: 140px;
     height: 140px;
-    background: #5ACB31;
+    background: linear-gradient( #A1E20A, #1DBA53);
     border-radius: 70px;
     top:8px;
     font-size: 36px;
     text-align: center;
-  }
-  &_font2{
     color: white;
-    position: relative;
-    top:20px;
-  }
-  &_font3{
-   display: block;
+    padding: 22px 0px;
   }
 
   //2020-2-8

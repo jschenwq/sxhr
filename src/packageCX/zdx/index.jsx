@@ -88,19 +88,19 @@ class Index extends Component {
         <AtGrid className='school' columnNum={4} hasBorder={false} onClick={this.schoolBd.bind(this)} data={
           [
             {
-              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%88%91%E7%9A%84%E9%99%A2%E6%A0%A1.png?Expires=1587216807&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=1T031NyxWtxu6Ce3oWbHRl0tHw0%3D',
               value: '我的院校'
             },
             {
-              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%85%A8%E9%83%A8%E9%99%A2%E6%A0%A1.png?Expires=1587216721&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=gKhNC%2B5gxpwpCaWV4VPjGmTUm1E%3D',
               value: '全部院校'
             },
             {
-              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E9%99%A2%E6%A0%A1%E5%AF%B9%E6%AF%94.png?Expires=1587218966&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=nfRdDY%2FoRpfd71Jg5zznX2Usqm4%3D',
               value: '院校比对'
             },
             {
-              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%A4%A7%E5%AD%A6%E6%8E%92%E5%90%8D.png?Expires=1587216788&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=jd8wwEfMiDG8uo4QnZwXXwsBRC8%3D',
               value: '大学排名'
             }
           ]

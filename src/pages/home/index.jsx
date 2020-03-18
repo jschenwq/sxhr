@@ -111,41 +111,66 @@ class Index extends Component {
         url: '/packageCX/czy/index',
       })
     }
-    //看职业
-    if(index == 2){
-      Taro.navigateTo({
-        url: '/packageCX/kzy/index',
-      })
-    }
-    //提前批
-    if(index == 3){
-      Taro.navigateTo({
-        url: '/packageCX/tqp/index',
-      })
-    }
     //分数线
-    if(index == 4){
+    if(index == 2){
       Taro.navigateTo({
         url: '/packageCX/fsx/index',
       })
     }
     //招生计划
-    if(index == 5){
-      Taro.navigateTo({
-        url: '/packageCX/zsj/index',
-      })
+    if(index == 3){
+      Taro.showToast({
+        title: '开发中敬请期待...',
+        icon: 'none',
+        mask: true,
+      });
+      // Taro.navigateTo({
+      //   url: '/packageCX/zsj/index',
+      // })
     }
     //批次线
-    if(index == 6){
-      Taro.navigateTo({
-        url: '/packageCX/pcx/index',
-      })
+    if(index == 4){
+      Taro.showToast({
+        title: '开发中敬请期待...',
+        icon: 'none',
+        mask: true,
+      });
+      // Taro.navigateTo({
+      //   url: '/packageCX/pcx/index',
+      // })
+    }
+    //提前批
+    if(index == 5){
+      Taro.showToast({
+        title: '开发中敬请期待...',
+        icon: 'none',
+        mask: true,
+      });
+      // Taro.navigateTo({
+      //   url: '/packageCX/tqp/index',
+      // })
     }
     //位次查询
+    if(index == 6){
+      Taro.showToast({
+        title: '开发中敬请期待...',
+        icon: 'none',
+        mask: true,
+      });
+      // Taro.navigateTo({
+      //   url: '/packageCX/wccx/index',
+      // })
+    }
+    //看职业
     if(index == 7){
-      Taro.navigateTo({
-        url: '/packageCX/wccx/index',
-      })
+      Taro.showToast({
+        title: '开发中敬请期待...',
+        icon: 'none',
+        mask: true,
+      });
+      // Taro.navigateTo({
+      //   url: '/packageCX/kzy/index',
+      // })
     }
   }
 
@@ -174,10 +199,8 @@ class Index extends Component {
             <Text onClick={this.handleTab.bind(this,1)} className={classNames('home_scoreLine',current == 1?'home_font':'')}>线差</Text>
           </View>
           <View className='home_zntj' onClick={this.gotoZntj.bind(this)}>
-            <Text className="home_font2">
-              <Text className='home_font3'>智能</Text>
-              <Text>推荐</Text>
-            </Text>
+            <View>智能</View>
+            <View>推荐</View>
           </View>
           {
             current == 0 ?
@@ -198,45 +221,45 @@ class Index extends Component {
         </View>
 
         {/*通知通告*/}
-        <View className = 'notice'>
-          <Icon className='noticeIcon' color='#A3A3A3' size='14' type='waiting' />
-          <Text className='noticeText'>这是一段测试文字，这是一段测试文字</Text>
-        </View>
+        {/*<View className = 'notice'>*/}
+          {/*<Icon className='noticeIcon' color='#A3A3A3' size='14' type='waiting' />*/}
+          {/*<Text className='noticeText'>这是一段测试文字，这是一段测试文字</Text>*/}
+        {/*</View>*/}
 
         {/*九宫图*/}
         <AtGrid columnNum='4' hasBorder={false} onClick={this.infomationSearch.bind(this)} data={
           [
             {
-              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%89%BE%E5%A4%A7%E5%AD%A6.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=cGayv0h9Fvzd7sDSnicX8NUXMgs%3D',
               value: '找大学'
             },
             {
-              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%9F%A5%E4%B8%93%E4%B8%9A.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=Gk7VISGBIrh8DajTgFDS61aRhnE%3D',
               value: '查专业'
             },
             {
-              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
-              value: '看职业'
-            },
-            {
-              image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
-              value: '提前批'
-            },
-            {
-              image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%88%86%E6%95%B0%E7%BA%BF.png?Expires=1587216759&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=%2FdBFOK20bP5%2Bg%2BwPgP7S7FH23OA%3D',
               value: '分数线'
             },
             {
-              image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%8B%9B%E7%94%9F%E8%AE%A1%E5%88%92.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=xfn2biHc3np%2BOVpmKVre4nPPU1o%3D',
               value: '招生计划'
             },
             {
-              image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%89%B9%E6%AC%A1%E7%BA%BF.png?Expires=1587216825&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=ZH0%2BTeXWddBU2lFiHxPZJfv%2Bwzk%3D',
               value: '批次线'
             },
             {
-              image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%8F%90%E5%89%8D%E6%89%B9.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=19JgkbDIfdQYtcSyytHWlLbHxhI%3D',
+              value: '提前批'
+            },
+            {
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E4%BD%8D%E6%AC%A1%E6%9F%A5%E8%AF%A2.png?Expires=1587216015&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=vt3sij%2BvwRSF3QKd9lqtxYI5jrA%3D',
               value: '位次查询'
+            },
+            {
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E7%9C%8B%E8%81%8C%E4%B8%9A.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=vR2%2BAsEu1QnUUTT6c1Nk5s5B0Fc%3D',
+              value: '看职业'
             }
           ]
         } />
@@ -259,79 +282,79 @@ class Index extends Component {
           </View>
         </View>
 
-        {/*咨询师推荐*/}
-        <View className='counselor'>
-          <View>
-            <Text className="title">咨询师推荐服务</Text>
-            <Text class="more">更多</Text>
-          </View>
-        </View>
+        {/*/!*咨询师推荐*!/*/}
+        {/*<View className='counselor'>*/}
+          {/*<View>*/}
+            {/*<Text className="title">咨询师推荐服务</Text>*/}
+            {/*<Text class="more">更多</Text>*/}
+          {/*</View>*/}
+        {/*</View>*/}
 
-        <View className={classNames('at-row','itemPerson')}>
-          <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />
-          </View>
-          <View className='at-col at-col-7'>
-            <View>
-              <Text className='name'>张三</Text><Text className='year'>从业2年</Text>
-            </View>
-            <View className='detail'>
-              张三这是一段测试文字，张三这是一段测试文<Text className='moreDetail'>详情</Text>
-            </View>
-          </View>
-          <View className='at-col at-col-2'>
-            <AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>
-          </View>
-        </View>
-        <View className='item'>
-          <Text>高校一对一服务</Text>
-          <Image class='ItemImg' src={require('../../packageCP/images/evaStart4.png')}/>
-        </View>
+        {/*<View className={classNames('at-row','itemPerson')}>*/}
+          {/*<View className='at-col at-col-3' style='text-align:center'>*/}
+            {/*<Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />*/}
+          {/*</View>*/}
+          {/*<View className='at-col at-col-7'>*/}
+            {/*<View>*/}
+              {/*<Text className='name'>张三</Text><Text className='year'>从业2年</Text>*/}
+            {/*</View>*/}
+            {/*<View className='detail'>*/}
+              {/*张三这是一段测试文字，张三这是一段测试文<Text className='moreDetail'>详情</Text>*/}
+            {/*</View>*/}
+          {/*</View>*/}
+          {/*<View className='at-col at-col-2'>*/}
+            {/*<AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>*/}
+          {/*</View>*/}
+        {/*</View>*/}
+        {/*<View className='item'>*/}
+          {/*<Text>高校一对一服务</Text>*/}
+          {/*<Image class='ItemImg' src={require('../../packageCP/images/evaStart4.png')}/>*/}
+        {/*</View>*/}
 
-        <View className={classNames('at-row','itemPerson')}>
-          <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />
-          </View>
-          <View className='at-col at-col-7'>
-            <View>
-              <Text className='name'>张三2</Text><Text className='year'>从业2年</Text>
-            </View>
-            <View className='detail'>
-              张三这是222一段测试文字，张2222三这是一<Text className='moreDetail'>详情</Text>
-            </View>
-          </View>
-          <View className='at-col at-col-2'>
-            <AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>
-          </View>
-        </View>
-        <View className='item'>
-          <Text>升学卡服务</Text>
-          <Image class='ItemImg' src={require('../../packageCP/images/evaStart5.png')}/>
-        </View>
+        {/*<View className={classNames('at-row','itemPerson')}>*/}
+          {/*<View className='at-col at-col-3' style='text-align:center'>*/}
+            {/*<Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />*/}
+          {/*</View>*/}
+          {/*<View className='at-col at-col-7'>*/}
+            {/*<View>*/}
+              {/*<Text className='name'>张三2</Text><Text className='year'>从业2年</Text>*/}
+            {/*</View>*/}
+            {/*<View className='detail'>*/}
+              {/*张三这是222一段测试文字，张2222三这是一<Text className='moreDetail'>详情</Text>*/}
+            {/*</View>*/}
+          {/*</View>*/}
+          {/*<View className='at-col at-col-2'>*/}
+            {/*<AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>*/}
+          {/*</View>*/}
+        {/*</View>*/}
+        {/*<View className='item'>*/}
+          {/*<Text>升学卡服务</Text>*/}
+          {/*<Image class='ItemImg' src={require('../../packageCP/images/evaStart5.png')}/>*/}
+        {/*</View>*/}
 
-        <View className={classNames('at-row','itemPerson')}>
-          <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />
-          </View>
-          <View className='at-col at-col-7'>
-            <View>
-              <Text className='name'>张三1</Text><Text className='year'>从业2年</Text>
-            </View>
-            <View className='detail'>
-              张三这是一段测试文字，张三333这是一<Text className='moreDetail'>详情</Text>
-            </View>
-          </View>
-          <View className='at-col at-col-2'>
-            <AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>
-          </View>
-        </View>
-        <View className='item lastItem'>
-          <Text>会员服务</Text>
-          <Image class='ItemImg' src={require('../../packageCP/images/evaStart6.png')}/>
-        </View>
+        {/*<View className={classNames('at-row','itemPerson')}>*/}
+          {/*<View className='at-col at-col-3' style='text-align:center'>*/}
+            {/*<Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />*/}
+          {/*</View>*/}
+          {/*<View className='at-col at-col-7'>*/}
+            {/*<View>*/}
+              {/*<Text className='name'>张三1</Text><Text className='year'>从业2年</Text>*/}
+            {/*</View>*/}
+            {/*<View className='detail'>*/}
+              {/*张三这是一段测试文字，张三333这是一<Text className='moreDetail'>详情</Text>*/}
+            {/*</View>*/}
+          {/*</View>*/}
+          {/*<View className='at-col at-col-2'>*/}
+            {/*<AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>*/}
+          {/*</View>*/}
+        {/*</View>*/}
+        {/*<View className='item lastItem'>*/}
+          {/*<Text>会员服务</Text>*/}
+          {/*<Image class='ItemImg' src={require('../../packageCP/images/evaStart6.png')}/>*/}
+        {/*</View>*/}
 
         {/*咨询师*/}
-        <View className='counselor firstItem'>
+        <View className='counselor'>
           <View>
             <Text className="title">咨询师</Text>
             <Text class="more">更多</Text>

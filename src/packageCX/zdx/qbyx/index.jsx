@@ -3,7 +3,7 @@ import { View } from '@tarojs/components'
 import SchoolItem from '../component/schoolItem/index'
 import { AtDrawer, AtButton    } from 'taro-ui'
 import classNames from 'classnames'
-import {login, getSchoolList} from '@utils/api'
+import {getSchoolList,getAllList} from '@utils/api'
 
 import './index.scss'
 
@@ -16,16 +16,31 @@ class Index extends Component {
     super(props)
     this.state = {
       show:false,
-      schoolData: []
+      schoolData: [],
+      schoolLevel:[],
+      typeList:[],
+      stuType:[],
+      schoolType:[],
+      province:[],
     };
   }
 
   componentDidMount(){
     getSchoolList({currentPage: 0,pageSize: 20}).then(({data})=>{
       this.setState((prevState)=>({
-        schoolData: data.list
+        schoolData: data.list,
       }));
     });
+    //获取大学所有的枚举
+    getAllList().then(({data}) => {
+      this.setState((prevState)=>({
+        schoolLevel: data.schoolLevel,
+        typeList: data.type,
+        stuType: data.stuType,
+        schoolType: data.schoolType,
+        province: data.province,
+      }));
+    })
   }
 
   componentWillUnmount () {}
@@ -54,12 +69,12 @@ class Index extends Component {
   }
 
   render () {
-    let {schoolData} = this.state;
+    let {schoolData, schoolLevel, typeList, stuType, schoolType, province} = this.state;
     return (
       <View className ='qbyx'>
         <View className ='schoolCx'>
-          <View onClick={this.filterSchool.bind(this)} className ='searchIcon'><View className='at-icon at-icon-chevron-down font1'></View>筛选</View>
-          <View onClick={this.searchSchool.bind(this)} className='at-icon at-icon-chevron-down searchIcon font1'></View>
+          {/*<View onClick={this.filterSchool.bind(this)} className ='searchIcon'><View className='at-icon at-icon-chevron-down font1'></View>筛选</View>*/}
+          {/*<View onClick={this.searchSchool.bind(this)} className='at-icon at-icon-chevron-down searchIcon font1'></View>*/}
           <AtDrawer
             width='295px'
             show={this.state.show}
@@ -70,15 +85,25 @@ class Index extends Component {
             <View className='selectContent'>
               <View className='item'>
                 <View className='itemTitle'>热门标签</View>
-                <View className='at-row'>
+                <View className='at-row brItem'>
+                  {/*{*/}
+                    {/*schoolLevel && schoolLevel.length>0 && schoolLevel.map((item,index) => {*/}
+                      {/*return(*/}
+                        {/*<View className='at-col' key={index}>*/}
+                          {/*<AtButton type='primary' size='small'>{item}</AtButton>*/}
+                        {/*</View>*/}
+                      {/*)*/}
+                    {/*})*/}
+                  {/*}*/}
+
                   <View className='at-col'>
-                    <AtButton type='primary' size='small'>双一流</AtButton>
+                    <AtButton type='primary' size='small'>本科</AtButton>
                   </View>
                   <View className='at-col'>
-                    <AtButton type='primary' size='small'>985</AtButton>
+                    <AtButton type='primary' size='small'>专科</AtButton>
                   </View>
                   <View className='at-col'>
-                    <AtButton type='primary' size='small'>211</AtButton>
+                    <AtButton type='primary' size='small'>高职</AtButton>
                   </View>
                 </View>
               </View>
@@ -86,14 +111,74 @@ class Index extends Component {
               <View className='item'>
                 <View className='itemTitle'>类型</View>
                 <View className='at-row'>
+                  {/*{*/}
+                    {/*typeList && typeList.length>0 && typeList.map((item,index) => {*/}
+                      {/*return(*/}
+                        {/*<View className='at-col' key={index}>*/}
+                          {/*<AtButton type='primary' size='small'>{item}</AtButton>*/}
+                        {/*</View>*/}
+                      {/*)*/}
+                    {/*})*/}
+                  {/*}*/}
+
                   <View className='at-col'>
-                    <AtButton type='primary' size='small'>不限</AtButton>
+                    <AtButton type='primary' size='small'>本科</AtButton>
                   </View>
                   <View className='at-col'>
-                    <AtButton type='primary' size='small'>综合</AtButton>
+                    <AtButton type='primary' size='small'>专科</AtButton>
                   </View>
                   <View className='at-col'>
-                    <AtButton type='primary' size='small'>理工</AtButton>
+                    <AtButton type='primary' size='small'>高职</AtButton>
+                  </View>
+                </View>
+              </View>
+
+              <View className='item'>
+                <View className='itemTitle'>层次</View>
+                <View className='at-row'>
+                  {/*{*/}
+                    {/*stuType && stuType.length>0 && stuType.map((item,index) => {*/}
+                      {/*return(*/}
+                        {/*<View className='at-col' key={index}>*/}
+                          {/*<AtButton type='primary' size='small'>{item}</AtButton>*/}
+                        {/*</View>*/}
+                      {/*)*/}
+                    {/*})*/}
+                  {/*}*/}
+
+                  <View className='at-col'>
+                    <AtButton type='primary' size='small'>本科</AtButton>
+                  </View>
+                  <View className='at-col'>
+                    <AtButton type='primary' size='small'>专科</AtButton>
+                  </View>
+                  <View className='at-col'>
+                    <AtButton type='primary' size='small'>高职</AtButton>
+                  </View>
+                </View>
+              </View>
+
+              <View className='item'>
+                <View className='itemTitle'>性质</View>
+                <View className='at-row'>
+                  {/*{*/}
+                    {/*schoolType && schoolType.length>0 && schoolType.map((item,index) => {*/}
+                      {/*return(*/}
+                        {/*<View className='at-col' key={index}>*/}
+                          {/*<AtButton type='primary' size='small'>{item}</AtButton>*/}
+                        {/*</View>*/}
+                      {/*)*/}
+                    {/*})*/}
+                  {/*}*/}
+
+                  <View className='at-col'>
+                    <AtButton type='primary' size='small'>本科</AtButton>
+                  </View>
+                  <View className='at-col'>
+                    <AtButton type='primary' size='small'>专科</AtButton>
+                  </View>
+                  <View className='at-col'>
+                    <AtButton type='primary' size='small'>高职</AtButton>
                   </View>
                 </View>
               </View>
@@ -101,59 +186,24 @@ class Index extends Component {
               <View className='item'>
                 <View className='itemTitle'>类型</View>
                 <View className='at-row'>
-                  <View className='at-col'>
-                    <AtButton type='primary' size='small'>不限</AtButton>
-                  </View>
-                  <View className='at-col'>
-                    <AtButton type='primary' size='small'>综合</AtButton>
-                  </View>
-                  <View className='at-col'>
-                    <AtButton type='primary' size='small'>理工</AtButton>
-                  </View>
-                </View>
-              </View>
+                  {/*{*/}
+                    {/*province && province.length>0 && province.map((item,index) => {*/}
+                      {/*return(*/}
+                        {/*<View className='at-col' key={index}>*/}
+                          {/*<AtButton type='primary' size='small'>{item}</AtButton>*/}
+                        {/*</View>*/}
+                      {/*)*/}
+                    {/*})*/}
+                  {/*}*/}
 
-              <View className='item'>
-                <View className='itemTitle'>类型</View>
-                <View className='at-row'>
                   <View className='at-col'>
-                    <AtButton type='primary' size='small'>不限</AtButton>
+                    <AtButton type='primary' size='small'>本科</AtButton>
                   </View>
                   <View className='at-col'>
-                    <AtButton type='primary' size='small'>综合</AtButton>
+                    <AtButton type='primary' size='small'>专科</AtButton>
                   </View>
                   <View className='at-col'>
-                    <AtButton type='primary' size='small'>理工</AtButton>
-                  </View>
-                </View>
-              </View>
-
-              <View className='item'>
-                <View className='itemTitle'>类型</View>
-                <View className='at-row'>
-                  <View className='at-col'>
-                    <AtButton type='primary' size='small'>不限</AtButton>
-                  </View>
-                  <View className='at-col'>
-                    <AtButton type='primary' size='small'>综合</AtButton>
-                  </View>
-                  <View className='at-col'>
-                    <AtButton type='primary' size='small'>理工</AtButton>
-                  </View>
-                </View>
-              </View>
-
-              <View className='item'>
-                <View className='itemTitle'>类型</View>
-                <View className='at-row'>
-                  <View className='at-col'>
-                    <AtButton type='primary' size='small'>不限</AtButton>
-                  </View>
-                  <View className='at-col'>
-                    <AtButton type='primary' size='small'>综合</AtButton>
-                  </View>
-                  <View className='at-col'>
-                    <AtButton type='primary' size='small'>理工</AtButton>
+                    <AtButton type='primary' size='small'>高职</AtButton>
                   </View>
                 </View>
               </View>

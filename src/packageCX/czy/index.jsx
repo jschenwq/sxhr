@@ -15,14 +15,19 @@ class Index extends Component {
     super(props)
     this.state = {
       current:0,
-      selector: ['本科', '专科（高职）'],
-      level: '本科',
+      selector: ['普通本科', '专科（高职）'],
+      level: '普通本科',
       secondMajorList:[],
     };
   }
 
   componentDidMount(){
-
+    getAllZy({level:this.state.level}).then(({data}) => {
+      console.log(data);
+      this.setState({
+        secondMajorList: data
+      })
+    });
   }
 
   componentWillUnmount () {}
@@ -51,11 +56,10 @@ class Index extends Component {
     })
 
     if(value == 1){
-      getAllZy({level:this.state.level}).then(({data}) => {
-        console.log(data);
-        this.setState({
-          secondMajorList: data
-        })
+      Taro.showToast({
+        title: '开发中敬请期待...',
+        icon: 'none',
+        mask: true,
       });
     }
   }
@@ -99,7 +103,7 @@ class Index extends Component {
   }
 
   render () {
-    const tabList = [{ title: '专业推荐' }, { title: '全部专业' }];
+    const tabList = [{ title: '全部专业' }, { title: '专业推荐' }];
     const {secondMajorList} = this.state;
     return (
       <View className ='czy'>
@@ -108,7 +112,7 @@ class Index extends Component {
           <Text className='searchText'>请输入专业名称</Text>
         </View>
         <View className ='selectZy'>
-          <Picker style = 'display:inline-block;margin-left:10px' mode='selector' range={this.state.selector} onChange={this.onChange}>
+          <Picker style = 'display:inline-block' mode='selector' range={this.state.selector} onChange={this.onChange}>
             <View className='picker'>
               {this.state.level}
             </View>
@@ -117,45 +121,7 @@ class Index extends Component {
         </View>
 
         <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
-          <AtTabsPane current={this.state.current} index={0} >
-            <View className ='qbzy'>
-              <View className ='zyLogo'>
-                <Image src={require('@images/home/banner.jpg')} className='zyLogoImg' />
-                <Text onClick={this.gotoCP.bind(this)} className ='ljcp'>立即测评</Text>
-              </View>
-
-              <View className='counselor'>
-                <View>
-                  <Text className="title">报考热度</Text>
-                  <Text onClick={this.bkrdGetMore.bind(this)} className="more">更多</Text>
-                </View>
-              </View>
-              <AtList>
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-              </AtList>
-
-              <View className='counselor firstItem'>
-                <View>
-                  <Text className="title">就业前景</Text>
-                  <Text onClick={this.jyqjGetMore.bind(this)} className="more">更多</Text>
-                </View>
-              </View>
-              <AtList>
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
-              </AtList>
-            </View>
-          </AtTabsPane>
-          <AtTabsPane current={this.state.current} index={1}>
+          <AtTabsPane current={this.state.current} index={0}>
             <View className ='qbzy'>
               {
                 secondMajorList.length>0 && secondMajorList.map((item,index) => {
@@ -181,6 +147,45 @@ class Index extends Component {
               }
             </View>
 
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={1} >
+            <View>敬请期待...</View>
+            {/*<View className ='qbzy'>*/}
+              {/*<View className ='zyLogo'>*/}
+                {/*<Image src={require('@images/home/banner.jpg')} className='zyLogoImg' />*/}
+                {/*<Text onClick={this.gotoCP.bind(this)} className ='ljcp'>立即测评</Text>*/}
+              {/*</View>*/}
+
+              {/*<View className='counselor'>*/}
+                {/*<View>*/}
+                  {/*<Text className="title">报考热度</Text>*/}
+                  {/*<Text onClick={this.bkrdGetMore.bind(this)} className="more">更多</Text>*/}
+                {/*</View>*/}
+              {/*</View>*/}
+              {/*<AtList>*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+              {/*</AtList>*/}
+
+              {/*<View className='counselor firstItem'>*/}
+                {/*<View>*/}
+                  {/*<Text className="title">就业前景</Text>*/}
+                  {/*<Text onClick={this.jyqjGetMore.bind(this)} className="more">更多</Text>*/}
+                {/*</View>*/}
+              {/*</View>*/}
+              {/*<AtList>*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
+              {/*</AtList>*/}
+            {/*</View>*/}
           </AtTabsPane>
         </AtTabs>
       </View>

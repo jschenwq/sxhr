@@ -63,6 +63,20 @@ class Index extends Component {
       mask: true
     });
   }
+  gotoZsjh(){
+    Taro.showToast({
+      title: '功能开发中',
+      icon: 'none',
+      mask: true
+    });
+  }
+  gotoLnfsx(){
+    Taro.showToast({
+      title: '功能开发中',
+      icon: 'none',
+      mask: true
+    });
+  }
   render () {
     let {school, majors,schoolNewsList,isOpened,detailNodes} = this.state;
     return (
@@ -103,8 +117,9 @@ class Index extends Component {
             ]
           } />
         </View>
-        <View className='shortDes' onClick={this.handleShowDetail.bind(this)}>
+        <View className='shortDes'>
           {school.content}
+          <Text onClick={this.handleShowDetail.bind(this)} className ='more'>更多</Text>
         </View>
 
         <Swiper
@@ -118,37 +133,37 @@ class Index extends Component {
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-1'>
               <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
-              <Text className='imgText'>测试文字6</Text>
+              <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-2'>
               <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
-              <Text className='imgText'>测试文字1</Text>
+              <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-3'>
               <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
-              <Text className='imgText'>测试文字5</Text>
+              <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-3'>
               <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
-              <Text className='imgText'>测试文字4</Text>
+              <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-3'>
               <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
-              <Text className='imgText'>测试文字3</Text>
+              <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-3'>
               <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
-              <Text className='imgText'>测试文字2</Text>
+              <Text className='imgText'></Text>
             </View>
           </SwiperItem>
         </Swiper>
@@ -184,8 +199,8 @@ class Index extends Component {
           </View>
         </View>
         <View className='bottomBtn'>
-          <View className='btn leftBtn'>招生计划</View>
-          <View className='btn rightBtn'>历年分数线</View>
+          <View onClick={this.gotoZsjh.bind(this)} className='btn leftBtn'>招生计划</View>
+          <View onClick={this.gotoLnfsx.bind(this)} className='btn rightBtn'>历年分数线</View>
         </View>
         <AtFloatLayout isOpened={isOpened} title="学校简介" onClose={this.handleClose.bind(this)}>
           <RichText nodes={detailNodes} />

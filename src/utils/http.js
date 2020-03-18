@@ -3,6 +3,7 @@ import config from './config';
 
 const baseUrl = config.host;
 const header = config.header;
+const isShowLoading = config.isShowLoading;
 const noConsole = config.noConsole;
 
 function baseOptions(options = {method: 'GET', data: {}, url: ''}) {
@@ -10,6 +11,8 @@ function baseOptions(options = {method: 'GET', data: {}, url: ''}) {
     console.log(`${new Date().toLocaleString()}【 M=${options.url} 】P=${JSON.stringify(options.data)}`);
   }
   const params = {
+    isShowLoading: isShowLoading,
+    loadingText: '正在加载',
     url: baseUrl + options.url,
     data: options.data,
     method: options.method.toUpperCase(),//taro规定必须大写

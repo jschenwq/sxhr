@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, RichText } from '@tarojs/components'
-import { AtTabs, AtTabsPane,  AtList, AtListItem, AtAccordion, AtProgress, AtCurtain } from 'taro-ui'
+import { AtTabs, AtTabsPane,  AtList, AtListItem, AtAccordion, AtProgress, AtFloatLayout } from 'taro-ui'
 import {getDetail} from '@utils/api'
 
 import './index.scss'
@@ -14,6 +14,8 @@ class Index extends Component {
     super(props)
     this.state = {
       current:0,
+      zyjsOpend:false,
+      detailNodes:"",
       open: [],
       zygk:{},
       isOpened:false,
@@ -127,6 +129,14 @@ class Index extends Component {
     this.setState({
       current: value
     })
+
+    if(value == 2){
+      Taro.showToast({
+        title: '开发中敬请期待...',
+        icon: 'none',
+        mask: true,
+      });
+    }
   }
 
   handleClickA(index, value) {
@@ -167,8 +177,20 @@ class Index extends Component {
     })
   }
 
+  zyjsOpen(){
+    this.setState({
+      detailNodes:this.state.zygk.majorIntroduce,
+      zyjsOpend: true
+    })
+  }
+  zyjsClose(){
+    this.setState({
+      zyjsOpend: false
+    });
+  }
+
   render () {
-    const {arryList, zygk, open , arryList1, arryList2} = this.state;
+    const {arryList, zygk, open , zyjsOpend, detailNodes,arryList1, arryList2} = this.state;
     const tabList = [{ title: '专业概况' }, { title: '就业前景' }, { title: '开设院校' }];
     return (
       <View className ='zyxq'>
@@ -239,39 +261,46 @@ class Index extends Component {
 
                   <View className='at-row at-row__justify--around itemH'>
 
-                    <View className='at-col at-col-6'>
+                    <View className='at-col at-col-12'>
                       <View className='at-row at-row__justify--center'>
-                        <View className='at-col at-col-4'>
+                        <View className='at-col at-col-2'>
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
-                        <View className='at-col at-col-8'>
+                        <View className='at-col at-col-10'>
                           <View className ='font3'>{zygk.subjectSuggest}</View>
-                          <View className ='font4'>选课建议</View>
+                          <View className ='font4'>学科建议</View>
                         </View>
                       </View>
                     </View>
+                  </View>
 
-                    <View className='at-col at-col-6'>
+                  <View className='at-row at-row__justify--around itemH'>
+                    <View className='at-col at-col-12'>
                       <View className='at-row at-row__justify--center'>
-                        <View className='at-col at-col-4'>
+                        <View className='at-col at-col-2'>
                           <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
                         </View>
-                        <View className='at-col at-col-8'>
+                        <View className='at-col at-col-10'>
                           <View className ='font3'>{zygk.keyWords}</View>
                           <View className ='font4'>关键词</View>
                         </View>
                       </View>
                     </View>
-
                   </View>
+
                 </View>
               </View>
 
               <View className='zyjs'>
                 <View className='font1'>专业介绍<Text onClick={this.gotoDetail.bind(this,zygk.content)} className= 'font2 font5'>详情</Text></View>
-                <View className='font6 font7'>{zygk.majorIntroduce}</View>
+                <View className='font6 font7' onClick={this.zyjsOpen.bind(this)}>
+                  {zygk.majorIntroduce}
+                  <Text className ='more'>更多</Text>
+                </View>
               </View>
-              <View className ='moreLook'>查看更多  ></View>
+              <AtFloatLayout isOpened={zyjsOpend} title="专业介绍" onClose={this.zyjsClose.bind(this)}>
+                <RichText nodes={detailNodes} />
+              </AtFloatLayout>
 
               <View className='zyjs jyfs'>
                 <View className='font1'>学习课程</View>
@@ -279,41 +308,39 @@ class Index extends Component {
               </View>
 
               <View className='zyjs jyfs'>
-                <View className='font1'>专业去向</View>
+                <View className='font1'>毕业去向</View>
                 <View className='font6'><RichText nodes={zygk.majorDo} /></View>
               </View>
 
-              <View className='itemList'>
-                <AtList>
-                  <AtListItem
-                    title='主要研究方向'
-                    extraText='详细信息'
-                    thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
-                  />
-                </AtList>
-              </View>
+              {/*<View className='itemList'>*/}
+                {/*<AtList>*/}
+                  {/*<AtListItem*/}
+                    {/*title='主要研究方向'*/}
+                    {/*extraText='详细信息'*/}
+                    {/*thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'*/}
+                  {/*/>*/}
+                {/*</AtList>*/}
+              {/*</View>*/}
 
-              <View className='itemList'>
-                <AtList>
-                  <AtListItem
-                    title='主要研究方向'
-                    extraText='详细信息'
-                    thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
-                  />
-                </AtList>
-              </View>
+              {/*<View className='itemList'>*/}
+                {/*<AtList>*/}
+                  {/*<AtListItem*/}
+                    {/*title='主要研究方向'*/}
+                    {/*extraText='详细信息'*/}
+                    {/*thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'*/}
+                  {/*/>*/}
+                {/*</AtList>*/}
+              {/*</View>*/}
 
-              <View className='itemList'>
-                <AtList>
-                  <AtListItem
-                    title='主要研究方向'
-                    extraText='详细信息'
-                    thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
-                  />
-                </AtList>
-              </View>
-
-              <View className ='moreLook1'>查看更多  ></View>
+              {/*<View className='itemList'>*/}
+                {/*<AtList>*/}
+                  {/*<AtListItem*/}
+                    {/*title='主要研究方向'*/}
+                    {/*extraText='详细信息'*/}
+                    {/*thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'*/}
+                  {/*/>*/}
+                {/*</AtList>*/}
+              {/*</View>*/}
             </View>
           </AtTabsPane>
 
@@ -367,81 +394,82 @@ class Index extends Component {
                 }
               </View>
 
-              <View className ='sjlysm'>
-                <View className ='sjlysmN'>
-                  <View className ='sjltTitle'>
-                    <Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />
-                    <Text>数据来源说明：</Text>
-                  </View>
+              {/*<View className ='sjlysm'>*/}
+                {/*<View className ='sjlysmN'>*/}
+                  {/*<View className ='sjltTitle'>*/}
+                    {/*<Image src={require('@packageCP/images/boy.png')} className='cardLeftImg' />*/}
+                    {/*<Text>数据来源说明：</Text>*/}
+                  {/*</View>*/}
 
-                  <View className='at-row at-row__align--center detail'>
-                    <View className='at-col at-col-1'>
-                      <View className ='circle'></View>
-                    </View>
-                    <View className='at-col textDes'>
-                      这事一段测试文字这事一段测试文字
-                    </View>
-                  </View>
+                  {/*<View className='at-row at-row__align--center detail'>*/}
+                    {/*<View className='at-col at-col-1'>*/}
+                      {/*<View className ='circle'></View>*/}
+                    {/*</View>*/}
+                    {/*<View className='at-col textDes'>*/}
+                      {/*这事一段测试文字这事一段测试文字*/}
+                    {/*</View>*/}
+                  {/*</View>*/}
 
-                  <View className='at-row at-row__align--center detail'>
-                    <View className='at-col at-col-1'>
-                      <View className ='circle'></View>
-                    </View>
-                    <View className='at-col textDes'>
-                      这事一段测试文字这事一段测试文字
-                      这事一段测试文字这事一段测试文字
-                      这事一段测试文字这事一段测试文字
-                    </View>
-                  </View>
-                </View>
-              </View>
+                  {/*<View className='at-row at-row__align--center detail'>*/}
+                    {/*<View className='at-col at-col-1'>*/}
+                      {/*<View className ='circle'></View>*/}
+                    {/*</View>*/}
+                    {/*<View className='at-col textDes'>*/}
+                      {/*这事一段测试文字这事一段测试文字*/}
+                      {/*这事一段测试文字这事一段测试文字*/}
+                      {/*这事一段测试文字这事一段测试文字*/}
+                    {/*</View>*/}
+                  {/*</View>*/}
+                {/*</View>*/}
+              {/*</View>*/}
             </View>
           </AtTabsPane>
 
           <AtTabsPane current={this.state.current} index={2}>
             <View>
-              <View className ='topTip'>
-                <Text onClick={this.handleChangeB.bind(this)} className ='sysm'>数据说明</Text>
-              </View>
+              开发中敬请期待...
+              {/*<View className ='topTip'>*/}
+                {/*<Text onClick={this.handleChangeB.bind(this)} className ='sysm'>数据说明</Text>*/}
+              {/*</View>*/}
 
-              <View className ='qbzy1'>
-                {
-                  [1,3,1,1,1,1,1,1,1,1,1,1,1,].map((item,index) =>{
-                    return (
-                      <View onClick={this.gotoSchoolDetail.bind(this)} className='at-row at-row__align--start schoolItem' key={index}>
-                        <View className='at-col at-col-2'>
-                          <Image src={require('@packageCP/images/boy.png')} className='schoolItemLogo' />
-                        </View>
-                        <View className='at-col'>
-                          <View className="schoolInfo">
-                            <View className="schoolTitle">
-                              <Text className='schoolName'>北京大学</Text>
-                              <Text className='schoolSx'>211</Text>
-                              <Text className='schoolSx'>985</Text>
-                              <Text className='schoolSx'>双一流</Text>
-                            </View>
-                            <View className='schoolaAttr'>综合 / 教育 / 工作</View>
-                            <View className='schoolaAttr'>校友会: -/-/-</View>
-                            <View className='schoolaAttr'>学校评估:-</View>
-                          </View>
-                        </View>
-                      </View>
-                    )
-                  })
-                }
-              </View>
+              {/*<View className ='qbzy1'>*/}
+                {/*{*/}
+                  {/*[1,3,1,1,1,1,1,1,1,1,1,1,1,].map((item,index) =>{*/}
+                    {/*return (*/}
+                      {/*<View onClick={this.gotoSchoolDetail.bind(this)} className='at-row at-row__align--start schoolItem' key={index}>*/}
+                        {/*<View className='at-col at-col-2'>*/}
+                          {/*<Image src={require('@packageCP/images/boy.png')} className='schoolItemLogo' />*/}
+                        {/*</View>*/}
+                        {/*<View className='at-col'>*/}
+                          {/*<View className="schoolInfo">*/}
+                            {/*<View className="schoolTitle">*/}
+                              {/*<Text className='schoolName'>北京大学</Text>*/}
+                              {/*<Text className='schoolSx'>211</Text>*/}
+                              {/*<Text className='schoolSx'>985</Text>*/}
+                              {/*<Text className='schoolSx'>双一流</Text>*/}
+                            {/*</View>*/}
+                            {/*<View className='schoolaAttr'>综合 / 教育 / 工作</View>*/}
+                            {/*<View className='schoolaAttr'>校友会: -/-/-</View>*/}
+                            {/*<View className='schoolaAttr'>学校评估:-</View>*/}
+                          {/*</View>*/}
+                        {/*</View>*/}
+                      {/*</View>*/}
+                    {/*)*/}
+                  {/*})*/}
+                {/*}*/}
+              {/*</View>*/}
 
 
 
-              <AtCurtain
-                isOpened={this.state.isOpened}
-                onClose={this.onClose.bind(this)}
-              >
-                <Image
-                  style='width:100%;height:250px'
-                  src={require('@images/home/banner.jpg')}
-                />
-              </AtCurtain>
+              {/*<AtCurtain*/}
+                {/*isOpened={this.state.isOpened}*/}
+                {/*onClose={this.onClose.bind(this)}*/}
+              {/*>*/}
+                {/*<Image*/}
+                  {/*style='width:100%;height:250px'*/}
+                  {/*src={require('@images/home/banner.jpg')}*/}
+                {/*/>*/}
+              {/*</AtCurtain>*/}
             </View>
           </AtTabsPane>
         </AtTabs>

@@ -29,7 +29,7 @@ class Index extends Component {
   render () {
     return (
       <View className ='zntj'>
-        智能推荐--明天开发
+        功能能开发中
       </View>
     )
   }
