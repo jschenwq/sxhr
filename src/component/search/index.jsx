@@ -32,9 +32,9 @@ class Index extends Component {
 
   onChange (value) {
     console.log(value);
-    // this.setState({
-    //   value: value
-    // })
+    this.setState({
+      value: value
+    });
     // if(value.length == 0){
     //   this.setState({
     //     isShow:true
@@ -51,19 +51,37 @@ class Index extends Component {
       value: e.detail.value
     })
     if(type == 1){//大学
-      getSchoolList({schoolName: e.detail.value, currentPage: 1, pageSize: 20}).then(({data})=>{
+      this.searchSchool(e.detail.value);
+    }
+  }
+  searchSchool(schoolName){
+    getSchoolList({schoolName: schoolName, currentPage: 1, pageSize: 20}).then(({data})=>{
+      if(data.list.length>0){
         this.setState({
           searchList: data.list
         });
-      });
-    }
+      }else{
+        Taro.showToast({
+          title: '未有满足条件的数据',
+          icon: 'none',
+          mask: true
+        });
+      }
+    });
   }
   //初始化拉去搜索历史，如果没有一个历史，则隐藏历史纪录，有一个则显示搜索历史并展示
   onActionClick(e){
     console.log(e);
-    Taro.navigateBack({
-      delta: 1 // 返回上一级页面。
-    });
+    if(this.state.value.length>0){
+      let type = this.$router.params.type;
+      if(type==1){//大学
+        this.searchSchool(this.state.value);
+      }
+    }else{
+      Taro.navigateBack({
+        delta: 1 // 返回上一级页面。
+      });
+    }
   }
   //清空搜索框内容
   clearText(){
@@ -81,11 +99,7 @@ class Index extends Component {
     let type = this.$router.params.type;
     //调查询接口
     if(type==1){//大学
-      getSchoolList({schoolName: data, currentPage: 1, pageSize: 20}).then(({data})=>{
-        this.setState({
-          searchList: data.list
-        });
-      });
+      this.searchSchool(data);
     }
   }
   //清空历史纪录
