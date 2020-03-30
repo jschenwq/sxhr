@@ -12,19 +12,20 @@ function pageInit(){
         initShareMenu(this.state);
       }
       //阻塞didMount，鉴权
-      async componentDidMount(){
-        let result = await auth.appCheckAuth();
-        //授权成功
-        if(result){
-          //调用父组件的函数
-          super.componentDidMount && super.componentDidMount();
-        }else{
-          Taro.showToast({
-            title: '授权失败',
-            icon: 'none',
-            mask: true
-          });
-        }
+      componentDidMount(){
+        auth.appCheckAuth().then((result)=>{
+          //授权成功
+          if(result){
+            //调用父组件的函数
+            super.componentDidMount && super.componentDidMount();
+          }else{
+            Taro.showToast({
+              title: '授权失败',
+              icon: 'none',
+              mask: true
+            });
+          }
+        });
       }
       //重写分享
       onShareAppMessage(){

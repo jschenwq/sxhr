@@ -14,47 +14,51 @@ export default class Auth{
         resolve(true);
       }else{
         //判断session_key是否过期
-        Taro.checkSession().then(async ()=>{
+        Taro.checkSession().then(()=>{
           //未过期检查token是否有效
           if(!Auth.checkAuth()){
-            let flag = await getAuthToken();
-            if(flag){
-              //更新app状态
-              Taro.$store.dispatch(changeAppOnLaunch());
-              resolve(true);
-            }else{
-              //提示
-              Taro.showToast({
-                title: '获取授权信息失败',
-                icon: 'none',
-                mask: true
-              });
-            }
+            getAuthToken().then((flag)=>{
+              if(flag){
+                //更新app状态
+                Taro.$store.dispatch(changeAppOnLaunch());
+                resolve(true);
+              }else{
+                //提示
+                Taro.showToast({
+                  title: '获取授权信息失败',
+                  icon: 'none',
+                  mask: true
+                });
+                resolve(false);
+              }
+            });
           }else{
             //更新app状态
             Taro.$store.dispatch(changeAppOnLaunch());
             //token没有过期，直接返回
             resolve(true);
           }
-        }).catch(async (err)=>{
+        }).catch((err)=>{
           console.log(err);
-          let flag = await getAuthToken();
-          //判断是否token请求成功
-          if(flag){
-            //更新app状态
-            Taro.$store.dispatch(changeAppOnLaunch());
-            resolve(true);
-          }else{
-            //tishi
-            Taro.showToast({
-              title: '获取授权信息失败',
-              icon: 'none',
-              mask: true
-            });
-          }
+          getAuthToken().then((flag)=>{
+            //判断是否token请求成功
+            if(flag){
+              //更新app状态
+              Taro.$store.dispatch(changeAppOnLaunch());
+              resolve(true);
+            }else{
+              //tishi
+              Taro.showToast({
+                title: '获取授权信息失败',
+                icon: 'none',
+                mask: true
+              });
+              resolve(false);
+            }
+          });
         });
       }
-    })
+    });
   }
   //检查令牌是否有效 true --> 有效 false-->无效
   static checkAuth(){
@@ -76,44 +80,62 @@ export default class Auth{
   }
 }
 //授权用户token
-async function getAuthToken(){
+function getAuthToken(){
   const state = Taro.$store.getState();
   //login
-  let res = await Taro.login();
-  console.log("---- 用户登录数据信息 ----");
-  console.log(res);
-  let encryptedDatav = '', iv='';
-  await Taro.getUserInfo({
-    withCredentials: true,
-    success: (data)=>{
-      console.log(data);
-      encryptedDatav = data.encryptedData;
-      iv = data.iv;
-    },
-    fail: (res)=>{
-      console.log(res);
-    }
+  return new Promise((resolve, reject)=>{
+    Taro.login({
+      success: (res)=>{
+        if (res.code) {
+          //发起网络请求
+          console.log("---- 用户登录数据信息 ----");
+          console.log(res);
+          new Promise((resolve, reject)=>{
+            Taro.getUserInfo({
+              withCredentials: true,
+              success: (data)=>{
+                console.log(data);
+                resolve(data);
+              },
+              fail: (res)=>{
+                console.log(res);
+              }
+            });
+          }).then((data)=>{
+            //获取token
+            Taro.request({
+              url: config.host+'/wx/system/loginForWx',
+              data: {
+                code: res.code,
+                encryptedDatav: data.encryptedData,
+                iv: data.iv
+              },
+              method: 'POST',
+              success: (res)=>{
+                //判断是否成功
+                if(res.data.data){
+                  //写入token
+                  let authorize = res.data.data;
+                  saveAuthToken(authorize);
+                  resolve(true);
+                }else{
+                  console.log(res.data.msg);
+                  resolve(false);
+                }
+              },
+              fail: (res)=>{
+                console.log(res);
+                resolve(false);
+              }
+            });
+          });
+        } else {
+          console.log('登录调用失败');
+          resolve(false);
+        }
+      }
+    });
   });
-  //获取token
-  let response = await Taro.request({
-    url: config.host+'/wx/system/loginForWx',
-    data: {
-      code: res.code,
-      encryptedDatav: encryptedDatav,
-      iv: iv
-    },
-    method: 'POST'
-  });
-  //判断是否成功
-  if(response.data.data){
-    //写入token
-    let authorize = response.data.data;
-    saveAuthToken(authorize);
-    return true;
-  }else{
-    console.log(response.data.msg);
-    return false;
-  }
 }
 //写入信息
 function saveAuthToken(authorize){
