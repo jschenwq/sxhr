@@ -174,6 +174,19 @@ class Index extends Component {
     }
   }
 
+  //获取更多咨询师
+  getMoreZxs(){
+    Taro.navigateTo({
+      url: '/packageCX/zixunshi/index',
+    })
+  }
+
+  //跳转咨询师详情
+  gotozxsDetail(){
+    Taro.navigateTo({
+      url: '/packageCX/zixunshi/zxsDetail/index',
+    })
+  }
 
   onChange = e => {
     this.setState({
@@ -357,11 +370,11 @@ class Index extends Component {
         <View className='counselor'>
           <View>
             <Text className="title">咨询师</Text>
-            <Text class="more">更多</Text>
+            <Text onClick={this.getMoreZxs.bind(this)} class="more">更多</Text>
           </View>
         </View>
 
-        <View className={classNames('at-row','itemPerson')}>
+        <View onClick={this.gotozxsDetail.bind(this)} className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
             <Image src={require('../../packageCP/images/boy.png')} className='counselorImg1' />
           </View>

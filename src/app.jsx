@@ -61,6 +61,8 @@ class App extends Component {
           'pcx/index',
           'wccx/index',//位次查询
           'zntj/index',//智能推荐
+          'zixunshi/index',//咨询师列表
+          'zixunshi/zxsDetail/index',//咨询师详情
         ]
       },
       //服务分包

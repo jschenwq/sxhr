@@ -194,18 +194,11 @@ class Index extends Component {
             <Text onClick={this.getHistoryItem.bind(this,'伤心')} className ='searhItem'>伤心</Text>
           </View>
         </View>
-        <View className = {classNames('searchContent',schoolList.length==0 || zhuanyeList.length==0?'':'active')}>
+        <View className = {classNames('searchContent',schoolList.length==0?'':'active')}>
           <AtList>
             { type==1 &&
               schoolList.map((item,index)=>{
                 return (<AtListItem key={index} onClick={this.gotoAAA.bind(this, item.schoolId)} title={item.schoolName} thumb={item.logoPath} arrow='right' />);
-              })
-            }
-
-            { type==2 &&
-              zhuanyeList.map((item,index)=>{
-                return (<AtListItem key={index} onClick={this.gotoZyxq.bind(this,item.majorId)} title={item.majorName} note={'学制：'+ item.learnYear} arrow='right' />
-                );
               })
             }
           </AtList>

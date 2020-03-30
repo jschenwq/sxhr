@@ -54,7 +54,7 @@ class Index extends Component {
     let {isLoading} = this.state;
     return (
       <View className='index'>
-        <View style='text-align: center;margin-bottom: 10px;'>汇百智教育</View>
+        <View style='text-align: center;margin-bottom: 10px;'>识人文墨教育</View>
         <Button onGetUserInfo={this.wxLogin.bind(this)} openType="getUserInfo" loading={isLoading} type='primary' circle>微信快捷登录</Button>
         <Button onClick={this.sjLogin.bind(this)} type='default' circle>手机号短信登录</Button>
       </View>
