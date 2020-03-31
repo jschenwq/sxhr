@@ -17,18 +17,32 @@
       font-size: 36px;
       font-weight: bold;
       margin-right: 30px;
+      position: relative;
+      left: 5px;
     }
     .year{
       font-size: 28px;
       color: #A3A3A3;
     }
+    .detailJob{
+      &:after{
+        content: "";
+        display: block;
+        clear: both;
+      }
+    }
     .job{
+      display: inline-block;
+      padding: 0px 16px;
       font-size: 28px;
       text-align: center;
       border: 1px solid #ccc;
       border-radius: 30px;
-      margin-bottom:8px;
-
+      margin:10px 15px 0px 0px;
+      float: left;
+    }
+    .yearAndPj{
+      margin-top: 10px;
     }
     .at-rate{
       display: inline-block;
