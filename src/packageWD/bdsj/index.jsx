@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button} from '@tarojs/components'
 import { AtIcon, AtButton } from 'taro-ui'
+import {getVerificationCode, bindMobile} from '@utils/api'
 import './index.scss'
 
 class Index extends Component {
@@ -21,39 +22,69 @@ class Index extends Component {
   componentWillMount(){
 
   }
-  handleSjh(e){
+  handleSjh(e){//输入手机号
     this.setState((prevState)=>({
       phoneNumber: e.detail.value
     }));
   }
-  handleVCode(e){
+  handleVCode(e){//输入验证码
     this.setState((prevState)=>({
       verifyCode: e.detail.value
     }));
   }
-  getVCode=()=>{
+  getVCode=()=>{//获取验证码
+    if(!(/^1[3456789]\d{9}$/.test(this.state.phoneNumber))){
+      Taro.showToast({
+        title: '手机号码有误，请重填',
+        icon: 'none',
+        mask: true
+      });
+      return ;
+    }
     if(!this.state.isHasGet){//未获取
-      this.setState(()=>({
-        isHasGet: true
-      }));
-      let timer = setInterval(()=>{
-        if(this.state.count === 0){
-          clearInterval(timer);
-          this.setState((prevState)=>({
-            count: 60,
-            isHasGet: false
+      getVerificationCode({mobile: this.state.phoneNumber}).then(({code, msg})=>{
+        if(code == 0){
+          this.setState(()=>({
+            isHasGet: true
           }));
+          let timer = setInterval(()=>{
+            if(this.state.count === 0){
+              clearInterval(timer);
+              this.setState((prevState)=>({
+                count: 60,
+                isHasGet: false
+              }));
+            }else{
+              this.setState((prevState)=>({
+                count: prevState.count-1
+              }));
+            }
+          },1000);
         }else{
-          this.setState((prevState)=>({
-            count: prevState.count-1
-          }));
+          Taro.showToast({
+            title: msg,
+            icon: 'none',
+            mask: true
+          });
         }
-      },1000);
+      });
     }
   }
   phoneBind=()=>{
-    Taro.navigateBack({
-      delta: 1
+    console.log(this.state);
+    bindMobile({mobile: this.state.phoneNumber,code: this.state.verifyCode}).then(({code, msg})=>{
+      Taro.showToast({
+        title: msg,
+        icon: 'none',
+        mask: true
+      });
+      if(code == 0){
+        setTimeout(()=>{
+          Taro.navigateBack({
+            delta: 1
+          });
+        },1000);
+      }
     });
   }
   render(){

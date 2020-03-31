@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button} from '@tarojs/components'
-import {insertUserInfo} from '../../actions/counter';
+import auth from '@utils/auth';
 import './index.scss'
 
 class Index extends Component {
@@ -38,12 +38,16 @@ class Index extends Component {
     this.setState((prevState)=>({
       isLoading: true
     }));
-    Taro.$store.dispatch(insertUserInfo(e.detail.userInfo));
-    setTimeout(()=>{
+    auth.appCheckAuth().then((result)=>{
       this.setState((prevState)=>({
         isLoading: false
       }));
-    },1000);
+      Taro.showToast({
+        title: result?'授权成功':'授权失败',
+        icon: 'none',
+        mask: true
+      });
+    });
   }
   sjLogin(){
     Taro.navigateTo({

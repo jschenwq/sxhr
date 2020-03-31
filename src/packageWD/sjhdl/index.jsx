@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
-
+import {login} from '@utils/api'
 import './index.scss'
 
 class Index extends Component {
@@ -11,7 +11,7 @@ class Index extends Component {
   }
 
   constructor(){
-
+    super();
     this.state = {
       phoneNumber: '',
       verifyCode: '',
@@ -34,12 +34,7 @@ class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
-  onSubmit(){
 
-  }
-  onReset(){
-
-  }
   handleUserChange(e){
     this.setState((prevState)=>({
       phoneNumber: e.detail.value
@@ -70,6 +65,10 @@ class Index extends Component {
       },1000);
     }
   }
+  onSubmit(){
+
+  }
+
   render () {
     let {phoneNumber, verifyCode, vCode,isHasGet, count} = this.state;
     return (

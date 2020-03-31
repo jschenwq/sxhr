@@ -31,3 +31,15 @@ export const getSchoolNewsList = (data) => $.ajax('/wx/schoolNews/list', 'POST',
 export const getSchoolDetail = (schoolId) => $.ajax('/wx/school/'+schoolId, 'GET');
 //获取大学id获取简介
 export const getSchoolIntr = (schoolId) => $.ajax('/wx/schoolNews/introduction/'+schoolId, 'GET');
+
+//测评
+//获取职业兴趣测评题库
+export const getQuestions = ()=> $.ajax('/wx/evaluation/interest/questions','GET');
+//提交职业兴趣测评结果
+
+
+//绑定手机功能模块
+//获取验证码
+export const getVerificationCode = (data) => $.ajax('/wx/system/getVerificationCode','GET', data);
+//绑定手机
+export const bindMobile = (data) => $.ajax('/wx/system/bindMobile','GET',data);

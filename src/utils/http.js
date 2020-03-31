@@ -10,13 +10,15 @@ function baseOptions(options = {method: 'GET', data: {}, url: ''}) {
   if (!noConsole) {
     console.log(`${new Date().toLocaleString()}【 M=${options.url} 】P=${JSON.stringify(options.data)}`);
   }
+  const storeState = Taro.$store.getState();
+  console.log("Authorization："+storeState.counter.authorize);
   const params = {
     isShowLoading: isShowLoading,
     loadingText: '正在加载',
     url: baseUrl + options.url,
     data: options.data,
     method: options.method.toUpperCase(),//taro规定必须大写
-    header: header
+    header: Object.assign(header,{'Authorization': storeState.counter.authorize?storeState.counter.authorize:'Bearer'})
   }
   return Taro.request(params);
 }
@@ -48,4 +50,3 @@ function ajax(url, methodType, data) {
 export default {
   ajax
 }
-
