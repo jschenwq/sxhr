@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtGrid , AtButton, AtRate   } from 'taro-ui'
 import classNames from 'classnames'
-import {login} from '@utils/api'
+import {getzxsDetail} from '@utils/api'
 
 import './index.scss'
 
@@ -14,11 +14,24 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      stars:4
+      stars:4,
+      detailObj:{}
     };
   }
 
-  componentDidMount(){}
+  componentDidMount(){
+    console.log(this.$router.params.counselorId)
+    const counselorId = this.$router.params.counselorId;
+    getzxsDetail(counselorId).then(({data}) => {
+      this.setState({
+        detailObj: data
+      })
+
+      // Taro.setNavigationBarTitle({
+      //   title: data.type
+      // });
+    });
+  }
 
   componentWillUnmount () {}
 
@@ -27,30 +40,34 @@ class Index extends Component {
   componentDidHide () {}
 
   render () {
+    const {detailObj} = this.state;
     return (
       <View className = 'zsxDetail'>
-        <View onClick={this.gotozxsDetai.bind(this)} className={classNames('at-row','itemPerson')}>
+        <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={require('../../../packageCP/images/boy.png')} className='counselorImg1' />
+            <Image src={detailObj.headPath} className='counselorImg1' />
           </View>
-          <View className='at-col at-col-7'>
+          <View className='at-col at-col-9'>
             <View>
-              <Text className='name'>张三</Text>
+              <Text className='name'>{detailObj.counselorName}</Text>
             </View>
-            <View className='at-row'>
-              <View className='at-col at-col-4 job'>志愿填报</View>
-              <View className='at-col at-col-4 job'>高招政策</View>
-              <View className='at-col at-col-4 job'>心理咨询</View>
+            <View className='detailJob'>
+              {
+                detailObj.tag && detailObj.tag.split('、').map((item,index) => {
+                  return(
+                    <Text className ='job' key={index}>{item}</Text>
+                  )
+                })
+              }
             </View>
-            <View className='at-row'>
-              <View className='at-col at-col-4 job'>志愿填报</View>
-              <View className='at-col at-col-4 job'>高招政策</View>
-              <View className='at-col at-col-4 job'>心理咨询</View>
-            </View>
-            <View>
-              <Text className='year'>从业2年</Text><AtRate className='starts' value={this.state.stars}/>
+            <View  className='yearAndPj'>
+              <Text className='year'>从业{detailObj.workingYear}年</Text><AtRate className='starts' value={this.state.stars}/>
             </View>
           </View>
+        </View>
+
+        <View className ='introduce'>
+          {detailObj.introduce}
         </View>
       </View>
     )
