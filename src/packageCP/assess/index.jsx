@@ -1,27 +1,32 @@
 import Taro, {Component} from '@tarojs/taro'
 import { View, Text} from '@tarojs/components'
+import {getQuestions,submitAnswers} from '@utils/api'
 import './index.scss'
 
 class Index extends Component{
   config = {
-    navigationBarTitleText: ''
+    navigationBarTitleText: '测评'
   }
   constructor(){
     super();
     this.state = {
-      data: [
-        '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。1',
-        '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。2',
-        '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。3',
-        '我喜欢中国传统文化，特别是祖辈留给我们的中医、古诗词等文化遗产。4',
-      ],
-      choice: ['A 非常符合', 'B 比较符合', 'C 一般', 'D 不太符合', 'E 很不符合'],
+      data: [],
+      answerScores: [],
       currentIndex: 0
     };
   }
   componentWillMount(){
-    Taro.setNavigationBarTitle({
-      title: this.$router.params.title
+    // let title = this.$router.params.title;
+    // Taro.setNavigationBarTitle({
+    //   title: title
+    // });
+    getQuestions().then(({code,data})=>{
+      console.log(data);
+      if(code==0 && data){
+        this.setState({
+          data: data
+        });
+      }
     });
   }
   componentWillReceiveProps (nextProps) {
@@ -31,16 +36,35 @@ class Index extends Component{
   componentWillUnmount () { }
 
   componentDidShow () {
+
   }
 
   componentDidHide () { }
-  nextPicker(){
-    this.setState((prevState)=>({
-      currentIndex: prevState.currentIndex == prevState.data.length - 1 ? 0 : prevState.currentIndex + 1,
-    }));
+  nextPicker(answerScore){
+    console.log(answerScore);
+    let {data, currentIndex} = this.state;
+    if(currentIndex < data.length-1){
+      this.setState((prevState)=>({
+        answerScores: prevState.answerScores.concat(answerScore),
+        currentIndex: prevState.currentIndex+1,
+      }));
+    }else{
+      this.setState((prevState)=>({
+        answerScores: currentIndex == data.length-1 ? prevState.answerScores.concat(answerScore):prevState.answerScores,
+      }),()=>{
+        console.log(this.state.answerScores);
+        submitAnswers({answerScores: this.state.answerScores}).then((code, msg)=>{
+          Taro.showToast({
+            title: msg,
+            icon: 'none',
+            mask: true
+          });
+        });
+      });
+    }
   }
   render () {
-    let {data, currentIndex, choice} = this.state;
+    let {data, currentIndex} = this.state;
     return (
       <View className='index'>
         {/* 测评进度 */}
@@ -52,13 +76,13 @@ class Index extends Component{
             <View className='percent' style={{width: (currentIndex + 1)/data.length * 100 + '%'}}></View>
           </View>
           <View className='subject'>
-            {data[currentIndex]}
+            {data[currentIndex].evaluationQuestion}
           </View>
         </View>
         {/* 选项 */}
         <View className='picker'>
-          {choice.map((item)=>{
-            return <View key={item} className='picker-item' hover-class="picker-item-hover" onClick={this.nextPicker}>{item}</View>
+          {data[currentIndex].answers.map((item)=>{
+            return <View key={item} className='picker-item' hover-class="picker-item-hover" onClick={this.nextPicker.bind(this, item.answerScore)}>{item.answerDescription}</View>
           })}
         </View>
       </View>

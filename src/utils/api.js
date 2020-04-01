@@ -36,7 +36,7 @@ export const getSchoolIntr = (schoolId) => $.ajax('/wx/schoolNews/introduction/'
 //获取职业兴趣测评题库
 export const getQuestions = ()=> $.ajax('/wx/evaluation/interest/questions','GET');
 //提交职业兴趣测评结果
-
+export const submitAnswers = (data) => $.ajax('/wx/evaluation/interest/answers', 'POST', data);
 
 //绑定手机功能模块
 //获取验证码
