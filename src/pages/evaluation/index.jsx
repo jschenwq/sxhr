@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Image } from '@tarojs/components'
 import { AtCurtain } from 'taro-ui'
+import {getAllEvaluationCount, getUserReportCount} from '@utils/api'
 import './index.scss'
 
 import ksxlhxwcs from '../../packageCP/images/ksxlhxwcs.png'
@@ -29,9 +30,24 @@ class Index extends Component {
     leftText: '我是学生',
     rightIcon: 'parentIcon',
     rightText: '我是家长',
+    allCount:{},//所有的测评参加人数
+    reportCount:'',//用户测评报告数量
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
+  }
+
+  componentWillMount(){
+    getAllEvaluationCount().then(({data})=>{
+      this.setState({
+        allCount:data.data
+      })
+    });
+    getUserReportCount().then(({data})=>{
+      this.setState({
+        reportCount:data.data.reportCount
+      })
+    });
   }
 
   componentWillUnmount () { }
@@ -93,6 +109,11 @@ class Index extends Component {
       url: '/packageCP/sketch/index?index='+index
     });
   }
+  gotoCpList(){
+    Taro.navigateTo({
+      url: '/packageCP/wdcplb/index?'
+    });
+  }
   render () {
     let iconList = {boyIcon, girlIcon, fatherIcon, motherIcon, parentIcon, studentIcon};
     return (
@@ -114,15 +135,16 @@ class Index extends Component {
           </View>
         </AtCurtain>
         <View className='cp-top'>
-          <View className='my-report'>
-            我的报告
+          <View onClick={this.gotoCpList.bind(this)} className='my-report'>
+            我的报告<Text className ='countTip'>{reportCount}</Text>
           </View>
           <View>
             <View style="font-weight: bold;font-size: 40rpx;margin-bottom: 20rpx;">专业定位测评</View>
             <View style='font-size: 26rpx;color: #ffefe8;'>五大维度 15分钟推荐适合你的专业</View>
           </View>
           <View className='operate-group'>
-            <Button size='mini' onClick={this.clickModal} style='border-radius: 40rpx;color: #ff738d;font-weight: bold;margin: 0px;'>开始测评</Button>
+            {/*<Button size='mini' onClick={this.clickModal} style='border-radius: 40rpx;color: #ff738d;font-weight: bold;margin: 0px;'>开始测评</Button>*/}
+            <Button size='mini' onClick={this.clickModuleItem(6)} style='border-radius: 40rpx;color: #ff738d;font-weight: bold;margin: 0px;'>开始测评</Button>
              <Text>{this.state.finishedSum} 人已完成</Text>
           </View>
         </View>
@@ -134,7 +156,7 @@ class Index extends Component {
               <View className='item-title'>考试心理和行为测试</View>
               <Text className='item-text'>考试总是发挥失常？</Text>
               <View className='item-content'>
-                <Text>已有 {} 人参与</Text>
+                <Text>已有 {allCount.PSYCHOLOGY} 人参与</Text>
                 <Image src={ksxlhxwcs} />
               </View>
             </View>
@@ -142,7 +164,7 @@ class Index extends Component {
               <View className='item-title'>学习拖延测评</View>
               <Text className='item-text'>提到学习就焦虑害怕？</Text>
               <View className='item-content'>
-                <Text>已有 {} 人参与</Text>
+                <Text>已有 {allCount.DELAY} 人参与</Text>
                 <Image src={xxtycp} />
               </View>
             </View>
@@ -152,7 +174,7 @@ class Index extends Component {
               <View className='item-title'>学习倦怠测评</View>
               <Text className='item-text'>提到学习就乏力？</Text>
               <View className='item-content'>
-                <Text>已有 {} 人参与</Text>
+                <Text>已有 {allCount.LAZY} 人参与</Text>
                 <Image src={xxjdcp} />
               </View>
             </View>
@@ -160,7 +182,7 @@ class Index extends Component {
               <View className='item-title'>学习能力测评</View>
               <Text className='item-text'>成绩提升有方法</Text>
               <View className='item-content'>
-                <Text>已有 {} 人参与</Text>
+                <Text>已有 {allCount.STUDY} 人参与</Text>
                 <Image src={xxnlcp} />
               </View>
             </View>
@@ -174,7 +196,7 @@ class Index extends Component {
               <View className='item-title'>家庭教育方式测评</View>
               <Text className='item-text'>青春的孩子应如何教育</Text>
               <View className='item-content'>
-                <Text>已有 {} 人参与</Text>
+                <Text>已有 {allCount.FAMILY} 人参与</Text>
                 <Image src={jtjyfscp} />
               </View>
             </View>
@@ -182,7 +204,7 @@ class Index extends Component {
               <View className='item-title'>自我控制能力测评</View>
               <Text className='item-text'>测量对自己的行为控制能力</Text>
               <View className='item-content'>
-                <Text>已有 {} 人参与</Text>
+                <Text>已有 {allCount.SELF} 人参与</Text>
                 <Image src={zwkznlcp} />
               </View>
             </View>

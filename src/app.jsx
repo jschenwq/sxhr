@@ -78,8 +78,10 @@ class App extends Component {
       {
         "root": "packageCP",
         "pages": [
-          'assess/index',
-          'sketch/index',
+          'wdcplb/index',//我的测评报告列表
+          'assess/index',//测评总览
+          'sketch/index',//测评试题
+          'wdcpjg/index',//测评结果
         ]
       },
       //课堂分包

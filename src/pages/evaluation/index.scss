@@ -14,6 +14,14 @@
     color: #757575;
     border-radius: 40rpx 0 0 40rpx;
     padding: 8rpx 24rpx;
+    .countTip{
+      display: inline-block;
+      width: 40px;
+      border-radius: 20px;
+      background: #37B365;
+      text-align: center;
+      color: white;
+    }
   }
   .cp-top{
     background: url(../../packageCP/images/envaluation_bg.png) no-repeat center center transparent;

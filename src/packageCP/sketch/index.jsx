@@ -1,5 +1,6 @@
 import Taro, {Component} from '@tarojs/taro'
 import { View, Image, Button} from '@tarojs/components'
+import {getKSXLXWCSQuestions,getTYXWQuestions,getJDXWQuestions,getXXNLQuestions,getZYXQQuestions} from '@utils/api'
 import './index.scss'
 
 class Index extends Component{
@@ -51,12 +52,56 @@ class Index extends Component{
         imageSrc: require('../images/evaStart6.png'),
         content: '家庭教育方式是否得当，青春的孩子应如何教育，测完便知',
         desc: '中学生是目前中国社会心理压力较大的社会群体之一，许多孩子有心理问题，由于就业形势严峻、升学压力大，青春期身心变化等原因，心理机能容 易失衡，他们亟待社会关注。许多研究结果表明，中学生心理健康水平与父母教养方式之间有密切的关系，父母教养方式是影响其心理健康的主要因素。本测评以此为基础，通过心理测量和统计分析，对高中生心理健康水平与父母教养方式的关系进行了深入的分析。'
+      },{
+        title: '专业定位测评',
+        cycle: '1次/3月',
+        titleNum: 66,
+        imageSrc: require('../images/evaStart6.png'),
+        content: '专业定位测评描述文字',
+        desc: '专业定位测评描述文字。'
       }]
     };
   }
   componentWillMount(){
+    var index = this.$router.params.index;
+    console.log(index)
+    if(index == 0){
+      getKSXLXWCSQuestions().then(({data}) => {
+       this.setState((preState) => {
+         preState.data[index].titleNum = data.length;
+       })
+      })
+    }
+    if(index == 1){
+      getTYXWQuestions().then(({data}) => {
+        this.setState((preState) => {
+          preState.data[index].titleNum = data.length;
+        })
+      })
+    }
+    if(index == 2){
+      getJDXWQuestions().then(({data}) => {
+        this.setState((preState) => {
+          preState.data[index].titleNum = data.length;
+        })
+      })
+    }
+    if(index == 3){
+      getXXNLQuestions().then(({data}) => {
+        this.setState((preState) => {
+          preState.data[index].titleNum = data.length;
+        })
+      })
+    }
+    if(index == 6){
+      getZYXQQuestions().then(({data}) => {
+        this.setState((preState) => {
+          preState.data[index].titleNum = data.length;
+        })
+      })
+    }
     Taro.setNavigationBarTitle({
-      title: this.state.data[this.$router.params.index].title
+      title: this.state.data[index].title
     });
   }
   componentWillReceiveProps (nextProps) {
@@ -70,7 +115,7 @@ class Index extends Component{
   componentDidHide () { }
   startAssess=()=>{
     Taro.navigateTo({
-      url: './assess/index?title='+this.state.data[this.$router.params.index].title
+      url: '/packageCP/assess/index?title=' + this.state.data[this.$router.params.index].title + "&type=" + this.$router.params.index
     });
   }
   render () {
@@ -97,7 +142,7 @@ class Index extends Component{
           <View className='middle-desc'>{desc}</View>
         </View>
         <View className='bottom'>
-          <Button onClick={this.startAssess} type='primary'>开始测评</Button>
+          <Button onClick={this.startAssess.bind(this)} type='primary'>开始测评</Button>
         </View>
       </View>
     )

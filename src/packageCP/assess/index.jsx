@@ -1,6 +1,12 @@
 import Taro, {Component} from '@tarojs/taro'
 import { View, Text} from '@tarojs/components'
-import {getQuestions,submitAnswers} from '@utils/api'
+import {
+  getKSXLXWCSQuestions,submitKSXLXWCSAnswers,
+  getTYXWQuestions,submitTYXWAnswers,
+  getJDXWQuestions,submitJDXWAnswers,
+  getXXNLQuestions,submitXXNLAnswers,
+  getZYXQQuestions,submitZYXQAnswers,
+} from '@utils/api'
 import './index.scss'
 
 class Index extends Component{
@@ -11,23 +17,50 @@ class Index extends Component{
     super();
     this.state = {
       data: [],
-      answerScores: [],
-      currentIndex: 0
+      answerScores: [],//提交分数
+      currentIndex: 0,
+      type:'',//测评类型
     };
   }
   componentWillMount(){
-    // let title = this.$router.params.title;
-    // Taro.setNavigationBarTitle({
-    //   title: title
-    // });
-    getQuestions().then(({code,data})=>{
-      console.log(data);
-      if(code==0 && data){
+    let title = this.$router.params.title;
+    Taro.setNavigationBarTitle({
+      title: title
+    });
+    let type = this.$router.params.type;
+    console.log("测评拿题type："+type)
+    //获取考试心理和行为测试题库
+    if(type == 0){
+      getKSXLXWCSQuestions().then(({code,data})=>{
         this.setState({
           data: data
         });
-      }
-    });
+      });
+    }
+    //获取拖延行为测评题库
+    if(type == 1){
+      getTYXWQuestions().then(({code,data})=>{
+        this.setState({
+          data: data
+        });
+      });
+    }
+    //获取倦怠行为测评题库
+    if(type == 2){
+      getJDXWQuestions().then(({code,data})=>{
+        this.setState({
+          data: data
+        });
+      });
+    }
+    //获取学习能力测评题库
+    if(type == 3){
+      getXXNLQuestions().then(({code,data})=>{
+        this.setState({
+          data: data
+        });
+      });
+    }
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -53,13 +86,54 @@ class Index extends Component{
         answerScores: currentIndex == data.length-1 ? prevState.answerScores.concat(answerScore):prevState.answerScores,
       }),()=>{
         console.log(this.state.answerScores);
-        submitAnswers(this.state.answerScores).then((code, msg)=>{
-          Taro.showToast({
-            title: msg,
-            icon: 'none',
-            mask: true
+        let type = this.$router.params.type;
+        console.log("测评答题type："+type);
+        //提交考试心理和行为测评结果
+        if(type == 0){
+          submitKSXLXWCSAnswers(this.state.answerScores).then(({data})=>{
+            console.log(data)
+            Taro.navigateTo({
+              url: '/packageCP/wdcpjg/index?result=' + data
+            });
           });
-        });
+        }
+        //提交拖延行为测评结果
+        if(type == 1){
+          submitTYXWAnswers(this.state.answerScores).then(({data})=>{
+            console.log(data)
+            Taro.navigateTo({
+              url: '/packageCP/wdcpjg/index?result=' + data
+            });
+          });
+        }
+        //提交倦怠行为测评结果
+        if(type == 2){
+          submitJDXWAnswers(this.state.answerScores).then(({data})=>{
+            console.log(data)
+            Taro.navigateTo({
+              url: '/packageCP/wdcpjg/index?result=' + data
+            });
+          });
+        }
+        //提交学习能力测评结果
+        if(type == 3){
+          submitXXNLAnswers(this.state.answerScores).then(({data})=>{
+            console.log(data)
+            Taro.navigateTo({
+              url: '/packageCP/wdcpjg/index?result=' + data
+            });
+          });
+        }
+
+        //提交职业兴趣测评结果
+        if(type == 6){
+          submitZYXQAnswers(this.state.answerScores).then(({data})=>{
+            console.log(data)
+            Taro.navigateTo({
+              url: '/packageCP/wdcpjg/index?result=' + data
+            });
+          });
+        }
       });
     }
   }

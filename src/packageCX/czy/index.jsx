@@ -150,42 +150,42 @@ class Index extends Component {
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={1} >
             <View>敬请期待...</View>
-            {/*<View className ='qbzy'>*/}
-              {/*<View className ='zyLogo'>*/}
-                {/*<Image src={require('@images/home/banner.jpg')} className='zyLogoImg' />*/}
-                {/*<Text onClick={this.gotoCP.bind(this)} className ='ljcp'>立即测评</Text>*/}
-              {/*</View>*/}
+            <View className ='qbzy'>
+              <View className ='zyLogo'>
+                <Image src={require('@images/home/banner.jpg')} className='zyLogoImg' />
+                <Text onClick={this.gotoCP.bind(this)} className ='ljcp'>立即测评</Text>
+              </View>
 
-              {/*<View className='counselor'>*/}
-                {/*<View>*/}
-                  {/*<Text className="title">报考热度</Text>*/}
-                  {/*<Text onClick={this.bkrdGetMore.bind(this)} className="more">更多</Text>*/}
-                {/*</View>*/}
-              {/*</View>*/}
-              {/*<AtList>*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-              {/*</AtList>*/}
+              <View className='counselor'>
+                <View>
+                  <Text className="title">报考热度</Text>
+                  <Text onClick={this.bkrdGetMore.bind(this)} className="more">更多</Text>
+                </View>
+              </View>
+              <AtList>
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+              </AtList>
 
-              {/*<View className='counselor firstItem'>*/}
-                {/*<View>*/}
-                  {/*<Text className="title">就业前景</Text>*/}
-                  {/*<Text onClick={this.jyqjGetMore.bind(this)} className="more">更多</Text>*/}
-                {/*</View>*/}
-              {/*</View>*/}
-              {/*<AtList>*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-                {/*<AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />*/}
-              {/*</AtList>*/}
-            {/*</View>*/}
+              <View className='counselor firstItem'>
+                <View>
+                  <Text className="title">就业前景</Text>
+                  <Text onClick={this.jyqjGetMore.bind(this)} className="more">更多</Text>
+                </View>
+              </View>
+              <AtList>
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem onClick={this.gotoZyxq.bind(this)} title='标题文字' thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+              </AtList>
+            </View>
           </AtTabsPane>
         </AtTabs>
       </View>

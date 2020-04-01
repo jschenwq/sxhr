@@ -45,10 +45,35 @@ export const getSchoolIntr = (schoolId) => $.ajax('/wx/schoolNews/introduction/'
 
 
 //测评
-//获取职业兴趣测评题库
-export const getQuestions = ()=> $.ajax('/wx/evaluation/interest/questions','GET');
+//获取所有类型的测评人数--不需要登录token
+export const getAllEvaluationCount = (data) => $.ajax('/wx/evaluation/statis', 'GET');
+//获取登录用户测评报告数量
+export const getUserReportCount = (data) => $.ajax('/wx/evaluation/reportCount', 'GET');
+//获取登录用户测评报告列表
+export const getUserEvaluationList = (data) => $.ajax('/wx/evaluation/reports', 'GET');
+//获取登录用户测评报告详情
+export const getUserEvaluationDetailById = (evaluationId) => $.ajax('/wx/evaluation/report/' + evaluationId, 'GET');
+//获取考试心理和行为测试题库------------------------------
+export const getKSXLXWCSQuestions = ()=> $.ajax('/wx/evaluation/psychology/questions','GET');
+//提交考试心理和行为测评结果
+export const submitKSXLXWCSAnswers = (data) => $.ajax('/wx/evaluation/psychology/answers', 'POST', data);
+//获取拖延行为测评题库-----------------------------------
+export const getTYXWQuestions = ()=> $.ajax('/wx/evaluation/delay/questions','GET');
+//提交拖延行为测评结果
+export const submitTYXWAnswers = (data) => $.ajax('/wx/evaluation/delay/answers', 'POST', data);
+//获取倦怠行为测评题库-----------------------------------
+export const getJDXWQuestions = ()=> $.ajax('/wx/evaluation/lazy/questions','GET');
+//提交倦怠行为测评结果
+export const submitJDXWAnswers = (data) => $.ajax('/wx/evaluation/lazy/answers', 'POST', data);
+//获取学习能力测评题库-------------------------------
+export const getXXNLQuestions = ()=> $.ajax('/wx/evaluation/study/questions','GET');
+//提交学习能力测评结果
+export const submitXXNLAnswers = (data) => $.ajax('/wx/evaluation/study/answers', 'POST', data);
+//获取职业兴趣测评题库-------------------------------
+export const getZYXQQuestions = ()=> $.ajax('/wx/evaluation/interest/questions','GET');
 //提交职业兴趣测评结果
-export const submitAnswers = (data) => $.ajax('/wx/evaluation/interest/answers', 'POST', data);
+export const submitZYXQAnswers = (data) => $.ajax('/wx/evaluation/interest/answers', 'POST', data);
+
 
 
 //绑定手机功能模块
