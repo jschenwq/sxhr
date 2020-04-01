@@ -53,7 +53,7 @@ class Index extends Component{
         answerScores: currentIndex == data.length-1 ? prevState.answerScores.concat(answerScore):prevState.answerScores,
       }),()=>{
         console.log(this.state.answerScores);
-        submitAnswers({answerScores: this.state.answerScores}).then((code, msg)=>{
+        submitAnswers(this.state.answerScores).then((code, msg)=>{
           Taro.showToast({
             title: msg,
             icon: 'none',

@@ -19,7 +19,7 @@
       }
     }
     .progress{
-      transition:width .5s;
+      transition:width .3s;
       border-bottom: 1px solid #eeeeee;
       .percent{
         transition:width 1s;
@@ -30,7 +30,7 @@
     .subject{
       // transform: translateX(15%);
       margin-top: 15rpx;
-      text-align: center;
+      text-indent: 2em;
       color: #000;
     }
   }
