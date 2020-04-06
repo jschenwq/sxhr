@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtSearchBar, AtList, AtListItem ,AtMessage  } from 'taro-ui'
 import classNames from 'classnames'
-import {getThirdZy,getSchoolList} from '@utils/api'
+import {getThirdZy,getSchoolList,getOccupationList} from '@utils/api'
 
 import './index.scss'
 
@@ -19,6 +19,7 @@ class Index extends Component {
       value:'',
       schoolList:[],
       zhuanyeList:[],
+      zhiyeList: [],
       isShow:false,//是否显示搜索历史
     };
   }
@@ -54,8 +55,11 @@ class Index extends Component {
       this.searchSchool(e.detail.value);
     }
 
-    if(type == 2){//大学
+    if(type == 2){//专业
       this.searchZhuanye(e.detail.value);
+    }
+    if (type == 3) {//职业
+      this.searchZhiye(e.detail.value);
     }
   }
   searchSchool(schoolName){
@@ -88,6 +92,21 @@ class Index extends Component {
       }
     });
   }
+  searchZhiye(occupationName){
+    getOccupationList({occupationName: occupationName}).then(({data})=>{
+      if(data.length>0){
+        this.setState({
+          zhiyeList: data
+        });
+      }else{
+        Taro.showToast({
+          title: '未有满足条件的数据',
+          icon: 'none',
+          mask: true
+        });
+      }
+    });
+  }
   //初始化拉去搜索历史，如果没有一个历史，则隐藏历史纪录，有一个则显示搜索历史并展示
   onActionClick(e){
     console.log(e);
@@ -99,6 +118,9 @@ class Index extends Component {
 
       if(type==2){//专业
         this.searchZhuanye(this.state.value);
+      }
+      if(type==3){//职业
+        this.searchZhiye(this.state.value);
       }
     }else{
       Taro.navigateBack({
@@ -116,7 +138,9 @@ class Index extends Component {
     if(type==2){//专业
       this.searchZhuanye(this.state.value);
     }
-
+    if(type==3){//职业
+      this.searchZhiye(this.state.value);
+    }
     this.setState({
       value:'',
       // isShow:true
@@ -134,8 +158,11 @@ class Index extends Component {
       this.searchSchool(data);
     }
 
-    if(type==1){//专业
+    if(type==2){//专业
       this.searchZhuanye(data);
+    }
+    if(type==3){//职业
+      this.searchZhiye(data);
     }
   }
   //清空历史纪录
@@ -161,9 +188,13 @@ class Index extends Component {
       url: '/packageCX/czy/zyxq/index?majorId=' + majorId,
     })
   }
-
+  gotoZhiye(introducePath){
+    Taro.navigateTo({
+      url: '/packageCX/kzy/zyjs/index?introducePath='+introducePath,
+    })
+  }
   render () {
-    const {isShow,schoolList,zhuanyeList} = this.state;
+    const {isShow,schoolList,zhuanyeList,zhiyeList} = this.state;
     const type = this.$router.params.type;
     let   placeholderText;
     if(type == 1) placeholderText = '请输入学校名称';
@@ -208,6 +239,17 @@ class Index extends Component {
             { type==2 &&
             zhuanyeList.map((item,index)=>{
               return (<AtListItem key={index} onClick={this.gotoZyxq.bind(this,item.majorId)} title={item.majorName} note={'学制：'+ item.learnYear} arrow='right' />
+              );
+            })
+            }
+          </AtList>
+        </View>
+        <View className = {classNames('searchContent',zhiyeList.length==0?'':'active')}>
+          <AtList>
+            { type==3 &&
+            zhiyeList.map((item,index)=>{
+              return (
+                <AtListItem key={index} onClick={this.gotoZhiye.bind(this,item.introducePath)} title={item.occupationName} arrow='right' />
               );
             })
             }

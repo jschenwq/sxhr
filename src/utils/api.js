@@ -13,7 +13,9 @@ export const getThirdZy = (data) => $.ajax('/wx/major/list',"post",data);
 //获取专业详情-get请求
 export const getDetail = (majorId) => $.ajax('/wx/major/' + majorId,"get");
 
-
+//批次线
+//获取批次线
+export const getListBatchScore = (data) => $.ajax('/wx/score/listBatchScore','POST',data);
 
 //分数线
 //获取学校分数线
@@ -21,7 +23,11 @@ export const getSchoolScore = (data) => $.ajax('/wx/score/listSchoolScore',"post
 //获取专业分数线
 export const getMajorScore = (data) => $.ajax('/wx/score/listMajorScore',"post",data);
 
-
+//职业
+//获取职业分类
+export const getOccupationType = (data) => $.ajax('/wx/occupation/getOccupationType','POST',data);
+//获取职业列表
+export const getOccupationList = (data) => $.ajax('/wx/occupation/list', 'POST', data);
 
 //咨询师
 //获取咨询师列表

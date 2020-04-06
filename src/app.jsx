@@ -54,6 +54,8 @@ class App extends Component {
           'czy/zyxq/zyjsxq/index',//专业介绍详情
           'czy/zyfl/index',//专业分类
           'kzy/index',//---看职业
+          'kzy/zylb/index',//职业列表
+          'kzy/zyjs/index',//职业介绍
           'kzy/zyxq/index',//职业详情
           'tqp/index',
           'fsx/index',

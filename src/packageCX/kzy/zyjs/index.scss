@@ -1,0 +1,23 @@
+.kzy{
+  .search{
+    padding: 15px 30px 15px;
+    background: #eeeff3;
+  }
+
+  .zyk{
+    padding: 15px 20px;
+    border-top: 20px solid #EFEEF3;
+    overflow: scroll;
+    height: calc(100vh - 130px);
+    .counselor{
+      padding: 35px 30px 20px 30px;
+      .title{
+        font-size: 40px;
+        font-weight: bold;
+      }
+    }
+    .firstItem{
+      border-top: 20px solid #EFEEF3;
+    }
+  }
+}

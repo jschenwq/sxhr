@@ -135,14 +135,14 @@ class Index extends Component {
     }
     //批次线
     if(index == 4){
-      Taro.showToast({
-        title: '开发中敬请期待...',
-        icon: 'none',
-        mask: true,
-      });
-      // Taro.navigateTo({
-      //   url: '/packageCX/pcx/index',
-      // })
+      // Taro.showToast({
+      //   title: '开发中敬请期待...',
+      //   icon: 'none',
+      //   mask: true,
+      // });
+      Taro.navigateTo({
+        url: '/packageCX/pcx/index',
+      })
     }
     //提前批
     if(index == 5){
@@ -168,14 +168,14 @@ class Index extends Component {
     }
     //看职业
     if(index == 7){
-      Taro.showToast({
-        title: '开发中敬请期待...',
-        icon: 'none',
-        mask: true,
+      // Taro.showToast({
+      //   title: '开发中敬请期待...',
+      //   icon: 'none',
+      //   mask: true,
+      // });
+      Taro.navigateTo({
+        url: '/packageCX/kzy/index',
       });
-      // Taro.navigateTo({
-      //   url: '/packageCX/kzy/index',
-      // })
     }
   }
 
