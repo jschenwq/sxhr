@@ -157,14 +157,14 @@ class Index extends Component {
     }
     //位次查询
     if(index == 6){
-      Taro.showToast({
-        title: '开发中敬请期待...',
-        icon: 'none',
-        mask: true,
-      });
-      // Taro.navigateTo({
-      //   url: '/packageCX/wccx/index',
-      // })
+      // Taro.showToast({
+      //   title: '开发中敬请期待...',
+      //   icon: 'none',
+      //   mask: true,
+      // });
+      Taro.navigateTo({
+        url: '/packageCX/wccx/index',
+      })
     }
     //看职业
     if(index == 7){

@@ -35,7 +35,9 @@ export const getzxsList = (data) => $.ajax('/wx/counselor/list',"post",data);
 //获取咨询师详情
 export const getzxsDetail = (counselorId) => $.ajax('/wx/counselor/' + counselorId ,"get");
 
-
+//位次
+//获取分数位次
+export const getListScoreRank = (data) => $.ajax('/wx/score/listScoreRank','POST',data);
 //大学
 //获取大学列表
 export const getSchoolList = (data) => $.ajax('/wx/school/list','POST', data);
