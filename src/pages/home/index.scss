@@ -125,9 +125,9 @@
       float: left;
       background: white;
       border-radius: 15px;
-      padding: 40px 0px 40px 25px;
+      padding: 40px 0px 40px 20px;
       .cardLeftImg{
-        margin-right: 20px;
+        margin-right: 10px;
         float: left;
         width: 100px;
         height: 100px;
@@ -155,9 +155,9 @@
       float: right;
       background: white;
       border-radius: 15px;
-      padding: 40px 0px 40px 25px;
+      padding: 40px 0px 40px 20px;
       .cardLeftImg{
-        margin-right: 20px;
+        margin-right: 10px;
         float: left;
         width: 100px;
         height: 100px;
@@ -207,7 +207,7 @@
       width: 130px;
       height: 130px;
       position: relative;
-      top:30px
+      border-radius: 130px;
     }
     .name{
       font-size: 36px;

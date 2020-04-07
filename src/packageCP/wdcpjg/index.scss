@@ -1,3 +1,26 @@
 .wdcpjg{
-  width: 100%;
+  padding: 30px;
+  .font2{
+    color: #9B9B9B;
+    font-size: 32px;
+  }
+  .tableTitle{
+    padding: 35px 30px 25px 30px;
+  }
+  .active{
+    background: #EFEEF3;
+  }
+  .scoreN{
+    overflow: auto;
+  }
+  .scoreTr{
+    padding: 30px;
+  }
+  .selectTop{
+    text-align: center;
+    overflow-y: scroll;
+  }
+  .at-col{
+    white-space: normal;
+  }
 }

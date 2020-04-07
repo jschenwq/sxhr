@@ -105,9 +105,16 @@ class Index extends Component {
     });
   }
   clickModuleItem=(index)=>()=>{
-    Taro.navigateTo({
-      url: '/packageCP/sketch/index?index='+index
-    });
+    console.log(index);
+    if(index == 6){
+      Taro.navigateTo({
+        url: '/packageCP/assess/index?title=专业定位测评&type=' + index
+      });
+    }else{
+      Taro.navigateTo({
+        url: '/packageCP/sketch/index?index=' + index + "&reportCount=" + this.state.reportCount
+      });
+    }
   }
   gotoCpList(){
     Taro.navigateTo({

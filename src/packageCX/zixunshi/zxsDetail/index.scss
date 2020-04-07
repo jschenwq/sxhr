@@ -10,7 +10,7 @@
       width: 130px;
       height: 130px;
       position: relative;
-      top:30px
+      border-radius: 130px;
     }
     .name{
       font-size: 36px;
@@ -81,5 +81,15 @@
     color: #666;
     text-indent: 50px;
     line-height: 50px;
+  }
+
+  .bottomBtn{
+    padding: 30px 30px;
+    background: #37B365;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    color: white;
   }
 }

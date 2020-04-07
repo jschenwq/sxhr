@@ -198,6 +198,10 @@ class Index extends Component {
       selectorChecked: this.state.selector[e.detail.value]
     })
   }
+
+  gotoCPPage(){
+    Taro.switchTab({url: '/pages/evaluation/index'})
+  }
   render () {
     const {currentCourse, current, zxsList} = this.state;
     return (
@@ -245,7 +249,7 @@ class Index extends Component {
         {/*</View>*/}
 
         {/*九宫图*/}
-        <AtGrid columnNum='4' hasBorder={false} onClick={this.infomationSearch.bind(this)} data={
+        <AtGrid columnNum={4} hasBorder={false} onClick={this.infomationSearch.bind(this)} data={
           [
             {
               image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%89%BE%E5%A4%A7%E5%AD%A6.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=cGayv0h9Fvzd7sDSnicX8NUXMgs%3D',
@@ -291,10 +295,10 @@ class Index extends Component {
               <Text className= 'cardPerson'>大数据智能选课</Text>
             </View>
           </View>
-          <View className='cardRight'>
+          <View className='cardRight' onClick={this.gotoCPPage.bind(this)}>
             <Image src={require('../../packageCP/images/boy.png')} className='cardLeftImg' />
             <View className='cardLeftText'>
-              <Text className= 'cardTitle'>定位测评</Text>
+              <Text className= 'cardTitle'>专业定位测评</Text>
               <Text className= 'cardPerson'>五大维度专业</Text>
             </View>
           </View>

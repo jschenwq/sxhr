@@ -61,6 +61,15 @@ class Index extends Component{
         });
       });
     }
+
+    //专业能力能力测评题库
+    if(type == 6){
+      getZYXQQuestions().then(({code,data})=>{
+        this.setState({
+          data: data
+        });
+      });
+    }
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -93,7 +102,8 @@ class Index extends Component{
           submitKSXLXWCSAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg/index?result=' + data
+              // url: '/packageCP/wdcpjg/index?result=' + data.scoreByGrade
+              url: '/packageCP/wdcpjg/index?result=' + JSON.stringify(data)
             });
           });
         }

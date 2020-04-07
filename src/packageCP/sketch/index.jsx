@@ -10,6 +10,7 @@ class Index extends Component{
   constructor(props){
     super(props);
     this.state = {
+      reportCount:'',
       data: [{
         title: '考试心理和行为测评',
         cycle: '1次/2月',
@@ -52,18 +53,12 @@ class Index extends Component{
         imageSrc: require('../images/evaStart6.png'),
         content: '家庭教育方式是否得当，青春的孩子应如何教育，测完便知',
         desc: '中学生是目前中国社会心理压力较大的社会群体之一，许多孩子有心理问题，由于就业形势严峻、升学压力大，青春期身心变化等原因，心理机能容 易失衡，他们亟待社会关注。许多研究结果表明，中学生心理健康水平与父母教养方式之间有密切的关系，父母教养方式是影响其心理健康的主要因素。本测评以此为基础，通过心理测量和统计分析，对高中生心理健康水平与父母教养方式的关系进行了深入的分析。'
-      },{
-        title: '专业定位测评',
-        cycle: '1次/3月',
-        titleNum: 66,
-        imageSrc: require('../images/evaStart6.png'),
-        content: '专业定位测评描述文字',
-        desc: '专业定位测评描述文字。'
       }]
     };
   }
   componentWillMount(){
     var index = this.$router.params.index;
+    var reportCount = this.$router.params.reportCount;
     console.log(index)
     if(index == 0){
       getKSXLXWCSQuestions().then(({data}) => {
@@ -93,13 +88,16 @@ class Index extends Component{
         })
       })
     }
-    if(index == 6){
-      getZYXQQuestions().then(({data}) => {
-        this.setState((preState) => {
-          preState.data[index].titleNum = data.length;
-        })
-      })
-    }
+    // if(index == 6){
+    //   getZYXQQuestions().then(({data}) => {
+    //     this.setState((preState) => {
+    //       preState.data[index].titleNum = data.length;
+    //     })
+    //   })
+    // }
+    this.setState({
+      reportCount:reportCount
+    });
     Taro.setNavigationBarTitle({
       title: this.state.data[index].title
     });
@@ -118,14 +116,20 @@ class Index extends Component{
       url: '/packageCP/assess/index?title=' + this.state.data[this.$router.params.index].title + "&type=" + this.$router.params.index
     });
   }
+  gotoCpList(){
+    Taro.navigateTo({
+      url: '/packageCP/wdcplb/index?'
+    });
+  }
   render () {
     let {title, cycle, titleNum, imageSrc, content, desc} = this.state.data[this.$router.params.index];
+    const {reportCount} = this.state;
     return (
       <View className='index'>
         <View className='top'>
           <Image src={imageSrc}/>
-          <View className='my-report'>
-            我的报告
+          <View onClick={this.gotoCpList.bind(this)} className='my-report'>
+            我的报告<Text className ='countTip'>{reportCount}</Text>
           </View>
           <View className='top-module'>
             <View className='top-module-title'>{title}</View>

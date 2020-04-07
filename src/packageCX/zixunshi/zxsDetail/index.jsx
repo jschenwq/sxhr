@@ -69,6 +69,10 @@ class Index extends Component {
         <View className ='introduce'>
           {detailObj.introduce}
         </View>
+
+        <View className ='bottomBtn'>
+          联系机构
+        </View>
       </View>
     )
   }

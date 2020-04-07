@@ -18,6 +18,14 @@
       border-radius: 40rpx 0 0 40rpx;
       padding: 8rpx 24rpx;
       z-index: 1;
+      .countTip{
+        display: inline-block;
+        width: 40px;
+        border-radius: 20px;
+        background: #37B365;
+        text-align: center;
+        color: white;
+      }
     }
     .top-module{
       position: absolute;

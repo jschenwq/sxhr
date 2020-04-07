@@ -7,7 +7,7 @@ import './index.scss'
 
 class Index extends Component {
   config = {
-    navigationBarTitleText: '提前批'
+    navigationBarTitleText: '我的测评报告'
   }
 
   constructor(props) {

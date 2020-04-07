@@ -17,7 +17,7 @@ class Index extends Component {
       current:0,
       // isOpened:false,
       selector: [],
-      type: '综合',
+      type: '理科',
       provinceList:[],
       province:'河南',
       yearList:['2019','2018','2017','2016','2015','2014','2013','2012'],
@@ -39,7 +39,7 @@ class Index extends Component {
     //获取学校分数线--参数解构赋值
     getSchoolScore({type:this.state.type,province:this.state.province,schoolId:11736}).then(({data}) => {
       this.setState({
-        schoolScore: data,
+        schoolScore: data.list,
       })
     })
   }
@@ -59,7 +59,7 @@ class Index extends Component {
       // 获取学校分数线
       getSchoolScore({type:this.state.type,province:this.state.province,schoolId:11736}).then(({data}) => {
         this.setState({
-          schoolScore: data,
+          schoolScore: data.list,
         })
       })
     }else if(value == 1){
@@ -86,7 +86,7 @@ class Index extends Component {
       // 获取学校分数线
       getSchoolScore({type:this.state.selector[e.detail.value],province:this.state.province,schoolId:11736}).then(({data}) => {
         this.setState({
-          schoolScore: data,
+          schoolScore: data.list,
         })
       })
     }else if(this.state.current == 1){
@@ -108,7 +108,7 @@ class Index extends Component {
       // 获取学校分数线
       getSchoolScore({type:this.state.type,province:this.state.provinceList[e.detail.value],schoolId:11736}).then(({data}) => {
         this.setState({
-          schoolScore: data,
+          schoolScore: data.list,
         })
       })
     }else if(this.state.current == 1){
@@ -195,7 +195,7 @@ class Index extends Component {
 
             <View className = 'scoreN'>
               {
-                schoolScore.map((item,index) => {
+                schoolScore.length > 0 && schoolScore.map((item,index) => {
                   return (
                     <View className={classNames('at-row','scoreTr',index % 2 == 0?'active':'')} key={index}>
                       <View className='at-col selectTop'>{item.batch?item.batch:''}</View>

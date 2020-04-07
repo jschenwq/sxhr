@@ -8,20 +8,23 @@ import './index.scss'
 
 class Index extends Component {
   config = {
-    navigationBarTitleText: '提前批'
+    navigationBarTitleText: '测评结果'
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      result:'',//测评结果
+      scoreByGrade:[],
+      singleModels:[],
     };
   }
 
   componentWillMount(){
-    console.log(this.$router.params.result)
+    console.log(JSON.parse(this.$router.params.result));
+    var result = JSON.parse(this.$router.params.result)
     this.setState({
-      result:this.$router.params.result
+      scoreByGrade:result.scoreByGrade,
+      singleModels:result.singleModels,
     })
   }
 
@@ -34,12 +37,31 @@ class Index extends Component {
   componentDidHide () {}
 
   render () {
+    const {scoreByGrade, singleModels} = this.state
     return (
       <View className='wdcpjg'>
-        测评结果部分数据：
-        {this.state.result.appraise},
-        {this.state.result.param},
-        {this.state.result.score},
+        <View>考试心里和行为测评结果</View>
+        <View className='at-row tableTitle'>
+          <View className='at-col font2 selectTop'>标题</View>
+          <View className='at-col font2 selectTop'>得分</View>
+          <View className='at-col font2 selectTop'>参考平均值</View>
+          <View className='at-col font2 selectTop'>问题状态</View>
+        </View>
+
+        <View className = 'scoreN'>
+          {
+            singleModels.map((item,index) => {
+              return (
+                <View className={classNames('at-row','scoreTr',index % 2 == 0?'active':'')} key={index}>
+                  <View className='at-col selectTop'>{item.title}</View>
+                  <View className='at-col selectTop'>{item.score}</View>
+                  <View className='at-col selectTop'>{item.avgScore}</View>
+                  <View className='at-col selectTop'>{item.status}</View>
+                </View>
+              )
+            })
+          }
+        </View>
       </View>
     )
   }
