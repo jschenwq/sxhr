@@ -32,12 +32,42 @@ class Index extends Component {
 
   componentDidHide () {}
 
-  gotoResult(id){
-    Taro.showToast({
-      title: '开发中敬请期待...',
-      icon: 'none',
-      mask: true,
-    });
+  gotoResult(id,type){
+    if(type == 'PSYCHOLOGY'){
+      Taro.navigateTo({
+        url: '/packageCP/wdcpjg0/index?id=' + id
+      });
+    }
+    if(type == 'DELAY'){
+      Taro.navigateTo({
+        url: '/packageCP/wdcpjg1/index?id=' + id
+      });
+    }
+    if(type == 'LAZY'){
+      Taro.navigateTo({
+        url: '/packageCP/wdcpjg2/index?id=' + id
+      });
+    }
+    if(type == 'STUDY'){
+      Taro.navigateTo({
+        url: '/packageCP/wdcpjg3/index?id=' + id
+      });
+    }
+    if(type == 'FAMILY'){
+      Taro.navigateTo({
+        url: '/packageCP/wdcpjg4/index?id=' + id
+      });
+    }
+    if(type == 'SELF'){
+      Taro.navigateTo({
+        url: '/packageCP/wdcpjg5/index?id=' + id
+      });
+    }
+    if(type == 'INTEREST'){
+      Taro.navigateTo({
+        url: '/packageCP/wdcpjg6/index?id=' + id
+      });
+    }
   }
 
   render () {
@@ -48,7 +78,7 @@ class Index extends Component {
           {
             wdcpList.map((item, index) => {
               return(
-                <AtListItem key={index} onClick={this.gotoResult.bind(this,item.id)} title={item.typeName} note={item.createTime} thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
+                <AtListItem key={index} onClick={this.gotoResult.bind(this,item.id,item.type)} title={item.typeName} note={item.createTime} thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png' arrow='right' />
               )
             })
           }

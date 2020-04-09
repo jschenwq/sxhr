@@ -1,8 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { AtGrid , AtButton, AtRate   } from 'taro-ui'
 import classNames from 'classnames'
-import {login} from '@utils/api'
+import {getUserEvaluationDetailById} from '@utils/api'
 
 import './index.scss'
 
@@ -20,15 +19,18 @@ class Index extends Component {
   }
 
   componentWillMount(){
-    console.log(JSON.parse(this.$router.params.result));
-    var result = JSON.parse(this.$router.params.result)
-    this.setState({
-      scoreByGrade:result.scoreByGrade,
-      singleModels:result.singleModels,
+    var id = JSON.parse(this.$router.params.id)
+    getUserEvaluationDetailById(id).then(({data}) => {
+      this.setState({
+        scoreByGrade:data.data.scoreByGrade,
+        singleModels:data.data.singleModels,
+      })
     })
   }
 
-  componentDidMount(){}
+  componentDidMount(){
+
+  }
 
   componentWillUnmount () {}
 
@@ -62,6 +64,7 @@ class Index extends Component {
             })
           }
         </View>
+
       </View>
     )
   }

@@ -83,7 +83,13 @@ class App extends Component {
           'wdcplb/index',//我的测评报告列表
           'assess/index',//测评总览
           'sketch/index',//测评试题
-          'wdcpjg/index',//测评结果
+          'wdcpjg0/index',//测评结果0
+          'wdcpjg1/index',//测评结果1
+          'wdcpjg2/index',//测评结果2
+          'wdcpjg3/index',//测评结果3
+          'wdcpjg4/index',//测评结果4
+          'wdcpjg5/index',//测评结果5
+          'wdcpjg6/index',//测评结果6
         ]
       },
       //课堂分包
