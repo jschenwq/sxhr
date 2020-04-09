@@ -36,17 +36,16 @@
       text-align: center;
     }
   }
-  .active{
-    background: #E4E4E4;
-  }
   .scoreN{
     height: calc(100vh - 206px);
-    overflow: auto;
-  }
-  .scoreTr{
-    padding: 10px;
-    .at-col{
-      text-align: center;
+    .scoreTr{
+      padding: 10px;
+      &:nth-child(odd){
+        background: #E4E4E4;
+      }
+      .at-col{
+        text-align: center;
+      }
     }
   }
 }
