@@ -6,8 +6,11 @@ import {
   getJDXWQuestions,submitJDXWAnswers,
   getXXNLQuestions,submitXXNLAnswers,
   getZYXQQuestions,submitZYXQAnswers,
+  getJTJYQuestions,submitJTJYAnswers,
+  getZWKZQuestions,submitZWKZAnswers,
 } from '@utils/api'
 import './index.scss'
+import {getJTJYuestions} from "../../utils/api";
 
 class Index extends Component{
   config = {
@@ -62,6 +65,24 @@ class Index extends Component{
       });
     }
 
+    //获取家庭教育方式测评题库
+    if(type == 4){
+      getJTJYQuestions().then(({code,data})=>{
+        this.setState({
+          data: data
+        });
+      });
+    }
+
+    //获取自我控制能力测评题库
+    if(type == 5){
+      getZWKZQuestions().then(({code,data})=>{
+        this.setState({
+          data: data
+        });
+      });
+    }
+
     //专业能力能力测评题库
     if(type == 6){
       getZYXQQuestions().then(({code,data})=>{
@@ -100,10 +121,9 @@ class Index extends Component{
         //提交考试心理和行为测评结果
         if(type == 0){
           submitKSXLXWCSAnswers(this.state.answerScores).then(({data})=>{
-            console.log(data)
             Taro.navigateTo({
-              // url: '/packageCP/wdcpjg/index?result=' + data.scoreByGrade
-              url: '/packageCP/wdcpjg/index?result=' + JSON.stringify(data)
+              // url: '/packageCP/wdcpjg0/index?result=' + data.scoreByGrade
+              url: '/packageCP/wdcpjg0/index?id=' + data.id
             });
           });
         }
@@ -112,7 +132,7 @@ class Index extends Component{
           submitTYXWAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg/index?result=' + data
+              url: '/packageCP/wdcpjg1/index?id=' + data.id
             });
           });
         }
@@ -121,7 +141,7 @@ class Index extends Component{
           submitJDXWAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg/index?result=' + data
+              url: '/packageCP/wdcpjg2/index?id=' + data.id
             });
           });
         }
@@ -130,7 +150,27 @@ class Index extends Component{
           submitXXNLAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg/index?result=' + data
+              url: '/packageCP/wdcpjg3/index?id=' + data.id
+            });
+          });
+        }
+
+        //提交家庭教育方式测评结果
+        if(type == 4){
+          submitJTJYAnswers(this.state.answerScores).then(({data})=>{
+            console.log(data)
+            Taro.navigateTo({
+              url: '/packageCP/wdcpjg4/index?id=' + data.id
+            });
+          });
+        }
+
+        //提交自我控制能力测评结果
+        if(type == 5){
+          submitZWKZAnswers(this.state.answerScores).then(({data})=>{
+            console.log(data)
+            Taro.navigateTo({
+              url: '/packageCP/wdcpjg5/index?id=' + data.id
             });
           });
         }
@@ -140,7 +180,7 @@ class Index extends Component{
           submitZYXQAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg/index?result=' + data
+              url: '/packageCP/wdcpjg6/index?id=' + data.id
             });
           });
         }

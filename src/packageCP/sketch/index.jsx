@@ -1,11 +1,11 @@
 import Taro, {Component} from '@tarojs/taro'
 import { View, Image, Button} from '@tarojs/components'
-import {getKSXLXWCSQuestions,getTYXWQuestions,getJDXWQuestions,getXXNLQuestions,getZYXQQuestions} from '@utils/api'
+import {getKSXLXWCSQuestions,getTYXWQuestions,getJDXWQuestions,getXXNLQuestions,getZYXQQuestions,getJTJYQuestions,getZWKZQuestions} from '@utils/api'
 import './index.scss'
 
 class Index extends Component{
   config = {
-    navigationBarTitleText: ''
+    navigationBarTitleText: '测评分类'
   }
   constructor(props){
     super(props);
@@ -40,19 +40,19 @@ class Index extends Component{
         content: '成绩提升有办法，检测一下自己的学习方法是否得当',
         desc: '对于中学生学习成绩的影响因素研究很多，归纳起来，不外乎智力因素和非智力因素方面，先天的智力因素对学生学习成绩造成影响无法改变，而现阶段大多数学生成绩差的原因都是由非智力因素方面造成的，而中学阶段是学生非智力因素逐渐形成、稳定的一个关键时期因此，培养中学生良好的非智力因素，加强对中学生非智力因素的开发，改善中学生学习能力就变得非常重要。'
       },{
-        title: '自我控制能力测评',
-        cycle: '1次/3月',
-        titleNum: 36,
-        imageSrc: require('../images/evaStart5.png'),
-        content: '测量自己的行为，情绪和认知进行约束和管理的能力',
-        desc: '本测评用于测量中学生在学习、娱乐、日常生活及社会活动等方面的自我控制能力。问卷共36个题项，由三个维度组成，分别是情绪自控、行为自控和思维自控。'
-      },{
         title: '家庭教育方式测评',
         cycle: '1次/12月',
         titleNum: 66,
         imageSrc: require('../images/evaStart6.png'),
         content: '家庭教育方式是否得当，青春的孩子应如何教育，测完便知',
         desc: '中学生是目前中国社会心理压力较大的社会群体之一，许多孩子有心理问题，由于就业形势严峻、升学压力大，青春期身心变化等原因，心理机能容 易失衡，他们亟待社会关注。许多研究结果表明，中学生心理健康水平与父母教养方式之间有密切的关系，父母教养方式是影响其心理健康的主要因素。本测评以此为基础，通过心理测量和统计分析，对高中生心理健康水平与父母教养方式的关系进行了深入的分析。'
+      },{
+        title: '自我控制能力测评',
+        cycle: '1次/3月',
+        titleNum: 36,
+        imageSrc: require('../images/evaStart5.png'),
+        content: '测量自己的行为，情绪和认知进行约束和管理的能力',
+        desc: '本测评用于测量中学生在学习、娱乐、日常生活及社会活动等方面的自我控制能力。问卷共36个题项，由三个维度组成，分别是情绪自控、行为自控和思维自控。'
       }]
     };
   }
@@ -88,13 +88,20 @@ class Index extends Component{
         })
       })
     }
-    // if(index == 6){
-    //   getZYXQQuestions().then(({data}) => {
-    //     this.setState((preState) => {
-    //       preState.data[index].titleNum = data.length;
-    //     })
-    //   })
-    // }
+    if(index == 4){
+      getJTJYQuestions().then(({data}) => {
+        this.setState((preState) => {
+          preState.data[index].titleNum = data.length;
+        })
+      })
+    }
+    if(index == 5){
+      getZWKZQuestions().then(({data}) => {
+        this.setState((preState) => {
+          preState.data[index].titleNum = data.length;
+        })
+      })
+    }
     this.setState({
       reportCount:reportCount
     });

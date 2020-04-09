@@ -59,8 +59,8 @@ export const getAllEvaluationCount = (data) => $.ajax('/wx/evaluation/statis', '
 export const getUserReportCount = (data) => $.ajax('/wx/evaluation/reportCount', 'GET');
 //获取登录用户测评报告列表
 export const getUserEvaluationList = (data) => $.ajax('/wx/evaluation/reports', 'GET');
-//获取登录用户测评报告详情
-export const getUserEvaluationDetailById = (evaluationId) => $.ajax('/wx/evaluation/report/' + evaluationId, 'GET');
+//获取登录用户测评报告结果
+export const getUserEvaluationDetailById = (id) => $.ajax('/wx/evaluation/report/' + id, 'GET');
 //获取考试心理和行为测试题库------------------------------
 export const getKSXLXWCSQuestions = ()=> $.ajax('/wx/evaluation/psychology/questions','GET');
 //提交考试心理和行为测评结果
@@ -81,6 +81,14 @@ export const submitXXNLAnswers = (data) => $.ajax('/wx/evaluation/study/answers'
 export const getZYXQQuestions = ()=> $.ajax('/wx/evaluation/interest/questions','GET');
 //提交职业兴趣测评结果
 export const submitZYXQAnswers = (data) => $.ajax('/wx/evaluation/interest/answers', 'POST', data);
+//获取家庭教育方式测评题库---------------------------
+export const getJTJYQuestions = ()=> $.ajax('/wx/evaluation/family/questions','GET');
+//提交家庭教育方式测评结果
+export const submitJTJYAnswers = (data) => $.ajax('/wx/evaluation/family/answers', 'POST', data);
+//获取自我控制能力测评题库---------------------------
+export const getZWKZQuestions = ()=> $.ajax('/wx/evaluation/self/questions','GET');
+//提交自我控制能力测评结果
+export const submitZWKZAnswers = (data) => $.ajax('/wx/evaluation/self/answers', 'POST', data);
 
 
 
