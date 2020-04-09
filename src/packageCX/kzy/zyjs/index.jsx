@@ -14,27 +14,30 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      arryList: []
+      detailNodes: ''
     };
   }
 
   componentDidMount() {
-    let introducePath = this.$router.params.introducePath;
-    console.log(introducePath);
-    let storeState = Taro.$store.getState();
-    debugger
-    Taro.request({
-      isShowLoading: true,
-      loadingText: '正在加载',
-      url: introducePath,
-      method: "GET",//taro规定必须大写
-      header: {
-        'content-type': 'application/json',
-        'Authorization': storeState.counter.authorize?storeState.counter.authorize:'Bearer'
-      }
-    }).then(({data})=>{
-      console.log(data);
+    let introducePath = Taro.getStorageSync('introducePath');
+    $.ajax(introducePath,'GET').then(({data})=>{
+      this.setState({
+        detailNodes: data
+      });
     });
+    // let storeState = Taro.$store.getState();
+    // Taro.request({
+    //   isShowLoading: true,
+    //   loadingText: '正在加载',
+    //   url: introducePath,
+    //   method: "GET",//taro规定必须大写
+    //   header: {
+    //     'content-type': 'application/json',
+    //     'Authorization': storeState.counter.authorize?storeState.counter.authorize:'Bearer'
+    //   }
+    // }).then(({data})=>{
+    //   console.log(data);
+    // });
     // getOccupationList({type: type}).then(({data})=>{
     //   this.setState({
     //     arryList: data
@@ -61,23 +64,10 @@ class Index extends Component {
     })
   }
   render() {
-    let {arryList} = this.state;
+    let {detailNodes} = this.state;
     return (
       <View className='kzy'>
-        <View className="search">
-          <Text>包含职业</Text>
-          <Text className='searchText'>{arryList.length}</Text>
-          <Text>个</Text>
-        </View>
-        <AtList>
-          {
-            arryList.map((item,index) => {
-              return(
-                <AtListItem key={index} onClick={this.gotoZyjs.bind(this,item.introducePath)} title={item.occupationName} arrow='right' />
-              )
-            })
-          }
-        </AtList>
+        <RichText nodes={detailNodes} />
       </View>
     )
   }

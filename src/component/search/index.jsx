@@ -189,8 +189,9 @@ class Index extends Component {
     })
   }
   gotoZhiye(introducePath){
+    Taro.setStorageSync('introducePath',introducePath);
     Taro.navigateTo({
-      url: '/packageCX/kzy/zyjs/index?introducePath='+introducePath,
+      url: '/packageCX/kzy/zyjs/index',
     })
   }
   render () {

@@ -41,9 +41,10 @@ class Index extends Component {
     })
   }
   gotoZyjs(introducePath){
+    Taro.setStorageSync('introducePath',introducePath);
     Taro.navigateTo({
-      url: '/packageCX/kzy/zyjs/index?introducePath='+introducePath,
-    })
+      url: '/packageCX/kzy/zyjs/index',
+    });
   }
   render() {
     let {arryList} = this.state;
