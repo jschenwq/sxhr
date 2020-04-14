@@ -6,26 +6,26 @@ const header = config.header;
 const isShowLoading = config.isShowLoading;
 const noConsole = config.noConsole;
 
-function baseOptions(options = {method: 'GET', data: {}, url: ''}) {
+function baseOptions(options = {method: 'GET', data: {}, url: '', header:{}}) {
   if (!noConsole) {
     console.log(`${new Date().toLocaleString()}【 M=${options.url} 】P=${JSON.stringify(options.data)}`);
   }
   const storeState = Taro.$store.getState();
-  console.log("Authorization："+storeState.counter.authorize);
+  // console.log("Authorization："+storeState.counter.authorize);
   const params = {
     isShowLoading: isShowLoading,
     loadingText: '正在加载',
-    url: options.url.indexOf("http://")==-1?baseUrl + options.url:options.url,
+    url: options.url.indexOf("https://")==-1?baseUrl + options.url:options.url,
     data: options.data,
     method: options.method.toUpperCase(),//taro规定必须大写
-    header: Object.assign(header,{'Authorization': storeState.counter.authorize?storeState.counter.authorize:'Bearer'})
+    header: Object.assign(options.header?options.header:header,{'Authorization': storeState.counter.authorize?storeState.counter.authorize:'Bearer'})
   }
   return Taro.request(params);
 }
 
-function ajax(url, methodType, data) {
+function ajax(url, methodType, data, header) {
   return new Promise((resolve => {
-    baseOptions({url: url, method: methodType, data: data}).then((res) => {
+    baseOptions({url: url, method: methodType, data: data, header:header}).then((res) => {
       const {statusCode, data} = res;
       if (statusCode >= 200 && statusCode < 300) {
         if (!noConsole) {
