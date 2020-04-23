@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Swiper, SwiperItem,RichText } from '@tarojs/components'
 import { AtGrid , AtList, AtListItem,AtFloatLayout } from 'taro-ui'
-import classNames from 'classnames'
 import {login, getSchoolDetail,getSchoolIntr,getSchoolNewsList} from '@utils/api'
+import $ from '@utils/http'
 
 import './index.scss'
 
@@ -18,6 +18,7 @@ class Index extends Component {
       detailNodes: '',
       school: null,
       majors: [],
+      introductionPath: '',
       introduction: '',
       schoolNewsList: []
     };
@@ -43,19 +44,32 @@ class Index extends Component {
 
   componentDidHide () {}
   handleShowDetail(){
+
     getSchoolIntr(this.state.school.schoolId).then(({data})=>{
-      console.log(data);
+      var path = data.contentPath;
       this.setState({
         isOpened: true,
-        detailNodes: data.content
+        introductionPath: data.contentPath,
+      });
+      this.handleGetSchoolIntr(path)
+    });
+
+  }
+
+  handleGetSchoolIntr (path) {
+    $.ajaxJson(path,'GET').then(({data})=>{
+      this.setState({
+        introduction: data
       });
     });
   }
+
   handleClose(){
     this.setState({
       isOpened: false
     });
   }
+
   handleExploit(){
     Taro.showToast({
       title: '功能开发中',
@@ -78,7 +92,7 @@ class Index extends Component {
     });
   }
   render () {
-    let {school, majors,schoolNewsList,isOpened,detailNodes} = this.state;
+    let {school, majors,schoolNewsList,isOpened,detailNodes,introductionPath,introduction} = this.state;
     return (
       <View className='schoolDetail'>
         <View className='schoolTop'>
@@ -202,8 +216,9 @@ class Index extends Component {
           <View onClick={this.gotoZsjh.bind(this)} className='btn leftBtn'>招生计划</View>
           <View onClick={this.gotoLnfsx.bind(this)} className='btn rightBtn'>历年分数线</View>
         </View>
-        <AtFloatLayout isOpened={isOpened} title="学校简介" onClose={this.handleClose.bind(this)}>
-          <RichText nodes={detailNodes} />
+        <AtFloatLayout isOpened={isOpened} title="学校简介" onClose={this.handleClose.bind(this) }>
+          {/*<RichText nodes={detailNodes} />*/}
+          <RichText nodes={introduction} />
         </AtFloatLayout>
       </View>
     )

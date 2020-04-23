@@ -47,6 +47,20 @@ function ajax(url, methodType, data, header) {
   }))
 }
 
+
+ function  ajaxJson(url, methodType) {
+  return new Promise((resolve => {
+    baseOptions({url: url, method: methodType}).then((res) => {
+      const {statusCode, data} = res;
+      if (statusCode >= 200 && statusCode < 300) {
+        resolve(data);
+      } else {
+        throw new Error(`网络请求错误，状态码${statusCode}`);
+      }
+    })
+  }))
+}
+
 export default {
-  ajax
+  ajax,ajaxJson
 }
