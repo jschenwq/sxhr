@@ -252,35 +252,35 @@ class Index extends Component {
         <AtGrid columnNum={4} hasBorder={false} onClick={this.infomationSearch.bind(this)} data={
           [
             {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%89%BE%E5%A4%A7%E5%AD%A6.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=cGayv0h9Fvzd7sDSnicX8NUXMgs%3D',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%89%BE%E5%A4%A7%E5%AD%A6.png',
               value: '找大学'
             },
             {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%9F%A5%E4%B8%93%E4%B8%9A.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=Gk7VISGBIrh8DajTgFDS61aRhnE%3D',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%9F%A5%E4%B8%93%E4%B8%9A.png',
               value: '查专业'
             },
             {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%88%86%E6%95%B0%E7%BA%BF.png?Expires=1587216759&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=%2FdBFOK20bP5%2Bg%2BwPgP7S7FH23OA%3D',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%88%86%E6%95%B0%E7%BA%BF.png',
               value: '分数线'
             },
             {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%8B%9B%E7%94%9F%E8%AE%A1%E5%88%92.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=xfn2biHc3np%2BOVpmKVre4nPPU1o%3D',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%8B%9B%E7%94%9F%E8%AE%A1%E5%88%92.png',
               value: '招生计划'
             },
             {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%89%B9%E6%AC%A1%E7%BA%BF.png?Expires=1587216825&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=ZH0%2BTeXWddBU2lFiHxPZJfv%2Bwzk%3D',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%89%B9%E6%AC%A1%E7%BA%BF.png',
               value: '批次线'
             },
             {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%8F%90%E5%89%8D%E6%89%B9.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=19JgkbDIfdQYtcSyytHWlLbHxhI%3D',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%8F%90%E5%89%8D%E6%89%B9.png',
               value: '提前批'
             },
             {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E4%BD%8D%E6%AC%A1%E6%9F%A5%E8%AF%A2.png?Expires=1587216015&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=vt3sij%2BvwRSF3QKd9lqtxYI5jrA%3D',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E4%BD%8D%E6%AC%A1%E6%9F%A5%E8%AF%A2.png',
               value: '位次查询'
             },
             {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E7%9C%8B%E8%81%8C%E4%B8%9A.png?Expires=1587216889&OSSAccessKeyId=LTAI4FdEikoP1PrsRk6bSbko&Signature=vR2%2BAsEu1QnUUTT6c1Nk5s5B0Fc%3D',
+              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E7%9C%8B%E8%81%8C%E4%B8%9A.png',
               value: '看职业'
             }
           ]
