@@ -119,14 +119,14 @@ class Index extends Component {
     //分数线
     if(index == 2){
       Taro.navigateTo({
-        url: '/packageCX/fsx/index?current=0',
-        // url: '/component/search/school/index?type=school&?current=0'
+        // url: '/packageCX/fsx/index?current=0',
+        url: '/component/search/school/index?type=school&type2=score'
       })
     }
     //招生计划
     if(index == 3){
       Taro.navigateTo({
-        url: '/component/search/school/index?type=school',
+        url: '/component/search/school/index?type=school&type2=plan',
         // url: '/component/search/index?type=1',
       })
     }

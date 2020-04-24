@@ -131,6 +131,7 @@ class Index extends Component {
   render () {
     const {isShow,schoolList} = this.state;
     const type = this.$router.params.type;
+    const type2 = this.$router.params.type2;
     let   placeholderText;
     if(type == "school") placeholderText = '请输入学校名称';
     if(type == 2) placeholderText = '请输入专业名称';
@@ -161,12 +162,18 @@ class Index extends Component {
         </View>
         <View className={classNames('searchContent',schoolList.length==0?'':'active')}>
           <AtList>
-            { type=="school" &&
-              schoolList.map((item,index)=>{
-                return (<AtListItem key={index} onClick={this.goto.bind(this,'/packageCX/zsjh/index?schoolId'+item.schoolId)} title={item.schoolName} thumb={item.logoPath} arrow='right' />);
-              })
-            }
+            { type=="school" && type2=="score" &&
+            schoolList.map((item,index)=>{
+              return (<AtListItem key={index} onClick={this.goto.bind(this,'/packageCX/fsx/index?current=0&schoolId='+item.schoolId)} title={item.schoolName} thumb={item.logoPath} arrow='right' />);
+            })}
           </AtList>
+          <AtList>
+            { type=="school" && type2=="plan" &&
+            schoolList.map((item,index)=>{
+              return (<AtListItem key={index} onClick={this.goto.bind(this,'/packageCX/fsx/index?current=2&schoolId='+item.schoolId)} title={item.schoolName} thumb={item.logoPath} arrow='right' />);
+            })}
+          </AtList>
+
         </View>
 
       </View>

@@ -9,7 +9,7 @@ import './index.scss'
 
 class Index extends Component {
   config = {
-    navigationBarTitleText: '分数线'
+    navigationBarTitleText: '学校信息'
   }
 
   constructor(props) {
@@ -37,6 +37,7 @@ class Index extends Component {
       current: parseInt(this.$router.params.current),
       schoolId: parseInt(this.$router.params.schoolId)
     })
+
     //获取数据字典
     getAllList().then(({data}) => {
       this.setState({
