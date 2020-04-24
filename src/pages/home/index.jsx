@@ -119,27 +119,19 @@ class Index extends Component {
     //分数线
     if(index == 2){
       Taro.navigateTo({
-        url: '/packageCX/fsx/index',
+        url: '/packageCX/fsx/index?current=0',
+        // url: '/component/search/school/index?type=school&?current=0'
       })
     }
     //招生计划
     if(index == 3){
-      Taro.showToast({
-        title: '开发中敬请期待...',
-        icon: 'none',
-        mask: true,
-      });
-      // Taro.navigateTo({
-      //   url: '/packageCX/zsj/index',
-      // })
+      Taro.navigateTo({
+        url: '/component/search/school/index?type=school',
+        // url: '/component/search/index?type=1',
+      })
     }
     //批次线
     if(index == 4){
-      // Taro.showToast({
-      //   title: '开发中敬请期待...',
-      //   icon: 'none',
-      //   mask: true,
-      // });
       Taro.navigateTo({
         url: '/packageCX/pcx/index',
       })
@@ -303,77 +295,6 @@ class Index extends Component {
             </View>
           </View>
         </View>
-
-        {/*/!*咨询师推荐*!/*/}
-        {/*<View className='counselor'>*/}
-          {/*<View>*/}
-            {/*<Text className="title">咨询师推荐服务</Text>*/}
-            {/*<Text class="more">更多</Text>*/}
-          {/*</View>*/}
-        {/*</View>*/}
-
-        {/*<View className={classNames('at-row','itemPerson')}>*/}
-          {/*<View className='at-col at-col-3' style='text-align:center'>*/}
-            {/*<Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />*/}
-          {/*</View>*/}
-          {/*<View className='at-col at-col-7'>*/}
-            {/*<View>*/}
-              {/*<Text className='name'>张三</Text><Text className='year'>从业2年</Text>*/}
-            {/*</View>*/}
-            {/*<View className='detail'>*/}
-              {/*张三这是一段测试文字，张三这是一段测试文<Text className='moreDetail'>详情</Text>*/}
-            {/*</View>*/}
-          {/*</View>*/}
-          {/*<View className='at-col at-col-2'>*/}
-            {/*<AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>*/}
-          {/*</View>*/}
-        {/*</View>*/}
-        {/*<View className='item'>*/}
-          {/*<Text>高校一对一服务</Text>*/}
-          {/*<Image class='ItemImg' src={require('../../packageCP/images/evaStart4.png')}/>*/}
-        {/*</View>*/}
-
-        {/*<View className={classNames('at-row','itemPerson')}>*/}
-          {/*<View className='at-col at-col-3' style='text-align:center'>*/}
-            {/*<Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />*/}
-          {/*</View>*/}
-          {/*<View className='at-col at-col-7'>*/}
-            {/*<View>*/}
-              {/*<Text className='name'>张三2</Text><Text className='year'>从业2年</Text>*/}
-            {/*</View>*/}
-            {/*<View className='detail'>*/}
-              {/*张三这是222一段测试文字，张2222三这是一<Text className='moreDetail'>详情</Text>*/}
-            {/*</View>*/}
-          {/*</View>*/}
-          {/*<View className='at-col at-col-2'>*/}
-            {/*<AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>*/}
-          {/*</View>*/}
-        {/*</View>*/}
-        {/*<View className='item'>*/}
-          {/*<Text>升学卡服务</Text>*/}
-          {/*<Image class='ItemImg' src={require('../../packageCP/images/evaStart5.png')}/>*/}
-        {/*</View>*/}
-
-        {/*<View className={classNames('at-row','itemPerson')}>*/}
-          {/*<View className='at-col at-col-3' style='text-align:center'>*/}
-            {/*<Image src={require('../../packageCP/images/boy.png')} className='counselorImg' />*/}
-          {/*</View>*/}
-          {/*<View className='at-col at-col-7'>*/}
-            {/*<View>*/}
-              {/*<Text className='name'>张三1</Text><Text className='year'>从业2年</Text>*/}
-            {/*</View>*/}
-            {/*<View className='detail'>*/}
-              {/*张三这是一段测试文字，张三333这是一<Text className='moreDetail'>详情</Text>*/}
-            {/*</View>*/}
-          {/*</View>*/}
-          {/*<View className='at-col at-col-2'>*/}
-            {/*<AtButton className='btn' type='primary' size='small' circle='true'>预约</AtButton>*/}
-          {/*</View>*/}
-        {/*</View>*/}
-        {/*<View className='item lastItem'>*/}
-          {/*<Text>会员服务</Text>*/}
-          {/*<Image class='ItemImg' src={require('../../packageCP/images/evaStart6.png')}/>*/}
-        {/*</View>*/}
 
         {/*咨询师*/}
         <View className='counselor'>

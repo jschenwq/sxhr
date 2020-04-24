@@ -4,7 +4,6 @@ import $ from './http'
 export const getAllList = () => $.ajax('/wx/school/schoolDict','get');
 
 
-
 //专业
 //获取全部专业-2级--3级专业那2级专业id跳转页面加载
 export const getAllZy = (data) => $.ajax('/wx/major/getMajorType',"post",data);
@@ -45,6 +44,8 @@ export const getSchoolList = (data) => $.ajax('/wx/school/list','POST', data);
 export const getSchoolMajor = (data) => $.ajax('/wx/school/major', 'POST', data);
 //获取招生快讯
 export const getSchoolNewsList = (data) => $.ajax('/wx/schoolNews/list', 'POST', data);
+//获取招生计划
+export const getSchoolPlan = (data) => $.ajax('/wx/schoolNews/listSchoolPlan', 'POST', data);
 //获取大学详情
 export const getSchoolDetail = (schoolId) => $.ajax('/wx/school/'+schoolId, 'GET');
 //获取大学id获取简介

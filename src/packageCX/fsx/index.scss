@@ -47,6 +47,11 @@
     height: calc(100vh - 292px);
     overflow: auto;
   }
+  .schoolPlan{
+    text-align: left;
+    overflow: auto;
+    white-space: normal;
+  }
   .scoreTr{
     padding: 30px;
   }

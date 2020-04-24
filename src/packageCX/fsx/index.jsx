@@ -1,8 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { AtTabs, AtTabsPane, AtModal, AtModalHeader, AtModalContent } from 'taro-ui'
-import {getAllList, getSchoolScore, getMajorScore} from '@utils/api'
+import { AtTabs, AtTabsPane,AtFloatLayout } from 'taro-ui'
+import {getAllList, getSchoolScore, getMajorScore,getSchoolPlan} from '@utils/api'
 import classNames from 'classnames'
+import $ from '@utils/http'
 
 import './index.scss'
 
@@ -15,7 +16,7 @@ class Index extends Component {
     super(props)
     this.state = {
       current:0,
-      // isOpened:false,
+      schoolId:0,
       selector: [],
       type: '理科',
       provinceList:[],
@@ -23,11 +24,19 @@ class Index extends Component {
       yearList:['2019','2018','2017','2016','2015','2014','2013','2012'],
       year:2019,
       majorScore:[],
+      schoolNewsList:[],
+      content:'',
+      isOpened:false,
       schoolScore:[]
     };
   }
 
   componentDidMount(){
+
+    this.setState({
+      current: parseInt(this.$router.params.current),
+      schoolId: parseInt(this.$router.params.schoolId)
+    })
     //获取数据字典
     getAllList().then(({data}) => {
       this.setState({
@@ -37,18 +46,13 @@ class Index extends Component {
     });
 
     //获取学校分数线--参数解构赋值
-    getSchoolScore({type:this.state.type,province:this.state.province,schoolId:11736}).then(({data}) => {
+    getSchoolScore({type:this.state.type,province:this.state.province,schoolId:this.$router.params.schoolId}).then(({data}) => {
       this.setState({
         schoolScore: data.list,
       })
     })
+
   }
-
-  componentWillUnmount () {}
-
-  componentDidShow () {}
-
-  componentDidHide () {}
 
   handleClick (value) {
     this.setState({
@@ -57,24 +61,25 @@ class Index extends Component {
 
     if(value == 0){
       // 获取学校分数线
-      getSchoolScore({type:this.state.type,province:this.state.province,schoolId:11736}).then(({data}) => {
+      getSchoolScore({type:this.state.type,province:this.state.province,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
           schoolScore: data.list,
         })
       })
     }else if(value == 1){
       //获取专业分数线
-      getMajorScore({type:this.state.type,province:this.state.province,year:this.state.year,schoolId:11736}).then(({data}) => {
+      getMajorScore({type:this.state.type,province:this.state.province,year:this.state.year,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
           majorScore: data.list,
         })
       })
     }else {
-      Taro.showToast({
-        title: '开发中敬请期待...',
-        icon: 'none',
-        mask: true,
-      });
+      //获取招生计划
+      getSchoolPlan({schoolId:this.state.schoolId}).then(({data}) => {
+        this.setState({
+          schoolNewsList: data.list,
+        })
+      })
     }
   }
 
@@ -84,16 +89,23 @@ class Index extends Component {
     })
     if(this.state.current == 0){
       // 获取学校分数线
-      getSchoolScore({type:this.state.selector[e.detail.value],province:this.state.province,schoolId:11736}).then(({data}) => {
+      getSchoolScore({type:this.state.selector[e.detail.value],province:this.state.province,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
           schoolScore: data.list,
         })
       })
     }else if(this.state.current == 1){
       //获取专业分数线
-      getMajorScore({type:this.state.selector[e.detail.value],province:this.state.province,year:this.state.year,schoolId:11736}).then(({data}) => {
+      getMajorScore({type:this.state.selector[e.detail.value],province:this.state.province,year:this.state.year,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
           majorScore: data.list,
+        })
+      })
+    }else {
+      //获取招生计划
+      getSchoolPlan({schoolId:this.state.schoolId}).then(({data}) => {
+        this.setState({
+          schoolNewsList: data.list,
         })
       })
     }
@@ -106,14 +118,14 @@ class Index extends Component {
 
     if(this.state.current == 0){
       // 获取学校分数线
-      getSchoolScore({type:this.state.type,province:this.state.provinceList[e.detail.value],schoolId:11736}).then(({data}) => {
+      getSchoolScore({type:this.state.type,province:this.state.provinceList[e.detail.value],schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
           schoolScore: data.list,
         })
       })
     }else if(this.state.current == 1){
       //获取专业分数线
-      getMajorScore({type:this.state.type,province:this.state.provinceList[e.detail.value],year:this.state.year,schoolId:11736}).then(({data}) => {
+      getMajorScore({type:this.state.type,province:this.state.provinceList[e.detail.value],year:this.state.year,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
           majorScore: data.list,
         })
@@ -127,46 +139,44 @@ class Index extends Component {
     })
 
     //获取专业分数线
-    getMajorScore({type:this.state.type,province:this.state.province,year:this.state.yearList[e.detail.value],schoolId:11736}).then(({data}) => {
+    getMajorScore({type:this.state.type,province:this.state.province,year:this.state.yearList[e.detail.value],schoolId:this.state.schoolId}).then(({data}) => {
       this.setState({
         majorScore: data.list,
       })
     })
   };
 
-  // handleChangeB () {
-  //   this.setState({
-  //     isOpened: true
-  //   })
-  // }
-  // onClose () {
-  //   this.setState({
-  //     isOpened: false
-  //   })
-  // }
+  handleShowDetail(path){
 
+    this.setState({
+      isOpened: true
+    });
+
+    $.ajaxJson(path,'GET').then(({data})=>{
+      this.setState({
+
+        content: data
+      });
+    });
+  }
+
+  handleClose(){
+    this.setState({
+      isOpened: false
+    });
+  }
   render () {
-    const {isOpened, schoolScore, majorScore} = this.state;
+    const {schoolScore, majorScore,schoolNewsList,isOpened,content} = this.state;
     const tabList = [{ title: '院校分数线' }, { title: '专业分数线' }, { title: '招生计划' }];
     return (
-      <View className ='fsx'>
-        {/*<AtModal onClose={this.onClose.bind(this)} isOpened={isOpened}>*/}
-          {/*<AtModalHeader>数据说明</AtModalHeader>*/}
-          {/*<AtModalContent>*/}
-            {/*<View>*/}
-              {/*<View>1.2019年计划已根据6月份出版的《湖北省招生计划》更新；</View>*/}
-              {/*<View>2.2019年专业录取相关数据将在考试院公布后及时更新；</View>*/}
-              {/*<View>3.201-2019各院校录取数据，参考个省市出版的填报指南以及个本专科院校的官网理念录取数据；</View>*/}
-            {/*</View>*/}
-          {/*</AtModalContent>*/}
-          {/*/!*<AtModalAction> <Button>取消</Button> <Button>确定</Button> </AtModalAction>*!/*/}
-        {/*</AtModal>*/}
+      <View className='fsx'>
+
         <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
           <AtTabsPane current={this.state.current} index={0} >
             <View className ='fsxContent'>
               {/*文理科*/}
-              <View className ='selectZy'>
-                <Picker className ='pickerC' mode='selector' range={this.state.selector} onChange={this.onChange}>
+              <View className='selectZy'>
+                <Picker className='pickerC' mode='selector' range={this.state.selector} onChange={this.onChange}>
                   <View className='picker'>
                     {this.state.type}
                   </View>
@@ -174,8 +184,8 @@ class Index extends Component {
                 </Picker>
               </View>
               {/*省份*/}
-              <View className ='selectZy'>
-                <Picker className ='pickerC' mode='selector' range={this.state.provinceList} onChange={this.onChangeProvince}>
+              <View className='selectZy'>
+                <Picker className='pickerC' mode='selector' range={this.state.provinceList} onChange={this.onChangeProvince}>
                   <View className='picker'>
                     {this.state.province}
                   </View>
@@ -193,7 +203,7 @@ class Index extends Component {
               <View className='at-col font2 selectTop'>最低分</View>
             </View>
 
-            <View className = 'scoreN'>
+            <View className='scoreN'>
               {
                 schoolScore.length > 0 && schoolScore.map((item,index) => {
                   return (
@@ -210,10 +220,10 @@ class Index extends Component {
           </AtTabsPane>
 
           <AtTabsPane current={this.state.current} index={1}>
-            <View className ='fsxContent'>
+            <View className='fsxContent'>
               {/*文理科*/}
-              <View className ='selectZy'>
-                <Picker className ='pickerC' mode='selector' range={this.state.selector} onChange={this.onChange}>
+              <View className='selectZy'>
+                <Picker className='pickerC' mode='selector' range={this.state.selector} onChange={this.onChange}>
                   <View className='picker'>
                     {this.state.type}
                   </View>
@@ -221,8 +231,8 @@ class Index extends Component {
                 </Picker>
               </View>
               {/*省份*/}
-              <View className ='selectZy'>
-                <Picker className ='pickerC' mode='selector' range={this.state.provinceList} onChange={this.onChangeProvince}>
+              <View className='selectZy'>
+                <Picker className='pickerC' mode='selector' range={this.state.provinceList} onChange={this.onChangeProvince}>
                   <View className='picker'>
                     {this.state.province}
                   </View>
@@ -231,8 +241,8 @@ class Index extends Component {
               </View>
 
               {/*年份*/}
-              <View className ='selectZy'>
-                <Picker className ='pickerC' mode='selector' range={this.state.yearList} onChange={this.onChangeYear}>
+              <View className='selectZy'>
+                <Picker className='pickerC' mode='selector' range={this.state.yearList} onChange={this.onChangeYear}>
                   <View className='picker'>
                     {this.state.year}
                   </View>
@@ -251,7 +261,7 @@ class Index extends Component {
               <View className='at-col font2 selectTop'>最低分</View>
             </View>
 
-            <View className = 'scoreN'>
+            <View className='scoreN'>
               {
                 majorScore.map((item,index) => {
                   return (
@@ -269,9 +279,23 @@ class Index extends Component {
           </AtTabsPane>
 
           <AtTabsPane current={this.state.current} index={2}>
-
+            <View className='schoolPlan'>
+              {
+                schoolNewsList.map((item,index) => {
+                  return (
+                    <View className={classNames('at-row','scoreTr',index % 2 == 0?'active':'')} key={index}>
+                      <View onClick={this.handleShowDetail.bind(this,item.contentPath)}>{item.title}</View>
+                    </View>
+                  )
+                })
+              }
+            </View>
           </AtTabsPane>
         </AtTabs>
+
+        <AtFloatLayout isOpened={isOpened} title="学校简介" onClose={this.handleClose.bind(this)}>
+          <RichText nodes={content} />
+        </AtFloatLayout>
       </View>
     )
   }

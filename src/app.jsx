@@ -33,7 +33,9 @@ class App extends Component {
 
       'pages/user/index',
 
-      'component/search/index'
+      'component/search/index',
+
+      'component/search/school/index'
     ],
     // 分包
     subPackages: [

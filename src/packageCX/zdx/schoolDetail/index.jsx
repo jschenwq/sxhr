@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Swiper, SwiperItem,RichText } from '@tarojs/components'
 import { AtGrid , AtList, AtListItem,AtFloatLayout } from 'taro-ui'
-import {login, getSchoolDetail,getSchoolIntr,getSchoolNewsList} from '@utils/api'
+import { getSchoolDetail,getSchoolIntr} from '@utils/api'
 import $ from '@utils/http'
 
 import './index.scss'
@@ -38,13 +38,7 @@ class Index extends Component {
     });
   }
 
-  componentWillUnmount () {}
-
-  componentDidShow () {}
-
-  componentDidHide () {}
   handleShowDetail(){
-
     getSchoolIntr(this.state.school.schoolId).then(({data})=>{
       var path = data.contentPath;
       this.setState({
@@ -53,7 +47,6 @@ class Index extends Component {
       });
       this.handleGetSchoolIntr(path)
     });
-
   }
 
   handleGetSchoolIntr (path) {
@@ -78,21 +71,19 @@ class Index extends Component {
     });
   }
   gotoZsjh(){
-    Taro.showToast({
-      title: '功能开发中',
-      icon: 'none',
-      mask: true
-    });
+    //招生计划
+    Taro.navigateTo({
+      url: '/packageCX/fsx/index?current=2&schoolId=' + this.$router.params.schoolId
+    })
   }
   gotoLnfsx(){
-    Taro.showToast({
-      title: '功能开发中',
-      icon: 'none',
-      mask: true
-    });
+    //历年分数线
+    Taro.navigateTo({
+      url: '/packageCX/fsx/index?current=0&schoolId=' + this.$router.params.schoolId
+    })
   }
   render () {
-    let {school, majors,schoolNewsList,isOpened,detailNodes,introductionPath,introduction} = this.state;
+    let {school, majors,schoolNewsList,isOpened,introduction} = this.state;
     return (
       <View className='schoolDetail'>
         <View className='schoolTop'>
@@ -217,7 +208,6 @@ class Index extends Component {
           <View onClick={this.gotoLnfsx.bind(this)} className='btn rightBtn'>历年分数线</View>
         </View>
         <AtFloatLayout isOpened={isOpened} title="学校简介" onClose={this.handleClose.bind(this) }>
-          {/*<RichText nodes={detailNodes} />*/}
           <RichText nodes={introduction} />
         </AtFloatLayout>
       </View>
