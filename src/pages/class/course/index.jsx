@@ -8,6 +8,10 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      gradeSelectors:[],
+      subjectSelectors:[],
+      editionSelectors:[],
+      courseTypeSelectors:[],
       searchData: {},
       editionId: null,
       gradeId: null,
@@ -27,9 +31,14 @@ class Index extends Component {
       })
     });
     getCourseDictList().then(({data}) => {
-      console.log(data);
+      const baseSelector = [{"name":"全部","id":"0"}];
+
       this.setState({
-        searchData:data
+        searchData:data,
+        gradeSelectors: baseSelector.concat(data.GRADE),
+        subjectSelectors: baseSelector.concat(data.SUBJECT),
+        editionSelectors: baseSelector.concat(data.EDITION),
+        courseTypeSelectors: baseSelector.concat(data.COURSETYPE)
       })
     });
   }
@@ -40,60 +49,143 @@ class Index extends Component {
 
   componentDidHide () {}
 
+  searchCourse(searchData){
+    getMyCourseList(searchData).then(({data}) => {
+      this.setState({
+        data:data.list
+      })
+    });
+  }
+
   openVideo(item){
     Taro.navigateTo({
       url: '/packageKC/lecture/index?playTitle='+item.title+"&playDuration="+item.classHour
     });
   }
   onGradeChange=(e)=>{
-    console.log(this.state.searchData.GRADE[e.detail.value].id);
-    this.setState((prevState)=>({
-      grade: e.detail.value == '0'?'年级':prevState.searchData.GRADE[e.detail.value].id
-    }));
+    let searchData = {couresType : "2"};
+    let gradeId = this.state.gradeSelectors[e.detail.value].id;
+    this.setState({
+      gradeId: gradeId
+    });
+
+    if(this.state.editionId !== null && this.state.editionId !== "0"){
+      searchData.editionId = this.state.editionId;
+    }
+
+    if(gradeId !== null && gradeId !== "0"){
+      searchData.gradeId = gradeId;
+    }
+
+    if(this.state.subjectId !== null && this.state.subjectId !== "0"){
+      searchData.subjectId = this.state.subjectId;
+    }
+
+    if(this.state.typeId !== null && this.state.typeId !== "0"){
+      searchData.typeId = this.state.typeId;
+    }
+    this.searchCourse(searchData);
   }
   onSubjectChange=(e)=>{
-    this.setState((prevState)=>({
-      subject: e.detail.value == '0'?'学科':prevState.searchData.SUBJECT[e.detail.value].id
-    }));
+    let searchData = {couresType : "2"};
+    let subjectId = this.state.subjectSelectors[e.detail.value].id;
+    this.setState({
+      subjectId: subjectId
+    });
+
+    if(this.state.editionId !== null && this.state.editionId !== "0"){
+      searchData.editionId = this.state.editionId;
+    }
+
+    if(this.state.gradeId !== null && this.state.gradeId !== "0"){
+      searchData.gradeId = this.state.gradeId;
+    }
+
+    if(subjectId !== null && subjectId !== "0"){
+      searchData.subjectId = subjectId;
+    }
+
+    if(this.state.typeId !== null && this.state.typeId !== "0"){
+      searchData.typeId = this.state.typeId;
+    }
+    this.searchCourse(searchData);
   }
   onVersionChange=(e)=>{
-    this.setState((prevState)=>({
-      version: e.detail.value == '0'?'版本':prevState.searchData.EDITION[e.detail.value].id
-    }));
+    let searchData = {couresType : "2"};
+    let editionId = this.state.editionSelectors[e.detail.value].id;
+    this.setState({
+      editionId: editionId
+    });
+
+    if(editionId !== null && editionId !== "0"){
+      searchData.editionId = editionId;
+    }
+
+    if(this.state.gradeId !== null && this.state.gradeId !== "0"){
+      searchData.gradeId = this.state.gradeId;
+    }
+
+    if(this.state.subjectId !== null && this.state.subjectId !== "0"){
+      searchData.subjectId = this.state.subjectId;
+    }
+
+    if(this.state.typeId !== null && this.state.typeId !== "0"){
+      searchData.typeId = this.state.typeId;
+    }
+    this.searchCourse(searchData);
   }
   onTypeChange=(e)=>{
-    this.setState((prevState)=>({
-      type: e.detail.value == '0'?'类型':prevState.searchData.COURSETYPE[e.detail.value].id
-    }));
+    let searchData = {couresType : "2"};
+    let typeId = this.state.courseTypeSelectors[e.detail.value].id;
+    this.setState({
+      typeId: typeId
+    });
+
+    if(this.state.editionId !== null && this.state.editionId !== "0"){
+      searchData.editionId = this.state.editionId;
+    }
+
+    if(this.state.gradeId !== null && this.state.gradeId !== "0"){
+      searchData.gradeId = this.state.gradeId;
+    }
+
+    if(this.state.subjectId !== null && this.state.subjectId !== "0"){
+      searchData.subjectId = this.state.subjectId;
+    }
+
+    if(typeId !== null && typeId !== "0"){
+      searchData.typeId = typeId;
+    }
+    this.searchCourse(searchData);
   }
   render () {
-    let {searchData,data} = this.state;
+    let {gradeSelectors,subjectSelectors,editionSelectors,courseTypeSelectors,data} = this.state;
     return (
       <View className='index'>
         <View className='query'>
           <View className='attr'>
-            <Picker mode='selector' range={searchData.GRADE} rangeKey='name' onChange={this.onGradeChange}>
+            <Picker mode='selector' range={gradeSelectors} rangeKey='name' onChange={this.onGradeChange}>
               <View className='picker'>
                 年级<Text className='at-icon at-icon-chevron-down'></Text>
               </View>
             </Picker>
           </View>
           <View className='attr'>
-            <Picker mode='selector' range={searchData.SUBJECT} rangeKey='name' onChange={this.onSubjectChange}>
+            <Picker mode='selector' range={subjectSelectors} rangeKey='name' onChange={this.onSubjectChange}>
               <View className='picker'>
                 学科<Text className='at-icon at-icon-chevron-down'></Text>
               </View>
             </Picker>
           </View>
           <View className='attr'>
-            <Picker mode='selector' range={searchData.EDITION} rangeKey='name' onChange={this.onVersionChange}>
+            <Picker mode='selector' range={editionSelectors} rangeKey='name' onChange={this.onVersionChange}>
               <View className='picker'>
                 版本<Text className='at-icon at-icon-chevron-down'></Text>
               </View>
             </Picker>
           </View>
           <View className='attr'>
-            <Picker mode='selector' range={searchData.COURSETYPE} rangeKey='name' onChange={this.onTypeChange}>
+            <Picker mode='selector' range={courseTypeSelectors} rangeKey='name' onChange={this.onTypeChange}>
               <View className='picker'>
                 类型<Text className='at-icon at-icon-chevron-down'></Text>
               </View>
