@@ -91,7 +91,11 @@ export const getZWKZQuestions = ()=> $.ajax('/wx/evaluation/self/questions','GET
 //提交自我控制能力测评结果
 export const submitZWKZAnswers = (data) => $.ajax('/wx/evaluation/self/answers', 'POST', data);
 
+//获取我的课程讲堂结果
+export const getMyCourseList = (data) => $.ajax('/wx/course/list','POST',data);
 
+//获取课程信息查询字典
+export const getCourseDictList = (data) => $.ajax('/wx/coursedict/','GET');
 
 //绑定手机功能模块
 //获取验证码

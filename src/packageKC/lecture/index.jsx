@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Video, CoverView } from '@tarojs/components'
 import { AtAccordion,AtIcon } from 'taro-ui'
+import { getMyCourseList } from '@utils/api'
 import './index.scss'
 
 class Index extends Component {
