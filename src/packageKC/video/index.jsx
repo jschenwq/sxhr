@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Video } from '@tarojs/components'
+import { getCourseDetail } from '@utils/api'
 import './index.scss'
-import forum1 from '../images/forum1.png'
 
 class Index extends Component {
   config = {
@@ -12,49 +12,16 @@ class Index extends Component {
     this.state = {
       playTitle: '',
       playDuration: '',
-      data: [{
-        imageSrc: forum1,
-        title:'省控线与批次线',
-        duration: '0:11:54',
-      },{
-        imageSrc: forum1,
-        title:'免费师范生',
-        duration: '0:15:44',
-      },{
-        imageSrc: forum1,
-        title:'服从专业调剂',
-        duration: '0:07:44',
-      },{
-        imageSrc: forum1,
-        title:'分数线和投档线',
-        duration: '0:12:10',
-      },{
-        imageSrc: forum1,
-        title:'分数清、专业清、专业级差区别',
-        duration: '0:06:23',
-      },{
-        imageSrc: forum1,
-        title:'专业级差',
-        duration: '0:03:43',
-      },{
-        imageSrc: forum1,
-        title:'专业清',
-        duration: '0:11:32',
-      },{
-        imageSrc: forum1,
-        title:'分数清',
-        duration: '0:10:11',
-      },{
-        imageSrc: forum1,
-        title:'大小年现象',
-        duration: '0:13:20',
-      }]
+      courseId: '',
+      courses: [],
+      lessons: []
     };
   }
   componentWillMount(){
     this.setState((prevState)=>({
       playTitle: this.$router.params.playTitle,
       playDuration: this.$router.params.playDuration,
+      courseId: this.$router.params.courseId
     }));
   }
 
@@ -63,7 +30,19 @@ class Index extends Component {
   }
 
   componentDidMount(){
+    let _courseId = this.state.courseId;
+    getCourseDetail(_courseId).then(({data}) => {
+      this.setState({
+        courses: data.courses,
+        lessons: data.lessons
+      })
+    });
+  }
 
+  openVideo(item){
+    Taro.navigateTo({
+      url: "/packageKC/video/index?playTitle="+item.courseName+"&playDuration="+item.periodTotalLength+"&courseId="+item.id
+    });
   }
 
   componentWillUnmount () {}
@@ -73,11 +52,11 @@ class Index extends Component {
   componentDidHide () {}
 
   render () {
-    let {playTitle, playDuration, data} = this.state;
+    let {playTitle, playDuration, courses, lessons} = this.state;
     return (
       <View className='index'>
         <View className='up'>
-          <Video src='' className='up-video'></Video>
+          <Video src={lessons[0].vodPath} className='up-video'></Video>
           <View className='video-info'>
             <View className='info-item'>
               <View className='info-title'>{playTitle}</View>
@@ -92,13 +71,13 @@ class Index extends Component {
             <View className='down-top-right'>全部课程</View>
           </View>
           <View className='down-items'>
-            {data.map((item)=>{
+            {courses.map((item)=>{
               return (
-                <View className='down-item'>
-                  <Image className='item-image' src={item.imageSrc} />
+                <View className='down-item' onClick={this.openVideo.bind(this, item)}>
+                  <Image className='item-image' src={item.picPath} />
                   <View className='item-content'>
-                    <View className='title'>{item.title}</View>
-                    <View className='date'>时长：{item.duration}</View>
+                    <View className='title'>{item.courseName}</View>
+                    <View className='date'>时长：{item.periodTotalLength}</View>
                   </View>
                 </View>
               )

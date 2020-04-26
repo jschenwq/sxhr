@@ -59,7 +59,7 @@ class Index extends Component {
 
   openVideo(item){
     Taro.navigateTo({
-      url: '/packageKC/lecture/index?playTitle='+item.title+"&playDuration="+item.classHour
+      url: "/packageKC/lecture/index?playTitle="+item.courseName+"&playDuration="+item.periodTotalLength+"&courseId="+item.id
     });
   }
   onGradeChange=(e)=>{

@@ -17,7 +17,6 @@ class Index extends Component {
 
   componentDidMount(){
     getMyCourseList({couresType : "1"}).then(({data}) => {
-      console.log(data.list);
       this.setState({
         data:data.list
       })
@@ -31,7 +30,7 @@ class Index extends Component {
   componentDidHide () {}
   openVideo(item){
     Taro.navigateTo({
-      url: '/packageKC/video/index?playTitle='+item.courseName+"&playDuration="+item.periodTotalLength
+      url: "/packageKC/video/index?playTitle="+item.courseName+"&playDuration="+item.periodTotalLength+"&courseId="+item.id
     });
   }
   render () {

@@ -97,6 +97,9 @@ export const getMyCourseList = (data) => $.ajax('/wx/course/list','POST',data);
 //获取课程信息查询字典
 export const getCourseDictList = (data) => $.ajax('/wx/coursedict/','GET');
 
+//获取课程详情
+export const getCourseDetail = (id) => $.ajax('/wx/course/' + id, 'GET');
+
 //绑定手机功能模块
 //获取验证码
 export const getVerificationCode = (data) => $.ajax('/wx/system/getVerificationCode','GET', data);

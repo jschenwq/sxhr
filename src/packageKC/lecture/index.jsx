@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Video, CoverView } from '@tarojs/components'
 import { AtAccordion,AtIcon } from 'taro-ui'
-import { getMyCourseList } from '@utils/api'
+import { getCourseDetail } from '@utils/api'
 import './index.scss'
 
 class Index extends Component {
@@ -13,43 +13,22 @@ class Index extends Component {
     this.state = {
       playTitle: '',
       playDuration: '',
+      courseId: '',
       currentArrIndex: 0,
       currentLiIndex: 0,
-      data: [{
+      lessons: [{
         title:'阅读和写作',
         open: false,
-        list: [{
-          title: '散文阅读之显性内容',
-          duration: 1347
-        },{
-          title: '散文阅读之隐性内容',
-          duration: 675
-        },{
-          title: '散文文意理解的核心能力',
-          duration: 947
-        },{
-          title: '散文阅读之细微之处的字词',
-          duration: 110
-        },{
-          title: '散文阅读之细微之处的句子',
-          duration: 947
-        },{
-          title: '散文阅读之字词与句子的鉴赏',
-          duration: 865
-        },{
-          title: '散文阅读之人物形象',
-          duration: 527
-        },{
-          title: '怎样鉴赏人物形象',
-          duration: 1292
-        }]
-      }]
+        list: []
+      }],
+      selectedLesson: ''
     };
   }
   componentWillMount(){
+    console.log(this.$router.params);
     this.setState((prevState)=>({
       playTitle: this.$router.params.playTitle,
-      playDuration: this.$router.params.playDuration,
+      courseId: this.$router.params.courseId
     }));
   }
 
@@ -58,7 +37,23 @@ class Index extends Component {
   }
 
   componentDidMount(){
+    let _courseId = this.state.courseId;
+    let _playTitle = this.state.playTitle;
+    getCourseDetail(_courseId).then(({data}) => {
+      let _lessonsItem = {};
+      _lessonsItem.list = data.lessons;
+      _lessonsItem.title = _playTitle;
+      _lessonsItem.open = false;
+      let _lessons = [];
+      _lessons.push(_lessonsItem);
 
+      this.setState({
+        lessons: _lessons,
+        selectedLesson: data.lessons[0].vodPath,
+        playTitle: data.lessons[0].title,
+        playDuration: data.lessons[0].periodLength
+      })
+    });
   }
 
   componentWillUnmount () {}
@@ -68,9 +63,9 @@ class Index extends Component {
   componentDidHide () {}
   handleClickAccordion(index){
     this.setState((prevState)=>{
-      prevState.data[index].open = !prevState.data[index].open;
+      prevState.lessons[index].open = !prevState.lessons[index].open;
       return {
-        data: prevState.data
+        lessons: prevState.lessons
       };
     });
   }
@@ -78,20 +73,21 @@ class Index extends Component {
     this.setState((prevState)=>({
       currentArrIndex: accIndex,
       currentLiIndex: liIndex,
-      playTitle: prevState.data[accIndex].list[liIndex].title,
-      playDuration: prevState.data[accIndex].list[liIndex].duration
+      playTitle: prevState.lessons[accIndex].list[liIndex].title,
+      playDuration: prevState.lessons[accIndex].list[liIndex].periodLength,
+      selectedLesson: prevState.lessons[accIndex].list[liIndex].vodPath
     }));
   }
   play(){
 
   }
   render () {
-    let {playTitle, playDuration,currentArrIndex,currentLiIndex,data} = this.state;
+    let {playTitle, playDuration,lessons,selectedLesson,currentArrIndex,currentLiIndex} = this.state;
     return (
       <View className='index'>
         <View className='up'>
-          <Video src='' className='up-video' controls={false}>
-            <CoverView class='controls'>
+          <Video src={selectedLesson} className='up-video' controls={false}>
+            {/*<CoverView class='controls'>
               <CoverView class='play' onClick='play'>
                 <View className='info'>高中三年全科同步课堂 特高级教师在线授课</View>
                 <View className='info'>学习提分、填志愿，不求人</View>
@@ -100,7 +96,7 @@ class Index extends Component {
                   <Button plain className='yysxk-btn' size='mini'>已有升学卡</Button>
                 </View>
               </CoverView>
-            </CoverView>
+            </CoverView>*/}
           </Video>
           <View className='video-info'>
             <View className='info-title'>{playTitle}</View>
@@ -112,7 +108,7 @@ class Index extends Component {
             课程列表
           </View>
           <View className='down-items'>
-            {data.map((item, index)=>{
+            {lessons.map((item, index)=>{
               return (
                 <AtAccordion title={item.title} open={item.open} onClick={this.handleClickAccordion.bind(this, index)}>
                   <View className='list'>
@@ -122,11 +118,11 @@ class Index extends Component {
                           <View className={'li '+(currentArrIndex==index && currentLiIndex==indx?'selected':'')} onClick={this.handleClickLi.bind(this, index, indx)}>
                             <View>
                               {currentArrIndex==index && currentLiIndex==indx &&
-                                <AtIcon value='play' size='15' color='#F00'></AtIcon>
+                              <AtIcon value='play' size='15' color='#F00'></AtIcon>
                               }
                               {li.title}
                             </View>
-                            <View>{li.duration}</View>
+                            <View>{li.periodLength}</View>
                           </View>
                         );
                       })
