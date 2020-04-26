@@ -152,7 +152,7 @@ class Index extends Component {
             <View>敬请期待...</View>
             <View className ='qbzy'>
               <View className ='zyLogo'>
-                <Image src={require('@images/home/banner.jpg')} className='zyLogoImg' />
+                <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='zyLogoImg' />
                 <Text onClick={this.gotoCP.bind(this)} className ='ljcp'>立即测评</Text>
               </View>
 

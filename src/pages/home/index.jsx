@@ -149,22 +149,12 @@ class Index extends Component {
     }
     //位次查询
     if(index == 6){
-      // Taro.showToast({
-      //   title: '开发中敬请期待...',
-      //   icon: 'none',
-      //   mask: true,
-      // });
       Taro.navigateTo({
         url: '/packageCX/wccx/index',
       })
     }
     //看职业
     if(index == 7){
-      // Taro.showToast({
-      //   title: '开发中敬请期待...',
-      //   icon: 'none',
-      //   mask: true,
-      // });
       Taro.navigateTo({
         url: '/packageCX/kzy/index',
       });
@@ -185,6 +175,20 @@ class Index extends Component {
     })
   }
 
+  //获取更多成功案例
+  getMoreCase(){
+    Taro.navigateTo({
+      url: '/packageCX/case/index',
+    })
+  }
+
+  //跳转成功案例详情
+  gotoCaseDetail(path){
+    Taro.navigateTo({
+      url: '/packageCX/case/detail/index?path='+path,
+    })
+  }
+
   onChange = e => {
     this.setState({
       selectorChecked: this.state.selector[e.detail.value]
@@ -199,7 +203,7 @@ class Index extends Component {
     return (
       <View className='home'>
         {/*宣传画报*/}
-        <Image src={require('@images/home/banner.jpg')} className='home_banner' />
+        <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='home_banner' />
 
         {/*分数帅选*/}
         <View className='home_wish'>
@@ -281,14 +285,14 @@ class Index extends Component {
         {/*卡片*/}
         <View className='card'>
           <View className='cardLeft'>
-            <Image src={require('../../packageCP/images/boy.png')} className='cardLeftImg' />
+            <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/boy.png' className='cardLeftImg' />
             <View className='cardLeftText'>
               <Text className= 'cardTitle'>新高考选课</Text>
               <Text className= 'cardPerson'>大数据智能选课</Text>
             </View>
           </View>
           <View className='cardRight' onClick={this.gotoCPPage.bind(this)}>
-            <Image src={require('../../packageCP/images/boy.png')} className='cardLeftImg' />
+            <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/boy.png' className='cardLeftImg' />
             <View className='cardLeftText'>
               <Text className= 'cardTitle'>专业定位测评</Text>
               <Text className= 'cardPerson'>五大维度专业</Text>
@@ -333,131 +337,32 @@ class Index extends Component {
           })
         }
 
-        {/*<View className={classNames('at-row','itemPerson')}>*/}
-          {/*<View className='at-col at-col-3' style='text-align:center'>*/}
-            {/*<Image src={require('../../packageCP/images/boy.png')} className='counselorImg1' />*/}
-          {/*</View>*/}
-          {/*<View className='at-col at-col-7'>*/}
-            {/*<View>*/}
-              {/*<Text className='name'>张三</Text>*/}
-            {/*</View>*/}
-            {/*<View className='at-row'>*/}
-              {/*<View className='at-col at-col-4 job'>志愿填报</View>*/}
-              {/*<View className='at-col at-col-4 job'>高招政策</View>*/}
-              {/*<View className='at-col at-col-4 job'>心理咨询</View>*/}
-            {/*</View>*/}
-            {/*<View className='at-row'>*/}
-              {/*<View className='at-col at-col-4 job'>志愿填报</View>*/}
-              {/*<View className='at-col at-col-4 job'>高招政策</View>*/}
-              {/*<View className='at-col at-col-4 job'>心理咨询</View>*/}
-            {/*</View>*/}
-            {/*<View>*/}
-              {/*<Text className='year'>从业2年</Text><AtRate className='starts' value={this.state.stars}/>*/}
-            {/*</View>*/}
-          {/*</View>*/}
-        {/*</View>*/}
-
         {/*成功案例*/}
-        <View className='counselor firstItem'>
+        <View className='counselor'>
           <View>
             <Text className="title">成功案例</Text>
-            <Text class="more">更多</Text>
+            <Text onClick={this.getMoreCase.bind(this)} class="more">更多</Text>
           </View>
         </View>
-        <View className='at-row item1'>
+        <View className='at-row item1' onClick={this.gotoCaseDetail.bind(this,"https://sxhr-school.oss-cn-beijing.aliyuncs.com/case/10000.json")}>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
+            <Image class='ItemImg1' src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/case/img/10000.jpg'/>
           </View>
           <View className='at-col exmpole'>
-            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleTitle'>刘同学被211背景高校河海大学文天学院会计录取</Text>
+            <Text className='exmpoleDetail'>第一轮指导BC志愿：成都工业学院，乐山师范学院，宜宾学院，内江师范学院，西昌学院，广西民族大学、广西民族师范学院，白色学 </Text>
           </View>
         </View>
-        <View className='at-row item1'>
+        <View className='at-row item1' onClick={this.gotoCaseDetail.bind(this,"https://sxhr-school.oss-cn-beijing.aliyuncs.com/case/10001.json")}>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
+            <Image class='ItemImg1' src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/case/img/10000.jpg'/>
           </View>
           <View className='at-col exmpole'>
-            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-          </View>
-        </View>
-        <View className='at-row item1'>
-          <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
-          </View>
-          <View className='at-col exmpole'>
-            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-          </View>
-        </View>
-        <View className='at-row item1'>
-          <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
-          </View>
-          <View className='at-col exmpole'>
-            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
+            <Text className='exmpoleTitle'>专业指导，上到心仪学校专业</Text>
+            <Text className='exmpoleDetail'>徐<span>同学：理科 分数</span>326 选测BB+ 位次69880。最终被南京理工大学紫金学院电气工程与自动化专业录取。</Text>
           </View>
         </View>
 
-        {/*高考咨询*/}
-        <View className='counselor firstItem'>
-          <View>
-            <Text className="title">高考咨询</Text>
-            <Text class="more">更多</Text>
-          </View>
-        </View>
-        <View className='at-row item1'>
-          <View className='at-col exmpole1'>
-            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
-          </View>
-          <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
-          </View>
-        </View>
-        <View className='at-row item1'>
-          <View className='at-col exmpole1'>
-            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
-          </View>
-          <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
-          </View>
-        </View>
-        <View className='at-row item1'>
-          <View className='at-col exmpole1'>
-            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
-          </View>
-          <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
-          </View>
-        </View>
-        <View className='at-row item1'>
-          <View className='at-col exmpole1'>
-            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
-          </View>
-          <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
-          </View>
-        </View>
-        <View className='at-row item1'>
-          <View className='at-col exmpole1'>
-            <Text className='exmpoleTitle'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleDetail'>这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字这是一段测试文字</Text>
-            <Text className='exmpoleTime'>2019/02/02 10:19<Text className='readNum'>256</Text></Text>
-          </View>
-          <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src={require('../../packageCP/images/evaStart4.png')}/>
-          </View>
-        </View>
         {/*<Button className='add_btn' onClick={this.toFenbao.bind(this)}>前往分包页面</Button>*/}
         {/*<Button className='add_btn' onClick={this.toFenbao1}>前往分包页面111</Button>*/}
       </View>
