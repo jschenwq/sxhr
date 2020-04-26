@@ -1,0 +1,352 @@
+.home {
+  flex-direction: column;
+  width: 100%;
+  //2020-1-15
+  &_banner{
+    height: 390px;
+    width: 750px;
+  }
+  &_wish{
+    position: relative;
+    margin: 15px 0px;
+  }
+  &_icon{
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-left: 40px;
+  }
+  &_course{
+    display: inline-block;
+    background: #CCCCCC;
+    width: 110px;
+    height: 50px;
+    border-radius: 25px;
+    vertical-align: middle;
+  }
+  &_active{
+    background: #37B365;
+    border-radius: 30px;
+  }
+  &_wl{
+    width: 55px;
+    text-align: center;
+    color: white;
+    display: inline-block;
+    line-height: 50px;
+  }
+  &_location{
+    margin-right: 15px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  &_font{
+    color: #37B365;
+  }
+  &_score{
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  &_scoreLine{
+    vertical-align: middle;
+  }
+  &_scoreContent{
+    background: #F7F7F7;
+    margin: 20px auto;
+    padding: 20px 0px;
+    width: 700px;
+    border-radius: 5px;
+  }
+  &_scoreIpt{
+    display: inline-block;
+    color: #7B7B7B;
+    width: 418px;
+    height: 50px;
+    border-bottom: 1px solid #E4E4E4;
+    vertical-align: middle;
+    margin-left: 100px;
+    text-align: center;
+  }
+  &_scoreIpt1{
+    display: inline-block;
+    width: 300px;
+    height: 50px;
+    border-bottom: 1px solid #E4E4E4;
+    vertical-align: middle;
+    margin-left: 60px;
+    text-align: center;
+  }
+  &_font1{
+    vertical-align: middle;
+    color: #7B7B7B;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  &_zntj{
+    position: absolute;
+    right: 25px;
+    width: 140px;
+    height: 140px;
+    background: linear-gradient( #A1E20A, #1DBA53);
+    border-radius: 70px;
+    top:8px;
+    font-size: 36px;
+    text-align: center;
+    color: white;
+    padding: 22px 0px;
+  }
+
+  //2020-2-8
+  .notice{
+    padding: 0px 25px;
+    margin-bottom: 30px;
+    .noticeIcon{
+      padding: 0px 10px;
+      vertical-align: middle;
+    }
+    .noticeText{
+      font-size: 28px;
+      color: #A3A3A3;
+      vertical-align: middle;
+    }
+  }
+
+  .card{
+    padding: 35px 25px;
+    background: #EFEEF3;
+    &:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .cardLeft{
+      width: 340px;
+      float: left;
+      background: white;
+      border-radius: 15px;
+      padding: 40px 0px 40px 20px;
+      .cardLeftImg{
+        margin-right: 10px;
+        float: left;
+        width: 100px;
+        height: 100px;
+        vertical-align: middle;
+      }
+      .cardLeftText{
+        padding-top: 10px;
+        text-align: center;
+        height: 100px;
+        display: inline-block;
+        vertical-align: center;
+        .cardTitle{
+          display: block;
+          font-weight: bold;
+        }
+        .cardPerson{
+          display: block;
+          font-size: 24px;
+          color: #757575;
+        }
+      }
+    }
+    .cardRight{
+      width: 340px;
+      float: right;
+      background: white;
+      border-radius: 15px;
+      padding: 40px 0px 40px 20px;
+      .cardLeftImg{
+        margin-right: 10px;
+        float: left;
+        width: 100px;
+        height: 100px;
+        vertical-align: middle;
+      }
+      .cardLeftText{
+        padding-top: 10px;
+        text-align: center;
+        height: 100px;
+        display: inline-block;
+        vertical-align: center;
+        .cardTitle{
+          display: block;
+          font-weight: bold;
+        }
+        .cardPerson{
+          display: block;
+          font-size: 24px;
+          color: #757575;
+        }
+      }
+    }
+  }
+
+  .counselor{
+    padding: 35px 25px 0px 25px;
+    .title{
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .more{
+      float: right;
+      color: #A3A3A3;
+      font-size: 30px;
+    }
+  }
+  .firstItem{
+    border-top: 20px solid #EFEEF3;
+  }
+  .itemPerson{
+    padding: 30px 15px;
+    .counselorImg{
+      width: 130px;
+      height: 130px;
+    }
+    .counselorImg1{
+      width: 130px;
+      height: 130px;
+      position: relative;
+      border-radius: 130px;
+    }
+    .name{
+      font-size: 36px;
+      font-weight: bold;
+      margin-right: 30px;
+      position: relative;
+      left: 5px;
+    }
+    .year{
+      font-size: 28px;
+      color: #A3A3A3;
+    }
+    .detailJob{
+      &:after{
+        content: "";
+        display: block;
+        clear: both;
+      }
+    }
+    .job{
+      display: inline-block;
+      padding: 0px 16px;
+      font-size: 28px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      margin:10px 15px 0px 0px;
+      float: left;
+    }
+    .yearAndPj{
+      margin-top: 10px;
+    }
+    .at-rate{
+      display: inline-block;
+      position: relative;
+      top:-13px;
+      margin-left:40px;
+    }
+    .at-rate__icon .at-icon{
+      font-size: 32px;
+    }
+    .detail{
+      font-size: 28px;
+      white-space:normal;
+      word-break:break-all;
+      word-wrap:break-word;
+      overflow : hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      .moreDetail{
+        color: #37B365;
+      }
+    }
+    .btn{
+      background: #37B365;
+      position: relative;
+      top:30px;
+    }
+    .at-button--small{
+      width: 50px!important;
+    }
+  }
+  .item{
+    padding: 35px 25px;
+    background: #EFEEF3;
+    &:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .ItemImg{
+      width: 250px;
+      height: 150px;
+      float: right;
+    }
+  }
+  .lastItem{
+    border-bottom: 70px solid white;
+  }
+  .item1{
+    padding: 35px 25px;
+    background: white;
+    .ItemImg1{
+      width: 20px;
+      height: 15px;
+    }
+    .exmpole{
+      padding-left: 20px;
+      .exmpoleTitle{
+        display: block;
+        width: 480px;
+        font-size:  36px;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 10px;
+      }
+      .exmpoleDetail{
+        display: block;
+        font-size:  28px;
+        width: 480px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 10px;
+      }
+    }
+    .exmpole1{
+      padding-right: 60px;
+      .exmpoleTitle{
+        display: block;
+        width: 440px;
+        font-size:  36px;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 10px;
+      }
+      .exmpoleDetail{
+        display: block;
+        font-size:  28px;
+        width: 440px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 10px;
+      }
+      .exmpoleTime{
+        display: block;
+        font-size:  28px;
+        .readNum{
+          float: right;
+        }
+      }
+    }
+  }
+
+}

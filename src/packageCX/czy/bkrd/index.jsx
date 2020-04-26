@@ -180,7 +180,7 @@ class Index extends Component {
         >
           <Image
             style='width:100%;height:250px'
-            src={require('@images/home/banner.jpg')}
+            src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg'
           />
         </AtCurtain>
       </View>

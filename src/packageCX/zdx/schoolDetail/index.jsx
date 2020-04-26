@@ -88,7 +88,7 @@ class Index extends Component {
       <View className='schoolDetail'>
         <View className='schoolTop'>
           {/*大学画报*/}
-          <Image src={require('@images/home/banner.jpg')} className='schoolImg' />
+          <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='schoolImg' />
           <Image src={school.logoPath} className='schoolLogo' />
           <Text className='schoolName'>{school.schoolName}</Text>
         </View>
@@ -137,37 +137,37 @@ class Index extends Component {
           >
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-1'>
-              <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
+              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
               <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-2'>
-              <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
+              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
               <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-3'>
-              <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
+              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
               <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-3'>
-              <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
+              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
               <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-3'>
-              <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
+              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
               <Text className='imgText'></Text>
             </View>
           </SwiperItem>
           <SwiperItem className='SwiperItem'>
             <View className='demo-text-3'>
-              <Image src={require('@images/home/banner.jpg')} className='ImgSwiper' />
+              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
               <Text className='imgText'></Text>
             </View>
           </SwiperItem>

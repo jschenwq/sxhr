@@ -67,6 +67,8 @@ class App extends Component {
           'zntj/index',//智能推荐
           'zixunshi/index',//咨询师列表
           'zixunshi/zxsDetail/index',//咨询师详情
+          'case/index',//成功案例列表
+          'case/detail/index',//成功详情
         ]
       },
       //服务分包
