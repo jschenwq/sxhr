@@ -14,6 +14,16 @@ class Index extends Component {
       isLoading: false
     };
   }
+
+  componentDidMount(){
+    const state = Taro.$store.getState();
+    if(!state.counter.appOnLaunch){
+      Taro.switchTab({
+        url: '/pages/home/index'
+      });
+    }
+  }
+
   componentWillMount(){
 
   }
@@ -43,12 +53,12 @@ class Index extends Component {
         isLoading: false
       }));
       Taro.showToast({
-        title: result?'授权成功':'授权失败',
+        title: result?'授权登录成功':'授权登录失败',
         icon: 'none',
         mask: true
       });
-      Taro.navigateTo({
-        url: 'pages/home/index'
+      Taro.switchTab({
+        url: '/pages/home/index'
       });
     });
   }
@@ -63,7 +73,7 @@ class Index extends Component {
       <View className='index'>
         <View style='text-align: center;margin-bottom: 10px;'>识人文墨教育</View>
         <Button onGetUserInfo={this.wxLogin.bind(this)} openType="getUserInfo" loading={isLoading} type='primary' circle>微信快捷登录</Button>
-        <Button onClick={this.sjLogin.bind(this)} type='default' circle>手机号短信登录</Button>
+        {/*<Button onClick={this.sjLogin.bind(this)} type='default' circle>手机号短信登录</Button>*/}
       </View>
     )
   }

@@ -3,7 +3,7 @@ import { Provider } from '@tarojs/redux'
 
 import Index from './pages/home/index'
 
-import configStore from './store'
+import configStore from './store'//redux引入
 
 import './app.scss'
 
@@ -17,13 +17,15 @@ import '@font/iconfont.css';
 //   require('nerv-devtools')
 // }
 
-const store = configStore()
+const store = configStore()//redux调用
 
 class App extends Component {
 
   config = {
     pages: [
-      'pages/home/index',
+      'pages/login/index',//授权登录
+
+      'pages/home/index',//首页
 
       'pages/service/index',
 

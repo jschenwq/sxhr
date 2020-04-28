@@ -32,12 +32,18 @@ function ajax(url, methodType, data, header) {
           console.log(`${new Date().toLocaleString()}【 M=${url} 】【接口响应：】`, res.data);
         }
 
+
         if (data.code != 0) {
           Taro.showToast({
             title: `${res.data.error.message}~` || res.data.error.code,
             icon: 'none',
             mask: true,
           });
+          if(data.code == 401){//token失效
+            Taro.navigateTo({
+              url: '/pages/login/index'
+            });
+          }
         }
         resolve(data);
       } else {
