@@ -10,12 +10,13 @@ class Index extends Component {
     navigationBarTitleText: '个人中心'
   }
 
-  constructor(){
-
+  constructor(props){
+    super(props);
     this.state = {
       userName: 'K'
     };
   }
+
 
   componentWillMount(){
 

@@ -8,7 +8,7 @@ import hyfw from '../images/hyfw.png'
 class Index extends Component {
 
   config = {
-    navigationBarTitleText: '选科服务'
+    navigationBarTitleText: '测评服务'
   }
   state = {
     phoneNumber: ''
@@ -36,7 +36,7 @@ class Index extends Component {
 
   fwrxPay=(e)=>{
     Taro.showLoading();
-    getService({memberType: "choose"}).then(({data}) => {
+    getService({memberType: "evaluation"}).then(({data}) => {
       Taro.requestPayment({
         timeStamp:data.timeStamp,
         package:data.package,
@@ -80,8 +80,8 @@ class Index extends Component {
       <View className='index'>
         <Image src={hyfw} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
         <View className='hyfw-price'>
-          <Label>选科服务</Label>
-          <Text style='color: #ff9913;'> ￥1000.00</Text>
+          <Label>测评次卡</Label>
+          <Text style='color: #ff9913;'> ￥500.00</Text>
         </View>
 
         <View className='hyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx 4rpx;font-size: 30rpx;'>

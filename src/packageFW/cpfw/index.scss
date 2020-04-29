@@ -1,0 +1,45 @@
+.index{
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #f0eff5;
+  .hyfw-price{
+    padding: 40px;
+    background-color: #fff;
+    margin-bottom: 16rpx;
+    font-size: 38rpx;
+  }
+  .hyfw-checked-group{
+    padding: 0;
+    .hyfw-checked{
+      padding: 20px 40px;
+      border-bottom: 1px solid #f0eff5;
+      &:last-child{
+        border-bottom: none;
+      }
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .hyfw-phone{
+    display: flex;
+    margin-bottom: 0;
+    padding: 20px 40px;
+    justify-content: space-between;
+    align-items: center;
+    input{
+      width: calc(100% - 76rpx);
+    }
+  }
+  .hyfw-btngroup{
+    display: flex;
+    padding: 20px 40px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0eff5;
+    button{
+      font-size: 32rpx;
+    }
+  }
+}

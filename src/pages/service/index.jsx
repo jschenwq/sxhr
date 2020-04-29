@@ -1,8 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text, Image } from '@tarojs/components'
-
+import { getUserInfo } from '@utils/api'
 import './index.scss'
-
 import hyfw from '../../packageFW/images/hyfw.png'
 
 class Index extends Component {
@@ -11,8 +10,21 @@ class Index extends Component {
     navigationBarTitleText: '服务项目'
   }
 
+  state = {
+    phoneNumber: ''
+  }
+
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
+  }
+
+  componentDidMount() {
+    //检查登录用户是否绑定手机号
+    getUserInfo({}).then(({data}) => {
+      this.setState(()=> ({
+        phoneNumber: data.mobile
+      }));
+    });
   }
 
   componentWillUnmount () { }
@@ -21,39 +33,70 @@ class Index extends Component {
 
   componentDidHide () { }
 
+  getService(url){
+    let _mobile = "";
+
+    getUserInfo({}).then(({data}) => {
+      _mobile = data.mobile
+      console.log(_mobile);
+
+      if( _mobile === null || _mobile === ''){
+        Taro.navigateTo({
+          url: '/packageWD/bdsj/index'
+        });
+      }else{
+        Taro.navigateTo({
+          url: url
+        });
+      }
+    });
+
+
+  }
+
   render () {
     return (
       <View className='index'>
-        <navigator url="/packageFW/gbydyfw/index" hover-class="navigator-hover">
-          <View className='navigator-item'>
-            <Image className='navigator-item-image' src={hyfw} />
-            <View className='navigator-item-title'>
-              <Text>高报一对一服务</Text>
-              <Text style='color:#ff9913;'>￥ 8000.00</Text>
-            </View>
-            <Text className='arrow-icon'></Text>
+        <View className='navigator-item'  onClick={this.getService.bind(this,"/packageFW/sxkfw/index")}>
+          <Image className='navigator-item-image' src={hyfw} />
+          <View className='navigator-item-title'>
+            <Text>升学规划</Text>
+            <Text style='color:#ff9913;'>￥ 1000.00</Text>
           </View>
-        </navigator>
-        <navigator url="/packageFW/sxkfw/index" hover-class="other-navigator-hover">
-          <View className='navigator-item'>
-            <Image className='navigator-item-image' src={hyfw} />
-            <View className='navigator-item-title'>
-              <Text>升学卡服务</Text>
-              <Text style='color:#ff9913;'>￥ 6000.00</Text>
-            </View>
-            <Text className='arrow-icon'></Text>
+          <Text className='arrow-icon'></Text>
+        </View>
+        <View className='navigator-item' onClick={this.getService.bind(this,"/packageFW/gbydyfw/index?type=normal&fee=6000.00")}>
+          <Image className='navigator-item-image' src={hyfw} />
+          <View className='navigator-item-title'>
+            <Text>志愿填报（普高）</Text>
+            <Text style='color:#ff9913;'>￥ 6000.00</Text>
           </View>
-        </navigator>
-        <navigator url="/packageFW/hyfw/index" hover-class="other-navigator-hover">
-          <View className='navigator-item'>
-            <Image className='navigator-item-image' src={hyfw} />
-            <View className='navigator-item-title'>
-              <Text>会员服务</Text>
-              <Text style='color:#ff9913;'>￥ 5000.00</Text>
-            </View>
-            <Text className='arrow-icon'></Text>
+          <Text className='arrow-icon'></Text>
+        </View>
+        <View className='navigator-item' onClick={this.getService.bind(this,"/packageFW/gbydyfw/index?type=art&fee=8000.00")}>
+          <Image className='navigator-item-image' src={hyfw} />
+          <View className='navigator-item-title'>
+            <Text>志愿填报（艺术）</Text>
+            <Text style='color:#ff9913;'>￥ 8000.00</Text>
           </View>
-        </navigator>
+          <Text className='arrow-icon'></Text>
+        </View>
+        <View className='navigator-item' onClick={this.getService.bind(this,"/packageFW/hyfw/index")}>
+          <Image className='navigator-item-image' src={hyfw} />
+          <View className='navigator-item-title'>
+            <Text>选科服务</Text>
+            <Text style='color:#ff9913;'>￥ 1000.00</Text>
+          </View>
+          <Text className='arrow-icon'></Text>
+        </View>
+        <View className='navigator-item' onClick={this.getService.bind(this,"/packageFW/cpfw/index")}>
+          <Image className='navigator-item-image' src={hyfw} />
+          <View className='navigator-item-title'>
+            <Text>测评次卡</Text>
+            <Text style='color:#ff9913;'>￥ 500.00</Text>
+          </View>
+          <Text className='arrow-icon'></Text>
+        </View>
       </View>
     )
   }

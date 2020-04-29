@@ -80,6 +80,7 @@ class App extends Component {
           'gbydyfw/index',
           'hyfw/index',
           'sxkfw/index',
+          'cpfw/index',
         ]
       },
       //测评分包
