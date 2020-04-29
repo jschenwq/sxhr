@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import { AtAvatar, AtList, AtListItem } from 'taro-ui'
-
+import { getUserInfo } from '@utils/api'
 import './index.scss'
 
 class Index extends Component {
@@ -13,10 +13,19 @@ class Index extends Component {
   constructor(props){
     super(props);
     this.state = {
-      userName: 'K'
+      avatarUrl: '',
+      userName: ''
     };
   }
 
+  componentDidMount() {
+    getUserInfo({}).then(({data}) => {
+      this.setState({
+        avatarUrl: data.avatarUrl,
+        userName: data.userName
+      })
+    });
+  }
 
   componentWillMount(){
 
@@ -43,19 +52,20 @@ class Index extends Component {
     });
   }
   render () {
+    let { avatarUrl, userName } = this.state;
     return (
       <View className='index'>
         <View className='user'>
-          <AtAvatar circle size='large' image='https://jdc.jd.com/img/200'></AtAvatar>
+          <AtAvatar circle size='large' image={avatarUrl}></AtAvatar>
           <View className='user-name'>{userName}</View>
         </View>
         <AtList>
-          <AtListItem
+          {/*<AtListItem
             title='获取VIP权限'
             arrow='right'
             onClick={this.handClick.bind(this, "/packageFW/hyfw/index")}
             iconInfo={{ size:12, color: '#f99300', value: 'sketch'}}
-          />
+          />*/}
           <AtListItem
             title='绑定手机'
             arrow='right'
