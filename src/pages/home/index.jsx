@@ -4,7 +4,6 @@ import { AtGrid , AtButton, AtRate   } from 'taro-ui'
 import classNames from 'classnames'
 import { connect } from '@tarojs/redux'
 import {getzxsList} from '@utils/api'
-// import pageInit from '@utils/pageInit';
 
 import { add, minus, asyncAdd } from '@actions/counter'
 
@@ -196,7 +195,9 @@ class Index extends Component {
   }
 
   gotoCPPage(){
-    Taro.switchTab({url: '/pages/evaluation/index'})
+    Taro.navigateTo({
+      url: "/packageCP/sketch/index?index=3"
+    });
   }
   render () {
     const {currentCourse, current, zxsList} = this.state;

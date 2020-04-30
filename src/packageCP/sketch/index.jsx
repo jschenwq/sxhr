@@ -1,6 +1,6 @@
 import Taro, {Component} from '@tarojs/taro'
 import { View, Image, Button} from '@tarojs/components'
-import {getKSXLXWCSQuestions,getTYXWQuestions,getJDXWQuestions,getXXNLQuestions,getZYXQQuestions,getJTJYQuestions,getZWKZQuestions} from '@utils/api'
+import {getKSXLXWCSQuestions,getTYXWQuestions,getJDXWQuestions,getXXNLQuestions,getZYXQQuestions,getJTJYQuestions,getZWKZQuestions,getUserReportCount} from '@utils/api'
 import './index.scss'
 
 class Index extends Component{
@@ -33,8 +33,8 @@ class Index extends Component{
         content: '提到学习发力，焦虑，消沉，郁闷，测后便知原因',
         desc: '《中学生学习倦怠测评》共包括五个维度(共23个具体提项)：1.心理耗竭、躯体耗竭、对学习的冷漠、人际关系的疏离、低效能；2.心力耗竭：因为学习压力过大产生的一种情感资源耗尽缺乏活力的感觉；3.躯体耗竭：由于学业压力过大产生的生理资源耗尽的感觉；4.学习的冷漠：对学业产生冷漠态度；人际关系的疏离：对他人（同学、老师和家长）产生疏离、冷漠的态度；5.低效能：是指学生对自我学习效能的认知，认为自己缺乏承担正常学习任务的能力。'
       },{
-        title: '学习能力测评',
-        cycle: '1次/3月',
+        title: '专业定位测评',
+        cycle: '1次/1月',
         titleNum: 160,
         imageSrc: require('../images/evaStart4.png'),
         content: '成绩提升有办法，检测一下自己的学习方法是否得当',
@@ -115,7 +115,13 @@ class Index extends Component{
 
   componentWillUnmount () { }
 
-  componentDidShow () {  }
+  componentDidShow () {
+    getUserReportCount().then(({data})=>{
+      this.setState({
+        reportCount:data.data.reportCount
+      })
+    });
+  }
 
   componentDidHide () { }
   startAssess=()=>{
@@ -130,7 +136,7 @@ class Index extends Component{
   }
   render () {
     let {title, cycle, titleNum, imageSrc, content, desc} = this.state.data[this.$router.params.index];
-    const {reportCount} = this.state;
+    let {reportCount} = this.state;
     return (
       <View className='index'>
         <View className='top'>

@@ -16,6 +16,11 @@ class Index extends Component {
   }
 
   componentDidMount(){
+  }
+
+  componentWillUnmount () {}
+
+  componentDidShow () {
     getMyCourseList({couresType : "1", currentPage: 0, pageSize: 40}).then(({data}) => {
       this.setState({
         data:data.list
@@ -23,14 +28,10 @@ class Index extends Component {
     })
   }
 
-  componentWillUnmount () {}
-
-  componentDidShow () {}
-
   componentDidHide () {}
   openVideo(item){
     Taro.navigateTo({
-      url: "/packageKC/video/index?playTitle="+item.courseName+"&playDuration="+item.periodTotalLength+"&courseId="+item.id
+      url: "/packageKC/video/index?playTitle="+item.courseName+"&playDuration="+item.periodTotalTime+"&courseId="+item.id
     });
   }
   render () {
@@ -43,7 +44,7 @@ class Index extends Component {
               <Image className='item-image' src={item.picPath} />
               <View className='item-content'>
                 <View className='title'>{item.courseName}</View>
-                <View className='date'>时长：{item.periodTotalLength}</View>
+                <View className='date'>时长：{item.periodTotalTime}</View>
               </View>
             </View>
           );
