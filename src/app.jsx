@@ -139,12 +139,12 @@ class App extends Component {
           text: "服务",
           iconPath: "images/tab/service.png",
           selectedIconPath: "images/tab/service-active.png"
-        },{
+        }/*,{
           pagePath: "pages/evaluation/index",
           text: "测评",
           iconPath: "images/tab/evaluation.png",
           selectedIconPath: "images/tab/evaluation-active.png"
-        },{
+        }*/,{
           pagePath: 'pages/class/index',
           text: '课堂',
           iconPath: 'images/tab/class.png',

@@ -16,7 +16,7 @@ class Index extends Component {
   }
 
   componentDidMount(){
-    getMyCourseList({couresType : "1"}).then(({data}) => {
+    getMyCourseList({couresType : "1", currentPage: 0, pageSize: 40}).then(({data}) => {
       this.setState({
         data:data.list
       })
