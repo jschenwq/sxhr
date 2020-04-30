@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
+import {View, Button, Text, Image} from '@tarojs/components'
 import { AtAvatar, AtList, AtListItem } from 'taro-ui'
 import { getUserInfo } from '@utils/api'
 import './index.scss'
@@ -14,17 +14,13 @@ class Index extends Component {
     super(props);
     this.state = {
       avatarUrl: '',
-      userName: ''
+      userName: '',
+      mobile: ''
     };
   }
 
   componentDidMount() {
-    getUserInfo({}).then(({data}) => {
-      this.setState({
-        avatarUrl: data.avatarUrl,
-        userName: data.userName
-      })
-    });
+
   }
 
   componentWillMount(){
@@ -37,7 +33,15 @@ class Index extends Component {
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () {
+    getUserInfo({}).then(({data}) => {
+      this.setState({
+        avatarUrl: data.avatarUrl,
+        userName: data.userName,
+        mobile: data.mobile
+      })
+    });
+  }
 
   componentDidHide () { }
 
@@ -70,7 +74,7 @@ class Index extends Component {
             title='绑定手机'
             arrow='right'
             onClick={this.handClick.bind(this, '/packageWD/bdsj/index')}
-            iconInfo={{ size: 12, color: '#afafaf', value: 'iphone'}}
+            iconInfo={{ size: 12, color: '#c536b9', value: 'iphone'}}
           />
           <AtListItem
             title='会员卡激活'
@@ -81,7 +85,7 @@ class Index extends Component {
           <AtListItem
             title='我的测评'
             arrow='right'
-            onClick={this.handClick.bind(this, '/packageWD/wdcp/index')}
+            onClick={this.handClick.bind(this, '/packageCP/wdcplb/index')}
             iconInfo={{ size: 12, color: '#ef7357', value: 'file-generic'}}
           />
           <AtListItem

@@ -131,7 +131,7 @@ class Index extends Component{
   }
   gotoCpList(){
     Taro.navigateTo({
-      url: '/packageCP/wdcplb/index?'
+      url: '/packageCP/wdcplb/index'
     });
   }
   render () {
