@@ -4,10 +4,12 @@ import { AtGrid , AtButton, AtRate   } from 'taro-ui'
 import classNames from 'classnames'
 import { connect } from '@tarojs/redux'
 import {getzxsList} from '@utils/api'
+// import pageInit from '@utils/pageInit';
 
 import { add, minus, asyncAdd } from '@actions/counter'
 
 import './index.scss'
+import {getGlobalData} from "../../utils/global";
 
 @connect(({ counter }) => ({
   counter
@@ -40,6 +42,7 @@ class Index extends Component {
       selector: ['本一批', '本二批', '专科批'],
       selectorChecked: '本一批',
       stars:4,
+      province:"",
       zxsList:[],//咨询师列表-首页默认展示5个
     };
     this.toFenbao1 = this.toFenbao1.bind(this)
@@ -49,6 +52,12 @@ class Index extends Component {
   }
 
   componentDidMount(){
+
+    //获取用户信息
+    this.setState({
+      province: getGlobalData("userInfo").province
+    });
+
     getzxsList({currentPage:1,pageSize:5}).then(({data}) => {
       this.setState({
         zxsList: data.list
@@ -195,12 +204,10 @@ class Index extends Component {
   }
 
   gotoCPPage(){
-    Taro.navigateTo({
-      url: "/packageCP/sketch/index?index=3"
-    });
+    Taro.switchTab({url: '/pages/evaluation/index'})
   }
   render () {
-    const {currentCourse, current, zxsList} = this.state;
+    const {currentCourse, current, zxsList,province} = this.state;
     return (
       <View className='home'>
         {/*宣传画报*/}
@@ -209,7 +216,7 @@ class Index extends Component {
         {/*分数帅选*/}
         <View className='home_wish'>
           <View className='home_select'>
-            <Icon className='home_icon' color='#999' size='18' type='waiting' /><Text className='home_location'>湖北</Text>
+            <Icon className='home_icon' color='#999' size='18' type='waiting' /><Text className='home_location'>{province}</Text>
             <View className='home_course'>
               <Text onClick={this.handleCourse.bind(this,0)} className={classNames('home_wl',currentCourse == 0?'home_active':'')}>文</Text>
               <Text onClick={this.handleCourse.bind(this,1)} className={classNames('home_wl',currentCourse == 1?'home_active':'')}>理</Text>
