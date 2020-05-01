@@ -49,7 +49,7 @@ class Index extends Component {
           <AtButton disabled={!VIPNumber || !VIPPwd} type="primary" onClick={this.VIPActive.bind(this)}>激 活</AtButton>
         </View>
         <View className="bottom-panel">
-          会员卡帮助热线：400-0022-985
+          会员卡帮助热线：0379-65116985
         </View>
       </View>
     );

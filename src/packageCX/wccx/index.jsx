@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import {getListScoreRank} from '@utils/api'
 
 import './index.scss'
+import {getGlobalData} from "../../utils/global";
 
 class Index extends Component {
   config = {
@@ -15,7 +16,8 @@ class Index extends Component {
     super(props)
     this.state = {
       scoreValue:'500',
-      typeOptions: ['文科', '理科'],
+      province: "",
+      typeOptions: [],
       typeSelected: '文科',
       yearOptions: [2019],
       yearSelected: 2019,
@@ -26,7 +28,13 @@ class Index extends Component {
   componentWillMount(){
     this.getScoreRank();
   }
-  componentDidMount(){}
+  componentDidMount(){
+    this.setState({
+      province: getGlobalData("userInfo").province,
+      typeOptions: getGlobalData("stuType"),
+      yearOptions:getGlobalData("year")
+    });
+  }
   componentWillUnmount () {}
   handleInput(e){
     this.setState({
@@ -45,8 +53,8 @@ class Index extends Component {
     }));
   }
   getScoreRank(){
-    let {typeSelected,yearSelected} = this.state;
-    getListScoreRank({type: typeSelected,year: yearSelected, province: '河南'}).then(({data})=>{
+    let {typeSelected,yearSelected,province} = this.state;
+    getListScoreRank({type: typeSelected,year: yearSelected, province:province}).then(({data})=>{
       this.setState({
         scoreList: data
       });

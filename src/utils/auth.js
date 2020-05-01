@@ -1,6 +1,8 @@
 import Taro from '@tarojs/taro';
 import {inserToken, changeAppOnLaunch} from '../actions/counter.js';
 import config from './config';
+import { getUserInfo, getAllList } from './api'
+import { setGlobalData } from './global'
 //获取数据
 export default class Auth{
   //app授权
@@ -26,10 +28,7 @@ export default class Auth{
 async function getAuthToken(){
   //login
   let res = await Taro.login();
-  console.log(1111)
-  console.log(res.code);
   let userInfo = await Taro.getUserInfo();
-  console.log(22222)
   console.log(userInfo);
   //获取token
   let response = await Taro.request({
@@ -42,7 +41,6 @@ async function getAuthToken(){
     method: 'POST',
   })
   //判断是否成功
-  console.log(response)
   if( response.data && response.data.data ){
     //写入token
     let authorize = response.data.data;
@@ -59,7 +57,24 @@ function saveAuthToken(authorize){
   Taro.$store.dispatch(inserToken(authorize));
   //写入缓存
   Taro.setStorageSync('authorize', authorize);
+
+  //保存用户信息
+  getUserInfo({}).then(({data}) => {
+    setGlobalData("userInfo",data);
+  });
+
+  //保存数据字典
+  getAllList({}).then(({data}) => {
+    setGlobalData("stuType",data.stuType);
+    setGlobalData("schoolType",data.stuType);
+    setGlobalData("schoolLevel",data.stuType);
+    setGlobalData("type",data.stuType);
+    setGlobalData("province",data.stuType);
+    setGlobalData("year",data.year);
+  });
 }
+
+
 
 
 //2020-4-27--cwq注释之前的简化授权登录

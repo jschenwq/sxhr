@@ -1,14 +1,14 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Picker } from '@tarojs/components'
-import { AtIcon , AtButton,AtSearchBar } from 'taro-ui'
-import classNames from 'classnames'
+import { AtIcon , AtButton } from 'taro-ui'
 import {getListBatchScore} from '@utils/api'
+import {getGlobalData} from "../../utils/global";
 
 import './index.scss'
 
 class Index extends Component {
   config = {
-    navigationBarTitleText: '批次查询'
+    navigationBarTitleText: '批次线查询'
   }
 
   constructor(props) {
@@ -16,13 +16,20 @@ class Index extends Component {
     this.state = {
       selector: [2019],//年限选项数据
       selectorChecked: 2019,//年限默认值
-      province: '河南',
+      province: '',
       data: []
     };
   }
   onSelectChange=(e)=>{//年限选择器触发事件
     this.setState({
       selectorChecked: this.state.selector[e.detail.value]
+    });
+  }
+
+  componentDidMount(){
+    this.setState({
+      province: getGlobalData("userInfo").province,
+      selector:getGlobalData("year")
     });
   }
   componentWillMount(){
