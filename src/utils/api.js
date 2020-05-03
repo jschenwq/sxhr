@@ -104,6 +104,7 @@ export const getCourseDetail = (id) => $.ajax('/wx/course/' + id, 'GET');
 export const getService = (data) => $.ajax('/wx/order/createOrder', 'POST', data)
 
 export const getUserInfo = (data) => $.ajax('/wx/user/userInfo','POST', data)
+export const updateUserInfo = (data) => $.ajax('/wx/user/update','POST', data)
 
 //绑定手机功能模块
 //获取验证码

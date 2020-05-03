@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text, Image, Icon, Switch,Picker  } from '@tarojs/components'
-import { AtGrid , AtButton, AtRate   } from 'taro-ui'
+import { View, Text, Image, Icon,Picker  } from '@tarojs/components'
+import { AtGrid , AtRate   } from 'taro-ui'
 import classNames from 'classnames'
 import { connect } from '@tarojs/redux'
 import {getzxsList} from '@utils/api'
@@ -9,7 +9,8 @@ import {getzxsList} from '@utils/api'
 import { add, minus, asyncAdd } from '@actions/counter'
 
 import './index.scss'
-import {getGlobalData} from "../../utils/global";
+import {getGlobalData, setGlobalData} from "../../utils/global";
+import {getUserInfo, updateUserInfo} from "../../utils/api";
 
 @connect(({ counter }) => ({
   counter
@@ -34,15 +35,14 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
-      body: '',
       currentCourse:0,
       scoreValue:500,
       current: 0,
       selector: ['本一批', '本二批', '专科批'],
       selectorChecked: '本一批',
       stars:4,
-      province:"",
+      provinceSelected:"",
+      provinceOptions:[],
       zxsList:[],//咨询师列表-首页默认展示5个
     };
     this.toFenbao1 = this.toFenbao1.bind(this)
@@ -55,7 +55,8 @@ class Index extends Component {
 
     //获取用户信息
     this.setState({
-      province: getGlobalData("userInfo").province
+      provinceSelected:getGlobalData("userInfo").province,
+      provinceOptions:getGlobalData("province")
     });
 
     getzxsList({currentPage:1,pageSize:5}).then(({data}) => {
@@ -90,6 +91,20 @@ class Index extends Component {
       })
     }
   }
+  //省份切换
+  handleProvince = e => {
+    this.setState({
+      provinceSelected: this.state.provinceOptions[e.detail.value]
+    },()=>{
+      // 更新用户信息
+      updateUserInfo({province: this.state.provinceOptions[e.detail.value]}).then(({}) => {
+        //获取用户信息
+        getUserInfo({}).then(({data}) => {
+          setGlobalData("userInfo",data);
+        })
+      })
+    });
+  }
   //科目切换
   handleCourse(value){
     this.setState({
@@ -110,8 +125,6 @@ class Index extends Component {
   }
   //信息查询
   infomationSearch(data,index){
-    console.log(data)
-    console.log(index)
     //找大学
     if(index == 0){
       Taro.navigateTo({
@@ -127,7 +140,6 @@ class Index extends Component {
     //分数线
     if(index == 2){
       Taro.navigateTo({
-        // url: '/packageCX/fsx/index?current=0',
         url: '/component/search/school/index?type=school&type2=score'
       })
     }
@@ -135,7 +147,6 @@ class Index extends Component {
     if(index == 3){
       Taro.navigateTo({
         url: '/component/search/school/index?type=school&type2=plan',
-        // url: '/component/search/index?type=1',
       })
     }
     //批次线
@@ -151,9 +162,6 @@ class Index extends Component {
         icon: 'none',
         mask: true,
       });
-      // Taro.navigateTo({
-      //   url: '/packageCX/tqp/index',
-      // })
     }
     //位次查询
     if(index == 6){
@@ -207,7 +215,7 @@ class Index extends Component {
     Taro.switchTab({url: '/pages/evaluation/index'})
   }
   render () {
-    const {currentCourse, current, zxsList,province} = this.state;
+    const {currentCourse, current, zxsList,provinceSelected,provinceOptions} = this.state;
     return (
       <View className='home'>
         {/*宣传画报*/}
@@ -216,7 +224,17 @@ class Index extends Component {
         {/*分数帅选*/}
         <View className='home_wish'>
           <View className='home_select'>
-            <Icon className='home_icon' color='#999' size='18' type='waiting' /><Text className='home_location'>{province}</Text>
+            <Icon className='home_icon' color='#999' size='18' type='waiting' />
+            {/*<Text className='home_location'>{province}</Text>*/}
+            <View className='home_location'>
+              <Picker className='home_location' mode='selector' range={provinceOptions} onChange={this.handleProvince}>
+                <View className='picker'>
+                  {provinceSelected}
+                  <Text className='at-icon at-icon-chevron-down'></Text>
+                </View>
+              </Picker>
+            </View>
+
             <View className='home_course'>
               <Text onClick={this.handleCourse.bind(this,0)} className={classNames('home_wl',currentCourse == 0?'home_active':'')}>文</Text>
               <Text onClick={this.handleCourse.bind(this,1)} className={classNames('home_wl',currentCourse == 1?'home_active':'')}>理</Text>
@@ -373,6 +391,7 @@ class Index extends Component {
 
         {/*<Button className='add_btn' onClick={this.toFenbao.bind(this)}>前往分包页面</Button>*/}
         {/*<Button className='add_btn' onClick={this.toFenbao1}>前往分包页面111</Button>*/}
+
       </View>
     )
   }

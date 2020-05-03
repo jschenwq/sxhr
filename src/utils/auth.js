@@ -66,10 +66,10 @@ function saveAuthToken(authorize){
   //保存数据字典
   getAllList({}).then(({data}) => {
     setGlobalData("stuType",data.stuType);
-    setGlobalData("schoolType",data.stuType);
-    setGlobalData("schoolLevel",data.stuType);
-    setGlobalData("type",data.stuType);
-    setGlobalData("province",data.stuType);
+    setGlobalData("schoolType",data.schoolType);
+    setGlobalData("schoolLevel",data.schoolLevel);
+    setGlobalData("type",data.type);
+    setGlobalData("province",data.province);
     setGlobalData("year",data.year);
   });
 }
