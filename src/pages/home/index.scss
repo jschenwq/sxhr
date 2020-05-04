@@ -296,6 +296,10 @@
       width: 200px;
       height: 150px;
     }
+    .caseImg{
+      width: 200px;
+      height: 160px;
+    }
     .exmpole{
       padding-left: 20px;
       .exmpoleTitle{
@@ -316,6 +320,18 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         margin-bottom: 10px;
+      }
+      .caseDetail{
+        display: block;
+        font-size:  28px;
+        width: 480px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 10px;
+        white-space: normal;
+        text-indent:1em;
+
       }
     }
     .exmpole1{

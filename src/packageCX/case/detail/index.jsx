@@ -2,13 +2,14 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtRate   } from 'taro-ui'
 import classNames from 'classnames'
-import {getzxsDetail} from '@utils/api'
+import $ from '@utils/http'
 
 import './index.scss'
 
+
 class Index extends Component {
   config = {
-    navigationBarTitleText: '咨询师详情'
+    navigationBarTitleText: '成功案例'
   }
 
   constructor(props) {
@@ -20,17 +21,15 @@ class Index extends Component {
   }
 
   componentDidMount(){
-    console.log(this.$router.params.counselorId)
-    const counselorId = this.$router.params.counselorId;
-    getzxsDetail(counselorId).then(({data}) => {
+    const path = this.$router.params.path;
+    $.ajaxJson(path,'GET').then(({data})=>{
       this.setState({
         detailObj: data
-      })
-
-      // Taro.setNavigationBarTitle({
-      //   title: data.type
-      // });
+      });
+      console.log(JSON.stringify(data))
     });
+
+
   }
 
   componentWillUnmount () {}
@@ -45,33 +44,17 @@ class Index extends Component {
       <View className = 'zsxDetail'>
         <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src={detailObj.headPath} className='counselorImg1' />
+            <Image src='https://oss.srwmedu.cn/case/img/10000.jpg' className='counselorImg1' />
           </View>
           <View className='at-col at-col-9'>
             <View>
-              <Text className='name'>{detailObj.counselorName}</Text>
-            </View>
-            <View className='detailJob'>
-              {
-                detailObj.tag && detailObj.tag.split('、').map((item,index) => {
-                  return(
-                    <Text className ='job' key={index}>{item}</Text>
-                  )
-                })
-              }
-            </View>
-            <View  className='yearAndPj'>
-              <Text className='year'>从业{detailObj.workingYear}年</Text><AtRate className='starts' value={this.state.stars}/>
+              <Text className='title'>{detailObj.title}</Text>
             </View>
           </View>
         </View>
 
         <View className ='introduce'>
-          {detailObj.introduce}
-        </View>
-
-        <View className ='bottomBtn'>
-          联系机构
+          <RichText nodes={detailObj.content}/>
         </View>
       </View>
     )

@@ -12,6 +12,8 @@ import './index.scss'
 import {getGlobalData, setGlobalData} from "../../utils/global";
 import {getUserInfo, updateUserInfo} from "../../utils/api";
 
+
+
 @connect(({ counter }) => ({
   counter
 }), (dispatch) => ({
@@ -53,17 +55,25 @@ class Index extends Component {
 
   componentDidMount(){
 
-    //获取用户信息
-    this.setState({
-      provinceSelected:getGlobalData("userInfo").province,
-      provinceOptions:getGlobalData("province")
-    });
+    //判断是否有省份
+    if(getGlobalData("userInfo").province==null||getGlobalData("userInfo").province==""){
+      this.setState({
+        provinceSelected:"点击设置"
+      });
+    }else{
+      //获取用户信息
+      this.setState({
+        provinceSelected:getGlobalData("userInfo").province,
+        provinceOptions:getGlobalData("province")
+      });
+    }
 
     getzxsList({currentPage:1,pageSize:5}).then(({data}) => {
       this.setState({
         zxsList: data.list
       })
     });
+
   }
 
   componentWillUnmount () {}
@@ -119,9 +129,14 @@ class Index extends Component {
   }
   //智能推荐
   gotoZntj(){
-    Taro.navigateTo({
-      url: '/packageCX/zntj/index',
-    })
+    // Taro.navigateTo({
+    //   url: '/packageCX/zntj/index',
+    // })
+    Taro.showToast({
+      title: '敬请期待！',
+      icon: 'none',
+      mask: true,
+    });
   }
   //信息查询
   infomationSearch(data,index){
@@ -227,7 +242,7 @@ class Index extends Component {
             <Icon className='home_icon' color='#999' size='18' type='waiting' />
             {/*<Text className='home_location'>{province}</Text>*/}
             <View className='home_location'>
-              <Picker className='home_location' mode='selector' range={provinceOptions} onChange={this.handleProvince}>
+              <Picker className='province home_location' mode='selector' range={provinceOptions} onChange={this.handleProvince}>
                 <View className='picker'>
                   {provinceSelected}
                   <Text className='at-icon at-icon-chevron-down'></Text>
@@ -367,25 +382,25 @@ class Index extends Component {
         <View className='counselor'>
           <View>
             <Text className="title">成功案例</Text>
-            <Text onClick={this.getMoreCase.bind(this)} class="more">更多</Text>
+            {/*<Text onClick={this.getMoreCase.bind(this)} class="more">更多</Text>*/}
           </View>
         </View>
-        <View className='at-row item1' onClick={this.gotoCaseDetail.bind(this,"https://sxhr-school.oss-cn-beijing.aliyuncs.com/case/10000.json")}>
+        <View className='at-row item1' onClick={this.gotoCaseDetail.bind(this,"https://oss.srwmedu.cn/case/10000.json")}>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/case/img/10000.jpg'/>
+            <Image class='caseImg' src='https://oss.srwmedu.cn/case/img/10000.jpg'/>
           </View>
           <View className='at-col exmpole'>
             <Text className='exmpoleTitle'>刘同学被211背景高校河海大学文天学院会计录取</Text>
-            <Text className='exmpoleDetail'>第一轮指导BC志愿：成都工业学院，乐山师范学院，宜宾学院，内江师范学院，西昌学院，广西民族大学、广西民族师范学院，白色学 </Text>
+            <Text className='caseDetail'>第一轮指导BC志愿：成都工业学院，乐山师范学院，宜宾学院，内江师范学院，西昌学院，广西民族大学</Text>
           </View>
         </View>
-        <View className='at-row item1' onClick={this.gotoCaseDetail.bind(this,"https://sxhr-school.oss-cn-beijing.aliyuncs.com/case/10001.json")}>
+        <View className='at-row item1' onClick={this.gotoCaseDetail.bind(this,"https://oss.srwmedu.cn/case/10001.json")}>
           <View className='at-col at-col-1 at-col--auto'>
-            <Image class='ItemImg1' src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/case/img/10000.jpg'/>
+            <Image class='caseImg' src='https://oss.srwmedu.cn/case/img/10000.jpg'/>
           </View>
           <View className='at-col exmpole'>
             <Text className='exmpoleTitle'>专业指导，上到心仪学校专业</Text>
-            <Text className='exmpoleDetail'>徐<span>同学：理科 分数</span>326 选测BB+ 位次69880。最终被南京理工大学紫金学院电气工程与自动化专业录取。</Text>
+            <Text className='caseDetail'>徐<span>同学：理科 分数</span>326 选测BB+ 位次69880。最终被南京理工大学紫金学院电气工程与自动化专业录取。</Text>
           </View>
         </View>
 
