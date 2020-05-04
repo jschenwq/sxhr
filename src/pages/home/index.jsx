@@ -227,7 +227,9 @@ class Index extends Component {
   }
 
   gotoCPPage(){
-    Taro.switchTab({url: '/pages/evaluation/index'})
+    Taro.navigateTo({
+      url: '/packageCP/sketch/index?index=3'
+    });
   }
   render () {
     const {currentCourse, current, zxsList,provinceSelected,provinceOptions} = this.state;

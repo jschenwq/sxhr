@@ -81,7 +81,7 @@ class Index extends Component {
           <AtListItem
             title='我的测评'
             arrow='right'
-            onClick={this.handClick.bind(this, '/packageWD/wdcp/index')}
+            onClick={this.handClick.bind(this, '/packageCP/wdcplb/index')}
             iconInfo={{ size: 12, color: '#ef7357', value: 'file-generic'}}
           />
           <AtListItem

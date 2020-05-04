@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
 
-import Index from './pages/home/index'
+import Index from './pages/login/index'
 
 import configStore from './store'//redux引入
 
@@ -90,6 +90,7 @@ class App extends Component {
           'wdcplb/index',//我的测评报告列表
           'assess/index',//测评总览
           'sketch/index',//测评试题
+          'wdcpjg/index',//综合测评结果
           'wdcpjg0/index',//测评结果0
           'wdcpjg1/index',//测评结果1
           'wdcpjg2/index',//测评结果2

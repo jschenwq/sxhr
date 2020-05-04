@@ -33,7 +33,10 @@ class Index extends Component {
   componentDidHide () {}
 
   gotoResult(id,type){
-    if(type == 'PSYCHOLOGY'){
+    Taro.navigateTo({
+      url: '/packageCP/wdcpjg/index'
+    });
+    /*if(type == 'PSYCHOLOGY'){
       Taro.navigateTo({
         url: '/packageCP/wdcpjg0/index?id=' + id
       });
@@ -67,7 +70,7 @@ class Index extends Component {
       Taro.navigateTo({
         url: '/packageCP/wdcpjg6/index?id=' + id
       });
-    }
+    }*/
   }
 
   render () {
