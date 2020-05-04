@@ -55,18 +55,18 @@ class Index extends Component {
 
   componentDidMount(){
 
+    var province=""
     //判断是否有省份
     if(getGlobalData("userInfo").province==null||getGlobalData("userInfo").province==""){
-      this.setState({
-        provinceSelected:"点击设置"
-      });
-    }else{
-      //获取用户信息
-      this.setState({
-        provinceSelected:getGlobalData("userInfo").province,
-        provinceOptions:getGlobalData("province")
-      });
+      province="点击设置"
+    }else {
+      province=getGlobalData("userInfo").province
     }
+
+    this.setState({
+      provinceSelected:province,
+      provinceOptions:getGlobalData("province")
+    });
 
     getzxsList({currentPage:1,pageSize:5}).then(({data}) => {
       this.setState({
