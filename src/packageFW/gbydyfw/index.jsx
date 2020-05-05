@@ -56,7 +56,10 @@ class Index extends Component {
     });
   }
   fwrxPay=(e)=>{
-    Taro.showLoading();
+    Taro.showLoading({
+      title: '订单创建中',
+      mask: true
+    });
     let _serviceType = this.state.serviceType;
     getService({memberType: _serviceType}).then(({data}) => {
       Taro.requestPayment({

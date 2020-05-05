@@ -35,7 +35,10 @@ class Index extends Component {
   }
 
   fwrxPay=(e)=>{
-    Taro.showLoading();
+    Taro.showLoading({
+      title: '订单创建中',
+      mask: true
+    });
     getService({memberType: "choose"}).then(({data}) => {
       Taro.requestPayment({
         timeStamp:data.timeStamp,
