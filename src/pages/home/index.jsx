@@ -226,9 +226,9 @@ class Index extends Component {
     })
   }
 
-  gotoCPPage(){
+  gotoCPPage(index){
     Taro.navigateTo({
-      url: '/packageCP/sketch/index?index=3'
+      url: '/packageCP/sketch/index?index='+index
     });
   }
   render () {
@@ -327,18 +327,35 @@ class Index extends Component {
 
         {/*卡片*/}
         <View className='card'>
-          <View className='cardLeft'>
-            <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/boy.png' className='cardLeftImg' />
+          <View className='cardLeft' onClick={this.gotoCPPage.bind(this,1)}>
+            <Image src='http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E4%BD%8D%E6%AC%A1%E6%9F%A5%E8%AF%A2.png' className='cardLeftImg' />
             <View className='cardLeftText'>
-              <Text className= 'cardTitle'>新高考选课</Text>
-              <Text className= 'cardPerson'>大数据智能选课</Text>
+              <Text className= 'cardTitle'>高考选科测评</Text>
+              <Text className= 'cardPerson'>大数据智能选科</Text>
             </View>
           </View>
-          <View className='cardRight' onClick={this.gotoCPPage.bind(this)}>
-            <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/boy.png' className='cardLeftImg' />
+          <View className='cardRight' onClick={this.gotoCPPage.bind(this,3)}>
+            <Image src='http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E7%9C%8B%E8%81%8C%E4%B8%9A.png' className='cardLeftImg' />
             <View className='cardLeftText'>
               <Text className= 'cardTitle'>专业定位测评</Text>
               <Text className= 'cardPerson'>五大维度专业</Text>
+            </View>
+          </View>
+        </View>
+
+        <View className='cardSceond' >
+          <View className='cardLeft' onClick={this.gotoCPPage.bind(this,2)}>
+            <Image src='http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%89%B9%E6%AC%A1%E7%BA%BF.png' className='cardLeftImg' />
+            <View className='cardLeftText'>
+              <Text className= 'cardTitle'>志愿填报测评</Text>
+              <Text className= 'cardPerson'>（普高）志愿填报</Text>
+            </View>
+          </View>
+          <View className='cardRight' onClick={this.gotoCPPage.bind(this,4)}>
+            <Image src='http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%8F%90%E5%89%8D%E6%89%B9.png' className='cardLeftImg' />
+            <View className='cardLeftText'>
+              <Text className= 'cardTitle'>志愿填报测评</Text>
+              <Text className= 'cardPerson'>（艺术）志愿填报</Text>
             </View>
           </View>
         </View>

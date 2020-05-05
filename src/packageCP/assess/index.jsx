@@ -122,9 +122,12 @@ class Index extends Component{
         if(type == 0){
           submitKSXLXWCSAnswers(this.state.answerScores).then(({data})=>{
             Taro.navigateTo({
+              url: '/packageCP/wdcpjg/index?id='+data.id
+            });
+            /*Taro.navigateTo({
               // url: '/packageCP/wdcpjg0/index?result=' + data.scoreByGrade
               url: '/packageCP/wdcpjg0/index?id=' + data.id
-            });
+            });*/
           });
         }
         //提交拖延行为测评结果
@@ -132,8 +135,11 @@ class Index extends Component{
           submitTYXWAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg1/index?id=' + data.id
+              url: '/packageCP/wdcpjg/index?id='+data.id
             });
+            /*Taro.navigateTo({
+              url: '/packageCP/wdcpjg1/index?id=' + data.id
+            });*/
           });
         }
         //提交倦怠行为测评结果
@@ -141,8 +147,11 @@ class Index extends Component{
           submitJDXWAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg2/index?id=' + data.id
+              url: '/packageCP/wdcpjg/index?id='+data.id
             });
+            /*Taro.navigateTo({
+              url: '/packageCP/wdcpjg2/index?id=' + data.id
+            });*/
           });
         }
         //提交学习能力测评结果
@@ -150,8 +159,11 @@ class Index extends Component{
           submitXXNLAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg3/index?id=' + data.id
+              url: '/packageCP/wdcpjg/index?id='+data.id
             });
+            /*Taro.navigateTo({
+              url: '/packageCP/wdcpjg3/index?id=' + data.id
+            });*/
           });
         }
 
@@ -160,8 +172,11 @@ class Index extends Component{
           submitJTJYAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg4/index?id=' + data.id
+              url: '/packageCP/wdcpjg/index?id='+data.id
             });
+            /*Taro.navigateTo({
+              url: '/packageCP/wdcpjg4/index?id=' + data.id
+            });*/
           });
         }
 
@@ -170,8 +185,11 @@ class Index extends Component{
           submitZWKZAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg5/index?id=' + data.id
+              url: '/packageCP/wdcpjg/index?id='+data.id
             });
+            /*Taro.navigateTo({
+              url: '/packageCP/wdcpjg5/index?id=' + data.id
+            });*/
           });
         }
 
@@ -180,8 +198,11 @@ class Index extends Component{
           submitZYXQAnswers(this.state.answerScores).then(({data})=>{
             console.log(data)
             Taro.navigateTo({
-              url: '/packageCP/wdcpjg6/index?id=' + data.id
+              url: '/packageCP/wdcpjg/index?id='+data.id
             });
+            /*Taro.navigateTo({
+              url: '/packageCP/wdcpjg6/index?id=' + data.id
+            });*/
           });
         }
       });

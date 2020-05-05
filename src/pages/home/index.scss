@@ -112,9 +112,9 @@
     }
   }
 
-  .card{
-    padding: 35px 25px;
-    background: #EFEEF3;
+  .cardSceond{
+    padding: 0px 25px 35px 25px;
+    background: #ffffff;
     &:after{
       content: "";
       display: block;
@@ -124,13 +124,16 @@
       width: 340px;
       float: left;
       background: white;
-      border-radius: 15px;
-      padding: 40px 0px 40px 20px;
+      border-radius: 10px;
+      padding: 20px 0 20px 20px;
+      border: 1px solid #c4c4c4;
+      box-shadow: 0px 0px 10px 5px rgba(185,187,190,0.2);
+
       .cardLeftImg{
         margin-right: 10px;
         float: left;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         vertical-align: middle;
       }
       .cardLeftText{
@@ -145,7 +148,7 @@
         }
         .cardPerson{
           display: block;
-          font-size: 24px;
+          font-size: 23px;
           color: #757575;
         }
       }
@@ -154,13 +157,15 @@
       width: 340px;
       float: right;
       background: white;
-      border-radius: 15px;
-      padding: 40px 0px 40px 20px;
+      border-radius: 10px;
+      padding: 20px 0 20px 20px;
+      border: 1px solid #c4c4c4;
+      box-shadow: 0px 0px 10px 5px rgba(185,187,190,0.2);
       .cardLeftImg{
         margin-right: 10px;
         float: left;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         vertical-align: middle;
       }
       .cardLeftText{
@@ -175,7 +180,82 @@
         }
         .cardPerson{
           display: block;
-          font-size: 24px;
+          font-size: 23px;
+          color: #757575;
+        }
+      }
+    }
+  }
+
+  .card{
+    padding: 35px 25px;
+    background: #ffffff;
+    &:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .cardLeft{
+      width: 340px;
+      float: left;
+      background: white;
+      border-radius: 10px;
+      padding: 20px 0 20px 20px;
+      border: 1px solid #c4c4c4;
+      box-shadow: 0px 0px 10px 5px rgba(185,187,190,0.2);
+
+      .cardLeftImg{
+        margin-right: 10px;
+        float: left;
+        width: 80px;
+        height: 80px;
+        vertical-align: middle;
+      }
+      .cardLeftText{
+        padding-top: 10px;
+        text-align: center;
+        height: 100px;
+        display: inline-block;
+        vertical-align: center;
+        .cardTitle{
+          display: block;
+          font-weight: bold;
+        }
+        .cardPerson{
+          display: block;
+          font-size: 23px;
+          color: #757575;
+        }
+      }
+    }
+    .cardRight{
+      width: 340px;
+      float: right;
+      background: white;
+      border-radius: 10px;
+      padding: 20px 0 20px 20px;
+      border: 1px solid #c4c4c4;
+      box-shadow: 0px 0px 10px 5px rgba(185,187,190,0.2);
+      .cardLeftImg{
+        margin-right: 10px;
+        float: left;
+        width: 80px;
+        height: 80px;
+        vertical-align: middle;
+      }
+      .cardLeftText{
+        padding-top: 10px;
+        text-align: center;
+        height: 100px;
+        display: inline-block;
+        vertical-align: center;
+        .cardTitle{
+          display: block;
+          font-weight: bold;
+        }
+        .cardPerson{
+          display: block;
+          font-size: 23px;
           color: #757575;
         }
       }
