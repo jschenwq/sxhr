@@ -103,7 +103,8 @@ class Index extends Component {
   }
 
   render () {
-    const tabList = [{ title: '全部专业' }, { title: '专业推荐' }];
+    // const tabList = [{ title: '全部专业' }, { title: '专业推荐' }];
+    const tabList = [{ title: '全部专业' }];
     const {secondMajorList} = this.state;
     return (
       <View className ='czy'>

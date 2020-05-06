@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
 
 import Index from './pages/login/index'
+// import Index from './pages/home/index'
 
 import configStore from './store'//redux引入
 
@@ -23,9 +24,9 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/login/index',//授权登录
-
       'pages/home/index',//首页
+
+      'pages/login/index',//授权登录
 
       'pages/service/index',
 

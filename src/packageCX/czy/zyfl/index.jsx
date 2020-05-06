@@ -48,7 +48,8 @@ class Index extends Component {
   }
 
   render () {
-    const tabList = [{ title: '专业详情' }, { title: '职业方向' }];
+    // const tabList = [{ title: '专业详情' }, { title: '职业方向' }];
+    const tabList = [{ title: '专业详情' }];
     const {thirdZy} = this.state;
     return (
       <View className ='zyfl'>

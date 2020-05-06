@@ -3,6 +3,7 @@ import { View, Button, Text } from '@tarojs/components'
 import { AtAvatar, AtList, AtListItem } from 'taro-ui'
 import { getUserInfo } from '@utils/api'
 import './index.scss'
+import {getGlobalData} from "../../utils/global";
 
 class Index extends Component {
 
@@ -12,19 +13,17 @@ class Index extends Component {
 
   constructor(props){
     super(props);
+
     this.state = {
       avatarUrl: '',
-      userName: ''
+      userName: '',
+      loginHidden: false
     };
+
   }
 
   componentDidMount() {
-    getUserInfo({}).then(({data}) => {
-      this.setState({
-        avatarUrl: data.avatarUrl,
-        userName: data.userName
-      })
-    });
+
   }
 
   componentWillMount(){
@@ -35,11 +34,25 @@ class Index extends Component {
     console.log(this.props, nextProps)
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount () {
 
-  componentDidShow () { }
+  }
 
-  componentDidHide () { }
+  componentDidShow () {
+    //获取用户信息
+    if(getGlobalData("userInfo")!=null&&getGlobalData("userInfo")!=''){
+      let userinfo = getGlobalData("userInfo")
+      this.setState({
+        avatarUrl: userinfo.avatarUrl,
+        userName: userinfo.userName,
+        loginHidden: true
+      })
+    }
+  }
+
+  componentDidHide () {
+
+  }
 
   clickServiceCall(){//客服电话
     Taro.makePhoneCall({
@@ -52,12 +65,13 @@ class Index extends Component {
     });
   }
   render () {
-    let { avatarUrl, userName } = this.state;
+    let { avatarUrl, userName,loginHidden } = this.state;
     return (
       <View className='index'>
         <View className='user'>
           <AtAvatar circle size='large' image={avatarUrl}></AtAvatar>
           <View className='user-name'>{userName}</View>
+          <Text  hidden={loginHidden} onClick={this.handClick.bind(this, '/pages/login/index')}>点击登录</Text>
         </View>
         <AtList>
           {/*<AtListItem
@@ -97,12 +111,12 @@ class Index extends Component {
             extraText='服务时间：8:30-17:30'
             iconInfo={{ size: 12, color: '#4cc100', value: 'phone'}}
           />
-          <AtListItem
-            title='切换账号'
-            arrow='right'
-            onClick={this.handClick.bind(this, '/packageWD/qhzh/index')}
-            iconInfo={{ size: 12, color: '#f59133', value: 'user'}}
-          />
+          {/*<AtListItem*/}
+            {/*title='切换账号'*/}
+            {/*arrow='right'*/}
+            {/*onClick={this.handClick.bind(this, '/packageWD/qhzh/index')}*/}
+            {/*iconInfo={{ size: 12, color: '#f59133', value: 'user'}}*/}
+          {/*/>*/}
         </AtList>
       </View>
     )

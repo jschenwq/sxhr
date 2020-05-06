@@ -44,7 +44,7 @@ async function getAuthToken(){
   if( response.data && response.data.data ){
     //写入token
     let authorize = response.data.data;
-    saveAuthToken(authorize);
+    await saveAuthToken(authorize);
     return true
   }else{
     console.log('获取token失败');
@@ -61,6 +61,7 @@ function saveAuthToken(authorize){
   //保存用户信息
   getUserInfo({}).then(({data}) => {
     setGlobalData("userInfo",data);
+    console.log(666666666)
   });
 
   //保存数据字典
@@ -71,7 +72,9 @@ function saveAuthToken(authorize){
     setGlobalData("type",data.type);
     setGlobalData("province",data.province);
     setGlobalData("year",data.year);
+    console.log(77777777)
   });
+  console.log(88888888)
 }
 
 

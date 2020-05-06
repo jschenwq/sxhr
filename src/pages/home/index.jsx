@@ -55,8 +55,27 @@ class Index extends Component {
 
   componentDidMount(){
 
-    var province=""
+    //获取咨询师
+    getzxsList({currentPage:1,pageSize:5}).then(({data}) => {
+      this.setState({
+        zxsList: data.list
+      })
+    });
+
+  }
+
+  componentWillUnmount () {
+  }
+
+  componentDidShow () {
+
+    console.log(1111)
+
     //判断是否有省份
+   if(getGlobalData("userInfo")==null){
+      return
+    }
+    var province=""
     if(getGlobalData("userInfo").province==null||getGlobalData("userInfo").province==""){
       province="点击设置"
     }else {
@@ -67,28 +86,11 @@ class Index extends Component {
       provinceSelected:province,
       provinceOptions:getGlobalData("province")
     });
-
-    getzxsList({currentPage:1,pageSize:5}).then(({data}) => {
-      this.setState({
-        zxsList: data.list
-      })
-    });
-
   }
 
-  componentWillUnmount () {}
-
-  componentDidShow () {}
-
-  componentDidHide () {}
-
-  toFenbao(){
-    Taro.showToast({
-      title: '22222',
-      icon: 'none',
-      mask: true,
-    });
+  componentDidHide () {
   }
+
 
   toFenbao1(){
     if (Taro.getEnv() == Taro.ENV_TYPE.WEB) {
@@ -129,9 +131,6 @@ class Index extends Component {
   }
   //智能推荐
   gotoZntj(){
-    // Taro.navigateTo({
-    //   url: '/packageCX/zntj/index',
-    // })
     Taro.showToast({
       title: '敬请期待！',
       icon: 'none',

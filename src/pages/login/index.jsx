@@ -57,8 +57,12 @@ class Index extends Component {
         icon: 'none',
         mask: true
       });
-      Taro.switchTab({
-        url: '/pages/home/index'
+      Taro.switchTab ({
+        url: '/pages/home/index',
+        success: function (e) {
+          var page = getCurrentPages().pop();
+          // if (page == undefined || page == null) return;
+        }
       });
     });
   }
@@ -67,12 +71,20 @@ class Index extends Component {
       url: '/packageWD/sjhdl/index'
     });
   }
+
+  //跳转首页
+  gotoIndex(){
+    Taro.switchTab({
+      url: '/pages/home/index'
+    });
+  }
   render () {
     let {isLoading} = this.state;
     return (
       <View className='index'>
         <View style='text-align: center;margin-bottom: 10px;'>识人文墨教育</View>
         <Button onGetUserInfo={this.wxLogin.bind(this)} openType="getUserInfo" loading={isLoading} type='primary' circle>微信快捷登录</Button>
+        <Button onClick={this.gotoIndex.bind(this)} type='primary'>暂不登录</Button>
         {/*<Button onClick={this.sjLogin.bind(this)} type='default' circle>手机号短信登录</Button>*/}
       </View>
     )

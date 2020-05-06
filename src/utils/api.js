@@ -3,7 +3,6 @@ import $ from './http'
 //项目大学所有枚举接口
 export const getAllList = () => $.ajax('/wx/school/schoolDict','get');
 
-
 //专业
 //获取全部专业-2级--3级专业那2级专业id跳转页面加载
 export const getAllZy = (data) => $.ajax('/wx/major/getMajorType',"post",data);
