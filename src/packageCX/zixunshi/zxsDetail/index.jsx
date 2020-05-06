@@ -39,6 +39,12 @@ class Index extends Component {
 
   componentDidHide () {}
 
+  clickServiceCall(){//客服电话
+    Taro.makePhoneCall({
+      phoneNumber: '037965116985'
+    });
+  }
+
   render () {
     const {detailObj} = this.state;
     return (
@@ -70,7 +76,7 @@ class Index extends Component {
           {detailObj.introduce}
         </View>
 
-        <View className ='bottomBtn'>
+        <View className ='bottomBtn' onClick={this.clickServiceCall}>
           联系机构
         </View>
       </View>

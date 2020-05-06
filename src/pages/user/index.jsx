@@ -108,7 +108,7 @@ class Index extends Component {
             title='客服电话：0379-65116985'
             arrow='right'
             onClick={this.clickServiceCall}
-            extraText='服务时间：8:30-17:30'
+            extraText='服务时间：9:00-17:00'
             iconInfo={{ size: 12, color: '#4cc100', value: 'phone'}}
           />
           {/*<AtListItem*/}
