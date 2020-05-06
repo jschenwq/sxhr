@@ -68,9 +68,6 @@ class Index extends Component {
   }
 
   componentDidShow () {
-
-    console.log(1111)
-
     //判断是否有省份
    if(getGlobalData("userInfo")==null){
       return

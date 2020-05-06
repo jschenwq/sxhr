@@ -44,40 +44,33 @@ async function getAuthToken(){
   if( response.data && response.data.data ){
     //写入token
     let authorize = response.data.data;
-    await saveAuthToken(authorize);
+
+    //写入状态管理
+    Taro.$store.dispatch(inserToken(authorize));
+    //写入缓存
+    Taro.setStorageSync('authorize', authorize);
+
+    //保存用户信息
+   await getUserInfo({}).then(({data}) => {
+      setGlobalData("userInfo",data);
+    });
+
+    //保存数据字典
+    await getAllList({}).then(({data}) => {
+      setGlobalData("stuType",data.stuType);
+      setGlobalData("schoolType",data.schoolType);
+      setGlobalData("schoolLevel",data.schoolLevel);
+      setGlobalData("type",data.type);
+      setGlobalData("province",data.province);
+      setGlobalData("year",data.year);
+    });
+
     return true
   }else{
     console.log('获取token失败');
     return false;
   }
 }
-//写入信息
-function saveAuthToken(authorize){
-  //写入状态管理
-  Taro.$store.dispatch(inserToken(authorize));
-  //写入缓存
-  Taro.setStorageSync('authorize', authorize);
-
-  //保存用户信息
-  getUserInfo({}).then(({data}) => {
-    setGlobalData("userInfo",data);
-    console.log(666666666)
-  });
-
-  //保存数据字典
-  getAllList({}).then(({data}) => {
-    setGlobalData("stuType",data.stuType);
-    setGlobalData("schoolType",data.schoolType);
-    setGlobalData("schoolLevel",data.schoolLevel);
-    setGlobalData("type",data.type);
-    setGlobalData("province",data.province);
-    setGlobalData("year",data.year);
-    console.log(77777777)
-  });
-  console.log(88888888)
-}
-
-
 
 
 //2020-4-27--cwq注释之前的简化授权登录
