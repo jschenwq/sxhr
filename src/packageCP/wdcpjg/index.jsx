@@ -1,14 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
-import {CoverView, Image, ScrollView, Text, View} from '@tarojs/components'
-import classNames from 'classnames'
+import {ScrollView, View} from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import EChart from 'techarts';
 import * as echarts from '@utils/echarts';
-
+import { getUserEvaluationDetailById } from '@utils/api';
 import './index.scss'
 
-const xData = ['4/1', '4/2', '4/3', '4/4', '4/5', '4/6', '4/7'];
-const yData = ['2', '50', '20', '40', '60', '5', '6'];
 const interestData = ['40', '57', '96', '64', '67', '81'];
 const carrerData = ['40', '57', '96', '64', '67', '81','64','37'];
 const interestInfo = {
@@ -128,22 +125,22 @@ const carrerInfo = [
   }
 ];
 const interestIndicator = [
-  { name: '现实型(R)', max: 100},
-  { name: '常规型(C)', max: 100},
-  { name: '企业型(E)', max: 100},
-  { name: '社会型(S)', max: 100},
-  { name: '艺术型(A)', max: 100},
-  { name: '研究型(I)', max: 100}
+  { name: '现实型(R)', max: 50},
+  { name: '常规型(C)', max: 50},
+  { name: '企业型(E)', max: 50},
+  { name: '社会型(S)', max: 50},
+  { name: '艺术型(A)', max: 50},
+  { name: '研究型(I)', max: 50}
 ];
 const carrerIndicator = [
-  { name: '服务型', max: 100},
-  { name: '创造型', max: 100},
-  { name: '安全型', max: 100},
-  { name: '生活型', max: 100},
-  { name: '自主型', max: 100},
-  { name: '技术型', max: 100},
-  { name: '挑战型', max: 100},
-  { name: '管理型', max: 100}
+  { name: '技术型', max: 25},
+  { name: '管理型', max: 25},
+  { name: '自主型', max: 25},
+  { name: '安全型', max: 25},
+  { name: '创造型', max: 25},
+  { name: '技术型', max: 25},
+  { name: '挑战型', max: 25},
+  { name: '生活型', max: 25}
 ];
 const subjectIndicator = ['英语','政治','生物','语文','历史','化学','数学','地理','物理'];
 const subjectData = [
@@ -166,33 +163,53 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      interestInfo: getInterestInfo(['E','I','A'],interestInfo),
-      interestOption: getRadarOption(interestIndicator,interestData),
-      carrerOption: getRadarOption(carrerIndicator,carrerData),
-      barOption: getBarOption(leftData,rightData),
-      abilityOption: getLineBarOption(),
-      subjectOption: getPieOption(subjectIndicator,subjectData),
-      natureInfo: natureInfo,
-      abilityResult: abilityResult,
-      abilityInfo: abilityInfo,
-      carrerInfo: carrerInfo,
-      scoreByGrade:[],
-      singleModels:[],
     };
   }
 
   componentWillMount(){
-    /*var id = JSON.parse(this.$router.params.id)
+    var id = JSON.parse(this.$router.params.id)
     getUserEvaluationDetailById(id).then(({data}) => {
+      let evaData = data.data;
+      let _hollandResult = evaData.hollandResult.hollandResult;
+      let _hollandValueResult = evaData.hollandResult.hollandValueResult;
+      let _hollandResultStr = evaData.hollandResult.hollandResultStr;
+      let _mbtiResultStr = evaData.mbtiResult.mbtiResult;
+      let _leftData = evaData.mbtiResult.leftData;
+      let _rightData = evaData.mbtiResult.rightData;
+      let _natureInfo = evaData.mbtiResult.evaluationDicts;
+      let _barData = evaData.abilityResult.multiValue;
+      let _lineData = evaData.abilityResult.avgValue;
+      let _resultStr = evaData.abilityResult.resultStr;
+      let _titleStr = evaData.abilityResult.titleStr;
+      let _anchorTitleStr = evaData.anchorResult.resultStr;
+      let _carrerData = evaData.anchorResult.resultValue;
+      let _anchorResultStr = evaData.anchorResult.totalStr;
+      let _subjectResultStr = evaData.libosResult.totalStr;
+      let _subjectTitleStr = evaData.libosResult.resultStr;
+      let _subjectResultValue = evaData.libosResult.resultValue;
+
+
       this.setState({
-        scoreByGrade:data.data.scoreByGrade,
-        singleModels:data.data.singleModels,
+        interestInfo: getInterestInfo(_hollandResult.slice(0, 3),interestInfo),
+        interestOption: getRadarOption(interestIndicator,_hollandValueResult),
+        hollandResultStr: _hollandResultStr,
+        mbtiResultStr: _mbtiResultStr,
+        barOption: getBarOption(_leftData,_rightData),
+        natureInfo: _natureInfo,
+        abilityResult: _resultStr,
+        abilityTitleStr: _titleStr,
+        abilityOption: getLineBarOption(_barData,_lineData),
+        carrerOption: getRadarOption(carrerIndicator,_carrerData),
+        anchorTitleStr: _anchorTitleStr,
+        anchorResultStr: _anchorResultStr,
+        subjectOption: getPieOption(subjectIndicator,_subjectResultValue),
+        subjectResultStr:_subjectResultStr,
+        subjectTitleStr: _subjectTitleStr
       })
-    })*/
+    })
   }
 
   componentDidMount(){
-
   }
 
   componentWillUnmount () {}
@@ -202,7 +219,7 @@ class Index extends Component {
   componentDidHide () {}
 
   render () {
-    const {interestOption , singleModels, interestInfo, barOption, natureInfo, abilityOption, abilityResult, abilityInfo, carrerOption, carrerInfo, subjectOption } = this.state
+    const {subjectResultStr, subjectTitleStr, anchorResultStr, anchorTitleStr, abilityTitleStr, interestOption , hollandResultStr, interestInfo, barOption, natureInfo, abilityOption, abilityResult, abilityInfo, carrerOption, carrerInfo, subjectOption, mbtiResultStr } = this.state
     return (
       <ScrollView className='wdcpjg' scrollY='true' >
         {/*用户基本信息*/}
@@ -214,7 +231,7 @@ class Index extends Component {
         {/*兴趣维度解析*/}
         <View className='interest base-item'>
           <View className='title'>一、兴趣维度解析</View>
-          <View className='small-title'>您的兴趣类型:EIA</View>
+          <View className='small-title'>您的兴趣类型:{hollandResultStr}</View>
           <View className="rander-chart">
             <EChart echarts={echarts} option={interestOption} />
           </View>
@@ -268,7 +285,7 @@ class Index extends Component {
         {/*性格维度解析*/}
         <View className='interest base-item'>
           <View className='title'>二、性格维度解析</View>
-          <View className='small-title'>您的性格类型：ISFJ</View>
+          <View className='small-title'>您的性格类型：{mbtiResultStr}</View>
           <View className="bar-chart">
             <EChart echarts={echarts} option={barOption} />
           </View>
@@ -280,7 +297,7 @@ class Index extends Component {
                     return (
                       <View className='at-row'>
                         <View className='at-icon at-icon-star star'></View>
-                        <View className='content-title'>{commonItem}</View>
+                        <View className='content-title'>{commonItem.description}</View>
                       </View>
                     )
                   })
@@ -292,7 +309,7 @@ class Index extends Component {
         {/*能力维度解析*/}
         <View className='interest base-item'>
           <View className='title'>三、能力维度解析</View>
-          <View className='small-title'>您的强项能力：音乐+语言+空间</View>
+          <View className='small-title'>您的强项能力：{abilityTitleStr}</View>
           <View className="rander-chart">
             <EChart echarts={echarts} option={abilityOption} />
           </View>
@@ -317,11 +334,11 @@ class Index extends Component {
         {/*职业倾向维度解析*/}
         <View className='interest base-item'>
           <View className='title'>四、职业倾向维度解析</View>
-          <View className='small-title'>您的职业价值观：技术型+生活型+管理型</View>
+          <View className='small-title'>您的职业价值观：{anchorTitleStr}</View>
           <View className="rander-chart">
             <EChart echarts={echarts} option={carrerOption} />
           </View>
-          <View className='content'>你最适合的职业类型是能在专业领域中展示自己的技能，成为某个领域的专家。希望通过施展自己的技能以获取别人认可，并乐于接受来自于专业领域的挑战，可能愿意成为技术/职能领域的管理者，但这意味着你可能会脱离自己擅长的专业领域。</View>
+          <View className='content'>{anchorResultStr}</View>
           {
             carrerInfo.length > 0 && carrerInfo.map((item,index) => {
               return (
@@ -342,36 +359,12 @@ class Index extends Component {
         {/*学科优劣维度解析*/}
         <View className='interest base-item'>
           <View className='title'>五、学科优劣维度解析</View>
-          <View className='small-title'>您的优势：数学+政治+物理</View>
+          <View className='small-title'>您的优势：{subjectTitleStr}</View>
           <View className="pie-chart">
             <EChart echarts={echarts} option={subjectOption} />
           </View>
-          <View className='content'>你在数学的学习上有着强烈的兴趣和良好的学习习惯。喜欢逻辑、推理、抽象方面的知识，思维敏捷，善于发现问题，解决问题。你再地理的学科上较为薄弱，需要多理解环境的众多现象、过程和特征，能够活学活用，并且要能通过自己的语言表达出来。
-          </View>
+          <View className='content'>{subjectResultStr}</View>
         </View>
-
-        {/*<View className='at-row tableTitle base-item'>
-          <View className='at-col font2 selectTop'>标题</View>
-          <View className='at-col font2 selectTop'>得分</View>
-          <View className='at-col font2 selectTop'>参考平均值</View>
-          <View className='at-col font2 selectTop'>问题状态</View>
-        </View>
-
-        <View className = 'scoreN'>
-          {
-            singleModels.map((item,index) => {
-              return (
-                <View className={classNames('at-row','scoreTr',index % 2 == 0?'active':'')} key={index}>
-                  <View className='at-col selectTop'>{item.title}</View>
-                  <View className='at-col selectTop'>{item.score}</View>
-                  <View className='at-col selectTop'>{item.avgScore}</View>
-                  <View className='at-col selectTop'>{item.status}</View>
-                </View>
-              )
-            })
-          }
-        </View>*/}
-
       </ScrollView>
     )
   }
@@ -383,103 +376,6 @@ function getInterestInfo(selected,interestInfo){
     _interestInfos.push(interestInfo[val]);
   });
   return _interestInfos;
-}
-
-function getLineOption(xData, yData) {
-  return {
-    title: {
-      show: false,
-      // text: '测试下面legend的红色区域不应被裁剪',
-      // left: 'center'
-    },
-    color: ['#1890ff'],
-    legend: {
-      show: false,
-      // data: ['A', 'B', 'C'],
-      // top: 50,
-      // left: 'center',
-      // backgroundColor: 'red',
-      // z: 100
-    },
-    grid: {
-      // show: true,
-      containLabel: true,
-      top: 10,
-      left: 2,
-      right: 25,
-      bottom: 10,
-      // borderColor: '#ff0000'
-    },
-    tooltip: {
-      show: true,
-      trigger: 'axis',
-      formatter: '{c}',
-      backgroundColor: '#1890ff',
-      position: function(point, params, dom, rect, size) {
-        return [point[0], '10%'];
-      },
-      axisPointer: {
-        lineStyle: {
-          color: '#D2CCCC',
-        },
-      },
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLabel: {
-        color: '#5E5E5E',
-      },
-      data: xData,
-      // data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-      // show: false
-    },
-    yAxis: {
-      x: 'center',
-      type: 'value',
-      axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLabel: {
-        color: '#5E5E5E',
-      },
-      splitLine: {
-        lineStyle: {
-          color: '#C2C0C0',
-          type: 'dashed',
-        },
-      },
-      // show: false
-    },
-    series: [
-      {
-        name: 'A',
-        type: 'line',
-        smooth: true,
-        data: yData,
-        // data: [1800, 360, 65, 30, 780, 40, 33]
-      } /*, {
-      name: 'B',
-      type: 'line',
-      smooth: true,
-      data: [12, 50, 51, 35, 70, 30, 20]
-    }, {
-      name: 'C',
-      type: 'line',
-      smooth: true,
-      data: [10, 30, 31, 50, 40, 20, 10]
-    }*/,
-    ],
-  };
 }
 
 function getRadarOption(indicator,data){
@@ -529,8 +425,8 @@ function getBarOption(leftData,rightData){
     xAxis: [
       {
         type: 'value',
-        max: 100,
-        min: -100
+        max: 10,
+        min: -10
       }
     ],
     yAxis: [
@@ -540,7 +436,7 @@ function getBarOption(leftData,rightData){
           show: false
         },
         position: 'left',
-        data: ['判断(J)', '思考(T)', '感觉(S)', '外向(E)']
+        data: ['外向(E)', '感觉(S)', '思考(T)', '判断(J)']
       },
       {
         type: 'category',
@@ -548,7 +444,7 @@ function getBarOption(leftData,rightData){
           show: false
         },
         position: 'right',
-        data: ['知觉(E)', '情感(F)', '直觉(N)', '内向(I)']
+        data: ['内向(I)', '直觉(N)', '情感(F)', '知觉(P)']
       }
     ],
     series: [
@@ -582,7 +478,7 @@ function getBarOption(leftData,rightData){
   }
 }
 
-function getLineBarOption(){
+function getLineBarOption(barData,lineData){
   return {
     xAxis: [
       {
@@ -611,13 +507,13 @@ function getLineBarOption(){
         name: '分数',
         type: 'bar',
         color: '#07c160',
-        data: [12,5,16,19,10,8,10,18]
+        data: barData
       },
       {
         name: '平均水平',
         type: 'line',
         color: '#ffd85f',
-        data: [7,17,6,15,17,8,12,14]
+        data: lineData
       }
     ]
   }

@@ -2,6 +2,59 @@
   height: 100%;
   width: 100%;
   overflow: auto;
+  .assess{
+    background-color: #fff;
+    height: calc(40%);
+    padding: 70rpx 30rpx 0;
+    .order{
+      text-align: center;
+      padding-bottom: 40rpx;
+      .order-number{
+        color: #212121;
+        font-size: 50rpx;
+      }
+      .order-sum{
+        color: #757575;
+        font-size: 40rpx;
+      }
+    }
+    .progress{
+      transition:width .3s;
+      border-bottom: 1px solid #eeeeee;
+      .percent{
+        transition:width 1s;
+        background: #e7e7e7;
+        height: 20rpx;
+      }
+    }
+    .subject{
+      // transform: translateX(15%);
+      margin-top: 15rpx;
+      text-indent: 2em;
+      color: #000;
+    }
+  }
+  .picker{
+    height: calc(60%);
+    width: 100%;
+    padding: 20rpx 0;
+    background-color: #f9f5f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    .picker-item{
+      width: 90%;
+      background: #fff;
+      padding: 15rpx 0 15rpx 20rpx;
+      border-left: 20px solid #e9e9e9;
+    }
+    .picker-item-hover{
+      background-color: #1cb757;
+      border-color: #1cb757;
+      color: #fff;
+    }
+  }
   .top{
     position: relative;
     height: 360rpx;

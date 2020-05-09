@@ -34,7 +34,7 @@ class Index extends Component {
 
   gotoResult(id,type){
     Taro.navigateTo({
-      url: '/packageCP/wdcpjg/index'
+      url: '/packageCP/wdcpjg/index?id=' + id
     });
     /*if(type == 'PSYCHOLOGY'){
       Taro.navigateTo({
