@@ -6,8 +6,6 @@ import * as echarts from '@utils/echarts';
 import { getUserEvaluationDetailById } from '@utils/api';
 import './index.scss'
 
-const interestData = ['40', '57', '96', '64', '67', '81'];
-const carrerData = ['40', '57', '96', '64', '67', '81','64','37'];
 const interestInfo = {
   I:{
     title: '研究型(I)',
@@ -52,78 +50,6 @@ const interestInfo = {
     sports: ['对要求具备机械方面才能、体力的活动','从事与物件、机器、工具、运动器材、植物、动物相关的活动']
   }
 };
-const leftData = [-41,-37,-84,-57];
-const rightData = [59,63,16,43];
-const natureInfo = ['避免成为注意的焦点，独自度过时精力充沛，深思熟虑之后再表达或者行动','避免成为注意的焦点，独自度过时精力充沛，深思熟虑之后再表达或者行动','避免成为注意的焦点，独自度过时精力充沛，深思熟虑之后再表达或者行动','避免成为注意的焦点，独自度过时精力充沛，深思熟虑之后再表达或者行动','避免成为注意的焦点，独自度过时精力充沛，深思熟虑之后再表达或者行动'];
-const abilityResult = '你拥有音乐的天赋，具有较高的表演、创作及思考音乐的能力，主要表现在可以敏锐的感知节奏、旋律、音调等；你需要加强自己的内省能力，吾日三省吾身，了解自身的长处短处，才能更好的发挥自身的特点';
-const abilityInfo = [
-  {
-    title: '语言能力',
-    content: '你较为容易明白别人的指示、谈话内容及其言外之意；亦较能用说话表达想法、情绪和需求；与人交流时，较为细心聆听，善用言语；而且较为善记人名、地名、地点、日期或琐事细节；略会看图说故事，偶尔用丰富词汇编写故事。'
-  },
-  {
-    title: '逻辑数学能力',
-    content: '你较为喜欢提问，探究事情发生的原因；也会喜欢把事物进行分配、分类、份等；相信事物都会有合理的解释；比较容易相信经过科学研究或有数据的事情；懂得估算或进行快速心算；又较为喜欢有计划地做事。'
-  },
-  {
-    title: '空间能力',
-    content: '对色彩有少许敏感；偶尔能很轻松地想象一个事物的景象；稍会选择材料、用具，按自己意念进行设计创作；少许喜欢用比喻解说事情；少许或不喜欢随手图画、于都地图、观看设计图记含图像作品；较喜欢看电影和其他视觉艺术表演。'
-  },
-  {
-    title: '身体动觉能力',
-    content: '你可以接受惊险娱乐及体育的活动或身体刺激动作游戏；不善于模仿他人的动作和言谈举止；偶尔会亲自练习一项新的技能，拆解和组装物体。'
-  },
-  {
-    title: '音乐能力',
-    content: '你喜爱听音乐，有音乐伴着来做事心情愉快，较为专注，较快地完成；讲话时偶尔有节奏感。可以能随音乐的节奏，但是表达得不尽人意；难以辨识音乐走调；喜欢唱歌，但是觉得自己唱的不好。'
-  },
-  {
-    title: '人际能力',
-    content: '你较为乐意采纳别人的意见及倾听别人的说话，略懂得互动、关心、体谅和帮助别人，沟通良好，结交新朋友的频率不高；偶然才会听到别人的消息或八卦；不喜欢教一个人或一群人如何做某件事。'
-  },
-  {
-    title: '内省能力',
-    content: '你稍能恰当表达自己的感受和想法，偶尔善于计划和分配日常生活时间；有时能集中注意力、按时完成工作；认为自己稍微明事理、拥有自尊、懂得自律、意志坚强或性格独立。'
-  },
-  {
-    title: '自然观察能力',
-    content: '你对自然景物稍有兴趣，略微喜爱阅览以自然景象和动植物为主题的节目、图书和展示，会有个别熟悉的自然景物的名称、特征；很少收集标本、饲养动物，种植花草树木，参加园艺或野外活动。'
-  }
-];
-const carrerInfo = [
-  {
-    title:'技术型（TF）',
-    content:'追求在技术/职能领域的成长和技能的不断提高，以及应用这种技术/职能的机会。希望通过施展自己精湛的技能以获取别人的认可，乐于和同行交流切磋。'
-  },
-  {
-    title:'管理型（GM）',
-    content:'追求岗位晋升，致力于全面管理，希望能领导别人，独自负责某个部分，可以跨部门整合其他人的努力成果，愿意承担责任。具体的技术/职能工作仅仅是通向更高、更全面管理层级的手段而已。'
-  },
-  {
-    title:'自主型（AU）',
-    content:'希望可以按照自己喜欢的工作方式工作和生活，不愿意忍受公司或者组织条条框框的约束和限制，追求能施展个人能力的工作环境，更容易被自由选择而不是物质报酬所激励。'
-  },
-  {
-    title:'安全型（SE）',
-    content:'追求稳定的工作岗位，更为看重财务安全和职业稳定性，关注五险一金、养老金等保证性收入。对组织忠心耿耿，可以长久稳定地从事某一职业。'
-  },
-  {
-    title:'创造型（EC）',
-    content:'有强烈的创造需求和欲望，醉心于建立或创造某种完全属于自己的东西；最强烈的工作动力是可以发明创造，奠基立业，同时意志坚定，敢于冒险。'
-  },
-  {
-    title:'服务型（SV）',
-    content:'希望可以做一些利于他人的事，为别人提供有价值的服务。例如：帮助他人，改善人们的处境，通过新的产品消除疾病等等。富有爱心和同情心。'
-  },
-  {
-    title:'挑战型（CH）',
-    content:'喜欢解决看上去无法解决的问题，战胜厉害的对手，克服无法克服的困难，参加工作的原因是工作过程中可以去战胜各种不可能，新奇、变化和困难是行动的终极目标。'
-  },
-  {
-    title:'生活型（LS）',
-    content:'希望职业环境有足够的的弹性，能平衡个人的、家庭的和职业的矛盾，认为家庭和事业是一个整体，希望两者可以兼顾，可以协调发展。'
-  }
-];
 const interestIndicator = [
   { name: '现实型(R)', max: 50},
   { name: '常规型(C)', max: 50},
@@ -143,17 +69,6 @@ const carrerIndicator = [
   { name: '生活型', max: 25}
 ];
 const subjectIndicator = ['英语','政治','生物','语文','历史','化学','数学','地理','物理'];
-const subjectData = [
-  {value: 10, name: '英语'},
-  {value: 55, name: '政治'},
-  {value: 23, name: '生物'},
-  {value: 25, name: '语文'},
-  {value: 20, name: '历史'},
-  {value: 35, name: '化学'},
-  {value: 62, name: '数学'},
-  {value: 15, name: '地理'},
-  {value: 50, name: '物理'}
-];
 
 class Index extends Component {
   config = {
@@ -187,6 +102,7 @@ class Index extends Component {
       let _subjectResultStr = evaData.libosResult.totalStr;
       let _subjectTitleStr = evaData.libosResult.resultStr;
       let _subjectResultValue = evaData.libosResult.resultValue;
+      let _testTime = evaData.testTime;
 
 
       this.setState({
@@ -204,7 +120,8 @@ class Index extends Component {
         anchorResultStr: _anchorResultStr,
         subjectOption: getPieOption(subjectIndicator,_subjectResultValue),
         subjectResultStr:_subjectResultStr,
-        subjectTitleStr: _subjectTitleStr
+        subjectTitleStr: _subjectTitleStr,
+        testTime: _testTime
       })
     })
   }
@@ -219,14 +136,14 @@ class Index extends Component {
   componentDidHide () {}
 
   render () {
-    const {subjectResultStr, subjectTitleStr, anchorResultStr, anchorTitleStr, abilityTitleStr, interestOption , hollandResultStr, interestInfo, barOption, natureInfo, abilityOption, abilityResult, abilityInfo, carrerOption, carrerInfo, subjectOption, mbtiResultStr } = this.state
+    const {testTime, subjectResultStr, subjectTitleStr, anchorResultStr, anchorTitleStr, abilityTitleStr, interestOption , hollandResultStr, interestInfo, barOption, natureInfo, abilityOption, abilityResult, abilityInfo, carrerOption, carrerInfo, subjectOption, mbtiResultStr } = this.state
     return (
       <ScrollView className='wdcpjg' scrollY='true' >
         {/*用户基本信息*/}
         <View className='at-row user-info'>
           <View className='at-col font2 selectTop'>男</View>
           <View className='at-col font2 selectTop'>理科</View>
-          <View className='at-col font2 selectTop'>3分21秒</View>
+          <View className='at-col font2 selectTop'>{testTime}</View>
         </View>
         {/*兴趣维度解析*/}
         <View className='interest base-item'>

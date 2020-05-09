@@ -122,12 +122,17 @@ class Index extends Component{
       this.setState((prevState)=>({
         answerScores: currentIndex == questions.length-1 ? prevState.answerScores.concat(answerScore):prevState.answerScores,
       }),()=>{
+        Taro.showLoading({
+          title: '结果提交中……',
+          mask: true
+        });
         var testTime = new Date().getTime()/1000 - this.state.beginTime;
         //提交职业兴趣测评结果
         submitZYXQAnswers({answerScores: this.state.answerScores,type: this.state.type, testTime: testTime}).then(({data})=>{
           Taro.navigateTo({
             url: '/packageCP/wdcpjg/index?id='+data.id
           });
+          Taro.hideLoading();
         });
       });
     }
