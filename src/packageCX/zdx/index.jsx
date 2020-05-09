@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View,ScrollView } from '@tarojs/components'
 import { AtGrid , AtTabs, AtTabsPane} from 'taro-ui'
 import SchoolItem from './component/schoolItem/index'
-import {login, getSchoolList} from '@utils/api'
+import {login, getSchoolRankList} from '@utils/api'
 
 import './index.scss'
 
@@ -20,7 +20,7 @@ class Index extends Component {
   }
 
   componentDidMount(){
-    getSchoolList({currentPage: 0,pageSize: 10}).then(({data})=>{
+    getSchoolRankList({currentPage: 0,pageSize: 20}).then(({data})=>{
       this.setState((prevState)=>({
         schoolData: data.list
       }));
