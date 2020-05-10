@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import { AtAvatar, AtList, AtListItem } from 'taro-ui'
 import './index.scss'
-import {getGlobalData} from "../../utils/global";
+import { getGlobalData } from "../../utils/global";
 
 class Index extends Component {
 

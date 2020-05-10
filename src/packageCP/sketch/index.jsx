@@ -36,7 +36,7 @@ class Index extends Component{
         {
           title: '志愿填报（普高）测评',
           cycle: '1次',
-          titleNum: 23,
+          titleNum: 205,
           imageSrc: require('../images/evaStart3.png'),
           content: '志愿填报不知道从何入手？测一下就知道',
           desc: '填报高考志愿，从某种意义上讲，是一个人职业生涯的起点。如何在未就业前，找到最适合自己的职业方向呢？现在网络发达，考生和家长只要轻轻一搜，就能找到大量的兴趣测试试题，进行测试。并且测试之后，还提供测试结果分析，确实方便了不少正为职业方向烦恼的考生和家长。'
@@ -59,7 +59,7 @@ class Index extends Component{
         },{
           title: '自我控制能力测评',
           cycle: '1次/3月',
-          titleNum: 36,
+          titleNum: 205,
           imageSrc: require('../images/evaStart5.png'),
           content: '测量自己的行为，情绪和认知进行约束和管理的能力',
           desc: '本测评用于测量中学生在学习、娱乐、日常生活及社会活动等方面的自我控制能力。问卷共36个题项，由三个维度组成，分别是情绪自控、行为自控和思维自控。'
