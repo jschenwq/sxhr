@@ -39,6 +39,8 @@ export const getListScoreRank = (data) => $.ajax('/wx/score/listScoreRank','POST
 //大学
 //获取大学列表
 export const getSchoolList = (data) => $.ajax('/wx/school/list','POST', data);
+//获取大学排名列表
+export const getSchoolRankList = (data) => $.ajax('/wx/school/listRank','POST', data);
 //获取大学专业
 export const getSchoolMajor = (data) => $.ajax('/wx/school/major', 'POST', data);
 //获取招生快讯
