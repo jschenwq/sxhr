@@ -58,11 +58,7 @@ class Index extends Component {
         mask: true
       });
       Taro.switchTab ({
-        url: '/pages/home/index',
-        success: function (e) {
-          var page = getCurrentPages().pop();
-          // if (page == undefined || page == null) return;
-        }
+        url: '/pages/home/index'
       });
     });
   }

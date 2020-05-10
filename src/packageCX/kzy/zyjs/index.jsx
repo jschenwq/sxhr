@@ -24,14 +24,14 @@ class Index extends Component {
       });
     });
 
-
-
   }
 
   render() {
     return (
       <View>
+        <View style='padding:0px 20px'>
         <RichText nodes={this.state.detailNodes} />
+        </View>
       </View>
     )
   }

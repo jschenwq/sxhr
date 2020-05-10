@@ -10,8 +10,6 @@ import './index.scss'
 import {getGlobalData, setGlobalData} from "../../utils/global";
 import {getUserInfo, updateUserInfo} from "../../utils/api";
 
-
-
 @connect(({ counter }) => ({
   counter
 }), (dispatch) => ({
@@ -52,6 +50,24 @@ class Index extends Component {
   }
 
   componentDidMount(){
+    //自动登录
+    auth.appCheckAuth().then((result)=>{
+
+      if (!result){
+        Taro.switchTab ({
+          url: '/pages/user/index'
+        });
+      }
+
+      Taro.showToast({
+        title: result?'自动登录成功！':'自动登录失败！',
+        icon: 'none',
+        mask: true
+      });
+
+      this.setProvince();
+
+    });
 
     //获取咨询师
     getzxsList({currentPage:1,pageSize:5}).then(({data}) => {
@@ -60,16 +76,21 @@ class Index extends Component {
       })
     });
 
-  }
 
-  componentWillUnmount () {
   }
 
   componentDidShow () {
+    this.setProvince();
+  }
+
+  //设置省份
+  setProvince(){
+
     //判断是否有省份
-   if(getGlobalData("userInfo")==null){
+    if(getGlobalData("userInfo")==null){
       return
     }
+
     var province=""
     if(getGlobalData("userInfo").province==null||getGlobalData("userInfo").province==""){
       province="点击设置"
@@ -83,10 +104,6 @@ class Index extends Component {
     });
   }
 
-  componentDidHide () {
-  }
-
-
   toFenbao1(){
     if (Taro.getEnv() == Taro.ENV_TYPE.WEB) {
       Taro.navigateTo({
@@ -98,6 +115,8 @@ class Index extends Component {
       })
     }
   }
+
+
   //省份切换
   handleProvince = e => {
     this.setState({
@@ -425,9 +444,6 @@ class Index extends Component {
             <Text className='caseDetail'>徐<span>同学：理科 分数</span>326 选测BB+ 位次69880。最终被南京理工大学紫金学院电气工程与自动化专业录取。</Text>
           </View>
         </View>
-
-        {/*<Button className='add_btn' onClick={this.toFenbao.bind(this)}>前往分包页面</Button>*/}
-        {/*<Button className='add_btn' onClick={this.toFenbao1}>前往分包页面111</Button>*/}
 
       </View>
     )

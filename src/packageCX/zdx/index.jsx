@@ -15,12 +15,13 @@ class Index extends Component {
     super(props)
     this.state = {
       current:0,
-      schoolData: []
+      schoolData: [],
+      rankTypeArr: [10,21,22,34,39,35,37,36,38,30,32,33,31]
     };
   }
 
   componentDidMount(){
-    getSchoolRankList({currentPage: 0,pageSize: 20}).then(({data})=>{
+    getSchoolRankList({currentPage: 0,pageSize: 20,rankType:10,rankYear:2020}).then(({data})=>{
       this.setState((prevState)=>({
         schoolData: data.list
       }));
@@ -37,6 +38,13 @@ class Index extends Component {
     this.setState({
       current: value//ScrollToLower
     })
+
+    getSchoolRankList({currentPage: 0,pageSize: 20,rankType:this.state.rankTypeArr[value],rankYear:2020}).then(({data})=>{
+      this.setState((prevState)=>({
+        schoolData: data.list,
+        current: value
+      }));
+    });
   }
   ScrollToLower() { //滚动到底部事件
    console.log(3)
@@ -49,32 +57,32 @@ class Index extends Component {
     })
   }
   //顶部大学操作
-  schoolBd(data,index){
-    //我的院校
-    if(index == 0){
-      Taro.navigateTo({
-        url: '/packageCX/zdx/wdyx/index',
-      })
-    }
-    //全部院校
-    if(index == 1){
-      Taro.navigateTo({
-        url: '/packageCX/zdx/qbyx/index',
-      })
-    }
-    //院校对比
-    if(index == 2){
-      Taro.navigateTo({
-        url: '/packageCX/zdx/yxbd/index',
-      })
-    }
-    //大学排名
-    if(index == 3){
-      Taro.navigateTo({
-        url: '/packageCX/zdx/dxpm/index',
-      })
-    }
-  }
+  // schoolBd(data,index){
+  //   //我的院校
+  //   if(index == 0){
+  //     Taro.navigateTo({
+  //       url: '/packageCX/zdx/wdyx/index',
+  //     })
+  //   }
+  //   //全部院校
+  //   if(index == 1){
+  //     Taro.navigateTo({
+  //       url: '/packageCX/zdx/qbyx/index',
+  //     })
+  //   }
+  //   //院校对比
+  //   if(index == 2){
+  //     Taro.navigateTo({
+  //       url: '/packageCX/zdx/yxbd/index',
+  //     })
+  //   }
+  //   //大学排名
+  //   if(index == 3){
+  //     Taro.navigateTo({
+  //       url: '/packageCX/zdx/dxpm/index',
+  //     })
+  //   }
+  // }
 
   render () {
     let {schoolData} = this.state;
@@ -85,26 +93,26 @@ class Index extends Component {
           <Text className='searchText'>请输入大学名称</Text>
         </View>
 
-        <AtGrid className='school' columnNum={4} hasBorder={false} onClick={this.schoolBd.bind(this)} data={
-          [
-            {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%88%91%E7%9A%84%E9%99%A2%E6%A0%A1.png',
-              value: '我的院校'
-            },
-            {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%85%A8%E9%83%A8%E9%99%A2%E6%A0%A1.png',
-              value: '全部院校'
-            },
-            {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E9%99%A2%E6%A0%A1%E5%AF%B9%E6%AF%94.png',
-              value: '院校比对'
-            },
-            {
-              image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%A4%A7%E5%AD%A6%E6%8E%92%E5%90%8D.png',
-              value: '大学排名'
-            }
-          ]
-        } />
+        {/*<AtGrid className='school' columnNum={4} hasBorder={false} onClick={this.schoolBd.bind(this)} data={*/}
+          {/*[*/}
+            {/*{*/}
+              {/*image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%88%91%E7%9A%84%E9%99%A2%E6%A0%A1.png',*/}
+              {/*value: '我的院校'*/}
+            {/*},*/}
+            {/*{*/}
+              {/*image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%85%A8%E9%83%A8%E9%99%A2%E6%A0%A1.png',*/}
+              {/*value: '全部院校'*/}
+            {/*},*/}
+            {/*{*/}
+              {/*image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E9%99%A2%E6%A0%A1%E5%AF%B9%E6%AF%94.png',*/}
+              {/*value: '院校比对'*/}
+            {/*},*/}
+            {/*{*/}
+              {/*image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%A4%A7%E5%AD%A6%E6%8E%92%E5%90%8D.png',*/}
+              {/*value: '大学排名'*/}
+            {/*}*/}
+          {/*]*/}
+        {/*} />*/}
 
         <AtTabs
           className='schoolAll'
@@ -112,11 +120,18 @@ class Index extends Component {
           scroll
           tabList={[
             { title: '热门院校' },
-            { title: '新闻传播学' },
-            { title: '数据科学与大数据技术' },
-            { title: '工商管理' },
-            { title: '土木工程' },
-            { title: '教育' }
+            { title: '985' },
+            { title: '211' },
+            { title: '财经' },
+            { title: '政法' },
+            { title: '师范' },
+            { title: '体育' },
+            { title: '艺术' },
+            { title: '医药' },
+            { title: '工程' },
+            { title: '理工' },
+            { title: '工业' },
+            { title: '交通' }
           ]}
           onClick={this.handleClick.bind(this)}>
           <AtTabsPane current={this.state.current} index={0}>
