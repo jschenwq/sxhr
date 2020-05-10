@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import { AtAvatar, AtList, AtListItem } from 'taro-ui'
-import { getUserInfo } from '@utils/api'
 import './index.scss'
 import {getGlobalData} from "../../utils/global";
 

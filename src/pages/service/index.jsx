@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text, Image } from '@tarojs/components'
 import { getUserInfo } from '@utils/api'
 import './index.scss'
+import auth from '@utils/auth';
 
 class Index extends Component {
 
@@ -34,23 +35,27 @@ class Index extends Component {
 
   getService(url){
     let _mobile = "";
-
-    getUserInfo({}).then(({data}) => {
-      _mobile = data.mobile
-      console.log(_mobile);
-
-      if( _mobile === null || _mobile === ''){
-        Taro.navigateTo({
-          url: '/packageWD/bdsj/index'
+    auth.pageCheckToken().then((result)=>{
+      //授权成功
+      if(result){
+        getUserInfo({}).then(({data}) => {
+          _mobile = data.mobile
+          if( _mobile === null || _mobile === ''){
+            Taro.navigateTo({
+              url: '/packageWD/bdsj/index'
+            });
+          }else{
+            Taro.navigateTo({
+              url: url
+            });
+          }
         });
       }else{
         Taro.navigateTo({
-          url: url
+          url: '/pages/login/index'
         });
       }
     });
-
-
   }
 
   render () {

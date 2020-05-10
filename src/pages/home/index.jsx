@@ -4,10 +4,8 @@ import { AtGrid , AtRate   } from 'taro-ui'
 import classNames from 'classnames'
 import { connect } from '@tarojs/redux'
 import {getzxsList} from '@utils/api'
-// import pageInit from '@utils/pageInit';
-
+import auth from '@utils/auth';
 import { add, minus, asyncAdd } from '@actions/counter'
-
 import './index.scss'
 import {getGlobalData, setGlobalData} from "../../utils/global";
 import {getUserInfo, updateUserInfo} from "../../utils/api";
@@ -223,8 +221,17 @@ class Index extends Component {
   }
 
   gotoCPPage(index){
-    Taro.navigateTo({
-      url: '/packageCP/sketch/index?index='+index
+    auth.pageCheckToken().then((result)=>{
+      //授权成功
+      if(result){
+        Taro.navigateTo({
+          url: '/packageCP/sketch/index?index='+index
+        });
+      }else{
+        Taro.navigateTo({
+          url: '/pages/login/index'
+        });
+      }
     });
   }
   render () {

@@ -8,7 +8,11 @@ export default class Auth{
   //app授权
   static appCheckAuth(){
     return new Promise(async (resolve)=>{
-      let flag = await getAuthToken();
+      let flag = await getAuthToken().catch(function () {
+        Taro.navigateTo({
+          url: '/pages/login/index'
+        });
+      });
       if( flag ) {
         //更新app状态
         Taro.$store.dispatch(changeAppOnLaunch());
@@ -20,6 +24,26 @@ export default class Auth{
           icon : 'none' ,
           mask : true
         })
+      }
+    });
+  }
+
+  static checkAuth(){
+    const state = Taro.$store.getState();
+    //从缓存读取授权信息
+    let authorize = state.authorize || Taro.getStorageSync('authorize');
+    return authorize;
+  }
+
+  static pageCheckToken(){
+    return new Promise((resolve)=>{
+      const state = Taro.$store.getState();
+      //如果有授权信息
+      if(Auth.checkAuth() && !state.counter.appOnLaunch){
+        //直接返回
+        resolve(true);
+      }else{
+        resolve(false);
       }
     });
   }
