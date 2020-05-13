@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,ScrollView } from '@tarojs/components'
-import { AtGrid , AtTabs, AtTabsPane} from 'taro-ui'
+import {View, ScrollView, Image, Text} from '@tarojs/components'
+import {AtGrid, AtRate, AtTabs, AtTabsPane} from 'taro-ui'
 import SchoolItem from './component/schoolItem/index'
 import {login, getSchoolRankList} from '@utils/api'
 
@@ -9,6 +9,7 @@ import './index.scss'
 class Index extends Component {
   config = {
     navigationBarTitleText: '找大学',
+    onReachBottomDistance:300
   }
 
   constructor(props) {
@@ -16,16 +17,15 @@ class Index extends Component {
     this.state = {
       current:0,
       schoolData: [],
-      rankTypeArr: [10,21,22,34,39,35,37,36,38,30,32,33,31]
+      rankTypeArr: [40,21,22,34,39,35,37,36,38,30,32,33,31],
+      tabList:['综合','985','211','财经','政法','师范','体育','艺术','医药','工程','理工','工业','交通']
     };
   }
 
   componentDidMount(){
-    getSchoolRankList({currentPage: 0,pageSize: 20,rankType:10,rankYear:2020}).then(({data})=>{
-      this.setState((prevState)=>({
-        schoolData: data.list
-      }));
-    });
+    //页面加载获取综合排名
+    this.handleClick (0)
+
   }
 
   componentWillUnmount () {}
@@ -34,20 +34,21 @@ class Index extends Component {
 
   componentDidHide () {}
 
+  ScrollToLower() { //滚动到底部事件
+    console.log(3333333)
+  }
+
   handleClick (value) {
     this.setState({
       current: value//ScrollToLower
     })
 
-    getSchoolRankList({currentPage: 0,pageSize: 20,rankType:this.state.rankTypeArr[value],rankYear:2020}).then(({data})=>{
+    getSchoolRankList({currentPage: 0,pageSize: 10,rankType:this.state.rankTypeArr[value],rankYear:2020}).then(({data})=>{
       this.setState((prevState)=>({
         schoolData: data.list,
         current: value
       }));
     });
-  }
-  ScrollToLower() { //滚动到底部事件
-   console.log(3)
   }
 
   //搜索大学
@@ -64,28 +65,10 @@ class Index extends Component {
   //       url: '/packageCX/zdx/wdyx/index',
   //     })
   //   }
-  //   //全部院校
-  //   if(index == 1){
-  //     Taro.navigateTo({
-  //       url: '/packageCX/zdx/qbyx/index',
-  //     })
-  //   }
-  //   //院校对比
-  //   if(index == 2){
-  //     Taro.navigateTo({
-  //       url: '/packageCX/zdx/yxbd/index',
-  //     })
-  //   }
-  //   //大学排名
-  //   if(index == 3){
-  //     Taro.navigateTo({
-  //       url: '/packageCX/zdx/dxpm/index',
-  //     })
-  //   }
   // }
 
   render () {
-    let {schoolData} = this.state;
+    let {schoolData,tabList,dargStyle,downDragStyle,upDragStyle } = this.state;
     return (
       <View className='zdx'>
         <View className="search" onClick={this.searchSchool.bind(this)}>
@@ -99,19 +82,6 @@ class Index extends Component {
               {/*image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E6%88%91%E7%9A%84%E9%99%A2%E6%A0%A1.png',*/}
               {/*value: '我的院校'*/}
             {/*},*/}
-            {/*{*/}
-              {/*image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%85%A8%E9%83%A8%E9%99%A2%E6%A0%A1.png',*/}
-              {/*value: '全部院校'*/}
-            {/*},*/}
-            {/*{*/}
-              {/*image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E9%99%A2%E6%A0%A1%E5%AF%B9%E6%AF%94.png',*/}
-              {/*value: '院校比对'*/}
-            {/*},*/}
-            {/*{*/}
-              {/*image: 'http://sxhr-school.oss-cn-beijing.aliyuncs.com/ico/wx/%E5%A4%A7%E5%AD%A6%E6%8E%92%E5%90%8D.png',*/}
-              {/*value: '大学排名'*/}
-            {/*}*/}
-          {/*]*/}
         {/*} />*/}
 
         <AtTabs
@@ -119,88 +89,29 @@ class Index extends Component {
           current={this.state.current}
           scroll
           tabList={[
-            { title: '热门院校' },
-            { title: '985' },
-            { title: '211' },
-            { title: '财经' },
-            { title: '政法' },
-            { title: '师范' },
-            { title: '体育' },
-            { title: '艺术' },
-            { title: '医药' },
-            { title: '工程' },
-            { title: '理工' },
-            { title: '工业' },
-            { title: '交通' }
+            {title: '综合'},{title: '985'},{title: '211'},{title: '财经'},{title: '政法'},{title: '师范'},
+            {title: '体育'},{title: '艺术'},{title: '医药'},{title: '工程'},{title: '理工'},{title: '工业'},{title: '交通'}
           ]}
           onClick={this.handleClick.bind(this)}>
-          <AtTabsPane current={this.state.current} index={0}>
-            <ScrollView
-              onScrollToLower={this.ScrollToLower.bind(this)}>
-              <View className='schoolList'>
-                {
-                  schoolData.map((item)=>{
-                    return (<SchoolItem  item={item}/>);
-                  })
-                }
-              </View>
-            </ScrollView>
-          </AtTabsPane>
-          <AtTabsPane current={this.state.current} index={1}>
-            <View className='schoolList'>
-              <View className='schoolList'>
-                {
-                  schoolData.map((item)=>{
-                    return (<SchoolItem  item={item}/>);
-                  })
-                }
-              </View>
-            </View>
-          </AtTabsPane>
-          <AtTabsPane current={this.state.current} index={2}>
-            <View className='schoolList'>
-              <View className='schoolList'>
-                {
-                  schoolData.map((item)=>{
-                    return (<SchoolItem  item={item}/>);
-                  })
-                }
-              </View>
-            </View>
-          </AtTabsPane>
-          <AtTabsPane current={this.state.current} index={3}>
-            <View className='schoolList'>
-              <View className='schoolList'>
-                {
-                  schoolData.map((item)=>{
-                    return (<SchoolItem  item={item}/>);
-                  })
-                }
-              </View>
-            </View>
-          </AtTabsPane>
-          <AtTabsPane current={this.state.current} index={4}>
-            <View className='schoolList'>
-              <View className='schoolList'>
-                {
-                  schoolData.map((item)=>{
-                    return (<SchoolItem  item={item}/>);
-                  })
-                }
-              </View>
-            </View>
-          </AtTabsPane>
-          <AtTabsPane current={this.state.current} index={5}>
-            <View className='schoolList'>
-              <View className='schoolList'>
-                {
-                  schoolData.map((item)=>{
-                    return (<SchoolItem  item={item}/>);
-                  })
-                }
-              </View>
-            </View>
-          </AtTabsPane>
+
+          {
+            tabList.length > 0 && tabList.map((item2,index) => {
+              return (
+                <AtTabsPane current={this.state.current} index={index}>
+                  <scrool-view onScrollToLower={this.ScrollToLower}>
+                    <View className='schoolList'>
+                      {
+                        schoolData.map((item)=>{
+                          return (<SchoolItem  item={item}/>);
+                        })
+                      }
+                    </View>
+                  </scrool-view>
+                </AtTabsPane>
+              )
+            })
+          }
+
         </AtTabs>
       </View>
 

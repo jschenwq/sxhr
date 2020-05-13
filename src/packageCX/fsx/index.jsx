@@ -47,7 +47,7 @@ class Index extends Component {
     });
 
     //获取学校分数线--参数解构赋值
-    getSchoolScore({type:this.state.type,province:this.state.province,schoolId:this.$router.params.schoolId}).then(({data}) => {
+    getSchoolScore({province:this.state.province,schoolId:this.$router.params.schoolId}).then(({data}) => {
       this.setState({
         schoolScore: data.list,
       })
@@ -62,7 +62,7 @@ class Index extends Component {
 
     if(value == 0){
       // 获取学校分数线
-      getSchoolScore({type:this.state.type,province:this.state.province,schoolId:this.state.schoolId}).then(({data}) => {
+      getSchoolScore({province:this.state.province,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
           schoolScore: data.list,
         })
@@ -90,7 +90,7 @@ class Index extends Component {
     })
     if(this.state.current == 0){
       // 获取学校分数线
-      getSchoolScore({type:this.state.selector[e.detail.value],province:this.state.province,schoolId:this.state.schoolId}).then(({data}) => {
+      getSchoolScore({province:this.state.province,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
           schoolScore: data.list,
         })
@@ -119,7 +119,8 @@ class Index extends Component {
 
     if(this.state.current == 0){
       // 获取学校分数线
-      getSchoolScore({type:this.state.type,province:this.state.provinceList[e.detail.value],schoolId:this.state.schoolId}).then(({data}) => {
+      // getSchoolScore({type:this.state.type,province:this.state.provinceList[e.detail.value],schoolId:this.state.schoolId}).then(({data}) => {
+      getSchoolScore({province:this.state.provinceList[e.detail.value],schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
           schoolScore: data.list,
         })
@@ -175,15 +176,6 @@ class Index extends Component {
         <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
           <AtTabsPane current={this.state.current} index={0} >
             <View className ='fsxContent'>
-              {/*文理科*/}
-              <View className='selectZy'>
-                <Picker className='pickerC' mode='selector' range={this.state.selector} onChange={this.onChange}>
-                  <View className='picker'>
-                    {this.state.type}
-                  </View>
-                  <Text className='at-icon at-icon-chevron-down'></Text>
-                </Picker>
-              </View>
               {/*省份*/}
               <View className='selectZy'>
                 <Picker className='pickerC' mode='selector' range={this.state.provinceList} onChange={this.onChangeProvince}>

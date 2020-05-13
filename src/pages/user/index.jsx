@@ -97,12 +97,12 @@ class Index extends Component {
             onClick={this.handClick.bind(this, '/packageCP/wdcplb/index')}
             iconInfo={{ size: 12, color: '#ef7357', value: 'file-generic'}}
           />
-          <AtListItem
-            title='我的选科'
-            arrow='right'
-            onClick={this.handClick.bind(this, '/packageWD/wdxk/index')}
-            iconInfo={{ size: 12, color: '#ff8360', value: 'shopping-bag'}}
-          />
+          {/*<AtListItem*/}
+            {/*title='我的选科'*/}
+            {/*arrow='right'*/}
+            {/*onClick={this.handClick.bind(this, '/packageWD/wdxk/index')}*/}
+            {/*iconInfo={{ size: 12, color: '#ff8360', value: 'shopping-bag'}}*/}
+          {/*/>*/}
           <AtListItem
             title='客服电话：0379-65116985'
             arrow='right'
