@@ -16,7 +16,8 @@ class Index extends Component {
     this.state = {
       avatarUrl: '',
       userName: '',
-      loginHidden: false
+      loginHidden: false,
+      mobile: ''
     };
 
   }
@@ -41,10 +42,12 @@ class Index extends Component {
     //获取用户信息
     if(getGlobalData("userInfo")!=null&&getGlobalData("userInfo")!=''){
       let userinfo = getGlobalData("userInfo")
+      console.log(userinfo);
       this.setState({
         avatarUrl: userinfo.avatarUrl,
         userName: userinfo.userName,
-        loginHidden: true
+        loginHidden: true,
+        mobile: userinfo.mobile
       })
     }
   }
@@ -64,7 +67,8 @@ class Index extends Component {
     });
   }
   render () {
-    let { avatarUrl, userName,loginHidden } = this.state;
+    let { mobile, avatarUrl, userName,loginHidden } = this.state;
+    const reg = /^(\d{3})\d{4}(\d{4})$/;
     return (
       <View className='index'>
         <View className='user'>
@@ -80,9 +84,9 @@ class Index extends Component {
             iconInfo={{ size:12, color: '#f99300', value: 'sketch'}}
           />*/}
           <AtListItem
-            title='绑定手机'
+            title={ mobile?'已绑定手机：'+ mobile.replace(reg, "$1****$2"):'绑定手机' }
             arrow='right'
-            onClick={this.handClick.bind(this, '/packageWD/bdsj/index')}
+            onClick={this.handClick.bind(this, '/packageWD/bdsj/index?mobile='+mobile+'&title='+(mobile?'更换手机':'绑定手机'))}
             iconInfo={{ size: 12, color: '#afafaf', value: 'iphone'}}
           />
           <AtListItem

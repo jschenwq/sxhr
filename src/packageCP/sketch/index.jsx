@@ -12,6 +12,7 @@ class Index extends Component{
   constructor(props){
     super(props);
     this.state = {
+      lastFlag: true,
       visibled: true,
       reportCount:'',
       beginTime: 0,
@@ -89,7 +90,9 @@ class Index extends Component{
 
   componentDidShow () {
     this.setState({
-      visibled: true
+      visibled: true,
+      currentIndex: 0,
+      lastFlag: true
     })
     getUserReportCount().then(({data})=>{
       this.setState({
@@ -114,14 +117,15 @@ class Index extends Component{
   }
 
   nextPicker(answerScore){
-    let {questions, currentIndex} = this.state;
+    let {questions, currentIndex, lastFlag} = this.state;
     if(currentIndex < questions.length-1){
       this.setState((prevState)=>({
         answerScores: prevState.answerScores.concat(answerScore),
         currentIndex: prevState.currentIndex+1,
       }));
-    }else{
+    }else if(lastFlag && (currentIndex === questions.length-1)){
       this.setState((prevState)=>({
+        lastFlag: false,
         answerScores: currentIndex == questions.length-1 ? prevState.answerScores.concat(answerScore):prevState.answerScores,
       }),()=>{
         Taro.showLoading({

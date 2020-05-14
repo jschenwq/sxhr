@@ -35,7 +35,7 @@ function ajax(url, methodType, data, header) {
 
         if (data.code != 0) {
           Taro.showToast({
-            title: `${res.data.error.message}~` || res.data.error.code,
+            title: `${res.data.msg}` || res.data.code,
             icon: 'none',
             mask: true,
           });

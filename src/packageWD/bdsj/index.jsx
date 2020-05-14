@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Button} from '@tarojs/components'
 import { AtIcon, AtButton } from 'taro-ui'
 import {getVerificationCode, bindMobile} from '@utils/api'
+import { setGlobalData, getGlobalData } from '../../utils/global';
 import './index.scss'
 
 class Index extends Component {
@@ -22,6 +23,19 @@ class Index extends Component {
   componentWillMount(){
 
   }
+
+  componentDidShow() {
+    let _title = this.$router.params.title;
+    let _mobile = this.$router.params.mobile;
+    this.setState({
+      title: _title,
+      mobile: _mobile
+    });
+    Taro.setNavigationBarTitle({
+      title: _title
+    });
+  }
+
   handleSjh(e){//输入手机号
     this.setState((prevState)=>({
       phoneNumber: e.detail.value
@@ -36,6 +50,15 @@ class Index extends Component {
     if(!(/^1[3456789]\d{9}$/.test(this.state.phoneNumber))){
       Taro.showToast({
         title: '手机号码有误，请重填',
+        icon: 'none',
+        mask: true
+      });
+      return ;
+    }
+    let _mobile = this.state.mobile;
+    if(_mobile === this.state.phoneNumber){
+      Taro.showToast({
+        title: '请不要输入原手机号',
         icon: 'none',
         mask: true
       });
@@ -71,7 +94,6 @@ class Index extends Component {
     }
   }
   phoneBind=()=>{
-    console.log(this.state);
     bindMobile({mobile: this.state.phoneNumber,code: this.state.verifyCode}).then(({code, msg})=>{
       Taro.showToast({
         title: msg,
@@ -79,6 +101,11 @@ class Index extends Component {
         mask: true
       });
       if(code == 0){
+        if(getGlobalData("userInfo")!=null&&getGlobalData("userInfo")!=''){
+          let userInfo = getGlobalData("userInfo");
+          userInfo.mobile = this.state.phoneNumber;
+          setGlobalData("userInfo", userInfo);
+        }
         setTimeout(()=>{
           Taro.navigateBack({
             delta: 1

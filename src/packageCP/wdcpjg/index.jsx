@@ -132,7 +132,7 @@ const carrerIndicator = [
   { name: '自主型', max: 25},
   { name: '安全型', max: 25},
   { name: '创造型', max: 25},
-  { name: '技术型', max: 25},
+  { name: '服务型', max: 25},
   { name: '挑战型', max: 25},
   { name: '生活型', max: 25}
 ];
