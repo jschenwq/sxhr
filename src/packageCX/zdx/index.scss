@@ -34,7 +34,7 @@
   }
 }
 
-.dragUpdataPage{height: 50vh;position: relative;overflow: hidden;
+.dragUpdataPage{height: calc(100vh - 230px);position: relative;overflow: hidden;
   .downDragBox{
     width: 100%;
     top: 0px;

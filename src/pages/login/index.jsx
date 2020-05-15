@@ -16,12 +16,7 @@ class Index extends Component {
   }
 
   componentDidMount(){
-    const state = Taro.$store.getState();
-    if(!state.counter.appOnLaunch){
-      Taro.switchTab({
-        url: '/pages/home/index'
-      });
-    }
+
   }
 
   componentWillMount(){

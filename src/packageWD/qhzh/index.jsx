@@ -43,12 +43,12 @@ class Index extends Component {
         isLoading: false
       }));
       Taro.showToast({
-        title: result?'授权成功':'授权失败',
+        title: result?'授权登录成功':'授权登录失败',
         icon: 'none',
         mask: true
       });
-      Taro.navigateTo({
-        url: 'pages/home/index'
+      Taro.switchTab({
+        url: '/pages/home/index'
       });
     });
   }

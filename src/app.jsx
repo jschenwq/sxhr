@@ -36,6 +36,8 @@ class App extends Component {
 
       'pages/user/index',
 
+      // 'pages/login/index',
+
       'component/search/index',
 
       'component/search/school/index'
@@ -117,7 +119,7 @@ class App extends Component {
           'hykjh/index',//会员卡激活
           'wdcp/index',//我的测评
           'wdxk/index',//我的选科
-          'qhzh/index',//切换账号
+          // 'qhzh/index',//切换账号
           'sjhdl/index'//手机号登录
         ]
       }

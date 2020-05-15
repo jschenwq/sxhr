@@ -47,7 +47,10 @@ function ajax(url, methodType, data, header) {
         }
         resolve(data);
       } else {
-        throw new Error(`网络请求错误，状态码${statusCode}`);
+        Taro.navigateTo({
+          url: '/pages/login/index'
+        });
+        // throw new Error(`网络请求错误，状态码${statusCode}`);
       }
     })
   }))
