@@ -49,6 +49,7 @@ class Index extends Component {
   }
 
   render () {
+    let {schoolNewsList} = this.state;
     return (
       <View>
         <View className='counselor firstItem'>

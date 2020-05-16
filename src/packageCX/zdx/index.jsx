@@ -5,7 +5,6 @@ import SchoolItem from './component/schoolItem/index'
 import {login, getSchoolRankList} from '@utils/api'
 // import './index.scss'
 
-
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { AtActivityIndicator, AtTabs, AtTabsPane } from 'taro-ui'
@@ -27,7 +26,7 @@ class Index extends Component {
       schoolData: [],
       rankTypeArr: [40,21,22,34,39,35,37,36,38,30,32,33,31],
       tabList:['综合','985','211','财经','政法','师范','体育','艺术','医药','工程','理工','工业','交通'],
-      currentPage:0,
+      currentPage:1,
 
       dargStyle: {//下拉框的样式
         top: 0 + 'px'
@@ -58,13 +57,6 @@ class Index extends Component {
 
   componentDidHide () {}
 
-  // onReachBottom(){
-  //   Taro.showToast({
-  //     title: '敬请期待！',
-  //     icon: 'none',
-  //     mask: true,
-  //   });
-  // }
 
   ScrollToLower() { //滚动到底部事件
     Taro.showToast({
@@ -75,14 +67,12 @@ class Index extends Component {
   }
 
   handleClick (value) {
-    this.setState({
-      current: value
-    })
 
-    getSchoolRankList({currentPage: 0,pageSize: 10,rankType:this.state.rankTypeArr[value],rankYear:2020}).then(({data})=>{
+    getSchoolRankList({currentPage: 1, pageSize: 10,rankType:this.state.rankTypeArr[value],rankYear:2020}).then(({data})=>{
       this.setState((prevState)=>({
         schoolData: data.list,
-        current: value
+        current: value,
+        currentPage: 1
       }));
     });
   }

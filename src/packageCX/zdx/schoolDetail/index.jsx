@@ -18,6 +18,7 @@ class Index extends Component {
       isOpened: false,
       detailNodes: '',
       school: null,
+      schoolAttribute: "",
       majors: [],
       introductionPath: '',
       introduceTitle:'',
@@ -35,6 +36,7 @@ class Index extends Component {
       });
       this.setState({
         school: data.school,
+        schoolAttribute: data.school.attribute,
         majors: data.majors,
         schoolNewsList: data.schoolNewsList
       });
@@ -94,8 +96,7 @@ class Index extends Component {
     })
   }
   render () {
-    let {school, majors,schoolNewsList,isOpened,introduction,introduceTitle,banner} = this.state;
-    // const { banner } = this.props;
+    let {school,schoolAttribute, majors,schoolNewsList,isOpened,introduction,introduceTitle,banner} = this.state;
     return (
       <View className='schoolDetail'>
         <View className='schoolTop'>
@@ -127,7 +128,7 @@ class Index extends Component {
           } />
           <View className='attrDetail'>
             {
-              school.attribute && school.attribute.split(',').map((item1,index1) => {
+               schoolAttribute.split(',').map((item1,index1) => {
                 return(
                   <Text className ='attr' key={index1}>{item1}</Text>
                 )
