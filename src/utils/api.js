@@ -52,7 +52,8 @@ export const getSchoolDetail = (schoolId) => $.ajax('/wx/school/'+schoolId, 'GET
 //获取大学id获取简介
 export const getSchoolIntr = (schoolId) => $.ajax('/wx/schoolNews/introduction/'+schoolId, 'GET');
 
-
+//获取大学id获取简介
+export const getSchoolImg = (data) => $.ajax('/wx/school/listImg', 'POST',data);
 
 //测评
 //获取所有类型的测评人数--不需要登录token

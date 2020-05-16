@@ -1,7 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import {View, Swiper, SwiperItem, RichText, Text} from '@tarojs/components'
+import {View, Swiper, SwiperItem, RichText, Text, Image} from '@tarojs/components'
 import { AtGrid , AtList, AtListItem,AtFloatLayout } from 'taro-ui'
-import { getSchoolDetail,getSchoolIntr} from '@utils/api'
+import { getSchoolDetail,getSchoolIntr,getSchoolImg} from '@utils/api'
+import { MySwiper } from '../../../component/mySwiper/index'
 import $ from '@utils/http'
 
 import './index.scss'
@@ -21,7 +22,8 @@ class Index extends Component {
       introductionPath: '',
       introduceTitle:'',
       introduction: '',
-      schoolNewsList: []
+      schoolNewsList: [],
+      banner:[]
     };
   }
 
@@ -37,6 +39,13 @@ class Index extends Component {
         schoolNewsList: data.schoolNewsList
       });
     });
+
+    getSchoolImg({schoolId: schoolId,type:10}).then(({data})=>{
+      this.setState({
+        banner: data
+      });
+    });
+
   }
 
   handleShowDetail(){
@@ -85,15 +94,19 @@ class Index extends Component {
     })
   }
   render () {
-    let {school, majors,schoolNewsList,isOpened,introduction,introduceTitle} = this.state;
+    let {school, majors,schoolNewsList,isOpened,introduction,introduceTitle,banner} = this.state;
+    // const { banner } = this.props;
     return (
       <View className='schoolDetail'>
         <View className='schoolTop'>
           {/*大学画报*/}
-          <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='schoolImg' />
+          <View >
+            <MySwiper banner={banner} className='schoolImg'/>
+          </View>
           <Image src={school.logoPath} className='schoolLogo' />
           <Text className='schoolName'>{school.schoolName}</Text>
         </View>
+
         <View>
           <AtGrid style='padding:0px 20px' columnNum={3} mode='rect' hasBorder={false} data={
             [
@@ -132,45 +145,19 @@ class Index extends Component {
           indicatorColor='#999'
           indicatorActiveColor='#333'
           vertical={false}
-          circular={false}
+          circular={true}
           displayMultipleItems={3}
-          >
-          <SwiperItem className='SwiperItem'>
-            <View className='demo-text-1'>
-              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
-              <Text className='imgText'></Text>
-            </View>
-          </SwiperItem>
-          <SwiperItem className='SwiperItem'>
-            <View className='demo-text-2'>
-              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
-              <Text className='imgText'></Text>
-            </View>
-          </SwiperItem>
-          <SwiperItem className='SwiperItem'>
-            <View className='demo-text-3'>
-              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
-              <Text className='imgText'></Text>
-            </View>
-          </SwiperItem>
-          <SwiperItem className='SwiperItem'>
-            <View className='demo-text-3'>
-              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
-              <Text className='imgText'></Text>
-            </View>
-          </SwiperItem>
-          <SwiperItem className='SwiperItem'>
-            <View className='demo-text-3'>
-              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
-              <Text className='imgText'></Text>
-            </View>
-          </SwiperItem>
-          <SwiperItem className='SwiperItem'>
-            <View className='demo-text-3'>
-              <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='ImgSwiper' />
-              <Text className='imgText'></Text>
-            </View>
-          </SwiperItem>
+          autoplay={true}
+        >
+          { banner.map((item, index) => (
+            <SwiperItem className='SwiperItem'>
+              <View className='demo-text-1'>
+                <Image src={item} className='ImgSwiper' />
+                <Text className='imgText'></Text>
+              </View>
+            </SwiperItem>
+          ))}
+
         </Swiper>
 
         <View className='counselor firstItem'>
