@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, Icon,Picker  } from '@tarojs/components'
+import {View, Text, Image, Icon, Picker, Swiper, SwiperItem} from '@tarojs/components'
 import { AtGrid , AtRate   } from 'taro-ui'
 import classNames from 'classnames'
 import { connect } from '@tarojs/redux'
@@ -42,6 +42,10 @@ class Index extends Component {
       provinceSelected:"",
       provinceOptions:[],
       zxsList:[],//咨询师列表-首页默认展示5个
+      banner:[
+        'https://oss.srwmedu.cn/banner/banner1.jpg',
+        'https://oss.srwmedu.cn/banner/banner2.jpg'
+      ]
     };
     this.toFenbao1 = this.toFenbao1.bind(this)
   }
@@ -233,6 +237,14 @@ class Index extends Component {
     })
   }
 
+  //跳转服务页面
+  gotoService(){
+    Taro.switchTab ({
+      url: '/pages/service/index'
+    });
+  }
+
+
   onChange = e => {
     this.setState({
       selectorChecked: this.state.selector[e.detail.value]
@@ -254,11 +266,26 @@ class Index extends Component {
     });
   }
   render () {
-    const {currentCourse, current, zxsList,provinceSelected,provinceOptions} = this.state;
+    const {currentCourse, current, zxsList,provinceSelected,provinceOptions,banner} = this.state;
     return (
       <View className='home'>
         {/*宣传画报*/}
-        <Image src='https://sxhr-school.oss-cn-beijing.aliyuncs.com/banner/banner1.jpg' className='home_banner' />
+        <Swiper
+          className='home_banner'
+          vertical={false}
+          circular={true}
+          displayMultipleItems={1}
+          autoplay={true}
+        >
+          { banner.map((item, index) => (
+            <SwiperItem>
+              <View >
+                <Image className='home_banner' src={item} onClick={this.gotoService.bind(this)}/>
+              </View>
+            </SwiperItem>
+          ))}
+
+        </Swiper>
 
         {/*分数帅选*/}
         <View className='home_wish'>
