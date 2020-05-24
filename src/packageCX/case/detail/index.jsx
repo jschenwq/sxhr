@@ -44,7 +44,7 @@ class Index extends Component {
       <View className = 'zsxDetail'>
         <View className={classNames('at-row','itemPerson')}>
           <View className='at-col at-col-3' style='text-align:center'>
-            <Image src='https://oss.srwmedu.cn/case/img/10000.jpg' className='counselorImg1' />
+            <Image src={detailObj.imgPath} className='counselorImg1' />
           </View>
           <View className='at-col at-col-9'>
             <View>
