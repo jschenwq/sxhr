@@ -11,7 +11,7 @@ class Index extends Component {
     navigationBarTitleText: '测评服务'
   }
   state = {
-    phoneNumber: ''
+    phoneNumber: '0379-65116985'
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -88,8 +88,8 @@ class Index extends Component {
         </View>
 
         <View className='hyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx 4rpx;font-size: 30rpx;'>
-          <Text>欢迎您选择选科服务，开通选科服务后，无需再次购买。</Text>
           <Image src={hyfw} style='margin-top: 10rpx;width: 100%;height: 240rpx;' />
+          <Text>【测评次卡】学生科通过购买专业版的测评卡登录进入我们的测评系统进行测评，我公司提供一对一专家指导，为孩子进行测评报告解读，全方位了解学生个性特质，确定出未来适合学的专业和发展方向。</Text>
         </View>
         <View className='hyfw-btngroup'>
           <Button style='width:30%;color: #080705;background-color: #ffb284;' onClick={this.fwrxPhoneCall}>服务热线</Button>

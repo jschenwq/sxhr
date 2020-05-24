@@ -84,6 +84,8 @@ class App extends Component {
           'hyfw/index',
           'sxkfw/index',
           'cpfw/index',
+          'gbzyk/index',
+          'gbsxk/index',
         ]
       },
       //测评分包

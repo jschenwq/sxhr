@@ -11,7 +11,7 @@ class Index extends Component {
     navigationBarTitleText: '选科服务'
   }
   state = {
-    phoneNumber: ''
+    phoneNumber: '0379-65116985'
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -88,8 +88,8 @@ class Index extends Component {
         </View>
 
         <View className='hyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx 4rpx;font-size: 30rpx;'>
-          <Text>欢迎您选择选科服务，开通选科服务后，无需再次购买。</Text>
           <Image src={hyfw} style='margin-top: 10rpx;width: 100%;height: 240rpx;' />
+          <Text>【选科服务】通过职业测评，结合孩子的兴趣、能力、性格、职业价值观、优势学科、天赋智能、学科兴趣等全方位确定出孩子适合选的科目，并提供专家一对一指导之处未来发展方向及如何做好升学规划，严格按照升学规划服务内容执行。</Text>
         </View>
         <View className='hyfw-btngroup'>
           <Button style='width:30%;color: #080705;background-color: #ffb284;' onClick={this.fwrxPhoneCall}>服务热线</Button>

@@ -10,7 +10,7 @@ class Index extends Component {
     navigationBarTitleText: '升学规划'
   }
   state = {
-    phoneNumber: ''
+    phoneNumber: '0379-65116985'
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -96,7 +96,13 @@ class Index extends Component {
         </View>*/}
         <View className='sxkfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx;font-size: 30rpx;'>
           <Image style='margin-bottom: 15rpx;width: 100%;' src={sxkfw} />
-          <View><Text style='font-size: 32rpx;color: #333333;'>【升学规划】分析考生意向，指定合理的目标</Text></View>
+          <View>
+            <Text style='font-size: 32rpx;color: #333333;'>
+              【升学规划】针对高中生当前的现状，进行职业测评，同时结合家庭愿景、家庭条件、家庭成员及亲属的行业背景、考研、出国留学、公务员、企事业单位考取、所选专业所属行业未来发展趋势、确实适合学的专业和学科；确定完专业后进行院校规划，高一高二学生上下浮动五十分进行院校池积累，高三上下浮动三十分进行院校池积累。 \n
+              同时，根据每个月孩子的月考成绩，进行院校目标激励，详细解读各院校具体情况，让孩子有目标，有方向；与此同时，学生要每天将学习计划和学习总结发到服务群内进行每日学习督促；同时伴有学习状态提升和学习动力提升服务。\n
+              服务周期自报名起至高考结束。
+            </Text>
+          </View>
         </View>
         {/*<View className='sxkfw-price sxkfw-phone'>
           <AtIcon prefixClass='icon' value='shouji54' size='20' color='#9e9e9e' />
