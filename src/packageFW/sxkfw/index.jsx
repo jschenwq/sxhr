@@ -2,7 +2,6 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Label, Button, Image, Switch } from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
-import sxkfw from '../images/hyfw.png'
 
 class Index extends Component {
 
@@ -10,7 +9,11 @@ class Index extends Component {
     navigationBarTitleText: '升学规划'
   }
   state = {
-    phoneNumber: '0379-65116985'
+    phoneNumber: '0379-65116985',
+    banner:[
+      'https://oss.srwmedu.cn/banner/banner1.jpg',
+      'https://oss.srwmedu.cn/banner/banner2.jpg'
+    ]
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -73,29 +76,15 @@ class Index extends Component {
     }));
   }
   render () {
+    let {phoneNumber, banner} = this.state;
     return (
       <View className='index'>
-        <Image src={sxkfw} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
+        <Image src={banner[0]} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
         <View className='sxkfw-price'>
           <Label>升学规划{serviceTypeName}</Label>
           <Text style='color: #ff9913;'> ￥1000.00</Text>
         </View>
-        {/*<View className='sxkfw-price sxkfw-checked-group'>
-          <View className='sxkfw-checked'>
-            <Label>高报一对一服务</Label>
-            <Switch type='checkbox' checked={this.state.gbydyChecked} onChange={this.checkChange('gbydyChecked')}/>
-          </View>
-          <View className='sxkfw-checked'>
-            <Label>升学卡服务</Label>
-            <Switch type='checkbox' checked={this.state.sxkChecked} onChange={this.checkChange('sxkChecked')}/>
-          </View>
-          <View className='sxkfw-checked'>
-            <Label>会员服务</Label>
-            <Switch type='checkbox' checked={this.state.hyChecked} onChange={this.checkChange('hyChecked')}/>
-          </View>
-        </View>*/}
         <View className='sxkfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx;font-size: 30rpx;'>
-          <Image style='margin-bottom: 15rpx;width: 100%;' src={sxkfw} />
           <View>
             <Text style='font-size: 32rpx;color: #333333;'>
               【升学规划】针对高中生当前的现状，进行职业测评，同时结合家庭愿景、家庭条件、家庭成员及亲属的行业背景、考研、出国留学、公务员、企事业单位考取、所选专业所属行业未来发展趋势、确实适合学的专业和学科；确定完专业后进行院校规划，高一高二学生上下浮动五十分进行院校池积累，高三上下浮动三十分进行院校池积累。 \n
@@ -104,10 +93,6 @@ class Index extends Component {
             </Text>
           </View>
         </View>
-        {/*<View className='sxkfw-price sxkfw-phone'>
-          <AtIcon prefixClass='icon' value='shouji54' size='20' color='#9e9e9e' />
-          <Input type='text' value={this.state.phoneNumber} placeholder='请输入11位有效手机号码...' onInput={this.inputChange} placeholderStyle='color: #808080;' />
-        </View>*/}
         <View className='sxkfw-btngroup'>
           <Button style='width:30%;color: #080705;background-color: #ffb284;' onClick={this.fwrxPhoneCall}>服务热线</Button>
           {/* disabled={!this.state.checked} */}

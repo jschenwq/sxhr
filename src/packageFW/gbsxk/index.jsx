@@ -3,8 +3,6 @@ import {View, Label, Button, Image, Switch, Text} from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
 
-import hyfw from '../images/hyfw.png'
-
 class Index extends Component {
 
   config = {
@@ -14,7 +12,11 @@ class Index extends Component {
     phoneNumber: '0379-65116985',
     serviceType: '',
     serviceTypeName:'',
-    serviceFee: ''
+    serviceFee: '',
+    banner:[
+      'https://oss.srwmedu.cn/banner/banner1.jpg',
+      'https://oss.srwmedu.cn/banner/banner2.jpg'
+    ]
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -89,10 +91,10 @@ class Index extends Component {
     }));
   }
   render () {
-    let { serviceFee } = this.state;
+    let { serviceFee,banner } = this.state;
     return (
       <View className='index'>
-        <Image src={hyfw} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
+        <Image src={banner[0]} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
         <View className='gbydyfw-price'>
           <Label>高报升学卡</Label>
           <View>
@@ -101,7 +103,6 @@ class Index extends Component {
           </View>
         </View>
         <View className='gbydyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;'>
-          <Image style='margin-bottom: 15rpx;width: 100%;' src={hyfw} />
           <View><Text style='font-size: 32rpx;color: #333333;'>【高报升学卡】公司为学生提供专业版的测评卡和高保卡各一张，除学生可自行使用外，公司还提供专业教师免费一对一咨询，做好测评报告解读和专业定位，做好院校规划，依托现有成绩上下浮动三十分，一分一档进行院校筛选，选出适合孩子的院校，待高考成绩出来后可在此范围内依据具体分数填报志愿。</Text></View>
         </View>
         <View className='gbydyfw-btngroup'>

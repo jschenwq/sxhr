@@ -3,15 +3,17 @@ import { View, Label, Button, Image, Switch } from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
 
-import hyfw from '../images/hyfw.png'
-
 class Index extends Component {
 
   config = {
     navigationBarTitleText: '选科服务'
   }
   state = {
-    phoneNumber: '0379-65116985'
+    phoneNumber: '0379-65116985',
+    banner:[
+      'https://oss.srwmedu.cn/banner/banner1.jpg',
+      'https://oss.srwmedu.cn/banner/banner2.jpg'
+    ]
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -78,17 +80,16 @@ class Index extends Component {
     });
   }
   render () {
-    let {phoneNumber,gbydyChecked,sxkChecked,hyChecked} = this.state;
+    let {phoneNumber, banner} = this.state;
     return (
       <View className='index'>
-        <Image src={hyfw} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
+        <Image src={banner[0]} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
         <View className='hyfw-price'>
           <Label>选科服务</Label>
           <Text style='color: #ff9913;'> ￥1000.00</Text>
         </View>
 
         <View className='hyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx 4rpx;font-size: 30rpx;'>
-          <Image src={hyfw} style='margin-top: 10rpx;width: 100%;height: 240rpx;' />
           <Text>【选科服务】通过职业测评，结合孩子的兴趣、能力、性格、职业价值观、优势学科、天赋智能、学科兴趣等全方位确定出孩子适合选的科目，并提供专家一对一指导之处未来发展方向及如何做好升学规划，严格按照升学规划服务内容执行。</Text>
         </View>
         <View className='hyfw-btngroup'>

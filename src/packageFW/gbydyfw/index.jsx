@@ -3,8 +3,6 @@ import { View, Label, Button, Image, Switch } from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
 
-import hyfw from '../images/hyfw.png'
-
 class Index extends Component {
 
   config = {
@@ -14,7 +12,11 @@ class Index extends Component {
     phoneNumber: '0379-65116985',
     serviceType: '',
     serviceTypeName:'',
-    serviceFee: ''
+    serviceFee: '',
+    banner:[
+      'https://oss.srwmedu.cn/banner/banner1.jpg',
+      'https://oss.srwmedu.cn/banner/banner2.jpg'
+    ]
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -94,20 +96,15 @@ class Index extends Component {
     }));
   }
   render () {
-    let { serviceTypeName, serviceFee } = this.state;
+    let { serviceTypeName, serviceFee, banner } = this.state;
     return (
       <View className='index'>
-        <Image src={hyfw} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
+        <Image src={banner[0]} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
         <View className='gbydyfw-price'>
           <Label>志愿填报{serviceTypeName}</Label>
           <Text style='color: #ff9913;'> ￥{serviceFee}</Text>
         </View>
-        {/*<View className='gbydyfw-price gbydyfw-checked'>
-          <Label>高报一对一服务</Label>
-          <Switch type='checkbox' checked={this.state.checked} onChange={this.checkChange}/>
-        </View>*/}
         <View className='gbydyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;'>
-          <Image style='margin-bottom: 15rpx;width: 100%;' src={hyfw} />
           <View><Text style='font-size: 32rpx;color: #333333;'>【志愿填报】专家一对一指导高考志愿填报，包括职业测评定专业及专业解读，未来发展方向制定，院校选择及解读，全部签约，保录取，掉档全额退费！（具体优惠政策可电话咨询或添加服务老师微信咨询） \n
             1、高考志愿填报服务流程： \n
             ①职业测评→做测评，解读测评报告 \n
@@ -132,10 +129,6 @@ class Index extends Component {
             ⑥根据大数据分析，排位法、线差法算出院校录取概率，让院校选择更加清晰，不浪费考生分数。 \n
             ⑦后续跟踪，孩子收到录取通知书不是服务的终止，而是新的服务开始，做好大学生涯的规划。 \n</Text></View>
         </View>
-       {/* <View className='gbydyfw-price gbydyfw-phone'>
-          <AtIcon prefixClass='icon' value='shouji54' size='20' color='#9e9e9e' />
-          <Input value={this.state.phoneNumber} placeholder='请输入11位有效手机号码...' onInput={this.inputChange.bind(this)} placeholderStyle='color: #808080;' />
-        </View>*/}
         <View className='gbydyfw-btngroup'>
           <Button style='width:30%;color: #080705;background-color: #ffb284;' onClick={this.fwrxPhoneCall}>服务热线</Button>
           {/* disabled={!this.state.checked} */}

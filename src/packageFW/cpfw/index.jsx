@@ -3,15 +3,17 @@ import { View, Label, Button, Image, Switch } from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
 
-import hyfw from '../images/hyfw.png'
-
 class Index extends Component {
 
   config = {
     navigationBarTitleText: '测评服务'
   }
   state = {
-    phoneNumber: '0379-65116985'
+    phoneNumber: '0379-65116985',
+    banner:[
+      'https://oss.srwmedu.cn/banner/banner1.jpg',
+      'https://oss.srwmedu.cn/banner/banner2.jpg'
+    ]
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -78,17 +80,17 @@ class Index extends Component {
     });
   }
   render () {
-    let {phoneNumber,gbydyChecked,sxkChecked,hyChecked} = this.state;
+    let {phoneNumber,banner} = this.state;
     return (
       <View className='index'>
-        <Image src={hyfw} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
+        <Image src={banner[0]} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
         <View className='hyfw-price'>
           <Label>测评次卡</Label>
           <Text style='color: #ff9913;'> ￥500.00</Text>
         </View>
 
         <View className='hyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx 4rpx;font-size: 30rpx;'>
-          <Image src={hyfw} style='margin-top: 10rpx;width: 100%;height: 240rpx;' />
+          {/*<Image src={hyfw} style='margin-top: 10rpx;width: 100%;height: 240rpx;' />*/}
           <Text>【测评次卡】学生科通过购买专业版的测评卡登录进入我们的测评系统进行测评，我公司提供一对一专家指导，为孩子进行测评报告解读，全方位了解学生个性特质，确定出未来适合学的专业和发展方向。</Text>
         </View>
         <View className='hyfw-btngroup'>

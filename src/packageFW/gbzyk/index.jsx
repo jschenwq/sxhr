@@ -3,8 +3,6 @@ import {View, Label, Button, Image, Switch, Text} from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
 
-import hyfw from '../images/hyfw.png'
-
 class Index extends Component {
 
   config = {
@@ -14,7 +12,11 @@ class Index extends Component {
     phoneNumber: '0379-65116985',
     serviceType: '',
     serviceTypeName:'',
-    serviceFee: ''
+    serviceFee: '',
+    banner:[
+      'https://oss.srwmedu.cn/banner/banner1.jpg',
+      'https://oss.srwmedu.cn/banner/banner2.jpg'
+    ]
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -89,10 +91,10 @@ class Index extends Component {
     }));
   }
   render () {
-    let { serviceFee } = this.state;
+    let { serviceFee, banner } = this.state;
     return (
       <View className='index'>
-        <Image src={hyfw} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
+        <Image src={banner[0]} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
         <View className='gbydyfw-price'>
           <Label>高报志愿卡</Label>
           <View>
@@ -101,7 +103,6 @@ class Index extends Component {
           </View>
         </View>
         <View className='gbydyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;'>
-          <Image style='margin-bottom: 15rpx;width: 100%;' src={hyfw} />
           <View><Text style='font-size: 32rpx;color: #333333;'>【高报志愿卡】学生可通过购买我公司的高报志愿卡从而使用我公司专业版的志愿填报系统，查专业、选院校、看位次、招生计划等等等等，全国千万考生数据支撑，你想要的全都有！自己动手就可填报自己的志愿；我公司提供专业老师指导使用。</Text></View>
         </View>
         <View className='gbydyfw-btngroup'>
