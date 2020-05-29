@@ -47,9 +47,20 @@ function ajax(url, methodType, data, header) {
         }
         resolve(data);
       } else {
-        Taro.navigateTo({
-          url: '/pages/login/index'
-        });
+
+        if(data.code == 403){//无权限
+          Taro.showToast({
+            title: `${res.data.message}`,
+            icon: 'none',
+            mask: true,
+          });
+        }
+
+        // Taro.navigateTo({
+        //   url: '/pages/login/index'
+        // });
+
+
         // throw new Error(`网络请求错误，状态码${statusCode}`);
       }
     })

@@ -90,7 +90,7 @@ class Index extends Component {
           <View className='navigator-item-title'>
             <Text>高报志愿卡</Text>
             <View>
-              <Text style='color:#ff9913;'>￥1680.00</Text>
+              <Text style='color:#ff9913;'>￥500.00</Text>
               <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1980.00</Text>
             </View>
           </View>
@@ -99,7 +99,7 @@ class Index extends Component {
         <View className='navigator-item' onClick={this.getService.bind(this,"/packageFW/gbsxk/index")}>
           <Image className='navigator-item-image' src='https://oss.srwmedu.cn/ico/wx/vip.png' />
           <View className='navigator-item-title'>
-            <Text>高报升学卡</Text>
+            <Text>高报升学卡服务</Text>
             <View>
               <Text style='color:#ff9913;'>￥1680.00</Text>
               <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1980.00</Text>

@@ -449,7 +449,7 @@ class Index extends Component {
         {/*成功案例*/}
         <View className='counselor'>
           <View>
-            <Text className="title">成功案例</Text>
+            <Text className="title">典型成功案例</Text>
             <Text onClick={this.getMoreCase.bind(this)} class="more">更多</Text>
           </View>
         </View>

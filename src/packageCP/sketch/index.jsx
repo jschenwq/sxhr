@@ -14,6 +14,7 @@ class Index extends Component{
     this.state = {
       lastFlag: true,
       visibled: true,
+      isMember:false,
       reportCount:'',
       beginTime: 0,
       answerScores: [],
@@ -96,9 +97,12 @@ class Index extends Component{
     })
     getUserReportCount().then(({data})=>{
       this.setState({
-        reportCount:data.data.reportCount
+        reportCount:data.data.reportCount,
+        isMember: data.code==0
       })
+
     });
+
   }
 
   componentDidHide () { }
@@ -146,7 +150,7 @@ class Index extends Component{
 
   render () {
     let {title, cycle, titleNum, imageSrc, content, desc } = this.state.data[this.$router.params.index];
-    let {reportCount, visibled, currentIndex, questions } = this.state;
+    let {reportCount, visibled, currentIndex, questions ,isMember} = this.state;
     return (
       <View className='index'>
         <View className='top' hidden={!visibled}>
@@ -169,7 +173,7 @@ class Index extends Component{
           <View className='middle-desc'>{desc}</View>
         </View>
         <View className='bottom' hidden={!visibled}>
-          <Button onClick={this.startAssess.bind(this)} type='primary'>开始测评</Button>
+          <Button hidden={!isMember} onClick={this.startAssess.bind(this)} type='primary'>开始测评</Button>
         </View>
 
         {/* 测评进度 */}
