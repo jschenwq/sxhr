@@ -98,8 +98,8 @@ class Index extends Component {
         <View className='gbydyfw-price'>
           <Label>高报志愿卡</Label>
           <View>
-            <Text style='color:#ff9913;'>￥1680.00</Text>
-            <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1980.00</Text>
+            <Text style='color:#ff9913;'>￥9.90</Text>
+            <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥500.00</Text>
           </View>
         </View>
         <View className='gbydyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;'>

@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Label, Button, Image, Switch } from '@tarojs/components'
+import {View, Label, Button, Image, Switch, Text} from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
 
@@ -86,7 +86,9 @@ class Index extends Component {
         <Image src={banner[0]} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
         <View className='hyfw-price'>
           <Label>选科服务</Label>
-          <Text style='color: #ff9913;'> ￥1000.00</Text>
+          <Text style='color: #ff9913;'> ￥9.90</Text>
+          <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1000.00</Text>
+
         </View>
 
         <View className='hyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx 4rpx;font-size: 30rpx;'>

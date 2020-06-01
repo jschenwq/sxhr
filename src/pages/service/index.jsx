@@ -65,7 +65,10 @@ class Index extends Component {
           <Image className='navigator-item-image' src='https://oss.srwmedu.cn/ico/wx/vip.png' />
           <View className='navigator-item-title'>
             <Text>测评次卡</Text>
-            <Text style='color:#ff9913;'>￥500.00</Text>
+            <View>
+              <Text style='color:#ff9913;'>￥9.90</Text>
+              <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥500.00</Text>
+            </View>
           </View>
           <Text className='arrow-icon'></Text>
         </View>
@@ -73,7 +76,10 @@ class Index extends Component {
           <Image className='navigator-item-image' src='https://oss.srwmedu.cn/ico/wx/vip.png' />
           <View className='navigator-item-title'>
             <Text>升学规划</Text>
-            <Text style='color:#ff9913;'>￥1000.00</Text>
+            <View>
+              <Text style='color:#ff9913;'>￥9.90</Text>
+              <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1000.00</Text>
+            </View>
           </View>
           <Text className='arrow-icon'></Text>
         </View>
@@ -81,7 +87,10 @@ class Index extends Component {
           <Image className='navigator-item-image' src='https://oss.srwmedu.cn/ico/wx/vip.png' />
           <View className='navigator-item-title'>
             <Text>选科服务</Text>
-            <Text style='color:#ff9913;'>￥1000.00</Text>
+            <View>
+              <Text style='color:#ff9913;'>￥9.90</Text>
+              <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1000.00</Text>
+            </View>
           </View>
           <Text className='arrow-icon'></Text>
         </View>
@@ -90,8 +99,8 @@ class Index extends Component {
           <View className='navigator-item-title'>
             <Text>高报志愿卡</Text>
             <View>
-              <Text style='color:#ff9913;'>￥500.00</Text>
-              <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1980.00</Text>
+              <Text style='color:#ff9913;'>￥9.90</Text>
+              <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥500.00</Text>
             </View>
           </View>
           <Text className='arrow-icon'></Text>
@@ -101,7 +110,8 @@ class Index extends Component {
           <View className='navigator-item-title'>
             <Text>高报升学卡服务</Text>
             <View>
-              <Text style='color:#ff9913;'>￥1680.00</Text>
+              <Text style='color:#ff9913;'>￥9.90</Text>
+              {/*<Text style='color:#ff9913;'>￥1680.00</Text>*/}
               <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1980.00</Text>
             </View>
           </View>
@@ -111,7 +121,10 @@ class Index extends Component {
           <Image className='navigator-item-image' src='https://oss.srwmedu.cn/ico/wx/vip.png' />
           <View className='navigator-item-title'>
             <Text>志愿填报（普高）</Text>
-            <Text style='color:#ff9913;'>￥6000.00</Text>
+            <View>
+              <Text style='color:#ff9913;'>￥9.90</Text>
+              <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥6000.00</Text>
+            </View>
           </View>
           <Text className='arrow-icon'></Text>
         </View>
@@ -119,7 +132,10 @@ class Index extends Component {
           <Image className='navigator-item-image' src='https://oss.srwmedu.cn/ico/wx/vip.png' />
           <View className='navigator-item-title'>
             <Text>志愿填报（艺术类）</Text>
-            <Text style='color:#ff9913;'>￥8000.00</Text>
+            <View>
+              <Text style='color:#ff9913;'>￥9.90</Text>
+              <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥8000.00</Text>
+            </View>
           </View>
           <Text className='arrow-icon'></Text>
         </View>
