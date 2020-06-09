@@ -2,6 +2,8 @@ import Taro, { Component } from '@tarojs/taro'
 import {View, Label, Button, Image, Switch, Text} from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
+import {getMemberList} from "../../utils/api";
+import {getGlobalData} from "../../utils/global";
 
 class Index extends Component {
 
@@ -16,8 +18,10 @@ class Index extends Component {
     banner:[
       'https://oss.srwmedu.cn/banner/banner1.jpg',
       'https://oss.srwmedu.cn/banner/banner2.jpg'
-    ]
-  }
+    ],
+    flag1: false,
+    flag2: true
+  };
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
   }
@@ -43,7 +47,24 @@ class Index extends Component {
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () {
+    //获取会员信息
+    if(getGlobalData("userInfo")==null){
+      return
+    }
+    let level = this.$router.params.type=== "art"? 21:20;
+    console.log(this.$router.params.type+"11111111111")
+    //志愿填报（普高）21，志愿填报（艺术）20，测评次卡40，选科服务30，升学规划10，高报志愿卡50，高报升学卡60
+    getMemberList({userId:getGlobalData("userInfo").userId,level:level }).then(({data}) => {
+      if (data[0]!=null){
+        this.setState({
+          flag1: true,
+          flag2:false
+        })
+      }
+
+    })
+  }
 
   componentDidHide () { }
 
@@ -77,6 +98,10 @@ class Index extends Component {
             title:'支付成功',
             icon:'none',
             duration:1000
+          });
+          this.setState({
+            flag1: true,
+            flag2:false
           })
         },
         fail(res){
@@ -96,14 +121,15 @@ class Index extends Component {
     }));
   }
   render () {
-    let { serviceTypeName, serviceFee, banner } = this.state;
+    let { flag1,flag2,serviceTypeName, serviceFee, banner } = this.state;
     return (
       <View className='index'>
         <Image src={banner[0]} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
         <View className='gbydyfw-price'>
           <Label>志愿填报{serviceTypeName}</Label>
-          <Text style='color: #ff9913;'> ￥9.9</Text>
-          <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥{serviceFee}</Text>
+          <Text hidden={flag1} style='color: #ff9913;'> ￥9.9</Text>
+          <Text hidden={flag1} style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥{serviceFee}</Text>
+          <Text hidden={flag2} style='color:#ff0000;margin-left: 20px;'> 已开通</Text>
         </View>
         <View className='gbydyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;'>
           <View><Text style='font-size: 32rpx;color: #333333;'>【志愿填报】专家一对一指导高考志愿填报，包括职业测评定专业及专业解读，未来发展方向制定，院校选择及解读，全部签约，保录取，掉档全额退费！（具体优惠政策可电话咨询或添加服务老师微信咨询） \n

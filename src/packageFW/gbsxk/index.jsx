@@ -3,6 +3,9 @@ import {View, Label, Button, Image, Switch, Text} from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
 
+import {getMemberList} from "../../utils/api";
+import {getGlobalData} from "../../utils/global";
+
 class Index extends Component {
 
   config = {
@@ -16,7 +19,9 @@ class Index extends Component {
     banner:[
       'https://oss.srwmedu.cn/banner/banner1.jpg',
       'https://oss.srwmedu.cn/banner/banner2.jpg'
-    ]
+    ],
+    flag1: false,
+    flag2: true
   }
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -39,7 +44,22 @@ class Index extends Component {
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () {
+    //获取会员信息
+    if(getGlobalData("userInfo")==null){
+      return
+    }
+    //志愿填报（普高）21，志愿填报（艺术）20，测评次卡40，选科服务30，升学规划10，高报志愿卡50，高报升学卡60
+    getMemberList({userId:getGlobalData("userInfo").userId,level:60}).then(({data}) => {
+      if (data[0]!=null){
+        this.setState({
+          flag1: true,
+          flag2:false
+        })
+      }
+
+    })
+  }
 
   componentDidHide () { }
 
@@ -72,6 +92,10 @@ class Index extends Component {
             title:'支付成功',
             icon:'none',
             duration:1000
+          });
+          this.setState({
+            flag1: true,
+            flag2:false
           })
         },
         fail(res){
@@ -91,16 +115,17 @@ class Index extends Component {
     }));
   }
   render () {
-    let { serviceFee,banner } = this.state;
+    let {flag1,flag2,  serviceFee,banner } = this.state;
     return (
       <View className='index'>
         <Image src={banner[0]} style='width:100%;height: 400rpx;margin-bottom: 16rpx;' />
         <View className='gbydyfw-price'>
-          <Label>高报升学卡服务</Label>
           <View>
-            <Text style='color:#ff9913;'>￥9.90</Text>
-            <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1680.00</Text>
+            <Label>高报升学卡服务</Label>
+            <Text hidden={flag1} style='color:#ff9913;'>￥9.90</Text>
+            <Text hidden={flag1} style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1680.00</Text>
             {/*<Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1980.00</Text>*/}
+            <Text hidden={flag2} style='color:#ff0000;margin-left: 20px;'> 已开通</Text>
           </View>
         </View>
         <View className='gbydyfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;'>

@@ -2,6 +2,8 @@ import Taro, { Component } from '@tarojs/taro'
 import {View, Label, Button, Image, Switch, Text} from '@tarojs/components'
 import { getService } from '@utils/api'
 import './index.scss'
+import {getMemberList} from "../../utils/api";
+import {getGlobalData} from "../../utils/global";
 
 class Index extends Component {
 
@@ -13,15 +15,31 @@ class Index extends Component {
     banner:[
       'https://oss.srwmedu.cn/banner/banner1.jpg',
       'https://oss.srwmedu.cn/banner/banner2.jpg'
-    ]
-  }
+    ],
+    flag1: false,
+    flag2: true
+  };
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
   }
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () {
+    //获取会员信息
+    if(getGlobalData("userInfo")==null){
+      return
+    }
+    //志愿填报（普高）21，志愿填报（艺术）20，测评次卡40，选科服务30，升学规划10，高报志愿卡50，高报升学卡60
+    getMemberList({userId:getGlobalData("userInfo").userId,level:10}).then(({data}) => {
+      if (data[0]!=null){
+        this.setState({
+          flag1: true,
+          flag2:false
+        })
+      }
+    })
+  }
 
   componentDidHide () { }
 
@@ -29,13 +47,13 @@ class Index extends Component {
     this.setState(()=> ({
       [checked]: e.currentTarget.value
     }));
-  }
+  };
 
   fwrxPhoneCall=(e)=>{
     Taro.makePhoneCall({
       phoneNumber: this.state.phoneNumber
     });
-  }
+  };
 
   fwrxPay=(e)=>{
     Taro.showLoading({
@@ -56,7 +74,11 @@ class Index extends Component {
             title:'支付成功',
             icon:'none',
             duration:1000
-          })
+          });
+          this.setState({
+            flag1: true,
+            flag2:false
+          });
         },
         fail(res){
           Taro.hideLoading();
@@ -76,14 +98,15 @@ class Index extends Component {
     }));
   }
   render () {
-    let {phoneNumber, banner} = this.state;
+    let {flag1,flag2,phoneNumber, banner} = this.state;
     return (
       <View className='index'>
         <Image src={banner[0]} style='width:100%;height: 500rpx;margin-bottom: 16rpx;' />
         <View className='sxkfw-price'>
           <Label>升学规划{serviceTypeName}</Label>
-          <Text style='color: #ff9913;'> ￥9.90</Text>
-          <Text style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1000.00</Text>
+          <Text hidden={flag1} style='color: #ff9913;'> ￥9.90</Text>
+          <Text hidden={flag1} style='color:#999;text-decoration: line-through;margin-left: 10px;'>￥1000.00</Text>
+          <Text hidden={flag2} style='color:#ff0000;margin-left: 20px;'> 已开通</Text>
         </View>
         <View className='sxkfw-price' style='border-bottom: 1px solid #f0eff5;margin-bottom: 0px;color: #7b7b7b;padding: 20rpx 40rpx;font-size: 30rpx;'>
           <View>
