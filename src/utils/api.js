@@ -15,6 +15,9 @@ export const getDetail = (majorId) => $.ajax('/wx/major/' + majorId,"get");
 //获取批次线
 export const getListBatchScore = (data) => $.ajax('/wx/score/listBatchScore','POST',data);
 
+//提前批
+export const getListAdvance = (data) => $.ajax('/wx/advance/listAdvance','POST',data);
+
 //分数线
 //获取学校分数线
 export const getSchoolScore = (data) => $.ajax('/wx/score/listSchoolScore',"post",data);

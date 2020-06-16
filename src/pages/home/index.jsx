@@ -80,7 +80,6 @@ class Index extends Component {
       })
     });
 
-
   }
 
   componentDidShow () {
@@ -189,11 +188,9 @@ class Index extends Component {
     }
     //提前批
     if(index == 5){
-      Taro.showToast({
-        title: '开发中敬请期待...',
-        icon: 'none',
-        mask: true,
-      });
+      Taro.navigateTo({
+        url: '/packageCX/tqp/index',
+      })
     }
     //位次查询
     if(index == 6){

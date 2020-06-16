@@ -21,8 +21,8 @@ class Index extends Component {
       type: '理科',
       provinceList:[],
       province:'河南',
-      yearList:['2019','2018','2017','2016','2015','2014','2013','2012'],
-      year:2019,
+      yearList:['2019','2018','2017'],
+      year:2017,
       majorScore:[],
       schoolNewsList:[],
       content:'',
@@ -71,7 +71,7 @@ class Index extends Component {
       //获取专业分数线
       getMajorScore({type:this.state.type,province:this.state.province,year:this.state.year,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
-          majorScore: data.list,
+          majorScore: data,
         })
       })
     }else {
@@ -99,7 +99,7 @@ class Index extends Component {
       //获取专业分数线
       getMajorScore({type:this.state.selector[e.detail.value],province:this.state.province,year:this.state.year,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
-          majorScore: data.list,
+          majorScore: data,
         })
       })
     }else {
@@ -129,7 +129,7 @@ class Index extends Component {
       //获取专业分数线
       getMajorScore({type:this.state.type,province:this.state.provinceList[e.detail.value],year:this.state.year,schoolId:this.state.schoolId}).then(({data}) => {
         this.setState({
-          majorScore: data.list,
+          majorScore: data,
         })
       })
     }
@@ -143,7 +143,7 @@ class Index extends Component {
     //获取专业分数线
     getMajorScore({type:this.state.type,province:this.state.province,year:this.state.yearList[e.detail.value],schoolId:this.state.schoolId}).then(({data}) => {
       this.setState({
-        majorScore: data.list,
+        majorScore: data,
       })
     })
   };

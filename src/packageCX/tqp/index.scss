@@ -1,0 +1,36 @@
+.index{
+  height: 100%;
+  overflow: auto;
+  .query-panel{
+    padding: 10px 30px;
+    border-radius: 40px;
+    border: 1px solid #fafafa;
+    width: 96%;
+    margin: 0 auto;
+  }
+  /* 表头*/
+  .table-title{
+    padding: 35px 30px 25px 30px;
+    .at-col{
+      word-break:break-all;
+      text-align: center;
+      font-size: 35px;
+    }
+  }
+  .table-body{
+    height: calc(100% - 185rpx);
+    overflow: auto;
+    .at-row{
+      color: #333;
+      font-size: 30px;
+      text-align: center;
+      padding: 10px;
+      &:nth-child(odd){
+        background: #fafafa;
+      }
+      &:nth-child(even){
+        background: #fff;
+      }
+    }
+  }
+}

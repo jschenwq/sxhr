@@ -14,9 +14,9 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selector: [2019],//年限选项数据
+      selector: getGlobalData("year"),
       selectorChecked: 2019,//年限默认值
-      province: '',
+      province: getGlobalData("userInfo").province,
       data: []
     };
   }
@@ -24,30 +24,22 @@ class Index extends Component {
     this.setState({
       selectorChecked: this.state.selector[e.detail.value]
     });
+    let {province} = this.state;
+    this.handleQuery( this.state.selector[e.detail.value],province);
   }
 
-  componentDidMount(){
-    this.setState({
-      province: getGlobalData("userInfo").province,
-      selector:getGlobalData("year")
-    });
-  }
-  componentWillMount(){
-    this.handleQuery();
-  }
-  handleQuery(){//查询
+  componentDidShow () {
     let {selectorChecked,province} = this.state;
+    this.handleQuery(selectorChecked,province);
+  }
+
+  handleQuery(selectorChecked,province){//查询
     getListBatchScore({year: selectorChecked, province: province}).then(({data})=>{
       this.setState({
         data: data
       });
     });
   }
-  componentWillUnmount () {}
-
-  componentDidShow () {}
-
-  componentDidHide () {}
 
   render () {
     let {selector,selectorChecked,province,data} = this.state;
