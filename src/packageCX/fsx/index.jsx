@@ -18,9 +18,10 @@ class Index extends Component {
       current:0,
       schoolId:0,
       selector: [],
-      type: '理科',
       provinceList:[],
       province:'河南',
+      selectorType: ["理科","文科"],//考生类别
+      type: '理科',
       yearList:['2019','2018','2017'],
       year:2017,
       majorScore:[],
@@ -47,7 +48,7 @@ class Index extends Component {
     });
 
     //获取学校分数线--参数解构赋值
-    getSchoolScore({province:this.state.province,schoolId:this.$router.params.schoolId}).then(({data}) => {
+    getSchoolScore({province:this.state.province,schoolId:this.$router.params.schoolId,type:this.state.type}).then(({data}) => {
       this.setState({
         schoolScore: data.list,
       })
@@ -62,7 +63,7 @@ class Index extends Component {
 
     if(value == 0){
       // 获取学校分数线
-      getSchoolScore({province:this.state.province,schoolId:this.state.schoolId}).then(({data}) => {
+      getSchoolScore({province:this.state.province,schoolId:this.state.schoolId,type:this.state.type}).then(({data}) => {
         this.setState({
           schoolScore: data.list,
         })
@@ -90,7 +91,7 @@ class Index extends Component {
     })
     if(this.state.current == 0){
       // 获取学校分数线
-      getSchoolScore({province:this.state.province,schoolId:this.state.schoolId}).then(({data}) => {
+      getSchoolScore({province:this.state.province,schoolId:this.state.schoolId,type:this.state.type}).then(({data}) => {
         this.setState({
           schoolScore: data.list,
         })
@@ -120,7 +121,30 @@ class Index extends Component {
     if(this.state.current == 0){
       // 获取学校分数线
       // getSchoolScore({type:this.state.type,province:this.state.provinceList[e.detail.value],schoolId:this.state.schoolId}).then(({data}) => {
-      getSchoolScore({province:this.state.provinceList[e.detail.value],schoolId:this.state.schoolId}).then(({data}) => {
+      getSchoolScore({province:this.state.provinceList[e.detail.value],schoolId:this.state.schoolId,type:this.state.type}).then(({data}) => {
+        this.setState({
+          schoolScore: data.list,
+        })
+      })
+    }else if(this.state.current == 1){
+      //获取专业分数线
+      getMajorScore({type:this.state.type,province:this.state.provinceList[e.detail.value],year:this.state.year,schoolId:this.state.schoolId}).then(({data}) => {
+        this.setState({
+          majorScore: data,
+        })
+      })
+    }
+  };
+
+  onChangeType = e => {
+    this.setState({
+      type: this.state.selectorType[e.detail.value]
+    })
+
+    if(this.state.current == 0){
+      // 获取学校分数线
+      // getSchoolScore({type:this.state.type,province:this.state.provinceList[e.detail.value],schoolId:this.state.schoolId}).then(({data}) => {
+      getSchoolScore({province:this.state.province,schoolId:this.state.schoolId,type:this.state.selectorType[e.detail.value]}).then(({data}) => {
         this.setState({
           schoolScore: data.list,
         })
@@ -185,14 +209,24 @@ class Index extends Component {
                   <Text className='at-icon at-icon-chevron-down'></Text>
                 </Picker>
               </View>
+              {/*文理科*/}
+              <View className='selectZy'>
+                <Picker className='pickerC' mode='selector' range={this.state.selectorType} onChange={this.onChangeType}>
+                  <View className='picker'>
+                    {this.state.type}
+                  </View>
+                  <Text className='at-icon at-icon-chevron-down'></Text>
+                </Picker>
+              </View>
 
               {/*<Text onClick={this.handleChangeB.bind(this)} className ='sysm'>数据说明</Text>*/}
             </View>
 
             <View className='at-row tableTitle'>
-              <View className='at-col font2 selectTop'>招生批次</View>
               <View className='at-col font2 selectTop'>年份</View>
-              <View className='at-col font2 selectTop'>文理科</View>
+              <View className='at-col font2 selectTop'>招生批次</View>
+              <View className='at-col font2 selectTop'>招生类型</View>
+              {/*<View className='at-col font2 selectTop'>文理科</View>*/}
               <View className='at-col font2 selectTop'>最低分</View>
             </View>
 
@@ -201,9 +235,10 @@ class Index extends Component {
                 schoolScore.length > 0 && schoolScore.map((item,index) => {
                   return (
                     <View className={classNames('at-row','scoreTr',index % 2 == 0?'active':'')} key={index}>
-                      <View className='at-col selectTop'>{item.batch?item.batch:''}</View>
                       <View className='at-col selectTop'>{item.year}</View>
-                      <View className='at-col selectTop'>{item.type}</View>
+                      <View className='at-col selectTop'>{item.batch?item.batch:''}</View>
+                      <View className='at-col selectTop'>{item.enrollType}</View>
+                      {/*<View className='at-col selectTop'>{item.type}</View>*/}
                       <View className='at-col selectTop'>{item.minScore}</View>
                     </View>
                   )

@@ -140,6 +140,12 @@ class Index extends Component {
       currentCourse: value
     })
   }
+  //分数修改
+  onScoreChange=(e)=> {
+    this.setState({
+      scoreValue: e.detail.value
+    });
+  }
   //分数切换
   handleTab(value){
     this.setState({
@@ -148,11 +154,9 @@ class Index extends Component {
   }
   //智能推荐
   gotoZntj(){
-    Taro.showToast({
-      title: '敬请期待！',
-      icon: 'none',
-      mask: true,
-    });
+    Taro.navigateTo({
+      url: '/packageCX/zntj/index?type='+ this.state.currentCourse+'&score='+this.state.scoreValue,
+    })
   }
   //信息查询
   infomationSearch(data,index){
@@ -302,8 +306,9 @@ class Index extends Component {
               <Text onClick={this.handleCourse.bind(this,0)} className={classNames('home_wl',currentCourse == 0?'home_active':'')}>文</Text>
               <Text onClick={this.handleCourse.bind(this,1)} className={classNames('home_wl',currentCourse == 1?'home_active':'')}>理</Text>
             </View>
-            <Text onClick={this.handleTab.bind(this,0)} className={classNames('home_score',current == 0?'home_font':'')}>高考/模拟总分</Text>
-            <Text onClick={this.handleTab.bind(this,1)} className={classNames('home_scoreLine',current == 1?'home_font':'')}>线差</Text>
+            <Text  className={classNames('home_score',current == 0?'home_font':'')}>高考/模拟总分</Text>
+            {/*<Text onClick={this.handleTab.bind(this,0)} className={classNames('home_score',current == 0?'home_font':'')}>高考/模拟总分</Text>*/}
+            {/*<Text onClick={this.handleTab.bind(this,1)} className={classNames('home_scoreLine',current == 1?'home_font':'')}>线差</Text>*/}
           </View>
           <View className='home_zntj' onClick={this.gotoZntj.bind(this)}>
             <View>智能</View>
@@ -312,8 +317,7 @@ class Index extends Component {
           {
             current == 0 ?
               <View className='home_scoreContent'>
-                <Input value={this.state.scoreValue} className="home_scoreIpt" type='text' placeholder={currentCourse == 0?'请输入高考/模考总数(文科)':'请输入高考/模考总数(理科)'}/><Text className = 'home_font1'>分</Text>
-
+                <Input value={this.state.scoreValue} onChange={this.onScoreChange} className="home_scoreIpt" type='text' placeholder={currentCourse == 0?'请输入高考/模考总数(文科)':'请输入高考/模考总数(理科)'}/><Text className = 'home_font1'>分</Text>
               </View>:
               <View className='home_scoreContent'>
                 <Input className="home_scoreIpt1" type='text' placeholder='请输入线分差'/><Text className = 'home_font1'>分</Text>
