@@ -72,10 +72,18 @@
         .schoolRate{
           display: inline-block;
           padding: 1px;
-          font-size: 22px;
-          margin-left: 15px;
+          font-size: 18px;
+          margin-left: 5px;
+        }
+        .schoolProvince{
+          display: inline-block;
+          padding: 1px;
+          font-size: 20px;
+          vertical-align: bottom;
+          float: right;
         }
       }
+
       .schoolContent{
         display: flex;
         font-size: 26px;

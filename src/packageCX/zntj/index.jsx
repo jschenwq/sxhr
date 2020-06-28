@@ -133,15 +133,18 @@ class Index extends Component {
                               <View className="schoolTitle">
                                 <Text className='schoolName'>{item?item.schoolName:''}</Text>
                                 <Text className='schoolSx'>{item?item.nature:''}</Text>
+                                <Text className='schoolSx'>{item?item.eduLevel:''}</Text>
+
+                                <Icon className='schoolProvince' color='#A1A1A1' size='14' type='waiting'/>
+                                <Text className='schoolProvince'>{item?item.province:''}</Text>
+
+                              </View>
+                              <View className='schoolContent'>
                                 <Text className='schoolRate'>最低分：{item.minScore}</Text>
-                                <Text className='schoolRate'>|</Text>
                                 <Text className='schoolRate'>录取概率：{item.rate}%</Text>
                               </View>
                               <View className='schoolContent'>
-                                <View className='schoolaAttr'>{item?item.eduLevel:''}</View>
-                                <View className="schoolLocation">
-                                  <Icon className='noticeIcon' color='#A1A1A1' size='14' type='waiting' />{item?item.province:''}
-                                </View>
+                                <Text className='schoolRate'>招生类型：{item.enrollType}</Text>
                               </View>
                             </View>
                           </View>
